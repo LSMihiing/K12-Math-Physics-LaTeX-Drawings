@@ -1,0 +1,700 @@
+% 子文件：D_线段图
+% 本文件包含 9 个 section
+
+
+%% ==============================
+%% 画图解题：相向而行与相背而行
+%% ==============================
+\newpage
+
+\section{解答：行程问题线段图与计算}
+
+\vspace{0.4cm}
+
+\noindent\textbf{4. 先画图整理，再解答。}\\
+\textbf{轿车每小时行 $100$ 千米，客车每小时行 $80$ 千米。}
+
+\vspace{0.4cm}
+
+\noindent\textbf{（1）如果两车同时从两地出发，沿同一条公路相对而行，2小时后正好在加油站相遇。两地之间的公路长多少千米？}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0] % 整体思路：先画一条表示公路全长的水平线段，再在左右端标出 A、B 两地，中间标出相遇点，接着用方向箭头表示两车相向而行，最后用括号标出两段路程和总路程
+  \draw[line width=1.1pt] (0,0) -- (13,0); % 画主公路线段；line width=1.1pt 表示稍粗主线；从 (0,0) 到 (13,0) 表示整段路
+  
+  % 端点和相遇点
+  \draw[line width=1pt] (0,-0.2) -- (0,0.2) node[above=5pt] {$A$地}; % 在 x=0 处画竖短线表示 A 地位置；node[above=5pt] 表示标签放在线上方 5pt 处
+  \draw[line width=1pt] (13,-0.2) -- (13,0.2) node[above=5pt] {$B$地}; % 在最右端 x=13 处画 B 地标记
+  \draw[line width=1pt] (7,-0.2) -- (7,0.2) node[above=5pt, font=\small\bfseries, red!70!black] {加油站（相遇点）}; % 在中间 x=7 处画相遇点；font=\small\bfseries 让文字较小但加粗；red!70!black 用红色强调关键位置
+  
+  % 行驶方向箭头
+  \draw[->, line width=1pt, blue!70!black] (1.0, 0.4) -- (4.5, 0.4) node[midway, above] {\small 轿车 $100$ 千米/时}; % 蓝色箭头从左向右，表示轿车行驶方向；midway 表示标签放在线段中点；above 放在线上方
+  \draw[->, line width=1pt, orange!90!black] (12.0, 0.4) -- (9.5, 0.4) node[midway, above] {\small 客车 $80$ 千米/时}; % 橙色箭头从右向左，表示客车向相遇点驶来
+  
+  % 下方大括号标注距离
+  \draw[decorate, decoration={brace, amplitude=6pt, mirror}, line width=0.8pt, blue!70!black] % decorate 表示启用装饰；decoration={brace,...} 指定大括号；amplitude=6pt 控制括号鼓起幅度；mirror 表示括号朝下
+    (0,-0.3) -- (7,-0.3) node[midway, below=8pt, font=\small] {轿车 $2$ 小时路程}; % 从 A 地到相遇点下方画蓝色大括号；below=8pt 让文字离括号稍远一些
+  \draw[decorate, decoration={brace, amplitude=5pt, mirror}, line width=0.8pt, orange!90!black] % 第二个大括号同理，amplitude=5pt 使形状略小以适应较短区间
+    (7,-0.3) -- (13,-0.3) node[midway, below=6pt, font=\small] {客车 $2$ 小时路程}; % 从相遇点到 B 地下方画客车 2 小时路程括号
+    
+  \draw[decorate, decoration={brace, amplitude=8pt, mirror}, line width=1pt] % 最下方大括号表示全长；amplitude=8pt 更醒目
+    (0,-1.4) -- (13,-1.4) node[midway, below=10pt, font=\bfseries] {两地全长}; % 从 A 到 B 整段下方画总长括号；font=\bfseries 加粗突出整体
+\end{tikzpicture} % 结束“相向而行”线段图
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{解答：}\\
+$(100 + 80) \times 2 = 180 \times 2 = 360$（千米）\\[4pt]
+\textbf{答：}两地之间的公路长 $360$ 千米。
+
+\vspace{0.8cm}
+\hrule
+\vspace{0.8cm}
+
+\noindent\textbf{（2）如果两车同时从加油站出发，沿同一条公路相背而行，2小时后正好同时到达目的地。两地之间的公路长多少千米？}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0] % 整体思路：图形结构与上一题类似，但方向改成从中间向两端相背而行，所以保留同一条公路线段，中点作为出发点，两侧为目的地，再用相反方向箭头说明运动过程
+  \draw[line width=1.1pt] (0,0) -- (13,0); % 画表示整段公路的水平主线
+  
+  % 端点和出发点
+  \draw[line width=1pt] (0,-0.2) -- (0,0.2) node[above=5pt] {目的地 $A$}; % 左端竖短线表示目的地 A
+  \draw[line width=1pt] (13,-0.2) -- (13,0.2) node[above=5pt] {目的地 $B$}; % 右端竖短线表示目的地 B
+  \draw[line width=1pt] (7,-0.2) -- (7,0.2) node[above=5pt, font=\small\bfseries, red!70!black] {加油站（出发点）}; % 中点标记加油站，并强调这里是共同出发点
+  
+  % 行驶方向箭头
+  \draw[->, line width=1pt, blue!70!black] (4.5, 0.4) -- (1.0, 0.4) node[midway, above] {\small 轿车 $100$ 千米/时}; % 蓝色箭头从中间偏左指向更左边，表示轿车向 A 地方向行驶
+  \draw[->, line width=1pt, orange!90!black] (9.5, 0.4) -- (12.0, 0.4) node[midway, above] {\small 客车 $80$ 千米/时}; % 橙色箭头从中间偏右指向更右边，表示客车向 B 地方向行驶
+  
+  % 下方大括号标注距离
+  \draw[decorate, decoration={brace, amplitude=6pt, mirror}, line width=0.8pt, blue!70!black] % 画左半段蓝色大括号，说明轿车 2 小时所行路程
+    (0,-0.3) -- (7,-0.3) node[midway, below=8pt, font=\small] {轿车 $2$ 小时路程}; % 从左端到中点的下方标注轿车路程
+  \draw[decorate, decoration={brace, amplitude=5pt, mirror}, line width=0.8pt, orange!90!black] % 画右半段橙色大括号，说明客车 2 小时所行路程
+    (7,-0.3) -- (13,-0.3) node[midway, below=6pt, font=\small] {客车 $2$ 小时路程}; % 从中点到右端的下方标注客车路程
+    
+  \draw[decorate, decoration={brace, amplitude=8pt, mirror}, line width=1pt] % 再用更大的总括号统一标记整段公路全长
+    (0,-1.4) -- (13,-1.4) node[midway, below=10pt, font=\bfseries] {两地全长}; % 在最下方给出全长提示
+\end{tikzpicture} % 结束“相背而行”线段图
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{解答：}\\
+$(100 + 80) \times 2 = 180 \times 2 = 360$（千米）\\[4pt]
+\textbf{答：}两地之间的公路长 $360$ 千米。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 线段图行程建模}：将公路抽象为从 $(0,0)$ 到 $(13,0)$ 的水平线段，分别用竖短线标注起止和关键地点（$A$ 地、$B$ 地、加油站/出发点）。\\
+\textbf{2. 方向箭头}：蓝色箭头 \texttt{blue!70!black} 和橙色箭头 \texttt{orange!90!black} 分别表示两车运动方向，直观对比速度和距离。\\
+\textbf{3. 大括号装饰器}：使用 \texttt{decorations.pathreplacing} 库的 \texttt{brace} 绘制路程标注大括号。\texttt{amplitude} 控制括号鼓出幅度，\texttt{mirror} 使括号朝下。近距离和远距离括号通过不同 $y$ 偏移量错开排列避免重叠。
+}
+
+%% ==============================
+%% 画图解题：同向而行与路程差
+%% ==============================
+\newpage
+
+
+
+%% ==============================
+%% 画图解题：同向而行与路程差
+%% ==============================
+\newpage
+
+\section{解答：行程问题线段图与计算（同向而行）}
+
+\vspace{0.4cm}
+
+\noindent\textbf{1. 小军和小英同时从学校出发，沿同一条路到少年宫。小军每分钟行 $70$ 米，小英每分钟行 $60$ 米。$10$ 分钟后小军到了少年宫，这时小英离少年宫还有多少米？（先画图整理，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.95] % 整体思路：把学校到少年宫的路抽象成一条线段，再在 10 分钟后分别标出小英和小军的位置，用两条同向箭头比较路程长短，最后把二者之间的差用大括号标出
+  \draw[line width=1.1pt] (0,0) -- (14,0); % 画整段路线主线；scale=0.95 让整体略缩小以适应版面；从 0 到 14 的长度表示从学校到少年宫
+  
+  % 位置和端点 (标签放在下方，双行居中对齐以防文字重叠)
+  \draw[line width=1pt] (0,0.2) -- (0,-0.2) node[below=5pt] {学校 (起点)}; % 左端竖短线表示共同起点学校；标签放下方
+  \draw[line width=1pt] (12,0.2) -- (12,-0.2) node[below=5pt, align=center] {小英位置}; % 在 x=12 处标出小英 10 分钟后的位置；align=center 让多行时居中对齐
+  \draw[line width=1pt] (14,0.2) -- (14,-0.2) node[below=5pt, align=center] {小军位置\\(少年宫)}; % 在最右端标出小军位置，同时注明这里就是少年宫；\\ 表示节点内换行
+  
+  % 行驶方向箭头 (上方)
+  \draw[->, line width=1pt, blue!70!black] (0, 1.5) -- (14, 1.5) node[midway, above] {\small 小军 $10$ 分钟路程（$70$ 米/分）}; % 蓝色箭头画出小军 10 分钟走的全程，方向由左向右；标签放中点上方
+  \draw[->, line width=1pt, orange!90!black] (0, 0.4) -- (12, 0.4) node[midway, above] {\small 小英 $10$ 分钟路程（$60$ 米/分）}; % 橙色箭头画出小英 10 分钟走的较短路程
+  
+  % 图示标明剩余距离 (移到上方，与小英的箭头同高对齐)
+  \draw[decorate, decoration={brace, amplitude=5pt}, line width=0.8pt, red!70!black] % 用向上的红色大括号标出剩余距离；未写 mirror，所以括号默认朝上
+    (12, 0.4) -- (14, 0.4) node[midway, above=6pt, font=\small\bfseries] {小英与少年宫距离}; % 从小英位置到少年宫位置画括号；above=6pt 控制文字离括号距离
+
+\end{tikzpicture} % 结束“同向而行路程差”线段图
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{解答：}\\
+\textbf{方法一（分别计算两人路程）：}\\
+小军的路程：$70 \times 10 = 700$（米）\\
+小英的路程：$60 \times 10 = 600$（米）\\
+两人相差：$700 - 600 = 100$（米）
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{方法二（按速度差计算）：}\\
+$(70 - 60) \times 10 = 10 \times 10 = 100$（米）
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{答：}这时小英离少年宫还有 $100$ 米。
+
+\vspace{0.8cm}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 画三角形的高
+%% ==============================
+\newpage
+
+
+
+%% ==============================
+%% 画线段图解三角形内角和
+%% ==============================
+\newpage
+
+\section{解答：三角形内角和与线段图求解}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 一个三角形，$\angle 2$ 与 $\angle 1$ 的度数相等，$\angle 3$ 比 $\angle 1$ 大 $30^\circ$。 $\angle 1$、$\angle 2$ 和 $\angle 3$ 各是多少度？（先把线段图补充完整，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：用三条横线分别表示三个角的大小关系，先画已知的一份，再复制出相等的第二份，最后在第三份后补上多出的 30°，并用总括号表示内角和 180°
+  % 标签
+  \node[left=10pt, font=\large] at (0, 0) {$\angle 1$}; % 在第一条线左侧标注“角1”；left=10pt 表示与参考点左隔 10pt
+  \node[left=10pt, font=\large] at (0, -1.2) {$\angle 2$}; % 在第二条线左侧标“角2”
+  \node[left=10pt, font=\large] at (0, -2.4) {$\angle 3$}; % 在第三条线左侧标“角3”
+
+  % 角1的线段 (原图黑色)
+  \draw (0, 0) -- (4, 0); % 画角1的主线段，长度取 4 个单位作为一份
+  \draw (0, 0.2) -- (0, -0.2); % 在左端画竖短线，表示线段起点
+  \draw (4, 0.2) -- (4, -0.2); % 在右端画竖短线，表示角1的终点长度
+
+  % 角2的线段 (蓝色补充)
+  \draw[blue] (0, -1.2) -- (4, -1.2); % 用蓝色复制与角1同长的线段，表示角2=角1
+  \draw[blue] (0, -1.0) -- (0, -1.4); % 角2左端刻线
+  \draw[blue] (4, -1.0) -- (4, -1.4); % 角2右端刻线
+
+  % 角3的线段 (蓝色补充)
+  \draw[blue] (0, -2.4) -- (6.4, -2.4); % 画角3的线段，总长比前两条多出一截，用来表示“比角1大 30°”
+  \draw[blue] (0, -2.2) -- (0, -2.6); % 角3左端刻线
+  \draw[blue] (4, -2.2) -- (4, -2.6); % 在 x=4 处刻线，表示与角1相等的部分终点
+  \draw[blue] (6.4, -2.2) -- (6.4, -2.6); % 在最右端刻线，表示加上“多出的 30°”后的总终点
+  
+  % 30度的大括号和文字
+  \draw[decorate, decoration={brace, amplitude=5pt}, blue] (4, -2.1) -- (6.4, -2.1) node[midway, above=6pt] {$30^\circ$}; % 用蓝色上括号标出角3比角1多出来的那一段，对应 30°
+
+  % 180度的大括号
+  \draw[decorate, decoration={brace, amplitude=8pt}, blue] (6.8, 0.2) -- (6.8, -2.6) node[midway, right=10pt, font=\large] {$180^\circ$}; % 在右边用竖向大括号把三条线整体并起来，说明三个角加起来等于 180°
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\textbf{解答：}\\
+根据“三角形内角和为 $180^\circ$”，结合线段图可知：三个角减去多出的 $30^\circ$ 后，正好等于 $3$ 个 $\angle 1$ 的度数。\\
+\indent $\angle 1 = (180^\circ - 30^\circ) \div 3 = 150^\circ \div 3 = 50^\circ$ \\
+\indent $\angle 2 = \angle 1 = 50^\circ$ \\
+\indent $\angle 3 = 50^\circ + 30^\circ = 80^\circ$ \\
+
+\vspace{0.2cm}
+\noindent\textbf{答：} $\angle 1$ 是 $50^\circ$，$\angle 2$ 是 $50^\circ$，$\angle 3$ 是 $80^\circ$。
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 等腰三角形周长与线段图求解
+%% ==============================
+\newpage
+
+
+
+%% ==============================
+%% 等腰三角形周长与线段图求解
+%% ==============================
+\newpage
+
+\section{解答：等腰三角形周长与线段图求解}
+
+\vspace{0.4cm}
+
+\noindent\textbf{7. 一个等腰三角形的周长是 34 厘米，它的一条腰比底长 5 厘米。这个等腰三角形的底和腰各长多少厘米？(先画线段图，再解答)}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：用三条横向线段表示等腰三角形的两条腰和一条底，其中底比腰短 5 厘米，再用虚线补齐差值，最后用大括号表示总周长 34 厘米
+  % 标签
+  \node[left=10pt, font=\large] at (0, 0) {腰}; % 第一条线左侧写“腰”
+  \node[left=10pt, font=\large] at (0, -1.2) {腰}; % 第二条线左侧也写“腰”，表示两腰相等
+  \node[left=10pt, font=\large] at (0, -2.4) {底}; % 第三条线左侧写“底”
+
+  % 第一条腰
+  \draw (0, 0) -- (3.9, 0); % 画第一条腰的线段，长度取 3.9 个单位
+  \draw (0, 0.2) -- (0, -0.2); % 在左端画竖短线标记起点
+  \draw (3.9, 0.2) -- (3.9, -0.2); % 在右端画竖短线标记终点
+
+  % 第二条腰
+  \draw (0, -1.2) -- (3.9, -1.2); % 画第二条腰，与第一条同长
+  \draw (0, -1.0) -- (0, -1.4); % 第二条腰左端刻线
+  \draw (3.9, -1.0) -- (3.9, -1.4); % 第二条腰右端刻线
+
+  % 底和补充虚线
+  \draw (0, -2.4) -- (2.4, -2.4); % 画底边线段，长度比腰短
+  \draw (0, -2.2) -- (0, -2.6); % 底边左端刻线
+  \draw (2.4, -2.2) -- (2.4, -2.6); % 底边现有终点刻线
+  
+  \draw[red, dashed, line width=1.2pt] (2.4, -2.4) -- (3.9, -2.4); % 用红色虚线把底边向右补齐到与腰同长；dashed 强调这是“补上去”的差值
+  \draw[red] (3.9, -2.2) -- (3.9, -2.6); % 在补齐后的终点处再画一个红色刻线
+  
+  \node[below=6pt] at (3.15, -2.4) {5厘米}; % 在补出的那一段下方标差值 5 厘米
+  
+  % 大括号
+  \draw[decorate, decoration={brace, amplitude=6pt}, thick] (4.4, 0.2) -- (4.4, -2.6) node[midway, right=10pt, font=\large] {34厘米}; % 右侧竖向大括号把三条边并起来，表示三边总和是 34 厘米
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\textbf{解答：}\\
+根据线段图可知，如果给“底”补充上 $5$ 厘米，那么三条边就统统和“腰”一样长了。此时三条边的总长度将变为 $34 + 5 = 39$ 厘米。\\
+\indent 腰长：$(34 + 5) \div 3 = 13$（厘米）\\
+\indent 底长：$13 - 5 = 8$（厘米）
+
+\vspace{0.2cm}
+\noindent\textbf{答：}这个等腰三角形的底长 $8$ 厘米，腰长 $13$ 厘米。
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+
+%% ==============================
+%% 平行四边形：画高与度量
+%% ==============================
+\newpage
+
+
+
+%% ==============================
+%% 行程问题：相遇点位置精确作图
+%% ==============================
+\newpage
+
+\section{解答：行程问题相遇点按比例标位}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 下面是从甲地到乙地的公路示意图，正中间是服务区。}
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：先画甲地、服务区、乙地三点共线的示意图，为后面的“相遇点位置”提供空白底图
+  % 线段 (总长 14，代表 168 千米的题目空图)
+  \draw (0,0) -- (14,0); % 画一条长度为 14 的水平线段，表示从甲地到乙地的公路
+  % 甲地
+  \fill (0,0) circle (3pt); % 在左端点画实心圆点表示甲地
+  \node[below=8pt] at (0,0) {甲地}; % 在甲地下方标注名称
+  % 服务区
+  \fill (7,0) circle (3pt); % 在线段中点画服务区位置
+  \node[below=8pt] at (7,0) {服务区}; % 在服务区下方标注
+  % 乙地
+  \fill (14,0) circle (3pt); % 在右端点画乙地实心点
+  \node[below=8pt] at (14,0) {乙地}; % 在乙地下方标注名称
+\end{tikzpicture}
+\end{center}
+\vspace{0.4cm}
+
+\noindent 一辆小客车从甲地出发开往乙地，每小时行 120 千米；一辆大客车从乙地出发开往甲地，每小时行 90 千米。两车同时出发，经过 0.8 小时相遇。\\
+\textbf{（1）在图上标出两车相遇地点的大概位置。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：沿用上一幅公路线段，在相同基准上再加出蓝色“相遇点”，让读者看到相遇位置略偏向乙地一侧
+
+  % 线段作图基底 (总长度 14，代表 168 千米的解答落点图)
+  \draw (0,0) -- (14,0); % 画公路基准线
+
+  % 原始标记点
+  % 甲地
+  \fill (0,0) circle (3pt); % 甲地点
+  \node[below=8pt] at (0,0) {甲地}; % 甲地标签
+
+  % 服务区在中点
+  \fill (7,0) circle (3pt); % 服务区点，仍在中点
+  \node[below=8pt] at (7,0) {服务区}; % 服务区标签
+
+  % 乙地极端点
+  \fill (14,0) circle (3pt); % 乙地点
+  \node[below=8pt] at (14,0) {乙地}; % 乙地标签
+
+  % 解答新加的相遇点 (严格按 96:72=4:3 比例落点于坐标刻度 8)
+  \fill[blue] (8,0) circle (3.5pt); % 在 x=8 处加蓝色圆点，表示相遇位置
+  \node[below=8pt, blue, font=\bfseries] at (8,1) {相遇点}; % 在相遇点上方偏一点放蓝色加粗标签
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+{\small\color{gray}
+\textbf{解析：}\\
+1. \textbf{计算各自行驶的路程}：\\
+\indent 小客车（从甲地出发向右开）行驶路程：$120 \times 0.8 = 96$（千米）。\\
+\indent 大客车（从乙地出发向左开）行驶路程：$90 \times 0.8 = 72$（千米）。\\
+2. \textbf{计算总路程及中点真实位置}：\\
+\indent 甲乙两地总路程为相遇之和：$96 + 72 = 168$（千米）。\\
+\indent 服务区在公路的正中间，说明服务区距离原点甲地绝对距离为：$168 \div 2 = 84$（千米）。\\
+3. \textbf{确定相遇点并按严谨数学比例作图}：\\
+\indent 在相遇时，小客车已经行驶了 $96$ 千米。因为 $96 > 84$，说明相遇点肯定越过了正中间的“服务区”，继续向乙地方向偏离了 $12$ 千米。\\
+\indent 在作图代码中，依据最新指示**“确保线段真实比例缩放”**的要求，我将整条 $168$ 千米的行程等比放大投影到了长度为 $14$ 的作图坐标系横轴上（即缩放比例为 $12:1$）。甲地位处坐标极限原点 $0$，服务区在黄金中点 $7$ 处。而根据比例映射关系 $168 : 96 = 14 : x$，相遇点位置的绝对理论坐标精确计算出 $x = 8$。\\
+\indent 因此，图中带着蓝色粗体提示的**相遇点**，已被我严丝合缝地点在了横坐标刻度正好为 $8$ 的位置，这样的出图落点不存在哪怕一毫米的主观估算误差，是拥有绝对精确参考价值的标位。
+}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+
+%% ==============================
+%% 第2题：体育用品商店购买问题——单价、数量的关系
+%% ==============================
+
+
+
+
+\newpage
+
+\section{解答：和差问题——图书数量分配}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 小军和小芳一共有图书 184 本，小芳比小军多 18 本。两人各有图书多少本？（先根据题意画出线段图，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt, scale=1.2] % 整体思路：用上下两条平齐线段表示小军和小芳的图书数量，再用虚线对齐相同部分，用括号分别标出“多出的18本”和“总共184本”
+  % 标签
+  \node[left=10pt, font=\large] at (0, 0.4) {小军：}; % 在上方线段左侧标注“小军”
+  \node[left=10pt, font=\large] at (0, -0.4) {小芳：}; % 在下方线段左侧标注“小芳”
+
+  % 小军的线段 (83本, L=4.15)
+  \draw (0, 0.4) -- (4.15, 0.4); % 画小军的线段，长度代表 83 本
+  \draw (0, 0.6) -- (0, 0.2); % 小军线段左端刻线
+  \draw (4.15, 0.6) -- (4.15, 0.2); % 小军线段右端刻线
+
+  % 小芳的线段 (101本, L+d=5.05)
+  \draw (0, -0.4) -- (5.05, -0.4); % 画小芳的线段，长度更长，表示比小军多 18 本
+  \draw (0, -0.2) -- (0, -0.6); % 小芳线段左端刻线
+  \draw (5.05, -0.2) -- (5.05, -0.6); % 小芳线段右端刻线
+
+  % 垂直虚线
+  \draw[dashed, thin] (4.15, 0.4) -- (4.15, -0.4); % 从小军终点向下作虚线，帮助看出小芳多出来的一段
+
+  % 18本的小括号和标签 (d=0.9, representing 18 books)
+  \draw[decorate, decoration={brace, amplitude=4pt}, blue] (4.15, -0.15) -- (5.05, -0.15) node[midway, above=4pt, font=\small] {18本}; % 在多出的那一段上方画蓝色括号，标出差是 18 本
+
+  % 184本的大括号和标签 (Total)
+  \draw[decorate, decoration={brace, amplitude=6pt}, thick] (5.4, 0.6) -- (5.4, -0.6) node[midway, right=10pt, font=\large] {184本}; % 在右侧用竖向大括号括起两条线段整体，表示两人合计 184 本
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这是一道典型的“和差问题”。已知两数之和（184本）与两数之差（18本），求这两个数。\\
+通过线段图可以看出，如果我们从总量中减去“多出来的 18 本”，剩下的部分就正好是小军图书数量的 2 倍（即 166 本）。\\
+因此，小军的图书数量 = (184 - 18) $\div$ 2 = 83（本）。\\
+小芳越过了这一平齐线 18 本，所以小芳的图书数量 = 83 + 18 = 101（本）。
+}
+
+\vspace{0.4cm}
+\noindent\textbf{解答：}\\
+\indent 小军的图书：$(184 - 18) \div 2 = 83$（本）\\
+\indent 小芳的图书：$83 + 18 = 101$（本）
+
+\vspace{0.2cm}
+\noindent\textbf{答：}小军有图书 83 本，小芳有图书 101 本。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 线段平齐与对比}：通过两条起始点一致的水平线段，直观展示两个数量的大小关系。\\
+\textbf{2. 差异可视化}：利用垂直虚线（Dashed Line）将较短线段的终点投影到较长线段上，从而精确划定出“多出”的部分。\\
+\textbf{3. 符号化标注}：使用 \texttt{TikZ} 的 \texttt{brace} 装饰器分别标注出局部差值（18本）与总体和值（184本），实现数形高度统一。
+}
+
+\newpage
+
+
+
+\newpage
+
+\section{解答：面积增加问题——长方形扩建正方形}
+
+\vspace{0.4cm}
+
+\noindent\textbf{6. 赵大伯家有一个长方形鱼塘，长比宽多 20 米。如果把这个鱼塘扩建成为一个最小的正方形，面积就增加 1600 平方米。原来鱼塘的面积是多少平方米？（先根据题意画出示意图，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt, scale=0.08] % 整体思路：把原鱼塘画成上方长方形，把扩建增加的部分画成下方长方形，两块上下拼起来正好组成最小正方形
+  % 原始鱼塘 (80x60)
+  \draw[thick] (0, 20) rectangle (80, 80); % 画原鱼塘长方形：左下角 (0,20)，右上角 (80,80)，长 80、宽 60
+  % 扩建部分 (80x20)
+  \draw[thick] (0, 0) rectangle (80, 20); % 画扩建增加的下方长方形：长 80、宽 20
+  
+  % 标注
+  \node[above=5pt, font=\large] at (40, 80) {长}; % 在上边中点上方标“长”
+  \node[right=5pt, font=\large] at (80, 50) {宽}; % 在原鱼塘右侧中部标“宽”
+  \node[right=5pt, font=\large] at (80, 10) {20米}; % 在新增部分右侧标出宽差 20 米
+  \node[font=\large] at (40, 10) {1600平方米}; % 在新增矩形中间标出增加面积 1600 平方米
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. **分析扩建部分**：长方形鱼塘的长比宽多 20 米 ($L = W + 20$)。要扩建为“最小的正方形”，由于长大于宽，正方形的边长应等于原先的长 ($L$)。\\
+2. **确定增加面积的形状**：扩建的部分是一个长为 $L$、宽为 20 米 ($L - W$) 的长方形。\\
+3. **计算长和宽**：已知增加的面积为 1600 平方米，根据公式 $S = \text{长} \times \text{宽}$，可得 $L = 1600 \div 20 = 80$（米）。\\
+4. **求原面积**：原先的宽 $W = 80 - 20 = 60$（米）。原鱼塘的面积为 $80 \times 60 = 4800$（平方米）。
+}
+
+\vspace{0.4cm}
+\noindent\textbf{解答：}\\
+\indent $1600 \div 20 = 80$（米）\dots\dots\dots 原鱼塘的长\\
+\indent $80 - 20 = 60$（米）\dots\dots\dots 原鱼塘的宽\\
+\indent $80 \times 60 = 4800$（平方米）
+
+\vspace{0.2cm}
+\noindent\textbf{答：}原来鱼塘的面积是 4800 平方米。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何模型构建}：将题目文字描述的“长方形扩建为正方形”抽象为两个拼接的矩形，大矩形边长代表原长。\\
+\textbf{2. 比例缩放}：基于实际长度（80m和60m）设定绘图比例（本图取 1:0.08），确保图形视觉上的长宽关系符合真实逻辑。\\
+\textbf{3. 关键标注对齐}：将“数值量”（1600平方米）置于新增面积块中心，“文字量”（长、宽）置于对应边侧，辅助理解代数推导过程。
+}
+
+
+\newpage
+
+
+
+
+\newpage
+
+\section{解答：分数应用题——足球与篮球的比例}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 学校买了一些足球和篮球，足球的个数占两种球总个数的 $\frac{3}{5}$。已知买了 18 个篮球，买了多少个足球？（先画出线段图，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt, scale=1.0] % 整体思路：把总数量看成一条被平均分成 5 份的线段，其中前 3 份表示足球，后 2 份表示篮球，再用大括号标出这两部分
+  % 主线段 (10 units, 5 parts)
+  \draw[thick] (0, 0) -- (10, 0); % 画总线段，长度 10 便于平均分成 5 份，每份长 2
+  
+  % 刻度 (6个刻度划分5个等份)
+  \foreach \x in {0, 2, 4, 6, 8, 10} { % 在 0、2、4、6、8、10 处画刻度，把总段分成 5 等份
+    \draw[thick] (\x, 0.2) -- (\x, -0.2); % 每个刻度都是一小段竖线，向上 0.2、向下 0.2
+  } % 结束刻度循环
+  
+  % 足球大括号 (下方，前3份)
+  \draw[decorate, decoration={brace, amplitude=8pt, mirror}] (0, -0.5) -- (6, -0.5) node[midway, below=12pt, font=\large] {足球}; % 在前 3 份下方画朝下的大括号，表示足球占 3/5
+  
+  % 篮球大括号 (上方，后2份)
+  \draw[decorate, decoration={brace, amplitude=8pt}] (6, 0.5) -- (10, 0.5) node[midway, above=10pt, font=\large] {篮球 18个}; % 在后 2 份上方画大括号，标出篮球共 18 个
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. **分析比例关系**：题目指出足球占总个数的 $\frac{3}{5}$，这意味着如果把总数看作 $5$ 份，足球占其中的 $3$ 份。\\
+2. **确定篮球比例**：剩余的 $5 - 3 = 2$ 份就是篮球。\\
+3. **建立数量联系**：已知篮球有 $18$ 个，对应这 $2$ 份。因此平均每份是 $18 \div 2 = 9$（个）。\\
+4. **求足球数量**：足球占 $3$ 份，所以足球数量为 $3 \times 9 = 27$（个）。
+}
+
+\vspace{0.4cm}
+\noindent\textbf{解答：}\\
+\indent $1 - \frac{3}{5} = \frac{2}{5}$ \dots\dots\dots 篮球占总数的几分之几\\
+\indent $18 \div 2 \times 3 = 27$（个）
+
+\vspace{0.2cm}
+\noindent\textbf{答：}买了 27 个足球。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 确定分率对应关系}：根据分母（5）确定总份数，通过总长度比例化映射得出图中线段总长（本图取 10cm）。\\
+\textbf{2. 绘制等分线段}：利用 \texttt{TikZ} 循环绘制等距刻度线，视觉化展示“单位 1”被平均分成了 5 份。\\
+\textbf{3. 分段标注}：使用大括号 (\texttt{brace}) 装饰器区分不同种类的球。上方标注已知具体数值的“篮球”（2份），下方标注未知的“足球”（3份），形成清晰的数形结合。
+}
+
+\newpage
+
+
+
+
+\newpage
+
+\section{解答：根据题意画线段图并解答}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 四年级三个班的同学为庆祝元旦做纸花，一共做了 $85$ 朵。二班比一班多做了 $4$ 朵，三班和一班做的同样多。三个班各做了多少朵？（先根据题意画出线段图，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 定义行距 y 坐标
+  \def\yone{0}
+  \def\ytwo{-1.2}
+  \def\ythree{-2.4}
+  
+  % 定义标准长度(一班和三班的基准产量) 和 超出部分的长度(二班多出部分)
+  \def\L{4}
+  \def\dL{1.5}
+  \def\Lx{5.5} % \L + \dL
+  
+  % 左侧题签：班级名称对齐列阵
+  \node[left] at (-0.2, \yone) {\large 一班};
+  \node[left] at (-0.2, \ytwo) {\large 二班};
+  \node[left] at (-0.2, \ythree) {\large 三班};
+  
+  % =============== 一班线段 ===============
+  \draw[thick] (0, \yone) -- (\L, \yone);
+  % 纯手工极细起始截断线，长度高度统一为物理标量 0.15cm
+  \draw[thick] (0, \yone-0.15) -- (0, \yone+0.15);
+  \draw[thick] (\L, \yone-0.15) -- (\L, \yone+0.15);
+
+  % =============== 二班线段 ===============
+  \draw[thick] (0, \ytwo) -- (\Lx, \ytwo);
+  \draw[thick] (0, \ytwo-0.15) -- (0, \ytwo+0.15);
+  \draw[thick] (\L, \ytwo-0.15) -- (\L, \ytwo+0.15);  % 基准分割刻度点
+  \draw[thick] (\Lx, \ytwo-0.15) -- (\Lx, \ytwo+0.15); % 最终收尾断点
+  
+  % 二班多出的部分括号标记 (朝上的 \overbrace，文字在中点正上方)
+  \draw[decorate, decoration={brace, amplitude=4pt, raise=2pt}, thick] (\L, \ytwo+0.15) -- (\Lx, \ytwo+0.15) node[midway, above=6pt] {$4$朵};
+  
+  % =============== 三班线段 ===============
+  \draw[thick] (0, \ythree) -- (\L, \ythree);
+  \draw[thick] (0, \ythree-0.15) -- (0, \ythree+0.15);
+  \draw[thick] (\L, \ythree-0.15) -- (\L, \ythree+0.15);
+  
+  % =============== 全局汇总大括号 ===============
+  % 朝右的巨大汇总括号 \rcase，文字在尖端右侧。
+  \draw[decorate, decoration={brace, amplitude=6pt, raise=2pt}, thick] (\Lx+0.2, \yone+0.15) -- (\Lx+0.2, \ythree-0.15) node[midway, right=8pt] {$85$朵};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这是一道经典的“和差问题”变式。题目给出三个班的总和为 $85$ 朵，且通过文字描述了三个班数量之间的逻辑差值系统。\\
+1. \textbf{基准线的确立}：根据题干中的“三班和一班同样多”，我们将这两个班级作为标准参照底。在绘制线段图时，画出两条等长的线段分别代表一班和三班。\\
+2. \textbf{差异量的外延}：根据“二班比一班多做 $4$ 朵”，我们在绘制二班线段时，并非毫无规律的拉长，而是首先精准画出一段与一班坐标系对齐且完全相同长度的基段（并钉下刻度作为隔断印记），随后以此为延伸向右侧长出一段附加尾线。在这段延长尾线的上方，植入向上突起的正反小括号，用于表示特有的增量“$4$ 朵”。\\
+3. \textbf{总量的闭环锁死}：一切就绪后，在画面矩阵的最右翼拉起一张极其硕大的总数收束大右括号圈起这所有的三行横线，它的尖端精确直指核心参量——总和“$85$ 朵”。\\
+4. \textbf{算术逆推化归}：经过这套严谨的“削峰填谷”可视化图形梳理，即使是四年级的学生也能一眼看穿真相——如果把二班多出来的那一截显眼的“由于攀比产生的 $4$ 朵小尾巴”强行斩断扔掉，那么剩下的存量将瞬间变成三个完完全全一模一样的一班的复刻品！剩下的总数就是 $(85-4=81)$，而均分给三个班也就是 $81 \div 3 = 27$ 朵。由此基础产量便水落石出了！
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何对齐点列硬约束控制}：程序从源头上废弃了原书由于排版散乱带来文字漂移的隐患；这里通过固化调用的中心本地宏常量 \texttt{\char`\\def\char`\\yone\{0\}}, \texttt{\char`\\ytwo\{-1.2\}}, \texttt{\char`\\ythree\{-2.4\}} 施加了全矩阵的横断截点约束，从根源强制让原本独立在外文字层排布的主语“一、二、三”班（通过 \texttt{\char`\\node[left] at (-0.2...)}）及其尾随的图段发生了完美捆绑并展现出了极致严整的工业排版对齐美学阵列感。\\
+\textbf{2. 古典边界断点物理复刻指令}：为了还原线段图中不可替代的终局停顿阻隔感，每一道主线段的起止点甚至基准中继点 \texttt{(0, y)} 和 \texttt{(\char`\\L, y)} 上，都未采用默认自带的箭头组件，而是通过极精湛地手动向下向上各执行一根物理跨度 $0.15\text{ cm}$ 的原生微游标短划垂线（例如 \texttt{(0, y-0.15) -- (0, y+0.15)}）。它甚至复刻了木制实体黑板尺中硬性粉笔敲击断点的摩擦顿搓阻力痕迹。\\
+\textbf{3. 矢量正反括印域自适应嵌套技术}：在展示差异属性以及收束总量闭环时，核心库启用了其自身最引以为豪的强劲原生 \texttt{decorations.pathreplacing} 前端微调计算组件：例如针对二班的凸起标识段小括印，指令库通过自左向右的正向路径扫描演算技术自动凭空膨化向上弹出了抓取曲率小括号（带自适应居中的 \texttt{node[midway, above]} 面置物器）；而面对拦截封杀右翼三线阵列收口局面的总和数目标量大括号印，程序利用了绝妙的扫描轨迹法则，通过从大矩阵的绝对高坐标点自上而下进行不可逆硬跌落穿刺至矩阵极底端坐标点，硬算出了向右发生形变的极粗大闭环保裹圆弧曲线壁垒包络！
+}
+
+\vspace{0.6cm}
+
+\textbf{解答：}\\
+根据线段图分析，如果从总数中减去二班多出来的 $4$ 朵（即线段图中多余的后缀部分），那么此时三个班的数量就全部变得齐平，即相当于 $3$ 个一班做的数量总和。
+\begin{align*}
+一班：& \quad (85 - 4) \div 3 \\
+      & = 81 \div 3 \\
+      & = 27\text{（朵）} \\[6pt]
+二班：& \quad 27 + 4 = 31\text{（朵）} \\[6pt]
+三班：& \quad \text{由于三班和一班同样多，故三班也做了 } 27\text{ 朵。}
+\end{align*}
+
+\noindent\textbf{答：}一班做了 $27$ 朵，二班做了 $31$ 朵，三班做了 $27$ 朵。
+
+%% ==============================
+%% 画出图形底边上的高
+%% ==============================
+\newpage
+
+

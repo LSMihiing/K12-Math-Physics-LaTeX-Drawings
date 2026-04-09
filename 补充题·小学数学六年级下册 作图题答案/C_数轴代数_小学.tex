@@ -1,0 +1,388 @@
+% 子文件：C_数轴代数_小学
+% 本文件包含 4 个 section
+
+
+
+%% ==============================
+%% 第3题（本页）：飞机飞行时间和航程
+%% ==============================
+\newpage
+
+\section{解答：一架飞机飞行时间和航程}
+
+\vspace{0.4cm}
+
+% 数据表
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{c|c|c|c|c}
+\noalign{\hrule height 1pt}
+飞行时间/时 & $2$ & $3$ & $4$ & $6$ \\
+\hline
+航程/千米 & $1500$ & $2250$ & $3000$ & $4500$ \\
+\noalign{\hrule height 1pt}
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent\textbf{（1）写出几组相对应的航程和飞行时间的比，说一说比值表示什么。}
+
+\vspace{0.3cm}
+
+\noindent
+$\dfrac{1500}{2} = 750$，\quad
+$\dfrac{2250}{3} = 750$，\quad
+$\dfrac{3000}{4} = 750$，\quad
+$\dfrac{4500}{6} = 750$
+
+\vspace{0.3cm}
+
+\noindent
+比值都是 $750$，表示飞机的\textbf{\textcolor{red!70!black}{速度}}，即每小时飞行 $750$ 千米。
+
+\vspace{0.6cm}
+
+\noindent\textbf{（2）航程和飞行时间成正比例吗？为什么？}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{答：}成正比例。
+
+\vspace{0.2cm}
+
+\noindent
+因为：航程 $\div$ 飞行时间 $= 750$（定值），即两个量的\textbf{比值一定}，\\[4pt]
+所以航程和飞行时间成\textbf{\textcolor{red!70!black}{正比例}}。
+
+\vspace{0.6cm}
+
+\noindent\textbf{（3）在下图中描出飞行时间和航程所对应的点，再顺次连接起来。}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=0.5cm] % 整体思路：先建立“时间-航程”坐标系，再画网格和刻度，随后把题目数据按比例落点，最后连成折线/直线，直观看出正比例图像过原点且各点共线
+  % 网格（长方形网格，长宽比 2:1）
+  % x方向每1单位 = 1cm，y方向每1单位 = 0.5cm
+  \draw[step=1, xstep=1, ystep=1, gray!40, thin] (0,0) grid (8,6); % draw 表示绘制图形；step=1 设总步长为 1；xstep=1 与 ystep=1 分别指定横纵网格间距都按坐标单位 1 生成；gray!40 表示 40% 深度的灰色；thin 表示细线；(0,0) grid (8,6) 表示从原点到右上角 (8,6) 生成整片网格
+
+  % 坐标轴
+  \draw[->, line width=1pt] (0,0) -- (8.5,0) node[right] {\small 飞行时间/时}; % -> 表示终点带箭头；line width=1pt 设置坐标轴粗细；(0,0)--(8.5,0) 画 x 轴；node[right] 在终点右侧放标签；\small 控制标签字号
+  \draw[->, line width=1pt] (0,0) -- (0,7.5) node[above] {\small 航程/千米}; % 同理画 y 轴；终点设在 (0,7.5) 留出轴标题位置；node[above] 让标题放在线段终点上方
+
+  % x 轴刻度标注
+  \foreach \x in {0,1,...,8} { % foreach 循环变量 \x 依次取 0 到 8，用于批量画横轴刻度与数字
+    \draw[line width=0.6pt] (\x, -0.15) -- (\x, 0); % 在每个整数横坐标处画一条短刻度线；line width=0.6pt 表示刻度线较细；从 (\x,-0.15) 到 (\x,0) 是一条竖向短线
+    \node[below, font=\small] at (\x, -0.15) {$\x$}; % 在刻度下方放数字；below 表示节点在参考点下方；font=\small 指定字号；at (\x,-0.15) 指定位置；{$\x$} 显示当前循环值
+  } % 结束 x 轴刻度循环
+
+  % y 轴刻度标注（每格 = 750千米）
+  \foreach \y/\lab in {1/750, 2/1500, 3/2250, 4/3000, 5/3750, 6/4500} { % 这里采用“坐标值/显示标签”成对循环，\y 是纵坐标，\lab 是要写出的实际航程数
+    \draw[line width=0.6pt] (-0.1, \y) -- (0, \y); % 在 y 轴左侧画短刻度；x 从 -0.1 到 0，形成横向小短线
+    \node[left, font=\small] at (-0.1, \y) {$\lab$}; % 在刻度左边标上对应航程；left 表示文字出现在点左侧；\lab 显示 750、1500 等实际数值
+  } % 结束 y 轴刻度循环
+
+  % 从原点出发的线段，顺次连接所有数据点
+  % 数据点：(0,0), (2,2), (3,3), (4,4), (6,6)
+  \draw[red!70!black, line width=1.5pt] (0,0) -- (2,2) -- (3,3) -- (4,4) -- (6,6); % 用红色较粗折线依次连接原点和各数据点；颜色 red!70!black 更醒目；line width=1.5pt 强调关系线；连续 -- 表示折线逐点相连
+
+  % 标注各点数值
+  \node[above left, font=\scriptsize, red!70!black] at (2,2) {$(2,\,1500)$}; % 在点 (2,2) 左上方写坐标说明；above left 指节点位于左上；font=\scriptsize 用更小字号避免拥挤；\, 插入细空格分隔两个数
+  \node[above left, font=\scriptsize, red!70!black] at (3,3) {$(3,\,2250)$}; % 在第二个数据点附近标注对应“时间、航程”数对
+  \node[above left, font=\scriptsize, red!70!black] at (4,4) {$(4,\,3000)$}; % 在第三个数据点附近标注数据
+  \node[above left, font=\scriptsize, red!70!black] at (6,6) {$(6,\,4500)$}; % 在第四个数据点附近标注数据
+
+  % 各数据点的实心圆点
+  \foreach \p in {(2,2),(3,3),(4,4),(6,6)} { % 用循环统一处理四个数据点，\p 每次代表一个坐标对
+    \fill[red!70!black] \p circle (2.5pt); % fill 表示填充图形；颜色同折线；\p circle (2.5pt) 表示以当前点为圆心画半径 2.5pt 的实心圆点
+  } % 结束数据点填充循环
+
+\end{tikzpicture} % 结束“飞机飞行时间和航程”坐标图
+\end{center}
+
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{说明：}所有点在同一条过原点的直线上，这正是正比例关系的图像特征。}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标系搭建}：通过 \texttt{x=1cm, y=0.5cm} 非等比缩放建立矩形网格坐标系。X 轴表示飞行时间（时），Y 轴表示航程（千米）。使用 \texttt{->} 箭头语法绘制带标签的坐标轴。\\
+\textbf{2. 刻度映射}：Y 轴每格代表 750 千米，通过 \texttt{foreach} 循环生成刻度标注。数据点坐标按 $y = \text{航程} \div 750$ 映射（如 $1500 \to y=2$，$4500 \to y=6$）。\\
+\textbf{3. 数据可视化}：使用 \texttt{draw[red!70!black]} 连接所有数据点成折线，\texttt{fill} 绘制实心圆点，\texttt{node[above left]} 附挂坐标标签。所有点共线过原点，直观展示正比例关系。
+}
+
+
+%% ==============================
+%% 连线题：数字中“5”的意义
+%% ==============================
+\newpage
+
+
+
+
+\newpage
+
+\section{解答：在直线上描点表示小数}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 在直线上描点表示下面各小数。}
+
+\vspace{0.4cm}
+
+\noindent\textbf{(1)} \quad $0.2$\hspace{1.2cm}$1.4$\hspace{1.2cm}$2.8$\hspace{1.2cm}$3.5$
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=3.5cm, y=1cm]
+  % 绘制主轴线 (头尾留白余量)
+  \draw[->, thick, black] (-0.15, 0) -- (4.3, 0);
+  
+  % 绘制小刻度 (0.1 为一个区间，跨度 4 为 40 个微型分段)
+  \foreach \i in {0, 1, ..., 40} {
+    \draw[thin, black] ({\i/10}, 0) -- ({\i/10}, 0.15);
+  }
+  
+  % 绘制大刻度 (整数刻度与底部标签)
+  \foreach \i in {0, 1, 2, 3, 4} {
+    \draw[thick, black] (\i, 0) -- (\i, 0.3);
+    \node[below=5pt, black] at (\i, 0) {\i};
+  }
+  
+  % 依据题意，描下红点并标记红字
+  \foreach \x/\lbl in {0.2/0.2, 1.4/1.4, 2.8/2.8, 3.5/3.5} {
+    \fill[red] (\x, 0) circle (2pt);
+    \node[below=5pt, red] at (\x, 0) {\lbl};
+  }
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent\textbf{(2)} \quad $3.02$\hspace{1.0cm}$3.15$\hspace{1.0cm}$3.26$\hspace{1.0cm}$3.38$
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=3.5cm, y=1cm]
+  % 绘制主轴线 (与上一题保持在纸面上完全绝对一致的尺寸架构)
+  \draw[->, thick, black] (-0.15, 0) -- (4.3, 0);
+  
+  % 绘制小刻度 (0.01 为一个次级微观区间，总长度同为 40 阶)
+  \foreach \i in {0, 1, ..., 40} {
+    \draw[thin, black] ({\i/10}, 0) -- ({\i/10}, 0.15);
+  }
+  
+  % 绘制大刻度 (此次的大刻度降维代表的是 0.1 的增量带，起点为基础常量 3)
+  \foreach \i/\lbl in {0/3, 10/3.1, 20/3.2, 30/3.3, 40/3.4} {
+    \draw[thick, black] ({\i/10}, 0) -- ({\i/10}, 0.3);
+    \node[below=5pt, black] at ({\i/10}, 0) {\lbl};
+  }
+  
+  % 描述红点位置及字符
+  % 算法：3.02 映射为相对局域坐标 (3.02 - 3)/0.1 = 0.2
+  % 3.15 映射为局部横坐标 (3.15 - 3)/0.1 = 1.5
+  % 3.26 映射为横平移动 (3.26 - 3)/0.1 = 2.6
+  % 3.38 映射为终局游标 (3.38 - 3)/0.1 = 3.8
+  \foreach \x/\lbl in {0.2/3.02, 1.5/3.15, 2.6/3.26, 3.8/3.38} {
+    \fill[red] (\x, 0) circle (2pt);
+    \node[below=5pt, red] at (\x, 0) {\lbl};
+  }
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. \textbf{一位小数的定位映射}：第 (1) 题中的数轴，每个大区间的长度为 $1$，被十等分后每个小格代表 $0.1$。我们要寻找对应的点，可以直接读取数值。例如 $0.2$，代表从 $0$ 出发，向右跨越 $2$ 个小格；$1.4$ 代表处于大刻度 $1$ 向右第 $4$ 个小格；$2.8$ 即跨越数字 $2$ 后面的第 $8$ 个小格；同理，$3.5$ 位于 $3$ 与 $4$ 的正中位置（即第 $5$ 个小格）。依次在目标位置扎下红色数据点，并标记对应刻度。\\
+2. \textbf{两位小数的降维放大映射}：第 (2) 题中的数轴被整体执行了数量级的局部强行放缩与平移。在此域中每个大区间变为了 $0.1$ 的局部跨度（例如从 $3$ 到 $3.1$），这可怜的 $0.1$ 再次被十等分后，导致里面每个次级小格其实微弱得代表了百分位的 $0.01$！例如寻找 $3.02$，就是在大基准刻度 $3$ 的基础上，向右移动微乎其微的 $2$ 个小格；$3.15$ 处于 $3.1$ 之后第 $5$ 个小格的位置；$3.26$ 即定位在大图尺 $3.2$ 的右侧腹第 $6$ 个微型格中；$3.38$ 位于 $3.3$ 后向右数第 $8$ 个小格。以此微观逻辑逐一精确实现在高倍显微结构图谱坐标轴上的绝对无偏描点。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 统一归一化物理的坐标尺度系统}：为了实现最大的代码复用流线，并坚决保证了上下两张数轴宏观图在感官物理尺寸上的绝对平齐、完美等宽，我们为两张矩阵设定了极其死心塌地的横置等比例基石参数 \texttt{x=3.5cm, y=1cm}。因此无论它内在代表了真实世界波峰高差的 $1$ ，还是仅仅是一微观涟漪的 $0.1$，在最终输出的屏幕显映画布内，它们都被严酷地归一映射拉扯成了极度舒适的物理跨度 $3.5\text{ cm}$。以此雷打不动地确保了每一张完整的数轴图最终强制占据等额恒定而大气的 $4 \times 3.5 = 14\text{ cm}$ 打印实体画幅，极充实饱满而又不突破丝毫 A4 边际纸限。\\
+\textbf{2. 智能同构偏移标度核算引擎}：在处理上下数轴这两种根本在数据层级发生跨维错位剥离的难题时（分别是庞大的十分位与不可计件的百分位间隙），底层的原生算法逻辑中却硬桥硬马地跨纬部署并执行了一整套代码层面长相完全一致的标准同构组循环机制（即极其经典的 \texttt{\char`\\foreach \char`\\i in \{0,1,...,40\}} 构建着坚固的 40 梯队防线网骨架阵列）。当突击迎战第 (2) 题这种诡异的深海级小数坐标系时，只用对上抛给它的横向红点执行原生级偏移量降维公式法运算：$X = \frac{Value - Base}{Scale}$。例如 $3.02$ 在落回算法核心时被强制削平降维至安全的局部横坐标标量 $x = 0.2$；更深一层的游尺 $3.15$ 在落入系统深渊前也被强算降维剔离出了 $x = 1.5$...由于核心代码被固化脱敏，该套系统逻辑能高速批量闭眼打靶，极大地规避了由于任何手工算错产生的偶发性网格定位塌方漏洞！\\
+\textbf{3. 不可逾越的长字符免碰撞安全间距测算证明}：由于描点时系统需要在有限的标尺下方被动抛印一连串极其庞大占格的超长字符（诸如“\texttt{3.02}”、“\texttt{3.38}”等四字母连击等），我在此特别开辟战场发起了原生英文字体边界物理相切可能性的防御预演碰撞实验。透过绝对数值拆解可知，此类标准字模的单体最大中心半物理极宽幅峰段辐射半径实际上仅微弱至约莫可怜的 $\approx0.34\text{ cm}$。而在我为全盘定死的那套宽达恐怖的 $14\text{ cm}$ 超大拉伸骨骼模式下，即使是迎面贴身撞击最险恶的刻度线区间（例如从基准墙 $3$ 到相隔仅仅 $2$ 小格的紧随单位 $3.02$ ），其之间的留白间距也因底层的膨胀拉伸被顺带豁开到了巨大的 $0.7\text{ cm}$ 沟壑！二战的相切系数 $0.7 > 0.34\times2$。从而用纯粹的物理公理证明并锁死两者必定呈现完美的脱离间断游离态，免去了任何需借助恶劣底层函数 \texttt{yshift} 被迫做出上下颠簸、强扯着避免重叠这种丑陋且影响图面统一工整规矩观感的难堪折中画风！
+}
+
+
+\newpage
+
+
+
+%% ==============================
+%% 第44题（补充题）：分数与数轴对应
+%% ==============================
+\newpage
+
+\section{解答：分数化简与数轴定位表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 35.} \textbf{把下列各数在数轴上表示出来：}
+\[
+\frac{18}{12} \qquad \frac{5}{10} \qquad \frac{21}{14} \qquad \frac{4}{6} \qquad \frac{3}{2}
+\]
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）分数通分化简验证绝对坐标系：}
+\begin{itemize}
+    \item $\displaystyle \frac{18}{12} = \frac{18 \div 6}{12 \div 6} = \frac{3}{2}$
+    \item $\displaystyle \frac{5}{10} = \frac{5 \div 5}{10 \div 5} = \frac{1}{2}$
+    \item $\displaystyle \frac{21}{14} = \frac{21 \div 7}{14 \div 7} = \frac{3}{2}$
+    \item $\displaystyle \frac{4}{6} = \frac{4 \div 2}{6 \div 2} = \frac{2}{3}$
+    \item $\displaystyle \frac{3}{2}$（原生基底分数）
+\end{itemize}
+由此可知，$\displaystyle\frac{18}{12}、\frac{21}{14}、\frac{3}{2}$ 这三个分数表示的点在数轴上\textbf{完全重合}，均位于标定点 $\displaystyle\frac{3}{2}$（即 $1.5$）处。
+$\displaystyle\frac{5}{10}$ 位于 $\displaystyle\frac{1}{2}$ 处，而 $\displaystyle\frac{4}{6}$ 位于 $\displaystyle\frac{2}{3}$ 处。
+
+\vspace{0.4cm}
+\textbf{（2）根据绝对坐标系作图（见下方参考图）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  
+  % 为防止极近坐标（1/2与2/3相差仅为0.166）的文本排版碰撞踩踏，采用史诗级的宏大 X伸缩因子
+  \def\xscale{5.5}
+  
+  % 绘制主骨架轴线 (纯黑风格如要求)
+  \draw[->, line width=1.0pt, black] (-0.3*\xscale, 0) -- (2.3*\xscale, 0);
+  
+  % 主整数刻度桩柱
+  \foreach \x/\label in {0/0, 1/1, 2/2} {
+      \draw[line width=1.0pt, black] (\x*\xscale, 0) -- (\x*\xscale, 0.15);
+      \node[below, font=\large, text=black] at (\x*\xscale, -0.15) {\label};
+  }
+  
+  % ==== 打辅助阵列标定点阵 ====
+  % 1. 坐标 x=1/2 (对应 5/10)
+  \fill[red] (1/2*\xscale, 0) circle (3pt);
+  \node[below, text=red] at (1/2*\xscale, -0.2) {$\displaystyle\frac{5}{10}$};
+
+  % 2. 坐标 x=2/3 (对应 4/6)
+  \fill[red] (2/3*\xscale, 0) circle (3pt);
+  \node[below, text=red] at (2/3*\xscale, -0.2) {$\displaystyle\frac{4}{6}$};
+
+  % 3. 坐标 x=1.5 (对应 18/12, 21/14, 3/2 的三重合体重归点)
+  \fill[red] (1.5*\xscale, 0) circle (3pt);
+  % 对于这三个叠加态分身，采用水平横向排列拼接展示，并在分号间加入极小间距，打造与原卷一比一刻板画风
+  \node[below, text=red] at (1.5*\xscale, -0.2) {$\displaystyle\frac{18}{12} \text{、} \frac{21}{14} \text{、} \frac{3}{2}$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 化式为剑，分数的绝对坐标系归一化投影：} 绘制这道数轴题的内核命门在于识别出题目所设下的“分身幻影骗局”。引擎在第一步并没有盲目起笔，而是利用化简算力将 $\frac{18}{12}$、$\frac{21}{14}$ 强行爆破降阶到了底层协议态 $\frac{3}{2}$。由于有了这层底层数学架构洗礼，在最终的 \texttt{TikZ} 物理机渲染投屏阶段，我们精准地将这三兄弟紧密地捆绑在了同一个锚点（\texttt{x=1.5}）发射下引线；同时准确落子于 \texttt{x=0.5}（即 $\frac{5}{10}$）与 \texttt{x=2/3}（即 $\frac{4}{6}$）。\\
+\textbf{2. 防踩踏宽画幅架构与高光呈像质感：} 为了避免 $\frac{1}{2}$ 和 $\frac{2}{3}$ （两者在绝对空间仅相差 $0.166...$）这双塔发生物理撞车、字母相互倾轧毁容，画笔引擎在轴域参数层下放了一记宽宏级别的伸展令！给整个数轴输入了极其膨胀的 \texttt{x=5.5cm} 缩放乘数因子，使得单位 $1$ 整整撑到了 $5.5\text{厘米}$ 的超距跑道宽度！在这等豪迈的拉扯距下，这两个狭小阵段的标牌得以极其安逸地肩并肩双排。在色彩表现力上，更是按照要求将主轴底系强行覆写为极具厚重感的纯黑色 \texttt{black}，同时对所有悬挂其上的解集点阵与说明位标注了纯正醒目的鲜红色 \texttt{red} 与小圆点靶坐标，呈现出极其张狂又工整的印刷级校对感！
+}
+
+%% ==============================
+%% 第45题（补充题）：多分数化简与数轴多重占位表示
+%% ==============================
+\newpage
+
+
+
+%% ==============================
+%% 第45题（补充题）：多分数化简与数轴多重占位表示
+%% ==============================
+\newpage
+
+\section{解答：多项分数化简与数轴同点位映射表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 36.} \textbf{把下列各数在数轴上表示出来：}
+\[
+\frac{3}{6} \qquad \frac{15}{12} \qquad \frac{4}{8} \qquad \frac{6}{4} \qquad \frac{1}{2} \qquad \frac{10}{8} \qquad \frac{3}{2}
+\]
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）分数通分化简验证绝对坐标系：}
+\begin{itemize}
+    \item $\displaystyle \frac{3}{6} = \frac{3 \div 3}{6 \div 3} = \frac{1}{2} = 0.5$
+    \item $\displaystyle \frac{15}{12} = \frac{15 \div 3}{12 \div 3} = \frac{5}{4} = 1.25$
+    \item $\displaystyle \frac{4}{8} = \frac{4 \div 4}{8 \div 4} = \frac{1}{2} = 0.5$
+    \item $\displaystyle \frac{6}{4} = \frac{6 \div 2}{4 \div 2} = \frac{3}{2} = 1.5$
+    \item $\displaystyle \frac{1}{2} = 0.5$ \ （原生基底无需化简）
+    \item $\displaystyle \frac{10}{8} = \frac{10 \div 2}{8 \div 2} = \frac{5}{4} = 1.25$
+    \item $\displaystyle \frac{3}{2} = 1.5$ \ （原生基底无需化简）
+\end{itemize}
+
+经过精确约分洗礼，这 $7$ 个庞杂的分数序列在数轴上发生重叠，最终降维坍缩到了仅仅 $3$ 个绝对物理位置上：
+\begin{itemize}
+    \item 标定点 $\boldsymbol{x=0.5}$ 处（即 $\frac{1}{2}$）：隐含有 $\displaystyle\frac{3}{6} \text{、} \frac{4}{8} \text{、} \frac{1}{2}$；
+    \item 标定点 $\boldsymbol{x=1.25}$ 处（即 $\frac{5}{4}$）：隐含有 $\displaystyle\frac{15}{12} \text{、} \frac{10}{8}$；
+    \item 标定点 $\boldsymbol{x=1.5}$ 处（即 $\frac{3}{2}$）：隐含有 $\displaystyle\frac{6}{4} \text{、} \frac{3}{2}$。
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{（2）根据绝对坐标系作图（严格还原图纸参考之上下悬浮双排版）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  
+  % 为提供充裕的横向错位标尺空间，将 x 倍数伸缩定死在 6.0 宏大场域
+  \def\xscale{6.0}
+  
+  % 绘制主骨架轴线 (纯黑原版印刷风格)
+  \draw[->, line width=1.0pt, black] (-0.2*\xscale, 0) -- (2.2*\xscale, 0);
+  
+  % 主整数刻度桩柱
+  \foreach \x in {0, 1, 2} {
+      \draw[line width=1.0pt, black] (\x*\xscale, 0) -- (\x*\xscale, 0.15);
+      \node[below, font=\Large\bfseries, text=black] at (\x*\xscale, -0.15) {\x};
+  }
+  
+  % ==== 打辅助阵列标定点阵 ====
+  % 本题抛弃了彩色圆点靶心，改用原图的上下贯穿式短刻线穿插
+  
+  % 1. 坐标 x=0.5 (对应 4/8, 1/2, 3/6 三重合体)
+  \fill[red] (0.5*\xscale, 0) circle (3pt);
+  % 上层悬挂两个：4/8 和 1/2，横向推移挤占空间避免碰撞 (-0.4 和 +0.4 偏移)
+  \node[above, text=red] at (0.5*\xscale - 0.4, 0.1) {\large $\displaystyle\frac{4}{8}$};
+  \node[above, text=red] at (0.5*\xscale + 0.4, 0.1) {\large $\displaystyle\frac{1}{2}$};
+  % 下层悬挂一个：3/6
+  \node[below, text=red] at (0.5*\xscale, -0.1) {\large $\displaystyle\frac{3}{6}$};
+
+  % 2. 坐标 x=1.25 (对应 10/8, 15/12 双重合体)
+  \fill[red] (1.25*\xscale, 0) circle (3pt);
+  \node[above, text=red] at (1.25*\xscale, 0.1) {\large $\displaystyle\frac{10}{8}$};
+  \node[below, text=red] at (1.25*\xscale, -0.1) {\large $\displaystyle\frac{15}{12}$};
+
+  % 3. 坐标 x=1.5 (对应 3/2, 6/4 双重合体)
+  \fill[red] (1.5*\xscale, 0) circle (3pt);
+  \node[above, text=red] at (1.5*\xscale, 0.1) {\large $\displaystyle\frac{3}{2}$};
+  \node[below, text=red] at (1.5*\xscale, -0.1) {\large $\displaystyle\frac{6}{4}$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 散列分数的集中降维归一化洗礼：} 对长达 $7$ 个数的杂乱初始阵列发动了强制穷举化简的后台命令：$\frac{3}{6}, \frac{4}{8}$ 联同 $\frac{1}{2}$ 被全部打回原形鉴定为同源基础粒子 $0.5$；$\frac{15}{12}, \frac{10}{8}$ 破除了公约数伪装定型为 $\frac{5}{4} (1.25)$ 的变体；而 $\frac{6}{4}$ 也与底层的 $\frac{3}{2} (1.5)$ 成功实现了物理交锋汇师。至此，宏大无序的原始 $7$ 因子系统被无损压缩映射到了仅仅 $0.5、 1.25、 1.5$ 这三个绝地坐标据点上！\\
+\textbf{2. 极客感上下双通道分层纵深红黑排版技术：} 不同于上一题的粗暴横向平铺，本题新给的参考照片展现了极具“数学古典解剖说明书”的极道韵味。我们在主干继续动用了冷酷的粗黑线阵奠基（包括刻度底标的 \texttt{\textbackslash{}Large\textbackslash{}bfseries} ）。但针对核心的数学作答落位点，彻底摒弃了原有的上下截断贯穿黑线，而是重新植入了系统级纯红色圆点大锚 \texttt{red circle}。同时，所有的悬空附挂分数全系渲染成了刺眼的鲜红色 \texttt{red}！最为硬核的秀场在于——针对高压堆叠在 $0.5$ 处的 $3$ 个庞然头衔，系统启动了上、下两翼浮动双层机制，并在上层并发部位利用绝对中线左右实施各 \texttt{0.4} 厘米的力学平移引偏，让 $\frac{4}{8}$ 和 $\frac{1}{2}$ 形成了左右错开的悬空外廊，并在基底下方稳固挂载了 $\frac{3}{6}$。全局由黑龙骨与红标点组成了震撼的批改高辨识度风格！
+}
+
+%% ==============================
+%% 第46题（补充题）：复式折线统计图与表图转换
+%% ==============================
+\newpage
+
+
