@@ -3018,6 +3018,16 @@ D & \textcolor{red!80!black}{\zhengIII} & \textcolor{red!80!black}{\textbf{3}} \
 \textit{（注：计算结果皆按照四舍五入法精确到 $0.01$，请参考上方表格中红色加粗字体直接誉写补填空白格。）}
 
 \textbf{（2）频率折线统计图形补全绘制：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, font=\small]
+  % 坐标轴设定与网格轴线
+  % X轴单位: 1个单位代表100次. Max可延展至 1000
+  \def\xscale{0.85}
+  \def\yscale{30} % 将纵向的 0.1 差异延展到 30 个像素以做夸张展现
+
+  % Y 轴主基准实虚线重铸保护策略（仅描绘 0.6~0.8 的截断范围）
+  \foreach \y in {0.60, 0.70, 0.80} {
       \draw[dashed, gray!80, line width=0.6pt] (0, { (\y - 0.60)*\yscale + 1.0 }) -- (11*\xscale, { (\y - 0.60)*\yscale + 1.0 });
       \node[left] at (0, { (\y - 0.60)*\yscale + 1.0 }) {\y};
   }
