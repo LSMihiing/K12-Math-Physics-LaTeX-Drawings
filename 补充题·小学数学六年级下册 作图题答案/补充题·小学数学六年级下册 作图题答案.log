@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.26)  9 APR 2026 09:32
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.26)  9 APR 2026 10:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1633,7 +1633,1414 @@ Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=
 ex-text;!
 Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
 ex-text;!
-[167] [168] [169] [170] [171] [172] [173] [174] [175]
+[167] [168] [169]
+! Undefined control sequence.
+l.9739       \draw
+                  [dashed, gray!80, line width=0.6pt] (0, { (\y - 0.60)*\ysc...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9739 ...ed, gray!80, line width=0.6pt] (0, { (\y
+                                                   - 0.60)*\yscale + 1.0 }) ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9739 ...e width=0.6pt] (0, { (\y - 0.60)*\yscale
+                                                   + 1.0 }) -- (11*\xscale, ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9739 ... - 0.60)*\yscale + 1.0 }) -- (11*\xscale
+                                                  , { (\y - 0.60)*\yscale + ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9739 ...)*\yscale + 1.0 }) -- (11*\xscale, { (\y
+                                                   - 0.60)*\yscale + 1.0 });
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9739 ...}) -- (11*\xscale, { (\y - 0.60)*\yscale
+                                                   + 1.0 });
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9740       \node
+                  [left] at (0, { (\y - 0.60)*\yscale + 1.0 }) {\y};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9740       \node[left] at (0, { (\y
+                                      - 0.60)*\yscale + 1.0 }) {\y};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9740 ...\node[left] at (0, { (\y - 0.60)*\yscale
+                                                   + 1.0 }) {\y};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9740 ...t (0, { (\y - 0.60)*\yscale + 1.0 }) {\y
+                                                  };
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Too many }'s.
+l.9741   }
+          
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+! Undefined control sequence.
+l.9744   \node
+              [below, shift={(-0.1, 0)}] at (0, 0) {0};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body -> \draw 
+                      [line width=0.6pt] (\x *\xscale , 0) -- (\x *\xscale ,...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...w [line width=0.6pt] (\x *\xscale 
+                                                  , 0) -- (\x *\xscale , 0.1...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...(\x *\xscale , 0) -- (\x *\xscale 
+                                                  , 0.1); \node [below] at (...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... 0) -- (\x *\xscale , 0.1); \node 
+                                                  [below] at (\x *\xscale , ...
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ...1); \node [below] at (\x *\xscale 
+                                                  , -0.05) {\label }; 
+l.9748   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[170]
+! Undefined control sequence.
+l.9751   \draw
+              [line width=1.2pt, red!80!black]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9752       (1*\xscale
+                       , { (0.63 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9752       (1*\xscale, { (0.63 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9753       (2*\xscale
+                       , { (0.76 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9753       (2*\xscale, { (0.76 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9754       (3*\xscale
+                       , { (0.74 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9754       (3*\xscale, { (0.74 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9755       (4*\xscale
+                       , { (0.72 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9755       (4*\xscale, { (0.72 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9756       (5*\xscale
+                       , { (0.72 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9756       (5*\xscale, { (0.72 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9757       (6*\xscale
+                       , { (0.72 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9757       (6*\xscale, { (0.72 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9758       (7*\xscale
+                       , { (0.71 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9758       (7*\xscale, { (0.71 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9759       (8*\xscale
+                       , { (0.71 - 0.60)*\yscale + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9759       (8*\xscale, { (0.71 - 0.60)*\yscale
+                                                 + 1.0 }) --
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9760       (10*\xscale
+                        ,{ (0.70 - 0.60)*\yscale + 1.0 });
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9760       (10*\xscale,{ (0.70 - 0.60)*\yscale
+                                                 + 1.0 });
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   [
+l.9765   }
+          
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   [
+l.9765   }
+          
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+! Undefined control sequence.
+\pgffor@body -> \fill [red!80!black] (\x *\xscale 
+                                                  , { (\y - 0.60)*\yscale + ...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\pgffor@body ... *\xscale , { (\y - 0.60)*\yscale 
+                                                  + 1.0 }) circle (2pt) node...
+l.9765   }
+          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (0.81635pt too wide) in paragraph at lines 9765--9766
+[]\TU/lmr/m/n/12 [red!80!black] (1*,  (0.63- 0.60)*+ 1.0 ) circle (2pt) node[ab
+ove, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.63;  \TU/lmr/m/n/12 [red!80!black] (2*,  (0.76- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.76;  \TU/lmr/m/n/12 [red!80!black] (3*,  (0.74- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.74;  \TU/lmr/m/n/12 [red!80!black] (4*,  (0.72- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.72;  \TU/lmr/m/n/12 [red!80!black] (5*,  (0.72- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.72;  \TU/lmr/m/n/12 [red!80!black] (6*,  (0.72- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.72;  \TU/lmr/m/n/12 [red!80!black] (7*,  (0.71- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (3.00903pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.71;  \TU/lmr/m/n/12 [red!80!black] (8*,  (0.71- 0.60)*+ 1.0 ) 
+circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+
+Overfull \hbox (8.88902pt too wide) in paragraph at lines 9765--9766
+\TU/lmr/m/n/10 0.71;  \TU/lmr/m/n/12 [red!80!black] (10*,  (0.70- 0.60)*+ 1.0 )
+ circle (2pt) node[above, font=\TU/lmr/m/n/10 , text=red!80!black]
+ []
+
+! Undefined control sequence.
+l.9767   \node
+              [below, font=\large] at (5.5*\xscale, -0.8) {（第 10 题补充折线图）};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.9767   \node[below, font=\large] at (5.5*\xscale
+                                                  , -0.8) {（第 10 题补充折线图）};
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\endtikzpicture ...r@layerlist@globally \endscope 
+                                                  \let \pgf@baseline =\pgf@s...
+l.9768 \end{tikzpicture}
+                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Extra \endgroup.
+\endpgfpicture ...er@layerlist@globally \endgroup 
+                                                  \hss \egroup \pgf@restore@...
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+! Too many }'s.
+\endpgfpicture ...globally \endgroup \hss \egroup 
+                                                  \pgf@restore@layerlist@fro...
+l.9768 \end{tikzpicture}
+                        
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+! Extra \endgroup.
+\endpgfpicture ...bal \pgf@insertlayers \endgroup 
+                                                  \pgfsys@discardpath \endgr...
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+! Extra \endgroup.
+\endpgfpicture ...p \pgfsys@discardpath \endgroup 
+                                                  \pgfsys@endscope \pgfsys@e...
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+! Extra \endgroup.
+\endpgfpicture ...pe \pgfsys@endpicture \endgroup 
+                                                  \hss \egroup \pgfsys@types...
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+! Too many }'s.
+\endpgfpicture ...dpicture \endgroup \hss \egroup 
+                                                  \pgfsys@typesetpicturebox ...
+l.9768 \end{tikzpicture}
+                        
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+! Extra \endgroup.
+\endpgfpicture ...setpicturebox \pgfpic \endgroup 
+                                                  
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+! Extra \endgroup.
+\endtikzpicture ...lobal \endpgfpicture \endgroup 
+                                                  
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+
+! LaTeX Error: \begin{document} ended by \end{tikzpicture}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9768 \end{tikzpicture}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.9768 \end{tikzpicture}
+                        
+Things are pretty mixed up, but I think the worst is over.
+
+! Infinite glue shrinkage found in a paragraph.
+<argument> ...hskip:D \c_zero_dim \fi: \tex_par:D 
+                                                  \hook_use:n {para/after}\@...
+l.9769 \end{center}
+                   
+The paragraph just ended includes some glue that has
+infinite shrinkability, e.g., `\hskip 0pt minus 1fil'.
+Such glue doesn't belong there---it allows a paragraph
+of any length to fit on one line. But it's safe to proceed,
+since the offensive shrinkability has been made finite.
+
+
+! LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9769 \end{center}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.9769 \end{center}
+                   
+Things are pretty mixed up, but I think the worst is over.
+
+[171] [172] [173] [174] [175] [176]
 Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
@@ -1658,46 +3065,47 @@ Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=
 ex-text;!
 Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[176] [177]
+[177] [178]
 Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
-[178] [179] [180] [181] [182]
-Overfull \hbox (46.51115pt too wide) in paragraph at lines 10183--10192
+[179] [180] [181] [182] [183]
+Overfull \hbox (46.51115pt too wide) in paragraph at lines 10167--10176
 \TU/lmr/bx/n/10.95 3. \TU/SimSun(0)/b/n/10.95 条 形 统 计 图：|  \TU/SimSun(0)/m/n/10
 .95 坐 标 系 设 定 \TU/lmtt/m/n/10.95 x=1.3cm, y=0.35cm\TU/SimSun(0)/m/n/10.95 ，|  网
  格 为 $\OT1/cmr/m/n/10.95 7 \OMS/cmsy/m/n/10.95 ^^B \OT1/cmr/m/n/10.95 14$ \TU/S
 imSun(0)/m/n/10.95 布 局。|  蓝 色 柱 子 使 用 \TU/lmtt/m/n/10.95 \fill[cyan!70!blue]
  []
 
-[183]
+[184]
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
+[185]
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[184] [185]
+[186]
 Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex-
 text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-bold]:mapping=tex-t
-ext;!
-Missing character: There is no ① (U+2460) in font [lmroman6-bold]:mapping=tex-t
+Missing character: There is no ① (U+2460) in font [lmroman10-bold]:mapping=tex-
+text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-bold]:mapping=tex-t
 ext;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-bold]:mapping=tex-t
-ext;!
-Missing character: There is no ② (U+2461) in font [lmroman6-bold]:mapping=tex-t
+Missing character: There is no ② (U+2461) in font [lmroman10-bold]:mapping=tex-
+text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-bold]:mapping=tex-t
 ext;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
@@ -1707,132 +3115,38 @@ Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex
 text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex-
 text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-bold]:mapping=tex-t
-ext;!
-Missing character: There is no ① (U+2460) in font [lmroman6-bold]:mapping=tex-t
+Missing character: There is no ① (U+2460) in font [lmroman10-bold]:mapping=tex-
+text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-bold]:mapping=tex-t
 ext;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-bold]:mapping=tex-t
+Missing character: There is no ② (U+2461) in font [lmroman10-bold]:mapping=tex-
+text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-bold]:mapping=tex-t
 ext;!
-Missing character: There is no ② (U+2461) in font [lmroman6-bold]:mapping=tex-t
-ext;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[186] [187] [188] [189] [190] [191] [192] [193] [194] [195]
+[187] [188] [189] [190] [191] [192] [193] [194] [195] [196] [197]
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
 ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
 ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-[196]
-Missing character: There is no 无 (U+65E0) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no 解 (U+89E3) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-[197]
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
@@ -1847,17 +3161,17 @@ Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=
 ex-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
@@ -1867,127 +3181,243 @@ Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+Missing character: There is no 无 (U+65E0) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no 解 (U+89E3) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
+x-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 [199]
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
 Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
 ex-text;!
-[200] [201] [202] [203] [204] [205]
-Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
-
-Overfull \hbox (34.08504pt too wide) in paragraph at lines 11504--11505
- [][] 
- []
-
-Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[206]
+[200] [201]
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+[202]
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
+x-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+[203] [204] [205]
+Overfull \hbox (60.40636pt too wide) in paragraph at lines 11308--11313
+\OT1/cmr/m/n/14.4 90\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 74\OML/cmm/m/it/14.4
+ ; \OT1/cmr/m/n/14.4 88\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 65\OML/cmm/m/it/1
+4.4 ; \OT1/cmr/m/n/14.4 98\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 76\OML/cmm/m/i
+t/14.4 ; \OT1/cmr/m/n/14.4 81\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 42\OML/cmm/
+m/it/14.4 ; \OT1/cmr/m/n/14.4 85\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 70\OML/c
+mm/m/it/14.4 ; \OT1/cmr/m/n/14.4 55\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 80\OM
+L/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 95\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 88
+\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 72\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4
+ 87\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 61\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/1
+4.4 56\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 76\OML/cmm/m/it/14.4 ; \OT1/cmr/m/
+n/14.4 66\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 78\OML/cmm/m/it/14.4 ; \OT1/cmr
+/m/n/14.4 72\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 82\OML/cmm/m/it/14.4 ; \OT1/
+cmr/m/n/14.4 63\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 100$\TU/lmr/bx/n/14.4 . 
+ []
+
+[206] [207] [208]
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+
+Overfull \hbox (37.28468pt too wide) in paragraph at lines 11488--11489
+ [][] 
+ []
+
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+
+Overfull \hbox (7.08366pt too wide) in paragraph at lines 11518--11519
+ [][] 
+ []
+
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+[209]
 Missing character: There is no ① (U+2460) in font [lmroman10-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman10-bold]:mapping=tex-
 text;!
-[207]
-Overfull \hbox (5.66245pt too wide) in paragraph at lines 11629--11630
- [][] 
- []
-
-[208] [209]
-Overfull \hbox (5.06366pt too wide) in paragraph at lines 11750--11751
- [][] 
- []
-
 [210] [211]
-Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
-ex-text;!
-[212]
-Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
-ex-text;!
-Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
-ex-text;!
-[213] [214] [215] [216] [217] [218] [219] [220] [221] [222]
+Overfull \hbox (8.06218pt too wide) in paragraph at lines 11613--11614
+ [][] 
+ []
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 12476.
+[212] [213]
+Overfull \hbox (8.2633pt too wide) in paragraph at lines 11734--11735
+ [][] 
+ []
+
+[214] [215]
+Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
+ex-text;!
+[216] [217] [218]
+Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
+ex-text;!
+[219] [220] [221] [222] [223] [224] [225] [226] [227]
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 12460.
 
 LaTeX Font Info:    Trying to load font information for OMS+lmr on input line 1
-2476.
+2460.
 (i:/texlive/2026/texmf-dist/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-12476.
+12460.
 
 (i:/texlive/2026/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Font shape `OMS/lmr/bx/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/b/n' tried instead on input line 12476
+LaTeX Font Info:    Font shape `OMS/lmr/bx/n' in size <14.4> not available
+(Font)              Font shape `OMS/lmsy/b/n' tried instead on input line 12460
 .
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 12476.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 12460.
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 12481.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 12465.
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 12481.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 12465.
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 12537.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 12521.
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 12537.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 12521.
 
-[223] [224] [225] [226] [227] [228] [229] [230] [231] [232] [233]
+[228] [229] [230] [231] [232] [233] [234] [235] [236] [237] [238] [239]
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 13234.
-
-
-LaTeX Warning: Command \textcircled invalid in math mode on input line 13234.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 13218.
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 13234.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 13218.
 
 
-LaTeX Warning: Command \textcircled invalid in math mode on input line 13234.
+LaTeX Warning: Command \textcircled invalid in math mode on input line 13218.
 
 
-Overfull \hbox (45.01941pt too wide) in paragraph at lines 13285--13296
+LaTeX Warning: Command \textcircled invalid in math mode on input line 13218.
+
+
+Overfull \hbox (125.1518pt too wide) in paragraph at lines 13269--13280
  [] 
  []
 
-[234] [235] [236] [237] [238]
+[240] [241] [242] [243] [244] [245]
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
@@ -1999,36 +3429,6 @@ ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
-ex-text;!
-[239] [240]
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
-ex-text;!
-[241]
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
-ex-text;!
-[242] [243] [244]
-Overfull \hbox (19.27264pt too wide) in paragraph at lines 13911--13917
-\TU/lmr/bx/n/10.95 2. \TU/SimSun(0)/b/n/10.95 表 格 搭 建：|  \TU/SimSun(0)/m/n/10.9
-5 还 原 原 表 的 框 线 风 格，|  为 了 视 觉 严 谨 对 接 原 图，|  第 一 行 表 头 采 用 了 \TU/lmtt/m/n/10.9
-5 \rowcolor{gray!25}
- []
-
-[245]
-Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
-ex-text;!
-Missing character: There is no ④ (U+2463) in font [lmroman12-regular]:mapping=t
 ex-text;!
 [246] [247]
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
@@ -2037,7 +3437,37 @@ Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=
 ex-text;!
 Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[248] [249] [250] [251] [252]
+[248]
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
+ex-text;!
+[249] [250] [251]
+Overfull \hbox (19.27264pt too wide) in paragraph at lines 13895--13901
+\TU/lmr/bx/n/10.95 2. \TU/SimSun(0)/b/n/10.95 表 格 搭 建：|  \TU/SimSun(0)/m/n/10.9
+5 还 原 原 表 的 框 线 风 格，|  为 了 视 觉 严 谨 对 接 原 图，|  第 一 行 表 头 采 用 了 \TU/lmtt/m/n/10.9
+5 \rowcolor{gray!25}
+ []
+
+[252]
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ④ (U+2463) in font [lmroman12-regular]:mapping=t
+ex-text;!
+[253] [254]
+Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
+ex-text;!
+Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
+ex-text;!
+[255] [256] [257] [258] [259]
 Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
@@ -2046,6 +3476,11 @@ Missing character: There is no ③ (U+2462) in font [lmroman12-bold]:mapping=tex
 text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
+
+Overfull \hbox (7.03674pt too wide) in paragraph at lines 14310--14311
+ [][] 
+ []
+
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ③ (U+2462) in font [lmroman12-regular]:mapping=t
@@ -2066,58 +3501,71 @@ Missing character: There is no ③ (U+2462) in font [lmroman10-regular]:mapping=
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
 ex-text;!
-[253] [254] [255]
+[260] [261] [262] [263]
 Missing character: There is no ① (U+2460) in font [lmroman12-bold]:mapping=tex-
 text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-bold]:mapping=tex-
 text;!
-[256] [257]
+[264] [265]
 第七章
-[258
+[266
 
-] [259] [260] [261] [262] [263] [264] [265]
+] [267] [268] [269] [270] [271] [272] [273]
 Missing character: There is no ， (U+FF0C) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no 。 (U+3002) in font [lmroman12-regular]:mapping=t
 ex-text;!
+
+Overfull \hbox (38.2186pt too wide) in paragraph at lines 15192--15194
+|\TU/SimSun(0)/b/n/14.4 （\TU/lmr/bx/n/14.4 1\TU/SimSun(0)/b/n/14.4 ）| $[] \OML/
+cmm/m/it/14.4 < []$\TU/SimSun(0)/b/n/14.4 ；|       |（\TU/lmr/bx/n/14.4 2\TU/Sim
+Sun(0)/b/n/14.4 ）|  解 不 等 式 组 $[]$ 
+ []
+
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ① (U+2460) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ① (U+2460) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ① (U+2460) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-Missing character: There is no ② (U+2461) in font [lmroman8-regular]:mapping=te
-x-text;!
-Missing character: There is no ② (U+2461) in font [lmroman6-regular]:mapping=te
+Missing character: There is no ② (U+2461) in font [lmroman10-regular]:mapping=t
+ex-text;!
+Missing character: There is no ② (U+2461) in font [lmroman7-regular]:mapping=te
 x-text;!
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
+[274]
 Missing character: There is no ① (U+2460) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no ② (U+2461) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[266] [267] [268] [269] [270]
-Underfull \hbox (badness 10000) in paragraph at lines 15502--15503
+[275] [276] [277] [278]
+Underfull \hbox (badness 10000) in paragraph at lines 15486--15487
 
  []
 
-[271] [272] [273] [274] [275] [276] [277] [278] [279] [280]
-Overfull \hbox (6.25075pt too wide) in paragraph at lines 16191--16195
+[279] [280] [281] [282] [283]
+Overfull \hbox (6.96689pt too wide) in paragraph at lines 15774--15781
+ [][] 
+ []
+
+[284] [285] [286] [287] [288] [289] [290]
+Overfull \hbox (6.25075pt too wide) in paragraph at lines 16175--16179
 \OT1/cmr/m/n/10.95 2[]$\TU/SimSun(0)/m/n/10.95 ） ，|  在 \TU/lmtt/m/n/10.95 tikzp
 icture \TU/SimSun(0)/m/n/10.95 环 境 中 强 制 锁 定 基 准 尺 度 缩 放 参 数 为 \TU/lmtt/m/n/10.
 95 x=1cm, y=1cm\TU/SimSun(0)/m/n/10.95 。|  此 举 使 得 \TU/lmtt/m/n/10.95 rectangle
 
  []
 
-[281] [282] [283]
+[291] [292] [293] [294]
 Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
 ex-text;!
 Missing character: There is no 、 (U+3001) in font [lmroman12-regular]:mapping=t
@@ -2130,6 +3578,19 @@ Missing character: There is no ▱ (U+25B1) in font [lmroman12-regular]:mapping=
 ex-text;!
 Missing character: There is no ▱ (U+25B1) in font [lmroman12-regular]:mapping=t
 ex-text;!
+
+Overfull \hbox (128.58827pt too wide) in paragraph at lines 16327--16339
+\TU/SimSun(0)/m/n/14.4 系  |（设 左 下 角 为 原 点 $\OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14
+.4 ; \OT1/cmr/m/n/14.4 0)$\TU/SimSun(0)/m/n/14.4 ） ，|  可 以 得 到 各 点 坐 标：| $\OML/
+cmm/m/it/14.4 A\OT1/cmr/m/n/14.4 (1\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 2)\OM
+L/cmm/m/it/14.4 ; B\OT1/cmr/m/n/14.4 (4\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 2
+)\OML/cmm/m/it/14.4 ; C\OT1/cmr/m/n/14.4 (3\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14
+.4 0)\OML/cmm/m/it/14.4 ; D\OT1/cmr/m/n/14.4 (6\OML/cmm/m/it/14.4 ; \OT1/cmr/m/
+n/14.4 0)\OML/cmm/m/it/14.4 ; E\OT1/cmr/m/n/14.4 (0\OML/cmm/m/it/14.4 ; \OT1/cm
+r/m/n/14.4 1)\OML/cmm/m/it/14.4 ; F\OT1/cmr/m/n/14.4 (7\OML/cmm/m/it/14.4 ; \OT
+1/cmr/m/n/14.4 1)$\TU/SimSun(0)/m/n/14.4 。|
+ []
+
 Missing character: There is no ① (U+2460) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no ▱ (U+25B1) in font [lmroman10-regular]:mapping=t
@@ -2148,27 +3609,27 @@ Missing character: There is no ▱ (U+25B1) in font [lmroman12-regular]:mapping=
 ex-text;!
 Missing character: There is no ▱ (U+25B1) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[284] [285]
+[295] [296] [297] [298]
 Missing character: There is no ⾯ (U+2FAF) in font SimHei/OT:script=hani;languag
 e=dflt;!
-[286] [287] [288] [289] [290]
+[299] [300] [301] [302] [303] [304] [305] [306] [307]
 Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
 ex-text;!
 Missing character: There is no 、 (U+3001) in font [lmroman10-regular]:mapping=t
 ex-text;!
-[291] [292] (./补充题·小学数学六年级下册 作图题答案.aux)
+[308] [309] [310] (./补充题·小学数学六年级下册 作图题答案.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/07/14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 25273 strings out of 468168
- 659232 string characters out of 5436524
- 993963 words of memory out of 5000000
- 53536 multiletter control sequences out of 15000+600000
- 644876 words of font info for 167 fonts, out of 8000000 for 9000
+ 25760 strings out of 468168
+ 690064 string characters out of 5436524
+ 993968 words of memory out of 5000000
+ 54016 multiletter control sequences out of 15000+600000
+ 647685 words of font info for 182 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,18n,111p,1361b,936s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 补充题·小学数学六年级下册 作图题答案.pdf (292 pages).
+Output written on 补充题·小学数学六年级下册 作图题答案.pdf (310 pages).
