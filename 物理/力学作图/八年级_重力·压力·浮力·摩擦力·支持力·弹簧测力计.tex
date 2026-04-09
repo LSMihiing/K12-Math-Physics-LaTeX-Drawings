@@ -1444,7 +1444,7 @@ $$ f = \frac{1}{5} G = \frac{1}{5} \times 5\,\text{N} = 1\,\text{N} $$
 
 {\small\color{blue!70!black}
 \textbf{代码自动化处理解析：}\\
-\textbf{1. 物理厘米级等距映射刻度：}不同于手绘粗略示意，代码可以直接绑定物理真实步距。在默认 $1.0 = 1.0\,\text{cm}$ 的绝对比例系中，循环逻辑 $\mathtt{\textbackslash pgfmathsetmacro\{\textbackslash y\}\{-0.4 * \textbackslash F\}}$ 驱动画笔，确保在纸面上呈现出完美的真实物理 $0.4\,\text{cm}$ 间隔极距跨步，还原了实验中游标下沉的物理真实距离。\\
+\textbf{1. 物理厘米级等距映射刻度：}不同于手绘粗略示意，代码可以直接绑定物理真实步距。在默认 $1.0 = 1.0\,\text{cm}$ 的绝对比例系中，循环逻辑 $\texttt{\textbackslash pgfmathsetmacro\{\textbackslash y\}\{-0.4 * \textbackslash F\}}$ 驱动画笔，确保在纸面上呈现出完美的真实物理 $0.4\,\text{cm}$ 间隔极距跨步，还原了实验中游标下沉的物理真实距离。\\
 \textbf{2. 循环量程控制锁：}刻度条数的决定并非随意排布，而是由题干第二问的“弹性限度安全区域”强力关联绑定。\texttt{\textbackslash foreach} 循环被强制封死在最大值 \texttt{10} 处，完美阻断了刻度越界超画的安全隐患。\\
 \textbf{3. 答题区色彩直观防线：}为了突显被学生后期补绘卷面充填出来的内容，我专门动用了 \texttt{blue!80!black} 为所有新生刻度线和标识数字进行深度强着色。这不仅展现了答题前后的步骤层叠感，更使正确刻划痕变得格外醒目。
 }

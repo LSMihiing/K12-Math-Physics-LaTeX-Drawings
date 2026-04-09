@@ -93,7 +93,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{blue!70!black}
 \textbf{绘图基本原理与步骤：}\\
-\textbf{1. 30-60-90 三角形精确构造}：利用特殊直角三角形比例关系 $1:\sqrt{3}:2$，设竖直边为 3，则水平底边为 $3\sqrt{3} \approx 5.196$。坐标定位 $B(0,0)$、$C(5.196,0)$、$A(0,3)$ 精确还原角度比。\\
+\textbf{1. 30-60-90 三角形精确构造}：利用特殊直角三角形比例关系 $1:\sqrt{3}:2$，设竖直边为 3，则水平底边为 $3\sqrt{3} \approx 5.196$。坐标定位 $B(0,0)$、$C(5.196,0)、A(0,3)$ 精确还原角度比。\\
 \textbf{2. 中点分割}：通过 \texttt{calc} 库的插值算子 \texttt{(A)!0.5!(C)} 自动取斜边 $AC$ 的中点 $D$，连接 $BD$ 即为答案分割线（红色 \texttt{red!70!black} 加粗区分答案图层）。\\
 \textbf{3. 角度标注}：使用 \texttt{arc} 命令绘制 $30^\circ$、$60^\circ$ 角弧，并用 \texttt{pic[angle]} 指令渲染角 $\angle ADB$ 的弧线标记。红色统一用于答案绘制图层，与黑色原图形成主次分层。
 }
@@ -447,7 +447,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 \textbf{绘图原理与步骤：}\\
 \textbf{1. 域隔离对比系：} 利用两个独立包裹的 \texttt{scope} （平移量相隔足够宽距）宏观分区建立了两套绝对独立的对照绘图区。左侧为八等分体系，右侧为基准十字四等分体系，保持所有方块外延尺寸严密一致并排布局，彻底实现原题左右互不干扰的并排比列版面。\\
 \textbf{2. 细分网格裁切场：} 对于“涂色表示分数的实质计算”，必须对空白基板做等效切分：左侧区域通过对角线加横竖中位线簇（施加 \texttt{dashed} 点划线属性）切割成 $8$ 个“全边等底正三角”；右侧区域则仅走单纯的十字正中切分分离为 $4$ 个纯正方微块块，为底层的数据结构绑定图元。\\
-\textbf{3. 分区面积映射法则：} 紧扣两组代数算子中的分子系数（$3、5$ 及 $3、2$），指令程序采用天蓝色（\texttt{blue!30}）精确检索并吞噬掉对应个数的微型切块。并在最后一行布置底注级渲染——用中心坐标 \texttt{anchor=mid} 精准压平实线评判空圆圈，同时往圆心中注入机器级准确判断的 $<$ 及 $>$ 等比例排版的矢量不等号。
+\textbf{3. 分区面积映射法则：} 紧扣两组代数算子中的分子系数（$3, 5$ 及 $3, 2$），指令程序采用天蓝色（\texttt{blue!30}）精确检索并吞噬掉对应个数的微型切块。并在最后一行布置底注级渲染——用中心坐标 \texttt{anchor=mid} 精准压平实线评判空圆圈，同时往圆心中注入机器级准确判断的 $<$ 及 $>$ 等比例排版的矢量不等号。
 }
 
 %% ==============================
@@ -648,9 +648,9 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{gray}
 \textbf{作图说明：}\\
-\textcircled{1} $45°$角：用量角器，以水平射线为基准，在上方量取$45°$，画出另一条射线。\\
-\textcircled{2} $105°$角：用量角器，以竖直射线为基准，在右侧量取$105°$，画出另一条射线。\\
-\textcircled{3} 比平角小$15°$的角：平角$= 180°$，故所求角$= 180° - 15° = 165°$；用量角器量取即可。
+① $45°$角：用量角器，以水平射线为基准，在上方量取$45°$，画出另一条射线。\\
+② $105°$角：用量角器，以竖直射线为基准，在右侧量取$105°$，画出另一条射线。\\
+③ 比平角小$15°$的角：平角$= 180°$，故所求角$= 180° - 15° = 165°$；用量角器量取即可。
 }
 
 
@@ -675,7 +675,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 \begin{tikzpicture}[scale=1.1, >=Stealth]
 
   %% ---- 已知线段 AB（展示在左上角）----
-  % A、B 的位置（模拟题图：B在A的右偏上方）
+  % A$、$B 的位置（模拟题图：B在A的右偏上方）
   \coordinate (A) at (0, 0);
   \coordinate (B) at (2.0, 0.8);   % AB 斜段，模拟题图
 
@@ -707,7 +707,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
   \node[vertex dot] at (M) {};
   \node[vertex dot] at (D) {};
 
-  % 标注 C、M、D
+  % 标注 C$、$M$、$D
   \node[below, font=\small] at (C) {$C$};
   \node[below, font=\small\color{gray}] at (M) {（中点）};
   \node[below, font=\small] at (D) {$D$};
@@ -749,10 +749,10 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{gray}
 \textbf{作图说明（直尺和圆规法）：}\\
-\textcircled{1} 用圆规量取线段 $AB$ 的长度（张开圆规，使两脚分别对准 $A$、$B$）。\\
-\textcircled{2} 在直线上取一点 $C$，以 $C$ 为圆心、$AB$ 为半径画弧，弧与直线的交点记为中间点。\\
-\textcircled{3} 再以该中间点为圆心、$AB$ 为半径画弧，弧与直线的交点即为点 $D$。\\
-\textcircled{4} 连结 $CD$，则 $CD = 2AB$。\quad（橙色虚线弧为圆规痕迹示意）
+① 用圆规量取线段 $AB$ 的长度（张开圆规，使两脚分别对准 $A$、$B$）。\\
+② 在直线上取一点 $C$，以 $C$ 为圆心、$AB$ 为半径画弧，弧与直线的交点记为中间点。\\
+③ 再以该中间点为圆心、$AB$ 为半径画弧，弧与直线的交点即为点 $D$。\\
+④ 连结 $CD$，则 $CD = 2AB$。\quad（橙色虚线弧为圆规痕迹示意）
 }
 
 
@@ -823,9 +823,9 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{gray}
 \textbf{作图说明（圆规法）：}\\
-\textcircled{1} 张开圆规，使两脚距离等于 $3$ 厘米（对照直尺量取）。\\
-\textcircled{2} 将圆规针脚固定在点 $A$，用铅笔脚在直线上画弧。\\
-\textcircled{3} 弧线与直线共有\textbf{两个交点}，均可作为点 $B$，即 $AB = 3$ 厘米。\\
+① 张开圆规，使两脚距离等于 $3$ 厘米（对照直尺量取）。\\
+② 将圆规针脚固定在点 $A$，用铅笔脚在直线上画弧。\\
+③ 弧线与直线共有\textbf{两个交点}，均可作为点 $B$，即 $AB = 3$ 厘米。\\
 （图中橙色虚弧为圆规痕迹，红点为满足条件的点 $B$）
 }
 
@@ -904,9 +904,9 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{gray}
 \textbf{解题说明：}\\
-\textcircled{1} 用量角器量出左图中 $\angle 1$ 的大小，得 $\angle 1 = 50°$。\\
-\textcircled{2} 计算：$\angle 2 = 2 \times \angle 1 = 2 \times 50° = 100°$。\\
-\textcircled{3} 在右侧以水平射线为一边，用量角器量取 $100°$，画出另一条射线，即得 $\angle 2$。
+① 用量角器量出左图中 $\angle 1$ 的大小，得 $\angle 1 = 50°$。\\
+② 计算：$\angle 2 = 2 \times \angle 1 = 2 \times 50° = 100°$。\\
+③ 在右侧以水平射线为一边，用量角器量取 $100°$，画出另一条射线，即得 $\angle 2$。
 }
 
 
@@ -981,7 +981,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
       ($ (C)+(0,-0.6) $) -- ($ (D)+(0,-0.6) $)
       node[midway, below, font=\small, red!70!black] {$CD = 3AB$};
 
-  %% ---- 圆规弧示意（以 C、M1、M2 为圆心，AB为半径）----
+  %% ---- 圆规弧示意（以 C$、$M1$、$M2 为圆心，AB为半径）----
   % 弧1：以 C 为圆心
   \draw[dashed, orange!80!black, line width=0.8pt]
       (C) ++({0:\ab}) arc[start angle=0, end angle=18,  radius=\ab];
@@ -1011,12 +1011,12 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{gray}
 \textbf{作图说明（直尺和圆规法）：}\\
-\textcircled{1} 用圆规量取线段 $AB$ 的长度。\\
-\textcircled{2} 在纸上用直尺画一条射线，取一端点为 $C$。\\
-\textcircled{3} 以 $C$ 为圆心、$AB$ 为半径画弧，交射线于中间点（第1次截取）。\\
-\textcircled{4} 再以该点为圆心、$AB$ 为半径画弧，交射线于第二个中间点（第2次截取）。\\
-\textcircled{5} 再以第二个中间点为圆心、$AB$ 为半径画弧，交射线于点 $D$（第3次截取）。\\
-\textcircled{6} 线段 $CD$ 即为所求，$CD = 3AB$。\quad（橙色虚弧为圆规痕迹示意）
+① 用圆规量取线段 $AB$ 的长度。\\
+② 在纸上用直尺画一条射线，取一端点为 $C$。\\
+③ 以 $C$ 为圆心、$AB$ 为半径画弧，交射线于中间点（第1次截取）。\\
+④ 再以该点为圆心、$AB$ 为半径画弧，交射线于第二个中间点（第2次截取）。\\
+⑤ 再以第二个中间点为圆心、$AB$ 为半径画弧，交射线于点 $D$（第3次截取）。\\
+⑥ 线段 $CD$ 即为所求，$CD = 3AB$。\quad（橙色虚弧为圆规痕迹示意）
 }
 
 
@@ -1081,13 +1081,13 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 {\small\color{gray}
 \textbf{规律分析：}\\
-\textcircled{1} \textbf{第(1)题：}观察可知，图形是以 \tikzTriangle{} \tikzCircle{} \tikzSquare{} 为一组循环出现的。前面已有 \tikzTriangle{} \tikzCircle{}，按照顺序，接下来应填 \tikzSquare{} 和 \tikzTriangle{}。
+① \textbf{第(1)题：}观察可知，图形是以 \tikzTriangle{} \tikzCircle{} \tikzSquare{} 为一组循环出现的。前面已有 \tikzTriangle{} \tikzCircle{}，按照顺序，接下来应填 \tikzSquare{} 和 \tikzTriangle{}。
 
 \vspace{0.3cm}
-\textcircled{2} \textbf{第(2)题：}观察可知，图形是以 \tikzSquare{} \tikzSquare{} \tikzCircle{} \tikzTriangle{} 为一组循环出现的。空格前为 \tikzSquare{}，接下来的序列缺第二个 \tikzSquare{}，因此第一个括号填 \tikzSquare{}，跳过已有的 \tikzCircle{}，第二个括号填 \tikzTriangle{}。
+② \textbf{第(2)题：}观察可知，图形是以 \tikzSquare{} \tikzSquare{} \tikzCircle{} \tikzTriangle{} 为一组循环出现的。空格前为 \tikzSquare{}，接下来的序列缺第二个 \tikzSquare{}，因此第一个括号填 \tikzSquare{}，跳过已有的 \tikzCircle{}，第二个括号填 \tikzTriangle{}。
 
 \vspace{0.3cm}
-\textcircled{3} \textbf{第(3)题：}该组图形由 \tikzSolidTriangle{} \tikzStar{} \tikzStar{} 和 \tikzSolidTriangle{} \tikzSolidTriangle{} \tikzSolidTriangle{} 两组交替出现。根据现有序列末尾的 \tikzSolidTriangle{} \tikzStar{}，需先补完 \tikzStar{} 构成第一组，随后补完 \tikzSolidTriangle{} \tikzSolidTriangle{} \tikzSolidTriangle{} 构成第二组。故依次填入：\tikzStar{}、\tikzSolidTriangle{}、\tikzSolidTriangle{}、\tikzSolidTriangle{}。
+③ \textbf{第(3)题：}该组图形由 \tikzSolidTriangle{} \tikzStar{} \tikzStar{} 和 \tikzSolidTriangle{} \tikzSolidTriangle{} \tikzSolidTriangle{} 两组交替出现。根据现有序列末尾的 \tikzSolidTriangle{} \tikzStar{}，需先补完 \tikzStar{} 构成第一组，随后补完 \tikzSolidTriangle{} \tikzSolidTriangle{} \tikzSolidTriangle{} 构成第二组。故依次填入：\tikzStar{}、\tikzSolidTriangle{}、\tikzSolidTriangle{}、\tikzSolidTriangle{}。
 }
 
 
@@ -1180,9 +1180,9 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 % 逻辑说明
 {\small
 \textbf{判定方法说明：} \\
-1. \textbf{平行：} 在同一平面内，永不相交的两条直线叫做平行线。图中第1、3、8对直线满足平行关系。 \\
-2. \textbf{垂直：} 当两条直线相交成直角（90$^\circ$）时，这两条直线互相垂直。图中第6、7对直线相交成直角。 \\
-3. \textbf{普通相交：} 第2、4、5对直线既不平行也不垂直。
+1. \textbf{平行：} 在同一平面内，永不相交的两条直线叫做平行线。图中第1, 3$、$8对直线满足平行关系。 \\
+2. \textbf{垂直：} 当两条直线相交成直角（90$^\circ$）时，这两条直线互相垂直。图中第6, 7对直线相交成直角。 \\
+3. \textbf{普通相交：} 第2, 4$、$5对直线既不平行也不垂直。
 }
 
 
@@ -1536,7 +1536,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 
 
 %% ==============================
-%% 画出与已知直线距离是1cm、2cm、3cm的平行线
+%% 画出与已知直线距离是1cm$、$2cm$、$3cm的平行线
 %% ==============================
 
 
@@ -1549,7 +1549,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 \vspace{0.6cm}
 
 \noindent
-{\small \textbf{题目要求：} 分别画出与已知直线距离是 1 厘米、2 厘米、3 厘米的平行线。}
+{\small \textbf{题目要求：} 分别画出与已知直线距离是 1 厘米$、$2 厘米、3 厘米的平行线。}
 
 \vspace{0.8cm}
 
@@ -1623,7 +1623,7 @@ $\angle 1 = \angle ABC - \angle ABD = 90^\circ - 60^\circ = 30^\circ$。\\
 {\small
 \textbf{作图方法说明：} \\
 1. \textbf{定垂线：} 在已知直线上找一点，画出已知直线的垂线。 \\
-2. \textbf{取长度：} 在垂线上分别量出 1 厘米、2 厘米、3 厘米的长度，标出三个点。 \\
+2. \textbf{取长度：} 在垂线上分别量出 1 厘米$、$2 厘米、3 厘米的长度，标出三个点。 \\
 3. \textbf{画平行：} 过这三个点，分别画出已知直线的平行线。 \\
 \textit{注：平行线也可以画在已知直线的另一侧，图中仅展示了一侧的画法。}
 }
