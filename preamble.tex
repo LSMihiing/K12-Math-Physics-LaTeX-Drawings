@@ -1,0 +1,77 @@
+% ============================================================
+% K12 教辅绘图项目 — 公共导言区
+% 编译方式：xelatex main.tex
+% ============================================================
+
+\documentclass[12pt, a4paper]{ctexrep}
+
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=2.5cm,
+  right=2.5cm,
+  top=2.5cm,
+  bottom=2.5cm
+}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{
+  angles,                   % 画角与直角标记
+  quotes,                   % 给角附文字标签
+  arrows.meta,              % Stealth 等箭头样式
+  calc,                     % 坐标计算
+  decorations.pathreplacing,% 大括号装饰
+  patterns                  % 阴影填充图案
+}
+
+% ------ 正字计数法自定义符号 ------
+\newcommand{\zhengI}{\tikz[baseline=0.1em, x=1em, y=1em]{\draw[line width=1pt, line cap=round] (0.15, 0.8) -- (0.85, 0.8);}}
+\newcommand{\zhengII}{\tikz[baseline=0.1em, x=1em, y=1em]{\draw[line width=1pt, line cap=round] (0.15, 0.8) -- (0.85, 0.8); \draw[line width=1pt, line cap=round] (0.5, 0.8) -- (0.5, 0.1);}}
+\newcommand{\zhengIII}{\tikz[baseline=0.1em, x=1em, y=1em]{\draw[line width=1pt, line cap=round] (0.15, 0.8) -- (0.85, 0.8); \draw[line width=1pt, line cap=round] (0.5, 0.8) -- (0.5, 0.1); \draw[line width=1pt, line cap=round] (0.5, 0.45) -- (0.8, 0.45);}}
+\newcommand{\zhengIV}{\tikz[baseline=0.1em, x=1em, y=1em]{\draw[line width=1pt, line cap=round] (0.15, 0.8) -- (0.85, 0.8); \draw[line width=1pt, line cap=round] (0.5, 0.8) -- (0.5, 0.1); \draw[line width=1pt, line cap=round] (0.5, 0.45) -- (0.8, 0.45); \draw[line width=1pt, line cap=round] (0.25, 0.45) -- (0.25, 0.1);}}
+\newcommand{\zhengV}{\tikz[baseline=0.1em, x=1em, y=1em]{\draw[line width=1pt, line cap=round] (0.15, 0.8) -- (0.85, 0.8); \draw[line width=1pt, line cap=round] (0.5, 0.8) -- (0.5, 0.1); \draw[line width=1pt, line cap=round] (0.5, 0.45) -- (0.8, 0.45); \draw[line width=1pt, line cap=round] (0.25, 0.45) -- (0.25, 0.1); \draw[line width=1pt, line cap=round] (0.05, 0.1) -- (0.95, 0.1);}}
+\newcommand{\zheng}{\zhengV}
+
+% ------ TikZ 全局样式 ------
+\tikzset{
+  ray/.style={
+    -{Stealth[length=6pt]},
+    line width=1.2pt,
+    color=cyan!70!blue
+  },
+  given ray/.style={
+    -,
+    line width=1.2pt,
+    color=cyan!70!blue
+  },
+  angle arc/.style={
+    draw=red!70!black,
+    line width=0.8pt
+  },
+  angle label/.style={
+    font=\small,
+    color=red!70!black
+  },
+  vertex dot/.style={
+    circle,
+    fill=cyan!70!blue,
+    inner sep=0pt,
+    minimum size=5pt
+  }
+}
+
+%% ------ 实心五角星宏（统计图用） ------
+\newcommand{\tikzSolidStar}[1]{%
+  \tikz[baseline=-0.3em]{%
+    \node[#1, inner sep=0pt, font=\large] at (0,0.1) {$\bigstar$};%
+  }%
+}
