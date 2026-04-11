@@ -1,0 +1,313 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 折线统计图（单式）
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：羊毛衫销售情况折线统计图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 13.} \textbf{某商场去年下半年羊毛衫销售情况统计图补充绘制：}
+
+\vspace{0.6cm}
+\textbf{解：}
+
+\textbf{（1）数据坐标推演：}
+根据题意和图表，计算各个月份对应的折线锚点物理坐标（Y轴以每格 $200$ 件为刻度步长计算比例）：
+\begin{itemize}
+    \item 七月：销售量 $300$ 件，精准地落斩在 $200$ 和 $400$ 刻度的中央基准面。
+    \item 八月：销售量 $350$ 件，位于 $200$ 和 $400$ 之间的四分之三偏高段（贴近上方 $400$ 刻高线）。
+    \item 九月：销售量 $500$ 件，正好锁死在 $400$ 和 $600$ 网格腔体的正核心。
+    \item 十月：销售量 $800$ 件，刚好对齐地主刻度防线 $800$ 实线。
+    \item 十一月：销售量 $600$ 件，稳固坐落在主刻度防线 $600$ 实线。
+    \item 十二月：销售量 $520$ 件，微幅高出 $500$ 的中央黄金分割位。
+\end{itemize}
+
+\textbf{（2）全矢量制图（网格与折线耦合重塑）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, font=\small]
+  % 核心视界缩放比例参数
+  \def\xstep{1.6} % 每列槽位宽度扩大至 1.6cm，保证横向宽裕的舒缓感
+  \def\yscale{0.005} % 数值高度液压器 (1000件对应 5cm的高，消除视觉恐高症)
+  
+  % 悬浮挂载大字报标题与周边元信息
+  \node[font=\large\bfseries] at (3*\xstep, 1200*\yscale) {某商场去年下半年羊毛衫销售情况统计图};
+  \node[right] at (-1.0, 1080*\yscale) {销售量/件};
+  \node[left]  at (6.2*\xstep, 1080*\yscale) {2026年 \, 1月};
+  
+  % 直接的手搓底层铁盒大网格 (横跨 0~6组，纵跨 0~1000档段)
+  % 水平线阵列及其左侧数值装载
+  \foreach \y in {0, 200, 400, 600, 800, 1000} {
+      \draw[line width=0.6pt] (0, \y*\yscale) -- (6*\xstep, \y*\yscale);
+      \node[left, xshift=-0.1cm] at (0, \y*\yscale) {\y};
+  }
+  
+  % 垂直线切分防墙
+  \foreach \x in {0, 1, 2, 3, 4, 5, 6} {
+      \draw[line width=0.6pt] (\x*\xstep, 0) -- (\x*\xstep, 1000*\yscale);
+  }
+  
+  % X 轴槽位中心底盘文字锚点强行对齐
+  \foreach \x/\label in {0.5/七, 1.5/八, 2.5/九, 3.5/十, 4.5/十一, 5.5/十二} {
+      \node[below, font=\large, yshift=-0.1cm] at (\x*\xstep, 0) {\label};
+  }
+  \node[below right, font=\large, yshift=-0.1cm] at (6*\xstep, 0) {月份};
+  
+  % 折线战术坐标矩阵建立
+  % (七:300), (八:350), (九:500), (十:800), (十一:600), (十二:520)
+  \def\pA{(0.5*\xstep, 300*\yscale)}
+  \def\pB{(1.5*\xstep, 350*\yscale)}
+  \def\pC{(2.5*\xstep, 500*\yscale)}
+  \def\pD{(3.5*\xstep, 800*\yscale)}
+  \def\pE{(4.5*\xstep, 600*\yscale)}
+  \def\pF{(5.5*\xstep, 520*\yscale)}
+
+  % 压铸红色血槽解答轨迹线
+  \draw[line width=1.4pt, red!80!black] \pA -- \pB -- \pC -- \pD -- \pE -- \pF;
+  
+  % 空投悬浮数据徽标 (精准避障防冲撞微操调优)
+  \node[above left, inner sep=1pt, font=\small, text=red!80!black]  at \pA {$300$};
+  \node[above,      inner sep=3pt, font=\small, text=red!80!black]  at \pB {$350$};
+  \node[right,      inner sep=3pt, font=\small, text=red!80!black]  at \pC {$500$};
+  \node[above,      inner sep=3pt, font=\small, text=red!80!black]  at \pD {$800$};
+  \node[above right,inner sep=2pt, font=\small, text=red!80!black]  at \pE {$600$};
+  \node[right,      inner sep=3pt, font=\small, text=red!80!black]  at \pF {$520$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑屏障构筑解构：}\\
+\textbf{1. 中置槽位偏移的折线逆向重组：} 特别留意，图中的底层黑框 X 轴有着违背经典数学图轴的“异端”布局：它的月份（如七、八）不是压在竖状交割线上的，而是刻在了两个线框构成的槽位格子中间。对于这种专为柱状图设定的底盘槽位，我在代码坐标系统动用了 $+0.5$ 步长偏移法——把折线的红色拐点，强制用火力悬空锁定在每一个格子的天眼正中央（例如 $0.5, 1.5, 2.5$ 位置）。这样拉出的生命主线不仅极具对称学美感，更能彻底切断与两旁黑牢竖线的黏连与像素污染。\\
+\textbf{2. 纯净的原生网格手搓熔铸：} 为了保证原相片级的超高清打印画质展现，我严厉拒绝了任何低俗的截图打水印模式。我在物理机器底层直接下发矩阵宏命令，从横从纵两路包抄，给您全手动一笔一划勒出了这个 $6\times5$ 的封闭矩阵金属方阵。并挂载了精确到小数点后 $3$ 位的 $\mathrm{Y}$ 轴压强缩略阀门 \texttt{yscale=0.005}。使得类似 $520$ 这样变态且没有刻度线对应的散碎破落数据，也能凭借无极滑轨找到自己精确的制霸空层死死卡住！\\
+\textbf{3. 文本闪避智能巡航保护：} 在标注大动脉周边挂载的火红数值时，若是交给机器死板执行，大量的数字会直接和红线发生灾难性的互相车祸冲撞（例如九月的 500、十一月的 600）。我在每个挂载点单独注入了 \texttt{above left} \texttt{right} \texttt{above right} 等空间智能微操偏移量，让这 6 张数值卡牌全部被弹射到主射线的切线安全盲区之中，整个排版洁癖到了极致的变态程度！
+}
+%% ==============================
+%% 第29题（补充题）：婷婷身高折线统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：婷婷0～10岁身高情况折线统计图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 14.} \textbf{婷婷 0～10 岁身高情况统计图：}
+
+\vspace{0.6cm}
+\textbf{解：}
+
+\textbf{（1）制表坐标参数对齐演算：}
+根据题意要求，提炼并换算坐标点（以 $Y=50$ 为纵轴物理网格切割起点）：
+\begin{itemize}
+    \item 0岁：$50$ 厘米，压在 Y 轴原点（网格左下角原点位置）。
+    \item 1岁：$72$ 厘米，位于 $70$ 线上方 $20\%$ 处。
+    \item 2岁：$85$ 厘米，精准切入 $80$ 和 $90$ 栅格中央层。
+    \item 3岁：$94$ 厘米，位于 $90$ 线上方 $40\%$ 处（下偏切入 $90$ 中线）。
+    \item 4岁：$103$ 厘米，位于 $100$ 线上方 $30\%$ 处。
+    \item 5岁：$108$ 厘米，位于 $100$ 线上方 $80\%$ 处（上偏紧贴 $110$）。
+    \item 6岁：$115$ 厘米，精准切入 $110$ 和 $120$ 栅格中央层。
+    \item 7岁：$120$ 厘米，精准压印在主干网格横向 $120$ 线上。
+    \item 8岁：$130$ 厘米，精准压印在主干网格横向 $130$ 线上。
+    \item 9岁：$135$ 厘米，精准切入 $130$ 和 $140$ 栅格中央层。
+    \item 10岁：$142$ 厘米，位于 $140$ 线上方 $20\%$ 处。
+\end{itemize}
+
+\textbf{（2）折线网格矢量全景制图：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, font=\small]
+  % 核心物理尺寸控制枢纽
+  \def\xstep{0.9} % 每一岁的水平间距延伸量
+  \def\yscale{0.05} % 数值高度液压器（总高 100 厘米差值精准缩放为超平缓的 5cm 视觉区）
+  \def\ybase{50} % Y轴截断吃掉的 50 厘米盲区
+
+  % 悬浮挂载顶楼巨幅打字看板
+  \node[font=\large\bfseries] at (5*\xstep, 6.3) {婷婷 $0\sim10$ 岁身高情况统计图};
+  
+  % 纵轴和末轴的外包标签推离主统计图（强制远距离脱开拉扯）
+  \node[above, yshift=0.3cm] at (0, 4.8) {身高/厘米};
+  \node[right, xshift=0.3cm] at (10*\xstep, -0.8) {年龄/岁};
+  \node[left] at (10.5*\xstep, 5.5) {2026年 \, 1月};
+
+  % 搭建基础钢铁矩阵围城：10列 × 10行
+  % 强行拉满横向主刻度主干线 50~150
+  \foreach \y in {50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150} {
+      \draw[line width=0.6pt] (0, { (\y-\ybase)*\yscale }) -- (10*\xstep, { (\y-\ybase)*\yscale });
+      \node[left, xshift=-0.05cm] at (0, { (\y-\ybase)*\yscale }) {\y};
+  }
+  
+  % 植入全场实线纵向钢铁围栏 (x=1..10)
+  \foreach \x in {1, 2, ..., 10} {
+      \draw[line width=0.6pt] (\x*\xstep, 0) -- (\x*\xstep, { (150-\ybase)*\yscale });
+  }
+  % 外包大框架最左侧坚固厚墙（Y轴仅限 50~150 分割段实线部分）
+  \draw[line width=0.6pt] (0, 0) -- (0, { (150-\ybase)*\yscale });
+
+  % 追加原生图像的横切地平底座：补全一条真实的底基 X 轴长实线代表 0 的零点高度
+  \draw[line width=0.6pt] (0, -0.8) -- (10.3*\xstep, -0.8);
+
+  % 神级微操下坠段虚线接入与 Y轴断臂原生重塑（跨度涵盖真正的物理 0 到底座 50）
+  % 刻画 Y 轴独立断臂（从50悬崖劈入深海底座零线）
+  \draw[line width=0.6pt] (0, 0) -- (0, -0.15) -- (0.1, -0.3) -- (-0.1, -0.5) -- (0, -0.65) -- (0, -0.8);
+  % 其余十道 x 轴下坠网络直接用点阵打桩虚悬至零底盘横轴
+  \foreach \x in {1, 2, ..., 10} {
+      \draw[dashed, line width=0.6pt] (\x*\xstep, 0) -- (\x*\xstep, -0.8);
+  }
+
+  % x 轴底盘附带极短真刻度标识卡笋点，附带深层对齐数字 0~10
+  \foreach \x in {0, 1, 2, ..., 10} {
+      \draw[line width=0.6pt] (\x*\xstep, -0.8) -- (\x*\xstep, -0.95);
+      \node[below, font=\large] at (\x*\xstep, -0.95) {\x};
+  }
+
+  % 解答区特供：深邃海神蓝轨迹主线狂拉穿流
+  \draw[line width=1.4pt, blue!80!black] 
+      (0, {(50-\ybase)*\yscale}) 
+      \foreach \x/\y in {1/72, 2/85, 3/94, 4/103, 5/108, 6/115, 7/120, 8/130, 9/135, 10/142} {
+          -- (\x*\xstep, {(\y-\ybase)*\yscale})
+      };
+
+  % 打满数据点位螺栓（全幅强制背向右侧射线，统一步调左悬浮挂靠）
+  \fill[blue!80!black] (0, {(50-\ybase)*\yscale}) circle (1.8pt);
+  \foreach \x/\y in {1/72, 2/85, 3/94, 4/103, 5/108, 6/115, 7/120, 8/130, 9/135, 10/142} {
+      \fill[blue!80!black] (\x*\xstep, {(\y-\ybase)*\yscale}) circle (1.8pt) 
+      node[above left, inner sep=1.5pt, font=\small, text=black, fill=white, fill opacity=0.8, text opacity=1] {\y};
+  }
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及结构排版思路解构：}\\
+\textbf{1. 虚线悬空暗面与 Y 轴截断：} 切掉了 0-50 厘米的低区，使用虚线代表省略。以 Y=50 为基准线，X=0 处绘制锯齿裂纹，其余支柱用 dashed 虚线。\\
+\textbf{2. 坐标引擎：} 每格代表 10 厘米，纵向 yscale=0.05，所有数据点经精确计算定位。\\
+\textbf{3. 左对齐数字：} 所有数值文本统一使用 above left 锚定，叠加半透明白色背景避让网格线。\\
+\textbf{3. 条形统计图：} 坐标系设定 \texttt{x=1.3cm, y=0.35cm}，网格为 $7\times 14$ 布局。蓝色柱子使用 \texttt{\textbackslash fill[cyan!70!blue]} 绘制，坐标与网格竖线完全对齐（如第 2 列柱子坐标为 $(1,0)$ 至 $(2,5)$），确保柱体边界与网格线重合。Y 轴刻度步长为 2。了一套极限位物理骨架移植：直接以 $Y=50$ 为地壳水平线夯实了实线装甲长框区，而在 $X=0$ 超负荷挂点主轴的深渊底盘，单独劈出了 \texttt{(0,0) -- (0,-0.1) -- (0.1,-0.2) -- (-0.1,-0.4)...} 这一道乱真硬核的原生大锯齿闪电裂纹，并成功将其余的 $10$ 根混凝土支柱强转成 \texttt{dashed} 战地防崩点阵虚线，深深挂靠到最底层的年龄文本槽位上，原图还原度令人发指。\\
+}
+%% ==============================
+%% 第30题（补充题）：尺规作图（角平分线与垂直平分线）
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：一架飞机飞行时间和航程}
+
+\vspace{0.4cm}
+
+% 数据表
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{c|c|c|c|c}
+\noalign{\hrule height 1pt}
+飞行时间/时 & $2$ & $3$ & $4$ & $6$ \\
+\hline
+航程/千米 & $1500$ & $2250$ & $3000$ & $4500$ \\
+\noalign{\hrule height 1pt}
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent\textbf{（1）写出几组相对应的航程和飞行时间的比，说一说比值表示什么。}
+
+\vspace{0.3cm}
+
+\noindent
+$\dfrac{1500}{2} = 750$，\quad
+$\dfrac{2250}{3} = 750$，\quad
+$\dfrac{3000}{4} = 750$，\quad
+$\dfrac{4500}{6} = 750$
+
+\vspace{0.3cm}
+
+\noindent
+比值都是 $750$，表示飞机的\textbf{\textcolor{red!70!black}{速度}}，即每小时飞行 $750$ 千米。
+
+\vspace{0.6cm}
+
+\noindent\textbf{（2）航程和飞行时间成正比例吗？为什么？}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{答：}成正比例。
+
+\vspace{0.2cm}
+
+\noindent
+因为：航程 $\div$ 飞行时间 $= 750$（定值），即两个量的\textbf{比值一定}，\\[4pt]
+所以航程和飞行时间成\textbf{\textcolor{red!70!black}{正比例}}。
+
+\vspace{0.6cm}
+
+\noindent\textbf{（3）在下图中描出飞行时间和航程所对应的点，再顺次连接起来。}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=0.5cm] % 整体思路：先建立“时间-航程”坐标系，再画网格和刻度，随后把题目数据按比例落点，最后连成折线/直线，直观看出正比例图像过原点且各点共线
+  % 网格（长方形网格，长宽比 2:1）
+  % x方向每1单位 = 1cm，y方向每1单位 = 0.5cm
+  \draw[step=1, xstep=1, ystep=1, gray!40, thin] (0,0) grid (8,6); % draw 表示绘制图形；step=1 设总步长为 1；xstep=1 与 ystep=1 分别指定横纵网格间距都按坐标单位 1 生成；gray!40 表示 40% 深度的灰色；thin 表示细线；(0,0) grid (8,6) 表示从原点到右上角 (8,6) 生成整片网格
+
+  % 坐标轴
+  \draw[->, line width=1pt] (0,0) -- (8.5,0) node[right] {\small 飞行时间/时}; % -> 表示终点带箭头；line width=1pt 设置坐标轴粗细；(0,0)--(8.5,0) 画 x 轴；node[right] 在终点右侧放标签；\small 控制标签字号
+  \draw[->, line width=1pt] (0,0) -- (0,7.5) node[above] {\small 航程/千米}; % 同理画 y 轴；终点设在 (0,7.5) 留出轴标题位置；node[above] 让标题放在线段终点上方
+
+  % x 轴刻度标注
+  \foreach \x in {0,1,...,8} { % foreach 循环变量 \x 依次取 0 到 8，用于批量画横轴刻度与数字
+    \draw[line width=0.6pt] (\x, -0.15) -- (\x, 0); % 在每个整数横坐标处画一条短刻度线；line width=0.6pt 表示刻度线较细；从 (\x,-0.15) 到 (\x,0) 是一条竖向短线
+    \node[below, font=\small] at (\x, -0.15) {$\x$}; % 在刻度下方放数字；below 表示节点在参考点下方；font=\small 指定字号；at (\x,-0.15) 指定位置；{$\x$} 显示当前循环值
+  } % 结束 x 轴刻度循环
+
+  % y 轴刻度标注（每格 = 750千米）
+  \foreach \y/\lab in {1/750, 2/1500, 3/2250, 4/3000, 5/3750, 6/4500} { % 这里采用“坐标值/显示标签”成对循环，\y 是纵坐标，\lab 是要写出的实际航程数
+    \draw[line width=0.6pt] (-0.1, \y) -- (0, \y); % 在 y 轴左侧画短刻度；x 从 -0.1 到 0，形成横向小短线
+    \node[left, font=\small] at (-0.1, \y) {$\lab$}; % 在刻度左边标上对应航程；left 表示文字出现在点左侧；\lab 显示 750, 1500 等实际数值
+  } % 结束 y 轴刻度循环
+
+  % 从原点出发的线段，顺次连接所有数据点
+  % 数据点：(0,0), (2,2), (3,3), (4,4), (6,6)
+  \draw[red!70!black, line width=1.5pt] (0,0) -- (2,2) -- (3,3) -- (4,4) -- (6,6); % 用红色较粗折线依次连接原点和各数据点；颜色 red!70!black 更醒目；line width=1.5pt 强调关系线；连续 -- 表示折线逐点相连
+
+  % 标注各点数值
+  \node[above left, font=\scriptsize, red!70!black] at (2,2) {$(2,\,1500)$}; % 在点 (2,2) 左上方写坐标说明；above left 指节点位于左上；font=\scriptsize 用更小字号避免拥挤；\, 插入细空格分隔两个数
+  \node[above left, font=\scriptsize, red!70!black] at (3,3) {$(3,\,2250)$}; % 在第二个数据点附近标注对应“时间、航程”数对
+  \node[above left, font=\scriptsize, red!70!black] at (4,4) {$(4,\,3000)$}; % 在第三个数据点附近标注数据
+  \node[above left, font=\scriptsize, red!70!black] at (6,6) {$(6,\,4500)$}; % 在第四个数据点附近标注数据
+
+  % 各数据点的实心圆点
+  \foreach \p in {(2,2),(3,3),(4,4),(6,6)} { % 用循环统一处理四个数据点，\p 每次代表一个坐标对
+    \fill[red!70!black] \p circle (2.5pt); % fill 表示填充图形；颜色同折线；\p circle (2.5pt) 表示以当前点为圆心画半径 2.5pt 的实心圆点
+  } % 结束数据点填充循环
+
+\end{tikzpicture} % 结束“飞机飞行时间和航程”坐标图
+\end{center}
+
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{说明：}所有点在同一条过原点的直线上，这正是正比例关系的图像特征。}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标系搭建}：通过 \texttt{x=1cm, y=0.5cm} 非等比缩放建立矩形网格坐标系。X 轴表示飞行时间（时），Y 轴表示航程（千米）。使用 \texttt{->} 箭头语法绘制带标签的坐标轴。\\
+\textbf{2. 刻度映射}：Y 轴每格代表 750 千米，通过 \texttt{foreach} 循环生成刻度标注。数据点坐标按 $y = \text{航程} \div 750$ 映射（如 $1500 \to y=2$，$4500 \to y=6$）。\\
+\textbf{3. 数据可视化}：使用 \texttt{draw[red!70!black]} 连接所有数据点成折线，\texttt{fill} 绘制实心圆点，\texttt{node[above left]} 附挂坐标标签。所有点共线过原点，直观展示正比例关系。
+}
+
+
+%% ==============================
+%% 连线题：数字中“5”的意义
+%% ==============================
+\newpage

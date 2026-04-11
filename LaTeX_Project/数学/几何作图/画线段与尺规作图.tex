@@ -1,0 +1,371 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 画线段与尺规作图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：尺规作图综合}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 15.} \textbf{如图，用直尺和圆规完成下列作图（保留作图痕迹）：}
+
+\vspace{0.4cm}
+
+\textbf{解：}
+
+\textbf{（1）作图原理与底层执行逻辑：}
+
+\textbf{原理剥析：} 已知原 $\triangle ABC$ 中 $\angle C = 90^\circ$且 $\angle B = 60^\circ$。要求在底边 $AC$ 上建立点 $D$，使得局部 $\triangle BCD$ 的三个内角凑齐 $30^\circ$、$60^\circ$、$90^\circ$。因为 $\triangle BCD$ 已经不可避免占用了 $\angle C = 90^\circ$，那么剩下的另外两个内角必须强制锁定为 $30^\circ$ 和 $60^\circ$。由于原生母角 $\angle ABC$ 恰好为 $60^\circ$，因此寻找满足条件的 $D$ 点，本质上就是\textbf{要求我们严格去作 $\angle ABC$ 的角平分线}。一旦将其平分开来，顶部的 $\angle CBD$ 即被精准劈成 $30^\circ$，此时根据内角和法则，下方 $D$ 节点产生的 $\angle CDB$ 自然就被锁定为了 $180^\circ - 90^\circ - 30^\circ = 60^\circ$。
+\textbf{尺规步进实录：}
+\begin{enumerate}
+    \item 以顶点 $B$ 为圆心，将圆规张开一定长度画下第一道测试弧，将原线段 $BC$ 与 $BA$ 分别斩断，留下两个刻骨交点。
+    \item 随后拔出圆规，以上述两个交点为次级爆发圆心，以大于这二者真实间距一半的稳固长度为新半径画追踪弧，这两道追踪弧必定在 $\angle B$ 深部交汇于一点。
+    \item 把直尺作为导轨对准定点 $B$ 与该深部交汇点，猛力拉出一条贯穿射线。这条射线在撞击到底板防线 $AC$ 时生成的那个血点，即为索求的最终解位 $D$ 点。
+\end{enumerate}
+
+\textbf{第②问：作图②的对称轴。}
+
+\textbf{原理剥析：} 图②是一个由尖锐“等腰三角形”上身挂载下部“半圆拱弧”组合成的异形摆钟。既然全图是一个横向完全共享底面的轴对称刚性架构，这根看不见的支撑骨架（对称轴）必定会处在中置横向线段的最核心！这意味着只要我们\textbf{直接去作这条贯穿中间横向连接界线的“垂直平分线”}，它向上必将对穿三角塔尖，向下则必能撕裂半圆底盘。
+\textbf{尺规步进实录：}
+\begin{enumerate}
+    \item 把圆规钢针分别狠狠扎进水平线段的极左、极右两个铁端点中。
+    \item 拉开圆规跨度（必须大于线段长度物理意义上的 $50\%$ 以防火力交汇失败），在图形的正上方与正下方虚空中，凌厉地各扫出两组对冲交叉剑痕。
+    \item 利用直尺，将上下浮现的两个双交点贯穿连成一把利剑垂线，这把垂直刃即为该组合图形的唯一天命对称轴！
+\end{enumerate}
+
+\textbf{（2）矢量级全景制图重铸（100\% 零损耗保留模拟钢针痕迹）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round]
+
+  % ------------------------------
+  % 模块一：精准角平分线强行刻画区
+  % ------------------------------
+  \begin{scope}[xshift=0cm, yshift=0cm]
+    % 物理坐标建系: 设直角边 BC=2cm, 依 60度角推出 AC=3.464cm
+    \coordinate (C) at (0, 0);
+    \coordinate (B) at (0, 2);
+    \coordinate (A) at ({2*sqrt(3)}, 0);
+    
+    % 焊死原三维防外力刚性外壳
+    \draw[line width=1pt] (C) -- (B) -- (A) -- cycle;
+    
+    % 挂载直角专属的金属免检矩形刻印
+    \draw[line width=0.6pt] (0.2, 0) -- (0.2, 0.2) -- (0, 0.2);
+    
+    % --- 强行激活尺规圆弧交锁扫荡系统 ---
+    % 1. 圆心B的原初横扫切割弧 (r=0.8)
+    \draw[line width=0.6pt, color=red!80!black, dashed] (B) +(-105:0.8) arc (-105:-15:0.8);
+    % 2. 挂载次级阵列弧：从两个刀口点出发实行火力交叉拦截（交于内部更深区域）
+    \coordinate (P) at (0, 1.2); % BC 边横切定点
+    \coordinate (Q) at ({0.8*cos(-30)}, {2+0.8*sin(-30)}); % BA 边斜切定点
+    % 拉开极限弧度场让红线激烈相撞
+    \draw[line width=0.6pt, color=red!80!black, dashed] (P) +(5:0.8) arc (5:-65:0.8);
+    \draw[line width=0.6pt, color=red!80!black, dashed] (Q) +(-45:0.8) arc (-45:-115:0.8);
+    
+    % 3. 终结一击：红线平分致命突刺
+    % 这里变态地导入了解析几何算力：x=2*sqrt(3)/3 ≈ 1.1547 是 D 点的代数精确解
+    \coordinate (D) at ({2*sqrt(3)/3}, 0);
+    \draw[line width=1.4pt, color=red!80!black] (B) -- (D);
+    
+    % 周末喷漆挂车牌号
+    \node[below left, font=\large] at (C) {$C$};
+    \node[above, font=\large, yshift=0.1cm] at (B) {$B$};
+    \node[below, font=\large] at (A) {$A$};
+    \node[below right, font=\large, text=red!80!black] at (D) {$D$};
+    % 战地隔离桩编号安置点
+    \node[below, font=\large] at (1.732, -0.8) {①};
+  \end{scope}
+
+  % ------------------------------
+  % 模块二：中位垂直斩首系统区
+  % ------------------------------
+  \begin{scope}[xshift=7cm, yshift=0cm]
+    % 定义左右两端极限接点与塔尖火力台 (水平极宽3cm，单体高度3cm)
+    \coordinate (E) at (-1.5, 0);
+    \coordinate (F) at (1.5, 0);
+    \coordinate (Top) at (0, 3);
+    
+    % 重造原外壳无死角高分子复合架构
+    \draw[line width=1pt] (E) -- (F);           % 接地底盘大平杠
+    \draw[line width=1pt] (E) -- (Top) -- (F);  % 三角悬崖角楼屋顶
+    \draw[line width=1pt] (E) arc (180:360:1.5); % 沉浸式抗压半圆深水弧
+    
+    % --- 调配唤醒中垂线雷达双核追踪锁定锁死系统 ---
+    % 定义空间极值扫描半径锚点距离 R=2.2
+    \def\myR{2.2}
+    % 从 E 与 F 爆发出的上击对向交叉扫射幽蓝色激光弧
+    \draw[line width=0.6pt, color=blue!80!black, dashed] (E) +(25:\myR) arc (25:70:\myR);
+    \draw[line width=0.6pt, color=blue!80!black, dashed] (F) +(155:\myR) arc (155:110:\myR);
+    % 从 E 与 F 向下层深水区域反向爆发的对称压制激光弧
+    \draw[line width=0.6pt, color=blue!80!black, dashed] (E) +(-25:\myR) arc (-25:-70:\myR);
+    \draw[line width=0.6pt, color=blue!80!black, dashed] (F) +(-155:\myR) arc (-155:-110:\myR);
+    
+    % 致命一击：中轴线以垂直之威完全斩穿母体！
+    \draw[line width=1.4pt, color=blue!80!black] (0, 3.8) -- (0, -2.8);
+    
+    % 战地隔离桩编号安置点
+    \node[below, font=\large] at (0, -3.2) {②};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+%% ==============================
+%% 第31题（补充题）：不等式组的解集与数轴表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：用圆规和直尺画图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 67.} \textbf{（第 4 题）用圆规和直尺画一画。\\[1.5ex]
+（1）画一条比线段 $a$ 长 $2$ 厘米的线段。\\[1ex]
+（2）在下面的射线上画一条线段 $AB$，使它的长度等于已知线段 $a, b$ 长度的和。\\[1ex]
+（3）在下面的直线上找一点 $D$，使线段 $CD$ 的长度是线段 $AB$ 的 $2$ 倍。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）} 画一条比线段 $a$ 长 $2$ 厘米的线段。
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 假设 a 的长度为 3.5cm
+  \def\lena{3.5}
+  
+  % 原图：线段 a
+  \draw[line width=0.8pt] (0, 1.5) -- (\lena, 1.5);
+  \filldraw[black] (0, 1.5) circle (1.5pt);
+  \filldraw[black] (\lena, 1.5) circle (1.5pt);
+  \node[below, font=\small] at (\lena/2, 1.5) {$a$};
+  
+  % 答案图：原长度 a + 2cm
+  \draw[line width=0.8pt] (0, 0) -- (\lena + 2, 0);
+  \filldraw[black] (0, 0) circle (1.5pt);
+  \filldraw[black] (\lena, 0) circle (1.5pt);
+  \filldraw[black] (\lena + 2, 0) circle (1.5pt);
+  
+  \node[below, font=\small] at (\lena/2, 0) {$a$};
+  \node[above, font=\small] at (\lena + 1, 0) {$2\text{cm}$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+
+\textbf{（2）} 在下面的射线上画一条线段 $AB$，使它的长度等于已知线段 $a, b$ 长度的和。
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  \def\lena{3.5}
+  \def\lenb{2.5}
+  
+  % 原图已知线段 a 和 b
+  \draw[line width=0.8pt] (0, 2) -- (\lena, 2);
+  \filldraw[black] (0, 2) circle (1.5pt);
+  \filldraw[black] (\lena, 2) circle (1.5pt);
+  \node[above, font=\small] at (\lena/2, 2) {$a$};
+  
+  \draw[line width=0.8pt] (\lena+0.8, 2) -- (\lena+0.8+\lenb, 2);
+  \filldraw[black] (\lena+0.8, 2) circle (1.5pt);
+  \filldraw[black] (\lena+0.8+\lenb, 2) circle (1.5pt);
+  \node[above, font=\small] at (\lena+0.8+\lenb/2, 2) {$b$};
+  
+  % 作图题解答（带圆规画弧痕迹）
+  \draw[line width=0.6pt] (-0.5, 0) -- (8, 0); % 底层射线
+  
+  \filldraw[black] (0, 0) circle (1.5pt);
+  \node[below, font=\small] at (0, -0.15) {$A$};
+  
+  % 第一个截取弧（长度 a）
+  \draw[line width=0.6pt] (0,0) ++(-5:\lena) arc (-5:5:\lena);
+  
+  % 第二个截取弧（长度 b），以 a 的末端为圆心
+  \draw[line width=0.6pt] (\lena,0) ++(-5:\lenb) arc (-5:5:\lenb);
+  
+  % 标点 B
+  \filldraw[black] (\lena+\lenb, 0) circle (1.5pt);
+  \node[below, font=\small] at (\lena+\lenb, -0.15) {$B$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+
+\textbf{（3）} 在下面的直线上找一点 $D$，使线段 $CD$ 的长度是线段 $AB$ 的 $2$ 倍。
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  \def\lenab{2}
+  
+  % 原图已知线段 AB
+  \draw[line width=0.8pt] (2, 2) -- (2+\lenab, 2);
+  \filldraw[black] (2, 2) circle (1.5pt);
+  \node[below, font=\small] at (2, 2) {$A$};
+  \filldraw[black] (2+\lenab, 2) circle (1.5pt);
+  \node[below, font=\small] at (2+\lenab, 2) {$B$};
+  
+  % 作图题解答
+  \draw[line width=0.6pt] (-1, 0) -- (9, 0);
+  
+  % 点 C
+  \filldraw[black] (3, 0) circle (1.5pt);
+  \node[below, font=\small] at (3, -0.15) {$C$};
+  
+  % 第一段弧（长度 AB，以 C 为圆心）
+  \draw[line width=0.6pt] (3,0) ++(-5:\lenab) arc (-5:5:\lenab);
+  
+  % 第二段弧（长度 AB，以第一点为圆心）
+  \draw[line width=0.6pt] (3+\lenab,0) ++(-5:\lenab) arc (-5:5:\lenab);
+  
+  % 点 D
+  \filldraw[black] (3+2*\lenab, 0) circle (1.5pt);
+  \node[below, font=\small] at (3+2*\lenab, -0.15) {$D$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 物理尺规仿生：} 尺规作图的核心精髓在于“截取”的弧线痕迹。这里没有生硬地直接画上线段端点，而是利用了 \texttt{arc} 极坐标画弧机制：\texttt{\textbackslash draw[line width=0.6pt] (圆心) ++(-15:半径) arc (-15:15:半径);}。这种动态指令使得引擎如同真实的圆规探针一样，先移动到待划刻度下方 $-15^{\circ}$ 处落笔，然后顺着极轴切割向 $15^{\circ}$ 收笔，造就了与物理图纸完全相同的作图痕迹。\\
+\textbf{2. 迭代相加与嵌套：} 在处理第 (2) 题的线段拼接与第 (3) 题的倍数扩张时，算法使用了相对坐标的迭代逻辑。例如：由 $A$ 落点展开扫出半径 $a$，其扫迹交汇坐标恰好成为下一个扫迹动作的锚点圆心，以此为基础再外扩半径 $b$ （或 $AB$）。这严谨对标了公理化几何作图中关于线段加法的执行步骤。
+}
+
+%% ==============================
+%% 第77题（补充题）：统计表与统计图（全套数据链）
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：在线段上找点}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 66.} \textbf{（第 3 题）在下面的线段上找一点 $B$，使线段 $AB$ 长 $3$ 厘米；再找一点 $C$，使线段 $BC$ 长 $5$ 厘米。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\vspace{0.2cm}
+\textbf{分析：} 已知点 $A$ 在线段上。在 $A$ 的右侧取点 $B$，使得 $AB = 3\text{ cm}$。
+然后，因为 $BC = 5\text{ cm} > AB = 3\text{ cm}$，所以点 $C$ 不可能位于 $A$ 与 $B$ 之间，
+$C$ 必然在 $A$ 的左侧。此时 $AC = BC - AB = 5 - 3 = 2\text{ cm}$。
+
+故三点排列为：$C$——$A$——$B$，且 $CA = 2\text{ cm}$，$AB = 3\text{ cm}$，$CB = 5\text{ cm}$。
+
+\vspace{0.4cm}
+
+% --- 原图（仅有 A 点）---
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 线段主体（两端实心端点）
+  \draw[line width=0.8pt] (-5, 0) -- (5, 0);
+  \filldraw[black] (-5, 0) circle (2pt);
+  \filldraw[black] (5, 0) circle (2pt);
+  
+  % 原始 A 点
+  \filldraw[black] (0, 0) circle (2pt);
+  \node[above, font=\small] at (0, 0.15) {$A$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+% --- 答案图（标注 C, A, B 三点与距离）---
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 线段主体（两端实心端点）
+  \draw[line width=0.8pt] (-5, 0) -- (5, 0);
+  \filldraw[black] (-5, 0) circle (2pt);
+  \filldraw[black] (5, 0) circle (2pt);
+  
+  % C 点（A 左侧 2cm）
+  \filldraw[black] (-2, 0) circle (2.5pt);
+  \node[above, font=\small] at (-2, 0.15) {$C$};
+  
+  % A 点（原点）
+  \filldraw[black] (0, 0) circle (2.5pt);
+  \node[above, font=\small] at (0, 0.15) {$A$};
+  
+  % B 点（A 右侧 3cm）
+  \filldraw[black] (3, 0) circle (2.5pt);
+  \node[above, font=\small] at (3, 0.15) {$B$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 比例设定：} 采用 \texttt{x=1cm} 实现 1:1 真实比例映射。设 $A$ 位于坐标原点 $(0,0)$。\\
+\textbf{2. 坐标计算：} $B$ 在 $A$ 右侧 $3$ cm，坐标为 $(3,0)$；$C$ 在 $A$ 左侧 $2$ cm，坐标为 $(-2,0)$，满足 $BC = 5$ cm。\\
+\textbf{3. 线段端点：} 原线段两端各向外延伸至 $(-5,0)$ 和 $(5,0)$，保持与题干原图比例一致。各关键点使用实心圆点标记。
+}
+
+%% ==============================
+%% 第76题（补充题）：尺规作图基本操作
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{第 1 题：尺规作图（线段倍数）}
+
+\textbf{1.} 在下面的直线上，用直尺和圆规画一条线段 $CD$，使它的长度是已知线段 $a$ 的 3 倍。
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}[>={Stealth[length=6pt]}, line width=0.8pt]
+  % 设定已知长度
+  \def\L{2.0} 
+  
+  % ==== 1. 上方已知线段 a ====
+  \begin{scope}[shift={(4.5, 1.5)}]
+    \draw (0,0) -- (\L, 0);
+    \fill (0,0) circle (1.5pt);
+    \fill (\L,0) circle (1.5pt);
+    \node[below] at (\L/2, 0) {$a$};
+  \end{scope}
+
+  % ==== 2. 下方作图区域 ====
+  \begin{scope}[shift={(0,0)}]
+    % 辅助长直线 (浅色细线)
+    \draw[gray, line width=0.4pt] (0,0) -- (10.5,0);
+    
+    % 作出的加粗目标线段 CD (3倍长)
+    \draw[black, line width=1.2pt] (1.5,0) -- (1.5+3*\L, 0);
+    
+    % 各个关键交点
+    \fill (1.5,0) circle (1.8pt) node[below=2pt] {$C$};
+    \fill (1.5+\L,0) circle (1.8pt);
+    \fill (1.5+2*\L,0) circle (1.8pt);
+    \fill (1.5+3*\L,0) circle (1.8pt) node[below=2pt] {$D$};
+    
+    % 模拟圆规画弧的痕迹
+    % 圆心(1.5, 0)，半径L，画 +-8度的圆弧截取直线
+    \draw[thin] (1.5,0) ++(-8:\L) arc (-8:8:\L);
+    % 圆心(1.5+\L, 0)，半径L
+    \draw[thin] (1.5+\L,0) ++(-8:\L) arc (-8:8:\L);
+    % 圆心(1.5+2*\L, 0)，半径L
+    \draw[thin] (1.5+2*\L,0) ++(-8:\L) arc (-8:8:\L);
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\textbf{绘图原理：}
+\begin{enumerate}
+    \item \textbf{布局分布：} \texttt{scope} 分层将上侧区域用于参照线段 $a$，底部区域施加用于几何定位的灰线轴线。
+    \item \textbf{公用参量约束：} 利用宏变量 \texttt{\textbackslash def\textbackslash L\{2.0\}} 使上下区域的基础长度数值维持一致参照。
+    \item \textbf{主线生成：} 在点 $x=1.5$ 建起端点位 $C$，加黑宽线生成至 $1.5+3\times L$ 的终止点 $D$。
+    \item \textbf{留痕模拟：} 循环以目标节点组为圆心并对应半径为 $L$，以角度延展域 $\pm 8^\circ$ 呈现极小段 \texttt{arc} 短弧面替代圆锥圆规笔留痕。
+\end{enumerate}
+
+\vspace{1.5cm}

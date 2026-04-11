@@ -1,0 +1,152 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 画角与量角
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：画指定度数的角}
+
+\vspace{0.4cm}
+
+\noindent\textbf{3. 画一个 $35^\circ$ 的角和一个 $140^\circ$ 的角。}
+
+\vspace{1.2cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1.2pt, red!70!black]
+
+  % =========== 第一个角：35° ===========
+  \begin{scope}[shift={(0,0)}]
+    % 顶点定义
+    \coordinate (O1) at (0,0);
+    % 水平射线 (向右)
+    \draw (O1) -- (2.5,0);
+    % 35度射线 (锐角)
+    \draw (O1) -- (35:2.5);
+    % 绘制角弧 (半径 0.5)
+    \draw (0:0.5) arc (0:35:0.5);
+    % 标注度数 (位置设在 17.5度方向)
+    \node at (17.5:0.9) {$35^\circ$};
+  \end{scope}
+
+  % =========== 第二个角：140° ===========
+  \begin{scope}[shift={(6,0)}]
+    % 顶点定义
+    \coordinate (O2) at (0,0);
+    % 水平射线 (向右)
+    \draw (O2) -- (2.5,0);
+    % 140度射线 (钝角，向左上方)
+    \draw (O2) -- (140:2.5);
+    % 绘制角弧 (为了美观，半径稍小设为 0.4)
+    \draw (0:0.4) arc (0:140:0.4);
+    % 标注度数 (位置设在 70度方向)
+    \node at (70:0.9) {$140^\circ$};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. **画 35° 的角**：先画一条射线作为角的一条边；将量角器的中心点与射线的端点重合，0刻度线与射线重合；在量角器 35° 刻度线地方点一个点；以射线的端点为端点，通过刚画的点再画一条射线。这是一个锐角。\\
+2. **画 140° 的角**：方法同上，在量角器 140° 刻度线处点点。这是一个钝角。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 极坐标定位法}：在 TikZ 中使用 \texttt{(角度:长度)} 语法，能够精确控制角的开合度数，模拟量角器的作图过程。\\
+\textbf{2. 相对位移布局}：利用 \texttt{scope} 环境的 \texttt{shift} 属性，将两个独立的角并排放置，互不干扰且保持画面居中。\\
+\textbf{3. 圆弧标注逻辑}：通过 \texttt{arc} 命令绘制代表角开度的圆弧，并利用极坐标的中点角度（如 17.5° 和 70°）精准放置文本标签。\\
+\textbf{4. 色彩一致性}：全图采用红色系（\texttt{red!70!black}），与参考答案的符号风格保持一致，突出重点。
+}
+
+
+\newpage
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：用量角器画角；利用垂直线画长方形}
+\end{center}
+
+\vspace{0.8cm}
+
+% --- (1) 画 35° 角 ---
+\noindent{\small\textbf{(1) 用量角器画一个 35° 的角。}}
+
+\vspace{0.6cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.3, >=Stealth]
+    % 顶点
+    \coordinate (A) at (0, 0);
+    % 水平边（第一条边）
+    \coordinate (B) at (3.5, 0);
+    % 35° 方向的边（第二条边）
+    \coordinate (C) at ({3.5*cos(35)}, {3.5*sin(35)});
+
+    % 画两条边
+    \draw[cyan!70!blue, line width=1pt, -] (A) -- (B);
+    \draw[red!70!black, line width=1pt, -] (A) -- (C);
+
+    % 画圆弧标注角度
+    \draw[black, thin] (0.8, 0) arc (0:35:0.8);
+    \node at ({1.15*cos(17.5)}, {1.15*sin(17.5)}) {\small $35°$};
+
+    % 顶点标注
+    \fill[black] (A) circle (1.5pt);
+    \node[below left] at (A) {\small $A$};
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.8cm}
+
+% --- (2) 利用垂直线画 3×2 长方形 ---
+\noindent{\small\textbf{(2) 右边两条直线互相垂直，利用它们画一个长 3 厘米、宽 2 厘米的长方形。}}
+
+\vspace{0.6cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.3, >=Stealth]
+    % 原题给出的两条垂直线（L 形，直角角点在左下）
+    % 垂线向上（左侧边），横线向右（底边）
+    \draw[cyan!70!blue, line width=1.2pt] (0, 0) -- (0, 2);  % 左侧边（竖线，宽=2cm）
+    \draw[cyan!70!blue, line width=1.2pt] (0, 0) -- (3, 0);  % 底边（横线，长=3cm）
+
+    % 直角符号在左下角 (0, 0)
+    \draw[cyan!70!blue, thin] (0.15, 0) -- (0.15, 0.15) -- (0, 0.15);
+
+    % 补画另外两条边（红色，表示“画”的部分）
+    \draw[red!70!black, line width=1.2pt] (3, 0) -- (3, 2);  % 右侧边
+    \draw[red!70!black, line width=1.2pt] (0, 2) -- (3, 2);  % 顶边
+
+    % 标注尺寸
+    \draw[<->, gray, thin] (-0.3, 0) -- (-0.3, 2);
+    \node[left] at (-0.3, 1) {\small 2 cm（宽）};
+
+    \draw[<->, gray, thin] (0, -0.3) -- (3, -0.3);
+    \node[below] at (1.5, -0.3) {\small 3 cm（长）};
+
+  \end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+{\small
+\textbf{说明：} \\
+(1) 以顶点 $A$ 为基点，先画水平方向的一条射线，再利用量角器从水平方向量出 35°，画出第二条射线，两条射线形成 35° 角。\\
+(2) 题目已给出互相垂直的两条线（蓝色所示）：竖线为长方形的右边（宽 2 cm），横线为长方形的底边（长 3 cm）。在此基础上，补画左边和顶边（红色所示），即完成整个长方形。
+}
+
+
+%% ==============================
+%% 第 3 题：身高统计表与条形统计图
+%% ==============================

@@ -1,0 +1,558 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 图形变换_对称
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：作对称直角三角形}
+
+\vspace{0.6cm}
+
+\textbf{15. 如图，已知点 $O$，以 $O$ 为直角顶点，作一个直角三角形以及该直角三角形的对称图形。}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round]
+  
+  % 定义直角三角形的直角边长 \w=3.0, \h=2.0 
+  % 并且保持图纸空间留白，因此适当用 \scale 可以放大缩小
+  \def\w{2.5}
+  \def\h{2.0}
+
+  % 原点 O
+  \coordinate (O) at (0, 0);
+
+  % ===============================
+  % 原直角三角形 (第一象限方向)
+  % ===============================
+  % 直角固定在 O 点
+  \coordinate (A1) at (\w, 0);
+  \coordinate (B1) at (0, \h);
+  % 绘制红色的原图形线条
+  \draw[red!80!black, line width=1.2pt] (O) -- (A1) -- (B1) -- cycle;
+
+  % ===============================
+  % 关于 O 点的中心对称图形 (第三象限方向)
+  % ===============================
+  \coordinate (A2) at (-\w, 0);
+  \coordinate (B2) at (0, -\h);
+  % 绘制红色的对称镜像线条
+  \draw[red!80!black, line width=1.2pt] (O) -- (A2) -- (B2) -- cycle;
+
+  % ===============================
+  % 维持原题中原本的点与字标识
+  % ===============================
+  % 原本黑色的实体源点
+  \fill[black] (O) circle (2.0pt);
+  
+  % 以带透明灰度感渲染大写代号 O，使得字母稍微避让重红色线圈 
+  \node[font=\large, gray!80!black, below left, xshift=-1pt, yshift=-1pt] at (O) {$O$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+1. \textbf{解析题意：}题目要求“以 $O$ 为直角顶点作一个直角三角形”，意味着这个三角形必须包含 $90^\circ$ 的直角并且将其顶点死锁在原试卷给出的 $O$ 黑色实心点上。随后题干后半句“以及该直角三角形的\textbf{对称图形}”虽然未指明对称轴或是对称中心的名字，但根据仅给出了一个唯一几何条件原点 $O$ 的语境分析可知，这里考察的恰恰必须是：\textbf{直角三角形围绕 $O$ 点发生 $180^\circ$ 全方位旋转倒装变换后的中心对称图形}（同时也是沿角分线的重轴对称折射图形）。\\
+2. \textbf{绘图路径：}我们在定点 O 的右侧平直方向及正上方各取两截正交的垂置线段（例如底角长 $2.5$，竖高 $2.0$ 相对比例），形成一个纯向着“第一象限”生长的右上方直角三角形底模；接下来，利用反向定心等长延长策略，将它的实边向反方向分别长驱直入探穿过 $O$ 点跑到正左方与正下方，再次将其双反端点相连接，最后能产生一个完全朝向“第三象限”倒挂生长的底置镜像三角形，这就绘制出了经典的领结型中心全对称结构。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图（制图）基本原理与步骤：}\\
+\textbf{1. 极简代数相对位移建模：}本题为了呈现最为标准、不存在一点人工像素毛刺的严谨工程几何答卷，完全放弃在图纸上网格尺规硬抠点位。开篇立即利用干净自带泛型编程属性的两个自适应矢量宏边长参数 \texttt{\textbackslash def\textbackslash w\{2.5\}} 与 \texttt{\textbackslash def\textbackslash h\{2.0\}} 将所要张开的那张无形大网的长宽比例完全固死。构筑第一基础直角时，直接向空间锚射出 \texttt{(\textbackslash w, 0)} 及 \texttt{(0, \textbackslash h)} 构筑原像面；而在构筑反转全等对称副本时，系统层面上仅仅非常粗暴干脆将坐标轴前置强加负号正负突变为 \texttt{(-\textbackslash w, 0)} 及 \texttt{(0, -\textbackslash h)} ，保证了在非人眼干涉的纯数学运算推导层面上，不偏不倚完成了毫无偏移的极致精确 $180^\circ$ 心锚全倒翻转反相。\\
+\textbf{2. 隔离叠涂透胶渲染术：}这道制图的两枚大三角形主体轮廓采用统一粗长连贯而绝无破绽断桥的封闭式线组 \texttt{-{}-cycle} 闭合强拉算法，通过一支强力笔触直接描出了标准答案那高对比度亮眼的红色预警边沿 \texttt{draw[red!80!black, line width=1.2pt]}；而在作画完毕的最顶层即由于多条粗硬锐利红线条挤压在一起最为逼仄恶劣的原核心焦点处，最后加装覆盖回一颗带原生质感的原生小深黑心圈，以及将其斜下角的那个原名牌 $O$ 调成透着灰色薄雾带灰度的 `gray` 且施加微小向量阻尼侧滑 \texttt{xshift=-1pt} 的位移动画。以力挽狂澜维持住最初题干里最初那种冷淡清越孤点的原始试卷底稿原始物理风貌属性，不由于作答的大张旗鼓而被破坏磨灭。
+}
+
+%% ==============================
+%% 第6题：不等号解集的数轴展现
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：判断图形的轴对称性及绘制对称轴}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 18.} \textbf{下列哪些图形是轴对称图形？如果是，画出所有对称轴。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）判定原理分析：}
+\begin{itemize}
+    \item \textbf{平行四边形}：沿任一直线折叠，左右两部分均无法重合。因此，一般的平行四边形\textbf{不是}轴对称图形。
+    \item \textbf{等腰梯形}：其两腰相等，沿连接上底中点与下底中点的垂线折叠能够完全重合。因此它\textbf{是}轴对称图形，共有 \textbf{$1$ 条}对称轴。
+    \item \textbf{直角三角形}：此题中所示为一个一般直角三角形（三边不等长），沿任何路线折叠均无法重合。因此它\textbf{不是}轴对称图形。
+    \item \textbf{五角星}：正五角星具有的轴对称特征。沿任意一个顶点与其对侧凹点中心的连线折叠，两半皆可重合。因此它\textbf{是}轴对称图形，共有 \textbf{$5$ 条}对称轴。
+\end{itemize}
+
+\textbf{（2）鉴定结果与对称轴绘制：}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round]
+
+  % 1. 平行四边形 (非轴对称)
+  \begin{scope}[xshift=0cm]
+    \draw[line width=0.8pt] (-0.6, -0.5) -- (0.8, -0.5) -- (1.2, 0.5) -- (-0.2, 0.5) -- cycle;
+    \node[below, font=\small] at (0.3, -0.8) {平行四边形};
+  \end{scope}
+
+  % 2. 等腰梯形 (1条对称轴)
+  \begin{scope}[xshift=3.8cm]
+    \draw[line width=0.8pt] (-0.9, -0.5) -- (0.9, -0.5) -- (0.5, 0.5) -- (-0.5, 0.5) -- cycle;
+    \node[below, font=\small] at (0, -0.8) {等腰梯形};
+    % 绘制红色的唯一对称轴
+    \draw[dashed, red!80!black, line width=1.2pt] (0, -0.7) -- (0, 0.7);
+  \end{scope}
+
+  % 3. 直角三角形 (非轴对称)
+  \begin{scope}[xshift=7.6cm]
+    % 坐标验算以保证顶点精确 90 度
+    \coordinate (C) at (0, 0.5);
+    \coordinate (A) at (-0.8, -0.5);
+    \coordinate (B) at (1.25, -0.5);
+    \draw[line width=0.8pt] (A) -- (B) -- (C) -- cycle;
+    % 精确的解析直角标识线
+    \draw[line width=0.5pt] (-0.125, 0.344) -- (0.031, 0.219) -- (0.156, 0.375);
+    \node[below, font=\small] at (0.225, -0.8) {直角三角形};
+  \end{scope}
+
+  % 4. 五角星 (5条对称轴)
+  \begin{scope}[xshift=11.4cm]
+    % 标准五角星连线 (90 -> 234 -> 18 -> 162 -> 306)
+    \draw[line width=0.8pt] (90:0.9) -- (234:0.9) -- (18:0.9) -- (162:0.9) -- (306:0.9) -- cycle;
+    \node[below, font=\small] at (0, -1.0) {五角星};
+    % 遍历循环绘制 5 条对称轴
+    \foreach \ang in {90, 162, 234, 306, 18} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\ang:1.15) -- (\ang+180:1.15);
+    }
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 轮廓绘制方法：} 
+平行四边形与等腰梯形通过坐标点直接连线闭合构成。
+直角三角形通过构建满足向量点积为零的解析坐标 $A(-0.8, -0.5)$、$B(1.25, -0.5)、C(0, 0.5)$ 演算生成，以确保顶角精确为 $90^\circ$，并附带根据法线向量偏置出的直角折线框。
+五角星使用极坐标参数定位（设置半径为 $0.9$），按照以 $144^\circ$ 为跨度的步长连续相连，生成经典的五角连续相交拓扑结构。\\
+\textbf{2. 红色对称轴绘制：} 依据数学判定结论，仅为等腰梯形和五角星执行对称轴标注。等腰梯形沿其上下底水平坐标中点系产生单一的一条垂线；五角星的对称轴则启用 \texttt{\textbackslash{}foreach} 循环命令，遍历五个顶角所处的极坐标夹角（$90^\circ, 162^\circ, 234^\circ, 306^\circ, 18^\circ$），直接拉出固定长度（$1.15$ 厘米）且贯穿圆心的虚线段，以严谨保障 5 条红色对称轴在几何分布上的均匀与对齐。
+}
+%% ==============================
+%% 第34题（补充题）：正多边形对称轴判定与规律归纳
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：正多边形所有的对称轴及规律归纳}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 19.} \textbf{试画出下列正多边形的所有对称轴，并完成表格。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）正多边形对称轴绘制：}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round]
+
+  % 1. 正三角形
+  \begin{scope}[xshift=0cm]
+    \draw[line width=0.8pt] (90:1) -- (210:1) -- (330:1) -- cycle;
+    % 3 对称轴：顶点至对边，统一设定外放突出余量 0.25 (1.25 及 0.5+0.25=0.75)
+    \foreach \a in {90, 210, 330} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\a:1.25) -- (\a+180:0.75);
+    }
+  \end{scope}
+
+  % 2. 正方形
+  \begin{scope}[xshift=3.5cm]
+    \draw[line width=0.8pt] (45:1) -- (135:1) -- (225:1) -- (315:1) -- cycle;
+    % 对角线对称轴 (顶点穿过)
+    \foreach \a in {45, 135} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\a:1.25) -- (\a+180:1.25);
+    }
+    % 边中点对称轴 (距离边心 0.707，突出 0.25，收缩至 0.95)
+    \foreach \a in {0, 90} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\a:0.95) -- (\a+180:0.95);
+    }
+  \end{scope}
+
+  % 3. 正五边形
+  \begin{scope}[xshift=7cm]
+    \draw[line width=0.8pt] (90:1) -- (162:1) -- (234:1) -- (306:1) -- (18:1) -- cycle;
+    % 5 对称轴：顶点穿过底边中点 (边心距 0.809，突出 0.25，底部收缩至 1.05)
+    \foreach \a in {90, 162, 234, 306, 18} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\a:1.25) -- (\a+180:1.05);
+    }
+  \end{scope}
+
+  % 4. 正六边形
+  \begin{scope}[xshift=10.5cm]
+    \draw[line width=0.8pt] (0:1) -- (60:1) -- (120:1) -- (180:1) -- (240:1) -- (300:1) -- cycle;
+    % 穿过顶点的对称轴
+    \foreach \a in {0, 60, 120} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\a:1.25) -- (\a+180:1.25);
+    }
+    % 穿过边中点的对称轴 (边心距 0.866，突出 0.25，收缩至 1.1)
+    \foreach \a in {30, 90, 150} {
+      \draw[dashed, red!80!black, line width=1.2pt] (\a:1.1) -- (\a+180:1.1);
+    }
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）规律归纳与表格填充：}
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{|>{\columncolor{cyan!15}\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{1cm}|}
+\hline
+正多边形的边数 & $3$ & $4$ & $5$ & $6$ & $7$ & \dots \\
+\hline
+对称轴的条数 & \textcolor{red!80!black}{\textbf{3}} & \textcolor{red!80!black}{\textbf{4}} & \textcolor{red!80!black}{\textbf{5}} & \textcolor{red!80!black}{\textbf{6}} & \textcolor{red!80!black}{\textbf{7}} & \dots \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+根据上方推理表系，可以猜想正 $n$ 边形有 \underline{\ \textcolor{red!80!black}{\textbf{$n$}}\ } 条对称轴。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 极坐标轮廓生成：} 采用极坐标法绘制各正多边形。统一外接圆半径为 $1$，角度步长为 $360^\circ \div n$，依序连结顶点生成标准多边形轮廓。基础角参数的设定确保了正三角形与正五边形的底边呈水平对齐状态。\\
+\textbf{2. 动态延展对称轴设定：} 为使四组图形的对称虚线在外部延伸的长度视觉统一（规定外扩统一余量为 $0.25\mathrm{cm}$），依据对称轴穿透点的不同设定相近的极径参数。若射线经过顶角，全长设为 $1.25$；若射线垂直经过平边中点，则依据多边形的真实边心距（如正方形的 $\frac{\sqrt{2}}{2}$，正六边形的 $\frac{\sqrt{3}}{2}$）追加 $0.25$ 补偿，分别取值约 $0.95$ 与 $1.1$。\\
+\textbf{3. 表格与规律归纳：} 绘制数据归纳表，首列应用 \texttt{cyan!15} 底色以符合原题要求。通过几何规律填入 $3, 4, 5, 6, 7$ 数列，并在文末填写最终猜想规律“正 $n$ 边形有 $n$ 条对称轴”。
+}
+
+%% ==============================
+%% 第35题（补充题）：解一元一次不等式及数轴作图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：轴对称图形的画法}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 51.} \textbf{（第 3 题）如图，画出 $\triangle ABC$ 关于直线 $l$ 对称的 $\triangle A'B'C'$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{画图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+  % 定义对称轴 l
+  \draw[thick] (0, -1.5) -- (0, 4) node[left] {$l$};
+
+  % 定义原始三角形的顶点坐标
+  \coordinate (A) at (0, 2.5);
+  \coordinate (B) at (-2.5, -0.5);
+  \coordinate (C) at (-0.5, 0);
+
+  % 根据对称轴 x=0 计算对称点坐标
+  \coordinate (A') at (0, 2.5); % A 点在对称轴上
+  \coordinate (B') at (2.5, -0.5);
+  \coordinate (C') at (0.5, 0);
+
+  % 绘制原始三角形 ABC (黑色)
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \node[right] at (0.1, 2.6) {$A(A')$}; % A和A'重合
+  \node[below left] at (B) {$B$};
+  \node[below left] at (C) {$C$};
+
+  % 绘制对称三角形 A'B'C' (红色高亮)
+  \draw[thick, red] (A') -- (B') -- (C') -- cycle;
+  \node[below right, text=red] at (B') {$B'$};
+  \node[below right, text=red] at (C') {$C'$};
+
+  % 绘制辅助虚线（垂直于对称轴）
+  \draw[dashed, blue!70] (B) -- (B');
+  \draw[dashed, blue!70] (C) -- (C');
+  
+  % 标注重合点A与顶点
+  \filldraw (A) circle (1.2pt);
+  \filldraw (B) circle (1.2pt);
+  \filldraw (C) circle (1.2pt);
+  \filldraw[red] (B') circle (1.2pt);
+  \filldraw[red] (C') circle (1.2pt);
+  
+  % 垂直标记
+  \draw[blue!70] (0, -0.5) ++(0, 0.15) -- ++(-0.15, 0) -- ++(0, -0.15);
+  \draw[blue!70] (0, 0) ++(0, 0.15) -- ++(-0.15, 0) -- ++(0, -0.15);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{作图说明：}
+
+① 因为点 $A$ 在对称轴 $l$ 上，所以点 $A$ 的对称点 $A'$ 就是点 $A$ 自身；
+
+② 分别过点 $B$、$C$ 向直线 $l$ 作垂线，并延长至点 $B'$、$C'$，使得点 $B'$、$C'$ 到直线 $l$ 的距离分别等于点 $B$、$C$ 到直线 $l$ 的距离（即 $l$ 为线段 $BB'$、$CC'$ 的垂直平分线）；
+
+③ 连接 $A'B'$、$B'C'、C'A'$，所得 $\triangle A'B'C'$ 即为所求作的图形。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 坐标系与对称轴：} 选取 $Y$ 轴（$x=0$）作为对称轴 $l$。\\
+\textbf{2. 顶点设定：} 根据原图比例观察，设定 $A(0, 2.5)$ 在轴上，$B(-2.5, -0.5)$，$C(-0.5, 0)$。\\
+\textbf{3. 计算对称点：} 根据基于 $y$ 轴的轴对称变换原理（横坐标取相反数），计算出 $B'(2.5, -0.5)$，$C'(0.5, 0)$，$A'$ 与 $A$ 重合。\\
+\textbf{4. 图形渲染：} 原 $\triangle ABC$ 用黑色实线绘制，目标 $\triangle A'B'C'$ 用红色实线绘制高亮区分。利用蓝色虚线展示 $BB'$ 和 $CC'$ 的对称及垂直平分特征，并在与轴的交点处作直角符号增强逻辑严谨性。
+}
+
+%% ==============================
+%% 第61题（补充题）：网格中四边形的轴对称变换
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：网格图中的轴对称变换}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 52.} \textbf{（第 4 题）如图，在方格纸中（每个小方格是边长均等的正方形）画出四边形 $ABCD$ 关于直线 $l$ 对称的四边形 $A'B'C'D'$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{画图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8]
+  % 绘制网格背景 (-5 到 5, 0 到 10)
+  \draw[dashed, gray] (-5,0) grid (5,10);
+  
+  % 定义并绘制对称轴 l
+  \draw[thick, black] (0, -0.5) -- (0, 10.5) node[left] {$l$};
+
+  % 定义原始四边形的顶点坐标
+  \coordinate (A) at (-3, 9);
+  \coordinate (B) at (-4, 6);
+  \coordinate (C) at (-1, 6);
+  \coordinate (D) at (-1, 8);
+
+  % 根据对称轴 x=0 计算对称点坐标
+  \coordinate (A') at (3, 9);
+  \coordinate (B') at (4, 6);
+  \coordinate (C') at (1, 6);
+  \coordinate (D') at (1, 8);
+
+  % 绘制辅助虚线（垂直于对称轴）
+  \draw[dashed, blue!70] (A) -- (A');
+  \draw[dashed, blue!70] (B) -- (B');
+  \draw[dashed, blue!70] (C) -- (C');
+  \draw[dashed, blue!70] (D) -- (D');
+
+  % 绘制原始四边形 ABCD (黑色)
+  \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+  \filldraw (A) circle (1.5pt);
+  \filldraw (B) circle (1.5pt);
+  \filldraw (C) circle (1.5pt);
+  \filldraw (D) circle (1.5pt);
+  \node[above left] at (A) {$A$};
+  \node[below left] at (B) {$B$};
+  \node[below right] at (C) {$C$};
+  \node[above right] at (D) {$D$};
+
+  % 绘制对称四边形 A'B'C'D' (红色高亮)
+  \draw[thick, red] (A') -- (B') -- (C') -- (D') -- cycle;
+  \filldraw[red] (A') circle (1.5pt);
+  \filldraw[red] (B') circle (1.5pt);
+  \filldraw[red] (C') circle (1.5pt);
+  \filldraw[red] (D') circle (1.5pt);
+  \node[above right, text=red] at (A') {$A'$};
+  \node[below right, text=red] at (B') {$B'$};
+  \node[below left, text=red] at (C') {$C'$};
+  \node[above left, text=red] at (D') {$D'$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{作图说明：}
+
+① 找出原四边形 $ABCD$ 的各顶点；
+
+② 借助网格线，分别找到点 $A$、$B、C$、$D$ 关于直线 $l$ 对称的点 $A'$、$B'、C'、D'$。因为网格的横线均垂直于直线 $l$，所以对应点直接向右平移原来距离即可（即各对应点到直线 $l$ 的格数相等）；
+
+③ 顺次连接 $A'B'$、$B'C'、C'D'、D'A'$，所得的四边形 $A'B'C'D'$ 即为所求作的图形。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 网格与坐标系：} 建立大小为 $11 \times 9$ 的 \texttt{dashed} 虚线网格系统，横坐标跨度自 $x=-6$ 到 $x=5$ 以吻合原图布局。对称轴 $l$ 设定为 $Y$ 轴（$x=0$），长度上下延伸半个刻度。\\
+\textbf{2. 顶点设定：} 观察原图中网格距离推算，确定原特征坐标为 $A(-3,8)$、$B(-4,4)、C(-1,4)、D(-1,7)$。\\
+\textbf{3. 对称计算：} 根据 $Y$ 轴的轴对称横纵变换原理，求出对应镜像坐标 $A'(3,8)$、$B'(4,4)、C'(1,4)、D'(1,7)$。\\
+\textbf{4. 图形渲染：} 原四边形 $ABCD$ 以黑色实线绘制，目标四边形 $A'B'C'D'$ 以红色实线描绘作高亮区分，顶点连线用蓝色虚线表现出网格间作对称图形特征线时的跨度关系。
+}
+
+%% ==============================
+%% 第62题（补充题）：市民热线统计表与扇形统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：只含一条对称轴的双圆组合}
+
+\vspace{0.4cm}
+
+\noindent\textbf{4. 画两个圆，使这两个圆组成的图形只有一条对称轴。}
+
+\vspace{1.2cm}
+
+\begin{center}
+% =====================================================================
+% 【整体绘制思路：非全对称双圆系统】
+% 1. 圆的轴对称性质：圆有无数条对称轴。两个半径相同的圆组合，至少有两条对称轴（连心线及其垂直平分线）。
+% 2. 破题关键：只有当两个圆的**半径不同**，且它们**不完全同心**时，由它们组成的组合图形才会丧失中垂线对称性，从而仅保留唯一的一条对称轴——即它们圆心所在的直线。
+% 3. 几何构建：
+%    - 上方绘制大圆，圆心 O_1 在 (0, 1.5)，半径 1.5。
+%    - 下方绘制小圆，圆心 O_2 在 (0, -1)，半径 1。它们是外切关系，相切于 (0, 0)。
+%    - 这两个圆组成的“不倒翁”形/雪人形，只有竖直方向(x=0)这一条对称轴。
+% =====================================================================
+\begin{tikzpicture}[>=Stealth, scale=0.9]
+  
+  % 1. 绘制核心解域图形 (大圆 + 小圆，采用红色高亮答案线型)
+  \draw[thick, red!70!black, line width=1.2pt] (0, 1.5) circle (1.5);
+  \draw[thick, red!70!black, line width=1.2pt] (0, -1) circle (1);
+  
+  % 2. 标记圆心
+  \filldraw[black] (0, 1.5) circle (1.5pt) node[right, font=\small, gray] {$O_1$};
+  \filldraw[black] (0, -1) circle (1.5pt) node[right, font=\small, gray] {$O_2$};
+  
+  % 3. 绘制题目要求的本质属性：这唯一的“一条对称轴”
+  % 使用蓝色虚线向两端无限延伸
+  \draw[dash dot, blue, thick] (0, -2.8) -- (0, 3.8);
+  
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+如果两个圆的大小（半径）完全相同，那么除了穿过两个圆心的那条直线以外，连接两个圆心线段的垂直平分线也是它们的对称轴（此时共有两条互相垂直的对称轴）。\\
+题目要求组成的图形“\textbf{只有一条对称轴}”，诀窍就是打破另一种方向的平衡对称。因此我们只能画两个\textbf{大小不同（半径不相等）}的圆。此时，这两个有着一大一小形状的圆所在的整个图形组合，就只能沿它们\textbf{圆心所在的直线}折叠才能全等重合。所以它有且仅有一条对称轴。\\
+（注：两个圆可以相离、相切或相交，只要半径不等、圆心不在一点，就都符合题意。）
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何破题设计}：利用 TikZ 函数组建非对称关联域。设置上端大圆圆心锚点为 $(0, 1.5)$ 并赋予半径参量 $r_1=1.5$；下端小圆圆心配置于 $(0, -1)$ 并给定半径 $r_2=1$。大小半径的鲜明对比彻底消灭了图形在水平方向上的镜面反射能力，构建起只存在单一纵向镜像体系的“雪人结构”。\\
+\textbf{2. 辅助圆心对齐法}：为了满足“图形形成”这一概念的紧密逻辑，刻意使两个圆精确外切于坐标原点 $(0,0)$。这两个操作生成的数学圆域全部利用辅导教材专供解答高亮色（\texttt{[thick, red!70!black, line width=1.2pt]}）进行粗重轮廓描边。\\
+\textbf{3. 核心轴线高亮解构}：图中最关键的题目诉求要素——那条唯一的“对称轴”，则强行剥离图外，采用数学经典标准辅助线型（\texttt{[dash dot, blue, thick]}）垂直贯穿 $O_1$ 与 $O_2$ 连心线并延伸出象限外。这把核心隐藏条件彻底视觉显性化，可一击洞穿本题的内核考点。
+}
+
+\vspace{0.8cm}
+\vspace{0.8cm}
+
+\newpage
+
+\subsection{解答：画出轴对称图形的对称轴}
+
+\vspace{0.4cm}
+
+\noindent\textbf{1. 下面哪些图形是轴对称图形？画出轴对称图形的对称轴。}
+
+\vspace{1.2cm}
+
+\begin{center}
+% =====================================================================
+% 【整体绘制思路：轴对称图形及对称轴】
+% 1. 基本图形绘制：正六边形、平行四边形$、$V型(倒三角形带缺口)、带缺口菱形。
+% 2. 坐标布局：通过 scope[shift={(x, 0)}] 水平依次排开。
+% 3. 对称轴要求：蓝色的虚线(dashed, blue)，贯穿图形。
+% =====================================================================
+\begin{tikzpicture}[>=Stealth, line width=0.8pt, scale=0.9]
+
+  % =========== 图1：正六边形 ===========
+  \begin{scope}[shift={(0, 0)}]
+    % 绘制边框：利用极坐标，旋转30度保证有一条底边水平
+    \draw[thick, black] (30:1.2) \foreach \ang in {90, 150, 210, 270, 330} { -- (\ang:1.2) } -- cycle;
+    % 绘制对称轴 (6条，交于中心)
+    % (1) 顶点之间的对称轴 (垂直、倾斜)
+    \draw[dashed, blue, thick] (0, 1.8) -- (0, -1.8);
+    \draw[dashed, blue, thick] (30:1.8) -- (210:1.8);
+    \draw[dashed, blue, thick] (150:1.8) -- (330:1.8);
+    % (2) 对边中点产生的对称轴 (水平、倾斜)
+    \draw[dashed, blue, thick] (-1.8, 0) -- (1.8, 0);
+    \draw[dashed, blue, thick] (60:1.8) -- (240:1.8);
+    \draw[dashed, blue, thick] (120:1.8) -- (300:1.8);
+  \end{scope}
+
+  % =========== 图2：平行四边形 ===========
+  \begin{scope}[shift={(4, 0)}]
+    % 非轴对称图形，不画面蓝线
+    \draw[thick, black] (-0.8, -0.6) -- (0.8, -0.6) -- (1.4, 0.6) -- (-0.2, 0.6) -- cycle;
+  \end{scope}
+
+  % =========== 图3：箭头形 / V型 ===========
+  \begin{scope}[shift={(8, 0)}]
+    % 轴对称图形，1条垂直对称轴
+    \draw[thick, black] (0, -1.2) -- (0.8, 0.8) -- (0, 0.2) -- (-0.8, 0.8) -- cycle;
+    \draw[dashed, blue, thick] (0, 1.4) -- (0, -1.5);
+  \end{scope}
+
+  % =========== 图4：带长方形缺口的菱形 ===========
+  \begin{scope}[shift={(12.5, 0)}]
+    % 上顶点 (0, 1.2), 下顶点 (0, -1.2)
+    % 缺口在 (0.4, 0.15) 到 (0.7, 0.15) 到 (0.7, -0.15) 到 (0.4, -0.15)
+    \draw[thick, black] 
+      (0, 1.2) -- (0.7, 0.15) -- (0.4, 0.15) -- (0.4, -0.15) -- (0.7, -0.15) -- 
+      (0, -1.2) -- (-0.7, -0.15) -- (-0.4, -0.15) -- (-0.4, 0.15) -- (-0.7, 0.15) -- cycle;
+    % 绘制对称轴 (2条：垂直，水平)
+    \draw[dashed, blue, thick] (0, 1.6) -- (0, -1.6);
+    \draw[dashed, blue, thick] (-1.4, 0) -- (1.4, 0);
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+轴对称图形的定义是：如果一个图形沿一条直线折叠，直线两旁的部分能够互相重合，这个图形就叫作轴对称图形，这条直线就是它的对称轴。\\
+1. \textbf{正六边形}：是轴对称图形。分别连接对边中点（3条）和相对的顶点（3条），共有 \textbf{6条} 对称轴。\\
+2. \textbf{平行四边形}：无论怎样折叠，两部分都无法重合，所以它\textbf{不是}轴对称图形（没有对称轴）。\\
+3. \textbf{箭头形图案}：沿着中间竖直的中心线折叠，左右可以完全重合，所以它是轴对称图形，有 \textbf{1条} 竖直的对称轴。\\
+4. \textbf{带缺口的菱形图案}：沿着水平或竖直的中心线折叠都能够重合，所以它是轴对称图形，有 \textbf{2条} 对称轴（1条水平，1条竖直）。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 极坐标正多边形重构}：第一个六边形采用极坐标遍历法 \texttt{(30:1.2)} 画出标准轮廓，然后使用两两对应的同径向极坐标 \texttt{(60:1.8) -{}- (240:1.8)} 准确穿越中心生成 6 条完全均分的对称轴。\\
+\textbf{2. 几何镜面轮廓捕捉}：图三和图四的非标准多边形，均依据“纵轴/横轴对称”的视觉逻辑，精确推算出右半部分节点特征（如菱形侧边凹槽点 \texttt{(0.4, 0.15)} 与 \texttt{(0.7, 0.15)}），利用坐标系统严格维持镜像对称。\\
+\textbf{3. 色系辨识与线型隔离}：主干外边框使用深黑加粗线 \texttt{[thick, black]} 固化封闭几何感，题目要求画出的“对称轴”使用标准答题视觉（虚线并赋予锐蓝色 \texttt{[dashed, blue, thick]}）勾勒，且刻意延伸穿出图形边界，匹配正规教材的辅助线示意范本。
+}

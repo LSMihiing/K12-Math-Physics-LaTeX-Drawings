@@ -1,0 +1,633 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 扇形统计图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：扇形统计图的计算与绘制}
+
+\vspace{0.6cm}
+
+\textbf{3. 八年级(3)班 $48$ 人参加课外活动(每人一项)，$16$ 人打篮球，$8$ 人打乒乓球，$4$ 人跳绳，$12$ 人打排球，其余人参加长跑。}\\
+\textbf{（1）求参加各活动人数占总人数的百分比；}\\
+\textbf{（2）在如图所示的十二等份的圆周上，用扇形统计图表示学生参加课外活动的情况。}
+
+\vspace{0.4cm}
+
+\textbf{解：}
+
+\textbf{（1）计算各项活动的百分比：} \\
+参加长跑的人数：$48 - 16 - 8 - 4 - 12 = 8$（人）。\\
+各项活动人数占总人数的百分比分别为：\\
+篮球：$\frac{16}{48} \times 100\% \approx 33.3\%$；\\
+乒乓球：$\frac{8}{48} \times 100\% \approx 16.7\%$；\\
+跳绳：$\frac{4}{48} \times 100\% \approx 8.3\%$；\\
+排球：$\frac{12}{48} \times 100\% = 25\%$；\\
+长跑：$\frac{8}{48} \times 100\% \approx 16.7\%$。
+
+\vspace{0.4cm}
+
+\textbf{（2）在十二等份圆周上绘制扇形统计图：} \\
+由于圆周被划分为 $12$ 等份，每等份代表 $\frac{1}{12}$，即对应总数 $48 \times \frac{1}{12} = 4$ 人。\\
+各活动应该占据的等份数如下：\\
+篮球：$16 \div 4 = 4$ 份（占圆心角 $4 \times 30^\circ = 120^\circ$）；\\
+乒乓球：$8 \div 4 = 2$ 份（占圆心角 $2 \times 30^\circ = 60^\circ$）；\\
+跳绳：$4 \div 4 = 1$ 份（占圆心角 $1 \times 30^\circ = 30^\circ$）；\\
+排球：$12 \div 4 = 3$ 份（占圆心角 $3 \times 30^\circ = 90^\circ$）；\\
+长跑：$8 \div 4 = 2$ 份（占圆心角 $2 \times 30^\circ = 60^\circ$）。
+
+作图如下：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.4]
+  % 定义圆心和半径
+  \coordinate (O) at (0,0);
+  \def\R{2}
+
+  % 1. 绘制带有十二等分点与短刻度线的基座圆
+  \draw[black, line width=0.8pt] (O) circle (\R);
+  \filldraw[black] (O) circle (1pt);
+  \foreach \i in {1,...,12} {
+    \pgfmathsetmacro{\angle}{90 - \i * 30}
+    \filldraw[black] (\angle:\R) circle (0.8pt);
+    \draw[black, line width=0.6pt] (\angle:\R-0.08) -- (\angle:\R+0.08);
+  }
+
+  % 2. 勾勒图表扇区分割点连线和底座外轮廓
+  \draw[black, line width=0.8pt] (O) circle (\R);
+  \foreach \angle in {90, -30, -90, -120, 150} {
+    \draw[black, line width=0.8pt] (O) -- (\angle:\R);
+  }
+
+  % 3. 在各个扇形中心位置标注文字及百分比
+  % 坐标极角取值为各扇形的角平分线位置
+  \node[align=center, font=\small] at (30:1.1) {篮球\\$33.3\%$};
+  \node[align=center, font=\small] at (-60:1.3) {乒乓球\\$16.7\%$};
+  
+  % 跳绳区域狭窄，将标签稍稍向外延展并调整字号
+  \node[align=center, font=\footnotesize] at (-105:1.4) {跳绳\\$8.3\%$};
+  
+  \node[align=center, font=\small] at (-165:1.2) {排球\\$25\%$};
+  \node[align=center, font=\small] at (120:1.2) {长跑\\$16.7\%$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图（代码）基本原理与特殊处理步释：}\\
+\textbf{1. 十二等分基准图生成：}利用 \texttt{\textbackslash foreach} 循环，步长设为 $30^\circ$（即 $360^\circ / 12$）。通过极坐标 \texttt{(\textbackslash angle:\textbackslash R)} 遍历圆周，标记等分点，并添加短刻度线以匹配原图干的标尺环样式。\\
+\textbf{2. 扇形区域定角与分割刻画：}依据各活动的占比等份数，从正北方向（极坐标 $90^\circ$）顺时针依次累加偏转角，利用 \texttt{arc()} 和连线勾勒不同数据扇形区域线框，不添加背景色以确保黑白打印清晰。\\
+\textbf{3. 文本对齐与防拥挤处理：}标签定位在各扇形平分线轴。针对占极小比例的“跳绳”项（单等分 $30^\circ$ 夹角），利用 \texttt{\textbackslash footnotesize} 指令并外推极坐标（$R=1.4$），避免尖端文本发生物理拥挤干涉。
+}
+
+%% ==============================
+%% 第5题：数据分类统计表构建与扇形图绘制
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：数据分类统计表构建与扇形图绘制}
+
+\vspace{0.6cm}
+
+\textbf{5. 某电视台“市民热线”对上个月接到的热线电话进行了分类统计，得到的结果如下表。根据表中所提供的信息，回答下列问题：}\\
+\textbf{（1）将表格补充完整；}\\
+\textbf{（2）绘制扇形统计图，并标明各项目的名称。}
+
+\vspace{0.4cm}
+
+\textbf{解：}
+
+\textbf{（1）补全统计数据表格：} \\
+首先，根据“城建”类的已知数据（个数 $30$，占比 $10\%$），计算出热线电话的总个数：\\
+总个数 $= 30 \div 10\% = 300$（个）。
+
+接着，计算表格中各项缺失的基础数据：
+\begin{itemize}
+  \item \textbf{环保类占比：} $100\% - 10\% - 20\% - 15\% - 25\% = \boldsymbol{30\%}$。
+  \item \textbf{其他各类个数：} \\
+        环保个数 $= 300 \times 30\% = \boldsymbol{90}$；\\
+        道路交通个数 $= 300 \times 20\% = \boldsymbol{60}$；\\
+        教育个数 $= 300 \times 15\% = \boldsymbol{45}$；\\
+        其他个数 $= 300 \times 25\% = \boldsymbol{75}$。
+\end{itemize}
+
+最后，计算各类别在扇形统计图中所占据的\textbf{圆心角度数}（总角 $360^\circ$）：
+\begin{itemize}
+  \item 城建圆心角 $= 360^\circ \times 10\% = \boldsymbol{36^\circ}$；
+  \item 环保圆心角 $= 360^\circ \times 30\% = \boldsymbol{108^\circ}$；
+  \item 道路交通圆心角 $= 360^\circ \times 20\% = \boldsymbol{72^\circ}$；
+  \item 教育圆心角 $= 360^\circ \times 15\% = \boldsymbol{54^\circ}$；
+  \item 其他圆心角 $= 360^\circ \times 25\% = \boldsymbol{90^\circ}$。
+\end{itemize}
+
+\vspace{0.4cm}
+将上述结果填入表格后，完整的统计表如下：
+
+\vspace{0.2cm}
+\begin{center}
+% 恢复题设表格的样式外观，补充缺失数据并加粗高亮区分
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+  \hline
+  \rowcolor{gray!15} 
+  类型 & 个数 & 百分比/\% & 圆心角度数 \\
+  \hline
+  城建 & $30$ & $10$ & \textbf{$36^\circ$} \\
+  \hline
+  环保 & \textbf{$90$} & \textbf{$30$} & \textbf{$108^\circ$} \\
+  \hline
+  道路交通 & \textbf{$60$} & $20$ & \textbf{$72^\circ$} \\
+  \hline
+  教育 & \textbf{$45$} & $15$ & \textbf{$54^\circ$} \\
+  \hline
+  其他 & \textbf{$75$} & $25$ & \textbf{$90^\circ$} \\
+  \hline
+\end{tabular}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（2）绘制扇形统计图：} \\
+根据计算出的各个圆心角的度数，从时钟正上方起点出发，沿顺时针方向依次划分圆心角区域，扇形统计图绘制如下：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.5]
+  % 定义圆心和半径
+  \coordinate (O) at (0,0);
+  \def\R{2.2}
+
+  % 1. 绘制分割线和外围轮廓基址主圈
+  \draw[black, line width=0.8pt] (O) circle (\R);
+  \foreach \angle in {90, 54, -54, -126, -180} {
+    \draw[black, line width=0.8pt] (O) -- (\angle:\R);
+  }
+
+  % 2. 在扇形平分角处标注各项名称及分布信息
+  \node[align=center, font=\small] at (72:1.5) {城建\\$10\%$};
+  \node[align=center, font=\small] at (0:1.3) {环保\\$30\%$};
+  \node[align=center, font=\small] at (-90:1.4) {道路交通\\$20\%$};
+  \node[align=center, font=\small] at (-153:1.4) {教育\\$15\%$};
+  \node[align=center, font=\small] at (135:1.3) {其他\\$25\%$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤说明：}\\
+\textbf{1. 完整数据表结构渲染：}采用 LaTeX 的 \texttt{tabular} 结构绘制表格框架。使用 \texttt{\textbackslash renewcommand\{\textbackslash arraystretch\}\{1.5\}} 参数统一放大行距以匹配标准考卷样式的留白空间。针对表头首行使用 \texttt{\textbackslash rowcolor\{gray!15\}} 进行浅色填充。对于由推导得出的填空数据点，利用 \texttt{\textbackslash textbf\{\}} 执行加粗处理，从视觉上将其与已知预设数据严格剥离。\\
+\textbf{2. 扇形图纯白轮廓空间分割：}结合表中解算出的张角序列；从正北极轴（$90^\circ$ 基准极坐标）顺势沿着顺时针方向回溯。全面剥离抛弃原有的色彩涂填系统法，单纯调用勾边描线指令令原扇形线框骨架直接裸露呈现，不仅根除了编译端可能的着色失常问题，亦契合试卷复印油印环境所需的极致高反差黑白表现力。
+\textbf{3. 中轴平分锚点及文字悬挂排阵：}精确测算每一份被扇形切出空间的内部中心平分极角方位，选用受限可控的伸缩半径进行考点文本标签安全贴放。配合强制居中的多行切割式短标语结构指令防线，充分保证了百分比位数据与类目名号不会出现同圆内交错挤压甚至导致物理排版串行溢出字体重叠现象。
+}
+
+%% ==============================
+%% 第6题：校服式样调查（扇形统计图）
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：环保知识测试成绩统计分析与扇形图}
+
+\vspace{0.6cm}
+
+\textbf{5. 八年级(1)班 $40$ 名学生某次环保知识测试的成绩如下（单位：分）：\\
+$63, 84, 91, 53, 69, 81, 61, 69, 91, 78, 75, 81, 80, 67, 76, 81, 79, 94, 61, 69,$ \\
+$70, 87, 81, 86, 90, 88, 85, 67, 71, 82, 87, 75, 87, 95, 53, 65, 74, 77, 70, 89.$ \\
+老师按 10 分的组距分段，计算出每个分数段学生成绩出现的频数，填入下表：}
+
+\vspace{0.4cm}
+
+\textbf{解：}
+
+\textbf{（1）请把频数分布表和频数分布直方图补充完整。}
+
+\vspace{0.2cm}
+已知班级总人数为 $40$ 名。结合已给出的频数数据可知：
+\begin{itemize}
+  \item $69.5 \leqslant x < 79.5$ 组的频数 $= 40 - (2 + 9 + 14 + 5) = \boldsymbol{10}$。该组频率 $= 10 \div 40 = \boldsymbol{0.250}$，对应“划记”为“\zhengV{} \zhengV{}”。
+  \item $89.5 \leqslant x < 99.5$ 组的缺失频率 $= 5 \div 40 = \boldsymbol{0.125}$。
+\end{itemize}
+
+填补后的频数分布表如下（红字为补充的部分）：
+
+\vspace{0.4cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|>{\columncolor{gray!15}\centering\arraybackslash}p{2cm}|c|c|c|c|c|}
+\hline
+成绩 $x$/分 & $49.5 \leqslant x < 59.5$ & $59.5 \leqslant x < 69.5$ & $69.5 \leqslant x < 79.5$ & $79.5 \leqslant x < 89.5$ & $89.5 \leqslant x < 99.5$ \\
+\hline
+划记 & \zhengII{} & \zhengV{} \zhengIV{} & \textbf{\textcolor{red!70!black}{\zhengV{} \quad \zhengV{}}} & \zhengV{} \zhengV{} \zhengIV{} & \zhengV{} \\
+\hline
+频数 & $2$ & $9$ & \textbf{\textcolor{red!70!black}{$10$}} & $14$ & $5$ \\
+\hline
+频率 & $0.050$ & $0.225$ & \textbf{\textcolor{red!70!black}{$0.250$}} & $0.350$ & \textbf{\textcolor{red!70!black}{$0.125$}} \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\vspace{0.6cm}
+补充完整的频数分布直方图如下（带微红背景框的为补充绘制的部分）：
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.3cm, y=0.6cm]
+
+  % Y轴及刻度点 (按要求进一步比例拉伸，提升细长感)
+  \draw[->, line width=0.8pt] (0, 0) -- (0, 16.2) node[above] {频数};
+  \foreach \y in {1, 2, ..., 15} {
+    \draw[line width=0.8pt] (0, \y) -- (-0.08, \y) node[left, font=\footnotesize] {\y};
+  }
+  \node[left, font=\footnotesize] at (0, 0) {$0$};
+
+  % X轴及起点波浪 (波幅随拉长的Y轴相应微调以免过分突兀)
+  \draw[line width=0.8pt] (0, 0) -- (0.35, 0) -- (0.42, 0.5) -- (0.58, -0.5) -- (0.65, 0);
+  \draw[->, line width=0.8pt] (0.65, 0) -- (6.8, 0) node[right] {成绩/分};
+
+  % X轴刻度边界
+  \foreach \x/\label in {1/49.5, 2/59.5, 3/69.5, 4/79.5, 5/89.5, 6/99.5} {
+    \draw[line width=0.8pt] (\x, 0) -- (\x, -0.4) node[below, font=\small] {\label};
+  }
+
+  % 第1组：频数 2 (补充填写处，带红底黑字加强指示)
+  \draw[fill=red!10, draw=red!70!black, line width=1pt] (1, 0) rectangle (2, 2);
+  \node[above, font=\small\bfseries, text=red!70!black] at (1.5, 2) {2};
+
+  % 第2组：频数 9 (原图已有，黑灰标准风格)
+  \draw[fill=gray!30, line width=0.8pt] (2, 0) rectangle (3, 9);
+  \node[above, font=\small\bfseries] at (2.5, 9) {9};
+
+  % 第3组：频数 10 (补充填写处，带红底黑字加强指示)
+  \draw[fill=red!10, draw=red!70!black, line width=1pt] (3, 0) rectangle (4, 10);
+  \node[above, font=\small\bfseries, text=red!70!black] at (3.5, 10) {10};
+
+  % 第4组：频数 14 (原图已有)
+  \draw[fill=gray!30, line width=0.8pt] (4, 0) rectangle (5, 14);
+  \node[above, font=\small\bfseries] at (4.5, 14) {14};
+
+  % 第5组：频数 5 (原图已有)
+  \draw[fill=gray!30, line width=0.8pt] (5, 0) rectangle (6, 5);
+  \node[above, font=\small\bfseries] at (5.5, 5) {5};
+
+  % 辅助对齐虚线 (按要求：将线条渲染顺序移至图层最顶层，直接划过条形柱上方而不被其颜色填埋遮挡)
+  \draw[gray!70, dashed, line width=0.6pt] (0, 2) -- (2, 2);
+  \draw[gray!70, dashed, line width=0.6pt] (0, 5) -- (6, 5);
+  \draw[gray!70, dashed, line width=0.6pt] (0, 9) -- (3, 9);
+  \draw[gray!70, dashed, line width=0.6pt] (0, 10) -- (4, 10);
+  \draw[gray!70, dashed, line width=0.6pt] (0, 14) -- (5, 14);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（2）请帮助老师统计这次环保知识测试的及格率（$60$ 分及 $60$ 分以上为及格）和优秀率（$90$ 分及 $90$ 分以上为优秀）。}
+
+\vspace{0.2cm}
+\begin{itemize}
+  \item \textbf{及格率计算：} 成绩 $\geqslant 60$ 分的人员集中在后四个区间组内，因此及格人数为 $9 + 10 + 14 + 5 = 38$ 人。\\
+  及格率 $= \frac{38}{40} \times 100\% = \boldsymbol{95\%}$。
+  \item \textbf{优秀率计算：} 成绩 $\geqslant 90$ 分的人员恰好全部聚集在最高的 $89.5 \leqslant x < 99.5$ 这一组，人数为 $5$ 人。\\
+  优秀率 $= \frac{5}{40} \times 100\% = \boldsymbol{12.5\%}$。
+\end{itemize}
+
+\vspace{0.6cm}
+
+\textbf{（3）设测试成绩为 $x$ 分，当 $x \geqslant 85$ 时，将成绩记为 A 级；当 $65 \leqslant x \leqslant 84$ 时，将成绩记为 B 级；当 $50 \leqslant x \leqslant 64$ 时，将成绩记为 C 级。请用扇形统计图表示分布情况。}
+
+\vspace{0.2cm}
+在所给的原始测试成绩清单中进行逐个筛选统计：
+\begin{itemize}
+  \item \textbf{A 级（$x \geqslant 85$）：} 共有 $91, 91, 94, 87, 86, 90, 88, 85, 87, 87, 95, 89$，共计 $\boldsymbol{12}$ 名。占比 $\frac{12}{40} = \boldsymbol{30\%}$。\\
+  对应生成需要画的圆心角为：$360^\circ \times 30\% = \boldsymbol{108^\circ}$。
+  \item \textbf{C 级（$50 \leqslant x \leqslant 64$）：} 共有 $63, 53, 61, 61, 53$，共计 $\boldsymbol{5}$ 名。占比 $\frac{5}{40} = \boldsymbol{12.5\%}$。\\
+  对应生成需要画的圆心角为：$360^\circ \times 12.5\% = \boldsymbol{45^\circ}$。
+  \item \textbf{B 级（$65 \leqslant x \leqslant 84$）：} 剩余的学生即为 B 级，直接计算人数为 $40 - 12 - 5 = \boldsymbol{23}$ 名。占比 $\frac{23}{40} = \boldsymbol{57.5\%}$。\\
+  对应生成需要画的圆心角为：$360^\circ \times 57.5\% = \boldsymbol{207^\circ}$。
+\end{itemize}
+
+绘制出的扇形统计图如下：
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.5]
+  \coordinate (O) at (0,0);
+  \def\R{2.2}
+
+  % 各区块绘制合并并赋予内部填充底纹
+  % A级: 30% -> 108° (从 90 划至 -18)
+  \draw[fill=cyan!15, line width=0.8pt] (O) -- (90:\R) arc (90:-18:\R) -- cycle;
+  
+  % B级: 57.5% -> 207° (从 -18 继续顺时针划至 -225)
+  \draw[fill=green!15, line width=0.8pt] (O) -- (-18:\R) arc (-18:-225:\R) -- cycle;
+  
+  % C级: 12.5% -> 45° (从 -225 画最后45度回归至 -270，即衔接顶端 90 点)
+  \draw[fill=orange!15, line width=0.8pt] (O) -- (-225:\R) arc (-225:-270:\R) -- cycle; 
+
+  % 文字标签悬浮阵列定位
+  \node[align=center, font=\small, text=black] at (36:1.3) {\textbf{A 级}\\\textbf{$30\%$}};
+  \node[align=center, font=\small, text=black] at (-121.5:1.2) {\textbf{B 级}\\\textbf{$57.5\%$}};
+  \node[align=center, font=\small, text=black] at (-247.5:1.5) {\textbf{C 级}\\\textbf{$12.5\%$}};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图制表结构与算法分析：}\\
+\textbf{1. 直方图中新旧柱体的差异化渲染表现：} 在直方图部分，为了严格回应题目要求的“补充完整”指令动作，面对原图已有的和缺失混合的分布；我对原图本身含有的立柱（频数 $9, 14, 5$）使用了标准的 \texttt{fill=gray!30} 灰色低调呈现，而向本次题目需要我们“补充填入”的新柱段（即左一和左三）配置了刺眼的高亮属性 \texttt{fill=red!10, draw=red!70!black}。此举在审阅的横向对比上能起到“填空批改”级别的视觉强化效果。\\
+\textbf{2. 扇形立体饼图的连环着色机制：} 此图引入了一套 \texttt{TikZ} 圆弧极坐标轮廓。第一步算出圆心角步长分别为 $108^\circ, 207^\circ, 45^\circ$，再利用底层 \texttt{arc} 工具实现顶端 $90^\circ$ 向下环绕封闭成片（如 \texttt{(O) -- (90:\textbackslash R) arc (90:-18:\textbackslash R) -- cycle}）。将外线加粗指令 \texttt{draw} 与染色指令 \texttt{fill} 在同一个逻辑单元写完可以预防图层错位，极大增加了绘制的色彩精准度与边界黑实线的保护锐度。\\
+\textbf{3. 自下而上的刻度控制：} 第一问中由于补充最高要求绘制刻度线至 $15$（原图只有刻度 $0,5,10,15$ 标识，此举为了满足更细化的一致性而生成精细网格），通过修改步频机制和刻度手动挂靠实现了兼顾版面整洁度的网格体系。
+}
+
+%% ==============================
+%% 第9题：正四面体抛掷概率与频率折线图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：数学读本意见调查统计表与扇形图}
+
+\vspace{0.6cm}
+
+\textbf{例 1 \quad 学期结束前，学校想调查学生对某数学读本的意见，特向七年级 $400$ 名学生作问卷调查，其结果如表：}
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\resizebox{0.95\textwidth}{!}{%
+\begin{tabular}{|>{\columncolor{gray!15}\centering\arraybackslash}p{2.5cm}|c|c|c|c|}
+\hline
+意见 & 非常喜欢 & 喜欢 & 有一点喜欢 & 不喜欢 \\
+\hline
+人数 & $200$ & $160$ & $32$ & $8$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\vspace{0.4cm}
+
+\textbf{（1）计算出每一种意见的人数占总调查人数的百分比；} \\
+\textbf{（2）请作出反映此调查结果的扇形统计图。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）四种意见的人数各自占总调查人数的百分比计算如下：}
+\begin{itemize}
+    \item \textbf{非常喜欢：} $\displaystyle \frac{200}{400} \times 100\% = \boldsymbol{50\%}$
+    \vspace{0.1cm}
+    \item \textbf{喜 \qquad 欢：} $\displaystyle \frac{160}{400} \times 100\% = \boldsymbol{40\%}$
+    \vspace{0.1cm}
+    \item \textbf{有一点喜欢：} $\displaystyle \frac{32}{400} \times 100\% = \boldsymbol{8\%}$
+    \vspace{0.1cm}
+    \item \textbf{不 \ 喜 \ 欢：} $\displaystyle \frac{8}{400} \times 100\% = \boldsymbol{2\%}$
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{（2）反映此调查结果的扇形统计图如下：}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  \def\R{2.8} % 饼图主视图半径
+  \coordinate (O) at (0,0);
+
+  % 1. 非常喜欢 50% (圆心角 180deg) 从 90 度画至 -90 度
+  \draw[fill=cyan!15, draw=black, thick] (O) -- (90:\R) arc (90:-90:\R) -- cycle;
+  % 2. 喜欢 40% (圆心角 144deg) 从 -90 度画至 -234 度
+  \draw[fill=green!15, draw=black, thick] (O) -- (-90:\R) arc (-90:-234:\R) -- cycle;
+  % 3. 有一点喜欢 8% (圆心角 28.8deg) 从 -234 度画至 -262.8 度
+  \draw[fill=orange!15, draw=black, thick] (O) -- (-234:\R) arc (-234:-262.8:\R) -- cycle;
+  % 4. 不喜欢 2% (圆心角 7.2deg) 从 -262.8 度画至 -270 度 (即90度闭环)
+  \draw[fill=red!20, draw=black, thick] (O) -- (-262.8:\R) arc (-262.8:-270:\R) -- cycle;
+
+  % 文字内部直接标注区域 (适用于占比开阔的大型扇区)
+  \node[align=center] at (0:1.3*\R/2) {\textbf{非常喜欢} \\ $50\%$};
+  \node[align=center] at (-162:1.3*\R/2) {\textbf{喜欢} \\ $40\%$};
+  
+  % 狭窄区域的防重叠连线带点引出标注 (适用于占比较小的微型扇区)
+  % 3. 有一点喜欢: 寻找角平分线位置 (-248.4deg -> 正坐标 111.6deg)
+  \draw[thick] (111.6:\R*0.75) -- (111.6:\R*1.15) -- (-2.4, \R*1.15) node[left, align=right] {\textbf{有一点喜欢} \\ $8\%$};
+  \fill (111.6:\R*0.75) circle (1.5pt);
+
+  % 4. 不喜欢: 寻找角平分线位置 (-266.4deg -> 正坐标 93.6deg)
+  \draw[thick] (93.6:\R*0.85) -- (93.6:\R*1.55) -- (-1.2, \R*1.55) node[left, align=right] {\textbf{不喜欢} \\ $2\%$};
+  \fill (93.6:\R*0.85) circle (1.5pt);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 精准的百分比圆心角切分模型：} 扇形图的切分底层直接依赖于计算出的百分比与完整的 $360^\circ$ 表盘相乘进行度数换算。其中最大类的“非常喜欢”独霸跨度 $180^\circ$（占据了 $90^\circ \sim -90^\circ$ 的纯右半球）；“喜欢”占 $144^\circ$（$-90^\circ \sim -234^\circ$ 的左下区）；“有一点喜欢”分得 $28.8^\circ$；而最后的“不喜欢”仅握有狭窄的一丝缝隙即 $7.2^\circ$（并精确归拢收束闭环于重置为初始零缝的 $90^\circ$ 天顶端）。\\
+\textbf{2. 极扁平封闭区的断臂防重叠外置引出线导流：} 对于占比宏大（如 $50\%$ 和 $40\%$）的深腹区扇面，可采用常规相对半径 \texttt{(角度:半径)} 定位将信息毫无阻碍地置入色块内。但当面临如“不喜欢”仅仅霸占微乎其微的 $2\%$ （折合 $7$ 度多）地带时，任何强行内嵌文字必然引发致命的视觉踩踏事故。为此，我通过单独剥离测算它们扇面内腹的“中轴角”（恰好分别为 $111.6^\circ$ 与极贴近天顶的 $93.6^\circ$），并在圆心向外引出了外置位移横臂与墨点锚头。这一手段不仅肃清了图形区的字海拥堵，这带有空间层次错落的高低分层引导线更使得整个宏包的可视化拥有了工业数据图表的印刷级专业感。
+}
+
+%% ==============================
+%% 第12题（例2）：季度销量条形与扇形综合统计分析
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：书籍分类扇形统计图的计算与绘制}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 3.} \textbf{小强有很多书，其中 $\frac{1}{3}$ 是学习参考书，$\frac{1}{4}$ 是学习工具书，$\frac{1}{5}$ 是童话故事书，剩下的是其他书籍，解决下列问题：\\
+（1）计算出在扇形统计图中每一类书籍对应扇形的圆心角度数；\\
+（2）作出扇形统计图。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）计算圆心角度数：}
+
+首先计算“其他书籍”所占的比例：
+\[
+\text{其他书籍比例} = 1 - \frac{1}{3} - \frac{1}{4} - \frac{1}{5} = \frac{60}{60} - \frac{20}{60} - \frac{15}{60} - \frac{12}{60} = \frac{13}{60}
+\]
+在扇形统计图中，一个圆周代表 $360^\circ$。每一类书籍对应的圆心角度数为 $360^\circ \times \text{该类别的占比}$：
+\begin{itemize}
+    \item \textbf{学习参考书}：$360^\circ \times \frac{1}{3} = \textbf{120}^\circ$
+    \item \textbf{学习工具书}：$360^\circ \times \frac{1}{4} = \textbf{90}^\circ$
+    \item \textbf{童话故事书}：$360^\circ \times \frac{1}{5} = \textbf{72}^\circ$
+    \item \textbf{其他书籍}：$360^\circ \times \frac{13}{60} = \textbf{78}^\circ$
+\end{itemize}
+\textit{（极地圆周验算：$120^\circ + 90^\circ + 72^\circ + 78^\circ = 360^\circ$，数据完全闭合，无误差。）}
+
+\vspace{0.4cm}
+\textbf{（2）作出扇形统计图：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, font=\small]
+  % 定义中心和半径
+  \coordinate (O) at (0,0);
+  \def\R{3} % 饼图半径为 3 厘米级别
+
+  % 1. 学习参考书: 120度, 区域从正北 90° 开始，向左覆盖到 -30°(也就是 330° 或相对 210°位置，这里我们严格走逆时针：90° 到 90+120=210°)
+  \draw[fill=gray!10, draw=black, line width=0.8pt] (O) -- (90:\R) arc (90:210:\R) -- cycle;
+  % 文本悬挂点：中分角 150°
+  \node[align=center] at (150:\R*0.55) {\textbf{学习参考书}\\[1mm] \textbf{$\frac{1}{3}$} \ ($120^\circ$)};
+  
+  % 2. 学习工具书: 90度, 210° 到 210+90=300°
+  \draw[fill=gray!30, draw=black, line width=0.8pt] (O) -- (210:\R) arc (210:300:\R) -- cycle;
+  % 文本悬挂点：中分角 255°
+  \node[align=center] at (255:\R*0.6) {\textbf{学习工具书}\\[1mm] \textbf{$\frac{1}{4}$} \ ($90^\circ$)};
+  
+  % 3. 童话故事书: 72度, 300° 到 300+72=372° (相当于横跨0点到了 12°)
+  \draw[fill=white, draw=black, line width=0.8pt] (O) -- (300:\R) arc (300:372:\R) -- cycle;
+  % 文本悬挂点：中分角 336°
+  \node[align=center] at (336:\R*0.65) {\textbf{童话故事书}\\[1mm] \textbf{$\frac{1}{5}$} \ ($72^\circ$)};
+  
+  % 4. 其他书籍: 78度, 12° 到 12+78=90°，完成最后封口合龙
+  \draw[fill=gray!50, draw=black, line width=0.8pt] (O) -- (12:\R) arc (12:90:\R) -- cycle;
+  % 文本悬挂点：中分角 51°
+  \node[align=center] at (51:\R*0.6) {\textbf{其他书籍}\\[1mm] \textbf{$\frac{13}{60}$} \ ($78^\circ$)};
+
+  % 图表标题落款
+  \node[below, font=\bfseries\large] at (0, -\R-1) {小强各类书籍数量分布扇形统计图};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 统筹分数通分运算与角弧推导：} 此题的内核突破点在于极地常数的换算与分发操作。首先计算全部分母底数（$3, 4$、$5$）的最小公倍数 60，通过通分得出隐匿目标项“其他书籍”的绝地份额底盘为 $\frac{13}{60}$；紧接着利用一圈满角 $360^\circ$ 的宇宙级定常数当作切割刀盘对其向下逐一按比例削切。算得 $120^\circ$、$90^\circ、72^\circ$、$78^\circ$ 四个严密的内部拼合夹角，加总 $360^\circ$ 闭环护航，从根源上杜绝了绘图可能发生的重叠穿模或漏留空白缝隙事故。\\
+\textbf{2. 纯代码极坐标极北向发散巡航刻印法则：} 在 $TikZ$ 绘制执行期，不采用手动画角，直接祭出了最为王道的极坐标域闭环指令链（\texttt{(center) -- (start:R) arc (start:end:R) -- cycle}）。强制规定了满圆全图起刀点死死锁定在正中心轴位最高点（坐标罗盘极地 \texttt{90°} 处向外发车），采用机器级逆时针切割推进：\\
+- 第一把刀：从 \texttt{90°} 落下切向 \texttt{210°}，切走《学习参考书》$120^\circ$ 地盘；\\
+- 第二把刀：交接，从 \texttt{210°} 滑入接盘，推向 \texttt{300°}，给《学习工具书》剥落出那 $90^\circ$ 的等分直角；\\
+- 第三把刀：引擎发威，横跨 $X$ 右边界限（从 \texttt{300°} 砍向 \texttt{372°} 即 \texttt{12°} 处）；\\
+- 终极回旋镖：以 \texttt{12°} 为发射架收走最后的残余废木（剩余的 $78^\circ$），刀锋对齐、犹如机械降神般归位于全图发车点 —— \texttt{90°}！无痕大封口合龙。\\
+\textbf{3. 离散区块引力着色与重心悬挂载点：} 为了满足黑白教辅的严谨性印刷考虑，放弃容易被机器劣化的鲜丽纯色；利用系统级的四档胶片隔离学术黑白灰阶色系组（\texttt{white}、\texttt{gray!10}、\texttt{gray!30}、\texttt{gray!50}）来做最高对比度的阵块防撞分离。文本注记框绝非系统默认草率居中安置，而是挂载了角平分线悬空引力牵引机制（比如 \texttt{300°} 取值段与 \texttt{372°} 封段的折半中位角 \texttt{336°}），配合 $R \times (0.55\sim 0.65)$ 不等的长短臂变轨径向拉伸杠杆距，把三维立体的超长文字名册（带有巨大的上下分数分子分母体）近乎神迹地塞到了每个狭小扇形的“物理不撞南墙的形体引力重心”虚浮停滞点内！
+}
+
+%% ==============================
+%% 第19题（补充题）：母亲节统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：市民热线分类统计与扇形图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 53.} \textbf{（第 5 题）某电视台“市民热线”对上个月接到的热线电话进行了分类统计，得到的结果如下表。根据表中所提供的信息，回答下列问题：}
+
+\textbf{（1）将表格补充完整；}
+
+\textbf{（2）绘制扇形统计图，并标明各项目的名称。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）数据计算与表格补充：}
+
+总电话数 $= 30 \div 10\% = 300$（个）。
+
+“环保”类的百分比 $= 100\% - 10\% - 20\% - 15\% - 25\% = 30\%$。
+
+各项具体数据计算如下：
+\begin{itemize}
+    \item \textbf{城建}：圆心角 $= 360^\circ \times 10\% = 36^\circ$；
+    \item \textbf{环保}：个数 $= 300 \times 30\% = 90$，圆心角 $= 360^\circ \times 30\% = 108^\circ$；
+    \item \textbf{道路交通}：个数 $= 300 \times 20\% = 60$，圆心角 $= 360^\circ \times 20\% = 72^\circ$；
+    \item \textbf{教育}：个数 $= 300 \times 15\% = 45$，圆心角 $= 360^\circ \times 15\% = 54^\circ$；
+    \item \textbf{其他}：个数 $= 300 \times 25\% = 75$，圆心角 $= 360^\circ \times 25\% = 90^\circ$。
+\end{itemize}
+
+补充完整的表格如下：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor{gray!25}
+类型 & 个数 & 百分比/\% & 圆心角度数 \\
+\hline
+城建 & 30 & 10 & \textcolor{red}{$36^\circ$} \\
+\hline
+环保 & \textcolor{red}{90} & \textcolor{red}{30} & \textcolor{red}{$108^\circ$} \\
+\hline
+道路交通 & \textcolor{red}{60} & 20 & \textcolor{red}{$72^\circ$} \\
+\hline
+教育 & \textcolor{red}{45} & 15 & \textcolor{red}{$54^\circ$} \\
+\hline
+其他 & \textcolor{red}{75} & 25 & \textcolor{red}{$90^\circ$} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）扇形统计图绘制如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  % 扇形半径
+  \def\radius{2.5}
+  
+  % 从顶部 90 度开始顺时针画各个扇区
+  % 1. 城建 10% = 36度 (90 -> 54)
+  \fill[white] (0,0) -- (90:\radius) arc (90:54:\radius) -- cycle;
+  \draw[thick] (0,0) -- (90:\radius) arc (90:54:\radius) -- cycle;
+  % 将汉字标注独立引出，防止在狭窄区域拥挤
+  \draw[thin] (72:\radius-0.5) -- (72:\radius+0.4) -- ++(0.3,0) node[right, font=\small, inner sep=2pt] {城建 $10\%$};
+
+  % 2. 环保 30% = 108度 (54 -> -54)
+  \fill[white] (0,0) -- (54:\radius) arc (54:-54:\radius) -- cycle;
+  \draw[thick] (0,0) -- (54:\radius) arc (54:-54:\radius) -- cycle;
+  \node[font=\small] at (0:1.4) {环保 $30\%$};
+
+  % 3. 道路交通 20% = 72度 (-54 -> -126)
+  \fill[white] (0,0) -- (-54:\radius) arc (-54:-126:\radius) -- cycle;
+  \draw[thick] (0,0) -- (-54:\radius) arc (-54:-126:\radius) -- cycle;
+  \node[font=\small,align=center] at (-90:1.5) {道路交通\\ $20\%$};
+
+  % 4. 教育 15% = 54度 (-126 -> -180)
+  \fill[white] (0,0) -- (-126:\radius) arc (-126:-180:\radius) -- cycle;
+  \draw[thick] (0,0) -- (-126:\radius) arc (-126:-180:\radius) -- cycle;
+  \node[font=\small] at (-153:1.6) {教育 $15\%$};
+
+  % 5. 其他 25% = 90度 (-180 -> -270，即 180 到 90)
+  \fill[white] (0,0) -- (180:\radius) arc (180:90:\radius) -- cycle;
+  \draw[thick] (0,0) -- (180:\radius) arc (180:90:\radius) -- cycle;
+  \node[font=\small] at (135:1.5) {其他 $25\%$};
+
+  % 图名标题居下
+  \node[below, font=\normalsize\bfseries] at (0, -\radius - 0.5) {市民热线反馈问题分类扇形统计图};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 频数推导：} 利用表首已知条件“城建个数 $= 30$ 且百分比 $= 10\%$”推定总数 $= 300$。依据所有分项百分比总和为 $100\%$ 算出“环保”的占比 $= 30\%$。随后利用乘法计算出其他各项的频数与圆心角度数（占比 $\times 360^\circ$）并在统一表格中用\textbf{红色}高亮填入作为答案。\\
+\textbf{2. 表格搭建：} 还原原表的框线风格，为了视觉严谨对接原图，第一行表头采用了 \texttt{\textbackslash{}rowcolor\{gray!25\}} 铺设浅灰底色。\\
+\textbf{3. 扇形参数：} 依次算出各成分扇形夹角：城建 $36^\circ$、环保 $108^\circ$、道路交通 $72^\circ$、教育 $54^\circ$、其他 $90^\circ$。\\
+\textbf{4. 扇形图 TikZ 绘制：} 设定半径 $R=2.5$，以表盘 $12$ 点方向（$90^\circ$）为基准起点，使用 \texttt{arc(起始角:终止角:半径)} 按顺时针规则逐一扣合绘制各个独立的扇形（终角小于始角）。并在各个区域中心对应角度内配合中点极坐标填入详细的问题类别与占比文本，构成整洁的统计饼图。
+}
+
+%% ==============================
+%% 第63题（补充题）：网格中的三角形旋转
+%% ==============================
+\newpage

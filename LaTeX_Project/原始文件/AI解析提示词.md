@@ -31,7 +31,13 @@
 6. 多空答案，每空答案之间用6个半角空格分隔
 7. 题目中含有小题号（1）（2）……不同小题间分行,且小题号所在行与大题行分行。小题号使用中文半角括号，即（1）（2）（3）
 8. 选择题的答案A、B、C、D，统一修改为$\mathrm{A}$、$\mathrm{B}$、$\mathrm{C}$、$\mathrm{D}$
-9. 大题的答案，根据内容合理分行，例如
+9. 读取一下章节标题，根据章节内容确定章节的标题等级。
+```markdown
+# 参考答案总标题
+## 第一章
+### 第一节
+```
+10. 大题的答案，根据内容合理分行，例如
 ```markdown 
 （1）如图 ① ，延长 $AC$ 到 $F$ ，使 $CF = AP$ ，过点 $P$ 作 $PE // AB$ ，且 $PE = AB$ ，连接 $EF$ ，得到平移后的 $\triangle PEF$
 （2）如图 ② ，由平移的性质得： $AB = PE$ ， $BC = EF$ ， $AC = PF$ ， $\angle B = \angle E = 90^{\circ}$ ， $\therefore S_{\triangle ABC} = S_{\triangle PEF}$ ， $S_{\triangle ABC} = S_{\text{四边形}ABOP} + S_{\triangle POQ}$ ， $\therefore S_{\text{四边形}COEF} = S_{\text{四边形}ABOP} = 22$

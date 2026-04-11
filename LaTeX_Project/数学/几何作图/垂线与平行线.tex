@@ -1,0 +1,923 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 垂线与平行线
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：作 AD 垂直平分线与 $\angle BAC$ 角平分线}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.2]
+  % 1. 定义基本参数
+  \def\a{3.2} % 正方形边长
+
+  % 2. 定义定点坐标
+  \coordinate (A) at (0, \a);
+  \coordinate (B) at (0, 0);
+  \coordinate (C) at (\a, 0);
+  \coordinate (D) at (\a, \a);
+  \coordinate (E) at (\a/2, \a);
+  
+  % 3. 绘制已知原始几何图形 (正方形及对角线)
+  \draw[line width=1.0pt] (A) -- (B) -- (C) -- (D) -- cycle;
+  \draw[line width=1.0pt] (A) -- (C);
+  
+  % 标注正方形顶点及 E 点
+  \node[left, font=\large] at (A) {$A$};
+  \node[left, font=\large] at (B) {$B$};
+  \node[right, font=\large] at (C) {$C$};
+  \node[right, font=\large] at (D) {$D$};
+  \node[above right, font=\large, xshift=-2pt] at (E) {$E$};
+  
+  % ----------------------------------------------------
+  % 第一步：尺规作图作 AD 的垂直平分线 l
+  % ----------------------------------------------------
+  \def\Rone{2.2} % 所用圆的半径 (要求 > 0.5*a)
+  \pgfmathsetmacro{\dy}{sqrt(\Rone*\Rone - (\a/2)*(\a/2))}
+  \coordinate (P1) at (\a/2, \a + \dy); % 上方相交点
+  \coordinate (P2) at (\a/2, \a - \dy); % 下方相交点
+  
+  % 利用 clip 裁剪显示手工作图的交叉弧线痕迹
+  \begin{scope}
+    \clip (P1) circle (0.4);
+    \draw[line width=0.6pt] (A) circle (\Rone);
+    \draw[line width=0.6pt] (D) circle (\Rone);
+  \end{scope}
+  \begin{scope}
+    \clip (P2) circle (0.4);
+    \draw[line width=0.6pt] (A) circle (\Rone);
+    \draw[line width=0.6pt] (D) circle (\Rone);
+  \end{scope}
+  
+  % 绘制贯穿的垂直平分线 l
+  \draw[line width=1.2pt] (\a/2, \a+1.6) -- (\a/2, -1.0) node[left, near start, font=\large] {$l$};
+  
+  % ----------------------------------------------------
+  % 第二步：尺规作图作角 BAC 的平分线，并确定交点 F
+  % ----------------------------------------------------
+  \def\Rtwo{1.5} % 第一道弧半径
+  % 在 \angle BAC 范围内画弧
+  \draw[line width=0.6pt] (A) ++(-90:\Rtwo) arc (-90:-45:\Rtwo);
+  
+  % 获取角两边上的交点
+  \coordinate (K1) at (0, \a-\Rtwo);
+  \coordinate (K2) at ({\Rtwo*cos(-45)}, {\a+\Rtwo*sin(-45)});
+  
+  % 从 K1, K2 出发画第二道弧，形成交叉点 X
+  \def\Rthree{2.0} % 相交弧半径
+  % 计算大致交点以进行视口剪裁。角平分线方向为 -67.5 度
+  % 距 A 点的理论距离 = \Rtwo * cos(22.5) + sqrt(\Rthree^2 - (\Rtwo*sin(22.5))^2)
+  \pgfmathsetmacro{\Dbg}{\Rtwo*cos(22.5) + sqrt(\Rthree*\Rthree - (\Rtwo*sin(22.5))*(\Rtwo*sin(22.5)))}
+  \coordinate (X) at ($(A) + (-67.5:\Dbg)$);
+  
+  \begin{scope}
+    \clip (X) circle (0.5);
+    \draw[line width=0.6pt] (K1) circle (\Rthree);
+    \draw[line width=0.6pt] (K2) circle (\Rthree);
+  \end{scope}
+  
+  % 计算平分线与垂直平分线 l 的理论交点 F
+  % F的x坐标为 \a/2。其离A的水平距离为 \a/2。斜率为 tan(-67.5) = - (1 + sqrt(2)) = -2.41421356
+  \pgfmathsetmacro{\yF}{\a - (\a/2)*2.41421356}
+  \coordinate (F) at (\a/2, \yF);
+  
+  % 绘制角平分线 (从 A 穿过 X 和 F)
+  % 延长一些以符合题图的连线特征
+  \draw[line width=1.0pt] (A) -- ($(A)!1.08!(F)$);
+  \node[right, font=\large] at (F) {$F$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{作图分析（中垂线与角平分线）：}\\
+(1) 题目要求“作 $AD$ 的垂直平分线 $l$”，利用尺规作图：分别以定点 $A, D$ 为圆心，以大于 $\frac{1}{2}AD$ 为半径画弧，两弧在上方和下方各交于两点，用直尺且连接这两个交点，得到垂直平分线 $l$。显然由于 $ABCD$ 是正方形，$AB$ 垂直于 $AD$，因此垂直平分线 $l$ 必平行于 $AB$。\\
+(2) 题目要求“点 $F$ 到 $\angle BAC$ 两边的距离相等”，由初中几何的\textbf{角平分线逆定理}可知，如果一个点到角两边的距离相等，则该点一定在该角的角平分线上。所以这实际上是要求我们作出 $\angle BAC$ 的角平分线。画弧痕迹：以 $A$ 为圆心任意长画弧交两边，再以两个交点为圆心同半径画弧，两小段弧相交形成小叉号。连接 $A$ 与该叉号交点并向外延伸射线便得到角平分线，其与中垂线 $l$ 碰撞相交得到的点即为要求的最终悬空点 $F$。\\
+2. \textbf{第（2）小题的角度计算过程：}\\
+已知四边形 $ABCD$ 是正方形，则其每个内角为 $90^\circ$（即 $\angle BAD = 90^\circ$）。\\
+且 $AC$ 为正方形内部的长对角线，所以平分了原直角 $\angle BAC = \frac{1}{2}\angle BAD = 45^\circ$。\\
+通过刚才的尺规作图得知直线 $AF$ 为 $\angle BAC$ 的精确角平分线，因此分出的内部夹小角 $\angle BAF = \frac{1}{2}\angle BAC = 22.5^\circ$。\\
+又因为直线 $l$ 是外边线段 $AD$ 的垂直平分线，且方框内部侧边本身就满足 $AB \perp AD$。由于同一平面内垂直于同一条直线的两直线必平行可强力推导出：直线 $l \parallel AB$（即含有目标点的射线段 $EF \parallel AB$）。\\
+最后，依据平行线的基本性质：“两条直线平行，被第三条直线所截，形成的内错角相互等同”。我们凝视由这两根平行纵线夹出的“Z”字形翻折内角段，故直接稳健得出最终所求目标值： $\angle EFA = \angle BAF = 22.5^\circ$。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何底层参数化渲染：}先确立具有边长 \texttt{\textbackslash def\textbackslash a\{3.2\}} 参数的正方形主框架基座，用 \texttt{coordinate} 方法锁定全部核心顶点以杜绝硬编码死写数字，完全保证后续尺规线矢量拓扑稳定缩放结构。\\
+\textbf{2. 严格的代数视窗裁剪准确复原圆轨痕迹：}摒弃手动勾勒不可靠自由短弧的低级画法。对于中垂线的长跨度关键相交弧，利用宏代数 \texttt{\textbackslash pgfmathsetmacro} 结合勾股算式算出理论中心交点位置距，动态将其自身设定为全包围小锚点，外裹原生态命令 \texttt{\textbackslash clip} 开启圆形蒙版隔离，随后在其背部罩满完整的画圆圆环 \texttt{circle} 坐标指令。利用计算机渲染切除特性自然准确地只给画面剔透流出“手划针脚相抵交印痕”的残留图线。在 $\angle BAC$ 分水岭的角平分两段交锋处同样调用 \texttt{clip} 方法完成高精度原核模拟同理复刻。\\
+\textbf{3. 精确极线方程推导规避连线穿模错配：}结尾处，需通过作图线把实点 $A$ 连接飞出指派至悬空末端交接点 $F$ 时；通过前述物理几何论证其必锁定位于 $x=a/2$ 的中垂系统轨道上；叠加角平分线原始自带方向导数对应的几何极偏转角为 $-67.5^\circ$，求解析正切极限值 $\tan(-67.5^\circ) = -(1+\sqrt{2}) \approx -2.4142$。由此极坐标切距值回送给代数机 \texttt{pgfmathsetmacro} 便可精准地测前向后下发预测该交接端点的高度差与截面悬空标高坐标。对齐接轨中垂轨段线，物理封杀凭感觉盲连导向极易突发的乱位溢出透视错穿等假象。
+}
+
+%% ==============================
+%% 第7题：方格纸中的图形旋转、面积计算与格点确定
+%% ==============================
+\newpage
+
+%% ==============================
+%% 第7题：方格纸中的图形旋转、面积计算与格点确定
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：无人机从起飞点飞到对岸的最短路线}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{分析：}从一点到一条直线的最短距离是这个点到直线的\textbf{垂直距离}。\\[4pt]
+因此，小明应操控无人机从起飞点出发，沿\textbf{\textcolor{red!70!black}{垂直于对岸}}的路线飞行。
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.9] % 整体思路：先用三角形表示湖面，再在湖外标出起飞点，接着利用投影计算起飞点到“对岸”边的垂足，并画出这条最短路线和直角标记
+  % 湖泊顶点（基于原图重构：左边缘向内倾斜，底边水平，对岸边较长）
+  \coordinate (A) at (0, 4.5);     % 定义湖面左上顶点 A
+  \coordinate (B) at (2.5, 0);     % 定义湖面左下顶点 B
+  \coordinate (C) at (9.5, 0);     % 定义湖面右下顶点 C，边 AC 视作“对岸”
+  
+  % 起飞点（在三角形外部，左下方）
+  \coordinate (P) at (0.8, 0.8);   % 定义起飞点 P，在湖面外部靠左下的位置
+
+  % 填充并绘制三角形（灰色湖面）
+  \fill[gray!40] (A) -- (B) -- (C) -- cycle; % 用灰色填充三角形湖面区域
+  \draw[line width=1pt, gray!80] (A) -- (B) -- (C) -- cycle; % 用深一点的灰色描出湖面边界
+
+  % 标注“对岸”（AC 边）
+  \node[above right, font=\small] at ($(A)!0.5!(C)$) {对岸}; % 在边 AC 的中点附近标“对岸”；$(A)!0.5!(C)$ 表示 AC 中点
+
+  % 起飞点标注
+  \fill[black] (P) circle (2.5pt); % 在起飞点 P 画黑色实心点
+  \node[below=3pt, font=\small] at (P) {起飞点}; % 在 P 点下方标注“起飞点”
+
+  % 计算垂足 D（从 起飞点P 向 对岸AC 作垂线）
+  \coordinate (D) at ($(A)!(P)!(C)$); % 求点 P 到直线 AC 的垂足 D，即最短路线在对岸上的落点
+
+  % 画垂线（红色，最短路线）
+  \draw[red!70!black, line width=1.8pt] (P) -- (D); % 用红色粗线画出最短飞行路线 PD
+
+  % 直角标记
+  \coordinate (Dr1) at ($(D)!0.3cm!(P)$); % 从 D 朝 P 方向取 0.3cm，作为直角标记的一条边端点
+  \coordinate (Dr2) at ($(D)!0.3cm!(A)$); % 从 D 朝 A 方向取 0.3cm，作为直角标记另一条边端点
+  \coordinate (Dr3) at ($(Dr1)+(Dr2)-(D)$); % 用向量相加减构造直角标记的第四个点 Dr3
+  \draw[red!70!black, line width=0.8pt] (Dr1) -- (Dr3) -- (Dr2); % 连接这三个点，画出小方角符号，说明 PD 与 AC 垂直
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+从一个点到一条直线（或线段），可以画无数条线段，\\
+其中\textbf{垂线段最短}。\\
+因此，从起飞点向对岸作一条垂线，垂线段就是无人机的最短飞行路线。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 湖泊三角建模}：利用三个 \texttt{coordinate} 指令定义三角形湖面顶点 $A$、$B$、$C$，通过 \texttt{fill[gray!40]} 灰色填充与 \texttt{draw[gray!80]} 描边构成半透明水面底图。\\
+\textbf{2. 垂足精确计算}：运用 TikZ 的 \texttt{calc} 库投影算子 \texttt{(A)!(P)!(C)}，自动计算起飞点 $P$ 到直线 $AC$（对岸）的几何投影垂足 $D$，无需手动三角函数推导。\\
+\textbf{3. 直角标记构造}：通过从垂足 $D$ 分别向 $P$ 和 $A$ 方向各取 0.3cm 的端点，再利用向量加减法 \texttt{(Dr1)+(Dr2)-(D)} 定位第四个角点，构成标准直角方框标记。
+}
+
+
+%% ==============================
+%% 梯形周长计算（正方形和三角形）
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：过点画已知直线的垂线和平行线}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 72.} \textbf{（第 3 题）过点 $A$ 分别画已知直线的垂线和平行线。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\vspace{0.2cm}
+\textbf{分析：} 对于每个子图，过点 $A$ 作两条线：一条与已知直线\textbf{垂直}（标注直角符号），一条与已知直线\textbf{平行}（方向相同）。
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % ===== 左图 =====
+  % 已知直线方向向量 (-1, 2)，从右下到左上
+
+  % 已知直线
+  \draw[line width=0.8pt] (1.2, -2.4) -- (-1.2, 2.4);
+
+  % 点 A（位于直线左下方）
+  \filldraw[black] (-2.5, -1) circle (2pt);
+  \node[left, font=\small] at (-2.6, -1) {$A$};
+
+  % --- 过 A 作垂线 ---
+  % 垂足 F = (-0.1, 0.2)（A 向直线投影）
+  % 垂线方向 (2, 1)，从 A 经垂足延伸
+  \draw[line width=0.8pt] (-2.5, -1) -- (0.35, 0.42);
+
+  % 直角标记（垂足处，边长 0.25cm）
+  \draw[line width=0.5pt] (-0.21, 0.42) -- (0.01, 0.54) -- (0.12, 0.31);
+
+  % --- 过 A 作平行线 ---
+  % 方向与已知直线相同 (-1, 2)，过 A(-2.5, -1)
+  \draw[line width=0.8pt] (-1.5, -3) -- (-3.5, 1);
+
+  % ----- 虚线分隔 -----
+  \draw[line width=0.6pt, densely dotted] (3, -3.2) -- (3, 3);
+
+  % ===== 右图 =====
+  % 已知直线方向向量 (3, 1)，缓坡从左下到右上
+
+  % 已知直线
+  \draw[line width=0.8pt] (3.6, -0.8) -- (8.4, 0.8);
+
+  % 点 A（位于直线右下方）
+  \filldraw[black] (7.5, -1.5) circle (2pt);
+  \node[right, font=\small] at (7.6, -1.5) {$A$};
+
+  % --- 过 A 作垂线 ---
+  % 垂足 F = (6.9, 0.3)（A 向直线投影）
+  % 垂线方向 (-1, 3)，从 A 经垂足延伸
+  % \draw[line width=0.8pt] (7.5, -1.5) -- (6.6, 1.2);
+
+  % % 直角标记（垂足处，边长 0.25cm）
+  % \draw[line width=0.5pt] (7.14, 0.38) -- (7.06, 0.62) -- (6.82, 0.54);
+
+  % --- 过 A 作平行线 ---
+  % 方向与已知直线相同 (3, 1)，过 A(7.5, -1.5)
+  \draw[line width=0.8pt] (6, -2) -- (9, -1);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 垂足计算：} 设直线方向 $\vec{d}$，点 $A$ 向直线投影得垂足 $F$，满足 $\overrightarrow{AF} \cdot \vec{d} = 0$。\\
+\textbf{2. 左图：} 直线方向 $(-1,2)$，垂线方向 $(2,1)$，垂足 $(-0.1, 0.2)$，平行线过 $A(-2.5,-1)$ 方向 $(-1,2)$。\\
+\textbf{3. 右图：} 直线方向 $(3,1)$，垂线方向 $(-1,3)$，垂足 $(6.9, 0.3)$，平行线过 $A(7.5,-1.5)$ 方向 $(3,1)$。\\
+\textbf{4. 直角标记：} 在垂足沿直线方向和垂线方向各取 $0.25$ 单位，构造折线三点绘制直角符号。
+}
+
+%% ==============================
+%% 第82题（补充题）：小熊到哪条河捕鱼更近
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：点到直线的距离比较}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 73.} \textbf{（第 5 题）小熊到哪条河捕鱼更近？在图中画一画，并说说理由。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\vspace{0.2cm}
+\textbf{分析：} 从小熊所在位置分别向甲河、乙河作\textbf{垂线段}，比较两条垂线段的长度。
+垂线段是点到直线的\textbf{最短距离}，因此垂线段较短的一条河更近。
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % === 河流边界绘制 ===
+  % 上边界（干流上岸 + 甲河外岸）
+  \draw[line width=1pt] (-2.5, 0.5) -- (-0.12, 0.5) -- (4.88, 3.0);
+  
+  % 下边界（干流下岸 + 乙河外岸）
+  \draw[line width=1pt] (-2.5, -0.5) -- (-0.2, -0.5) -- (3.3, -4.0);
+  
+  % 内侧交叉边界（甲河内岸 + 乙河内岸）
+  % 交叉点 Vin = (0.85, -0.14)
+  \draw[line width=1pt] (5.33, 2.10) -- (0.85, -0.14) -- (4.01, -3.30);
+
+  % 河流名称标签（放置于河道中央，随河道倾斜）
+  \node[font=\small, rotate=26.6] at (2.4, 1.08) {甲河};
+  \node[font=\small, rotate=-45] at (2.0, -1.85) {乙河};
+
+  % === 小熊的标记点 ===
+  \filldraw[black] (2.8, 0.1) circle (1.5pt);
+  \node[right, font=\small] at (2.9, 0.1) {小熊};
+  % （由于题目要求“熊可以不要画出”，仅保留代表位置的黑点和文字）
+  
+  % === 过点向甲河（内岸）作垂线段 ===
+  % 甲河内岸直线方程: x - 2y = 1.13。 小熊点位置: (2.8, 0.1)
+  % 垂足 F_甲 = (2.506, 0.688)
+  \draw[line width=0.8pt] (2.8, 0.1) -- (2.506, 0.688);
+  
+  % 垂足直角标记
+  \draw[line width=0.5pt] (2.685, 0.777) -- (2.774, 0.598) -- (2.595, 0.509);
+
+  % === 过点向乙河（内岸）作垂线段 ===
+  % 乙河内岸直线方程: x + y = 0.71。 小熊点位置: (2.8, 0.1)
+  % 垂足 F_乙 = (1.705, -0.995)
+  \draw[line width=0.8pt] (2.8, 0.1) -- (1.705, -0.995);
+
+  % 垂足直角标记
+  \draw[line width=0.5pt] (1.846, -1.136) -- (1.987, -0.995) -- (1.846, -0.854);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{结论：} 由图可知，小熊到\textbf{甲河}的垂线段明显短于到乙河的垂线段。
+
+\textbf{理由：} 从一点到一条直线所画的所有线段中，\textbf{垂线段最短}。
+通过作垂线段比较可知，小熊到甲河的距离更近，因此小熊到\textbf{甲河}捕鱼更近。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 河道双线重构：} 经过精确测算，构建了干流宽度为 $1.0$ 的带状水系。干流位于 $y=0.5$ 与 $y=-0.5$ 构建的水平通道内。甲河向右上分支（斜率 $0.5$），乙河向右下分支（斜率 $-1$）。为保持两支流宽度一致，通过几何包络线计算，求得三线汇聚的“内侧交叉岸角”坐标精确定位于 $(0.85, -0.14)$。\\
+\textbf{2. 垂点定位算法：} 原图中熊的位置位于交叉口右侧，点位坐标落定于 $(2.8, 0.1)$。从该点分别向甲河内岸（直线方程 $x - 2y = 1.13$）与乙河内岸（直线方程 $x + y = 0.71$）计算法向量投影距离。得甲河垂足 $(2.51, 0.69)$，线段长约 $0.66$；乙河垂足 $(1.71, -1.00)$，线段长约 $1.55$。甲河距离在几何学和视觉上均压倒性胜出。\\
+\textbf{3. 正交符号构造：} 在计算得出的各垂足点处，依据所在直线的方向向量 $(u)$ 及其对应法向量 $(v)$，严格按照物理尺度增量生成顶点，最终拼合制成边长统一为 $0.2$ 的直角折线标记。
+}
+
+%% ==============================
+%% 第83题（补充题）：按要求画正方形和长方形
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：过点 $A$ 画垂线和平行线}
+
+\vspace{0.4cm}
+
+\noindent\textbf{4. 过点 $A$ 分别画已知直线的垂线和平行线。}
+
+\vspace{1.2cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0]
+
+  % =========== 基础坐标定义 ===========
+  % 基准线 L1 的两个基准点，设为小角度倾斜
+  \coordinate (P1) at (0, 0.5);
+  \coordinate (P2) at (7, 1.5);
+  % 已知点 A
+  \coordinate (A)  at (1.5, 3.5);
+
+  % =========== 绘制题干已知部分 (黑色) ===========
+  % 1. 已知直线 (线段稍作延长显示为直线效果)
+  \draw[line width=1.0pt, black] ($(P1)!-0.1!(P2)$) -- ($(P1)!1.1!(P2)$);
+  % 2. 标注点 A
+  \fill[black] (A) circle (2.5pt);
+  \node[above left, font=\large] at (A) {$A$};
+
+  % =========== 绘制解答部分 (红色) ===========
+  
+  % 3. 平行线：通过 A，且斜率与基准线 P1P2 一致
+  % 使用 calc 的距离比例语法绘制平行线
+  \draw[line width=1.2pt, red!70!black] ($(A)!-2.5cm!($(A)+(P2)-(P1)$)$) -- ($(A)!5.5cm!($(A)+(P2)-(P1)$)$);
+
+  % 4. 垂线：从 A 垂直指向基准线 P1P2
+  % 利用 calc 的投影语法 (A)!(P1)!(P2) 计算垂足 F
+  \coordinate (F) at ($(P1)!(A)!(P2)$);
+  % 连接 A 与 F，并向两端稍作延伸
+  \draw[line width=1.2pt, red!70!black] ($(A)!-0.3!(F)$) -- ($(A)!1.2!(F)$);
+
+  % 5. 直角标记 (标注在垂足 F 处的 90 度角)
+  \coordinate (R1) at ($(F)!0.35cm!(A)$);
+  \coordinate (R2) at ($(F)!0.35cm!(P1)$);
+  \coordinate (R3) at ($(R1)+(R2)-(F)$);
+  \draw[line width=0.8pt, red!70!black] (R1) -- (R3) -- (R2);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. **画垂线**：采用“靠、移、画”的步骤。将三角尺的一条直角边与已知直线严密重合；平移三角尺，使其另一条直角边经过点 $A$；沿这条直角边通过点 $A$ 向已知直线画线，并标上直角符号。\\
+2. **画平行线**：采用“贴、靠、移、画”的步骤。用一张三角尺的一条边贴住已知直线；用直尺靠在三角尺的另一条边上作为辅助轨道；平移三角尺直到贴着的边经过点 $A$；沿该边画出经过点 $A$ 的直线。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何投影定位 (Orthogonal Projection)}：运用 TikZ \texttt{calc} 库的 \texttt{(!(A)!(B)!(C))} 投影语法，动态捕捉空间中点到直线的最短路径交点（垂足），确保垂线的正交。\\
+\textbf{2. 向量平移技术}：通过获取基准直线的方向向量并将其锚定在点 $A$ 坐标上，实现平行线的快速、精准绘制，避免了手动计算斜率偏差。\\
+\textbf{3. 符号关联锚点}：直角标记采用基于垂足的偏移坐标系构造，能够随着基准线倾斜角度的改变而自动维持几何完整度。\\
+\textbf{4. 标准教学制图色彩}：对题干给定元素使用黑色表现，对解答作图动作使用红色（\texttt{red!70!black}）表现，强化答案提示性。
+}
+
+\vspace{0.8cm}
+
+\newpage
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：过点 A 画垂线和平行线并量距离}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+{\small \textbf{题目要求：} 过点 A 分别画出已知直线的垂线和平行线，再量出点 A 到已知直线的距离。}
+
+\vspace{0.8cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2, >=Stealth]
+    
+    % 1. 点 A 在上方，斜线 (负斜率)
+    \begin{scope}[xshift=0cm]
+      % 已知直线 (斜率 -0.4)
+      \draw[cyan!70!blue, line width=1.2pt] (-2, 0.8) -- (2, -0.8);
+      
+      % 点 A
+      \node[vertex dot] (A1) at (0.5, 1.3) {};
+      \node[right=4pt, font=\small] at (0.5, 1.3) {$A$};
+      
+      % 垂线 (斜率 2.5)
+      % y - 1.3 = 2.5(x - 0.5) => y = 2.5x
+      % 垂足计算: 0.4x + y = 0, y = 2.5x => 2.9x = 0 => x = 0, y = 0
+      \draw[red!70!black, line width=1.0pt] (0.5, 1.3) -- (0, 0);
+      \draw[red!70!black, line width=1.0pt, dashed] (0.5, 1.3) -- (0.7, 1.8);
+      
+      % 平行线 (斜率 -0.4)
+      % y = -0.4x + 1.5
+      \draw[red!70!black, line width=1.0pt] (-1.0, 1.9) -- (2.5, 0.5);
+      
+      % 直角符号 (旋转)
+      % 直线角度: atan(-0.4) = -21.8 度
+      \begin{scope}[shift={(0, 0)}, rotate=-21.8]
+        \draw[red!70!black, thin] (0, 0.2) -- (0.2, 0.2) -- (0.2, 0);
+      \end{scope}
+
+      \node[below=2.5cm] at (0, 0) {(\quad 14\quad ) 毫米};
+    \end{scope}
+
+    % 2. 点 A 在下方，斜线 (正斜率)
+    \begin{scope}[xshift=8cm]
+      % 已知直线 (斜率 0.8)
+      \draw[cyan!70!blue, line width=1.2pt] (-1.5, -1.2) -- (1.5, 1.2);
+      
+      % 点 A
+      \node[vertex dot] (A2) at (1.5, -0.2) {};
+      \node[right=4pt, font=\small] at (1.5, -0.2) {$A$};
+      
+      % 垂线 (斜率 -1.25)
+      % y + 0.2 = -1.25(x - 1.5) => y = -1.25x + 1.675
+      % 垂足计算: 0.8x = -1.25x + 1.675 => 2.05x = 1.675 => x = 0.817, y = 0.654
+      \draw[red!70!black, line width=1.0pt] (1.5, -0.2) -- (0.817, 0.654);
+      \draw[red!70!black, line width=1.0pt, dashed] (1.5, -0.2) -- (1.8, -0.575);
+      
+      % 平行线 (斜率 0.8)
+      % y = 0.8x - 1.4
+      \draw[red!70!black, line width=1.0pt] (0.0, -1.4) -- (2.5, 0.6);
+      
+      % 直角符号 (旋转)
+      % 直线角度: atan(0.8) = 38.66 度
+      \begin{scope}[shift={(0.817, 0.654)}, rotate=38.66]
+        \draw[red!70!black, thin] (0, -0.2) -- (0.2, -0.2) -- (0.2, 0);
+      \end{scope}
+
+      \node[below=2.5cm] at (0.5, 0) {(\quad 11\quad ) 毫米};
+    \end{scope}
+
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.4cm}
+
+% 说明
+{\small
+\textbf{作图与测量说明：} \\
+1. \textbf{画垂线：} 用三角尺的一条直角边与已知直线重合，另一条直角边经过点 A，沿边画出垂线，并标出直角符号。 \\
+2. \textbf{画平行线：} 用三角尺的一条直角边与已知直线重合，另一条直角边靠紧直尺，平移三角尺使直角边经过点 A，画出平行线。 \\
+3. \textbf{量距离：} 点 A 到已知直线的距离就是点 A 到垂足之间线段的长度。在尺子上量出该长度，单位转换为毫米。
+}
+
+
+%% ==============================
+%% 画出从学校到公路的最短路线
+%% ==============================
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：小鸭去小猫家怎样走比较省力}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+{\small \textbf{题目要求：} 小鸭在岸上走路比较吃力，却擅长游泳。它想到小猫家玩，从家出发，怎样走比较省力？}
+
+\vspace{0.8cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2, >=Stealth]
+    
+    % 小河 (不再平行的斜线)
+    % 银行 1: x+y = 2 (斜率 -1)
+    \draw[cyan!70!blue, line width=1.5pt] (-1, 3) -- (2, 0); 
+    % 银行 2: 略微改变斜率，过 (0.5, 3.5) 和 (4, 0.5) (斜率 -0.857)
+    \draw[cyan!70!blue, line width=1.5pt] (0.5, 3.5) -- (4, 0.5);
+    
+    \node[cyan!70!blue, font=\small] at (2.2, 0.8) {小河};
+    
+    % 家的位置
+    \node[vertex dot, blue] (Duck) at (-1.5, 1.5) {};
+    \node[left=4pt, font=\small] at (-1.5, 1.5) {小鸭家};
+    
+    \node[vertex dot, blue] (Cat) at (3.2, 2.5) {};
+    \node[right=4pt, font=\small] at (3.2, 2.5) {小猫家};
+    
+    % 最省力路线 (红色垂线段 + 游泳)
+    % 银行1: x+y = 2. 垂足 Foot1 为 (-0.5, 2.5)
+    \draw[red!70!black, line width=1.2pt] (-1.5, 1.5) -- (-0.5, 2.5);
+    
+    % 银行2: 0.857*x + y = 3.9285. 垂足 Foot2 为 (2.55, 1.74)
+    \draw[red!70!black, line width=1.2pt] (3.2, 2.5) -- (2.55, 1.74);
+    
+    % 游泳路线 (严格限制在河内)
+    \draw[red!70!black, line width=1.2pt, dashed] (-0.5, 2.5) -- (2.55, 1.74);
+    
+    % 直角符号
+    % 银行1 (斜率 -1, 旋转 -45)
+    \begin{scope}[shift={(-0.5, 2.5)}, rotate=-45]
+      \draw[red!70!black, thin] (0, -0.2) -- (0.2, -0.2) -- (0.2, 0);
+    \end{scope}
+    % 银行2 (斜率 -0.857, atan(-0.857) = -40.6 度)
+    \begin{scope}[shift={(2.55, 1.74)}, rotate=-40.6]
+      \draw[red!70!black, thin] (0, 0.2) -- (0.2, 0.2) -- (0.2, 0);
+    \end{scope}
+    
+    \node[below=2cm] at (1, 0) {\textit{（省力路线：先垂直到岸边，再游泳，最后垂直去猫家）}};
+    
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.4cm}
+
+% 说明
+{\small
+\textbf{原理说明：} \\
+1. \textbf{省力原则：} 因为小鸭在岸上走路吃力，所以应尽量缩短在岸上走的路程。 \\
+2. \textbf{垂直最短：} 直线外一点到直线的所有线段中，垂线段最短。因此，从家向河岸作垂线，走路的路程最少。 \\
+3. \textbf{作图步骤：} 分别从小鸭家和小猫家向对应的河岸作垂线，两段垂线段加上水中的游泳路线即为最省力路线。
+}
+
+
+%% ==============================
+%% 长方形和正方形拼图
+%% ==============================
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：过点 A 画平行线和垂线}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+{\small \textbf{题目要求：} 过点 A 分别画出直线 $a$ 的平行线和直线 $b$ 的垂线。}
+
+\vspace{1.0cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2, >=Stealth]
+    % 1. 定义背景直线 a 和 b
+    % 交点 O (2, 1)
+    \coordinate (O) at (2, 1);
+    
+    % 直线 a: 倾斜角约 30 度
+    \draw[cyan!70!blue, line width=0.8pt] (0, 0) -- (4, 2) node[right, black] {$a$};
+    
+    % 直线 b: 倾斜角约 -20 度
+    \draw[cyan!70!blue, line width=0.8pt] (0.5, 1.5) -- (4.5, 0.1) node[right, black] {$b$};
+    
+    % 2. 定义已知点 A
+    \coordinate (A) at (3.5, 2.5);
+    \node[vertex dot, blue] at (A) {};
+    \node[right=3pt, blue] at (A) {$A$};
+    
+    % 3. 画解答部分 (红线)
+    
+    % 过 A 作 a 的平行线 (倾斜角同样为 30 度)
+    % y - 2.5 = tan(30)*(x - 3.5)
+    \draw[red!70!black, line width=1.2pt] (A) ++(210:3) -- (A) -- ++(30:2);
+    \node[above left, red!70!black] at (3.5, 2.5) {\tiny 平行线};
+    
+    % 过 A 作 b 的垂线 (倾斜角 = -20 + 90 = 70 度)
+    \draw[red!70!black, line width=1.2pt] (A) ++(250:2.5) -- (A) -- ++(70:0.5);
+    \node[below right, red!70!black] at (3.5, 2.5) {\tiny 垂线};
+    
+    % 4. 标注直角符号
+    % 垂线倾斜角 70, 直线 b 倾斜角 -20
+    % 垂足位置大致在 (3.0, 0.6) 附近。为了精确，可以使用 TikZ 投影。
+    \coordinate (Foot) at ($(0.5, 1.5)!(A)!(4.5, 0.1)$);
+    \draw[red!70!black, thin] (Foot) -- ++(70:0.3) -- ++(-20:0.3) -- ++(250:0.3);
+
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.4cm}
+
+% 说明
+{\small
+\textbf{作图步骤：} \\
+1. \textbf{画平行线：} 将三角尺的一条直角边与直线 $a$ 重合，用直尺紧靠三角尺的另一条直角边；沿直尺推动三角尺，使原直角边经过点 $A$，沿该边画出直线，即为直线 $a$ 的平行线。 \\
+2. \textbf{画垂线：} 将三角尺的一条直角边与直线 $b$ 重合；沿直线 $b$ 移动三角尺，使三角尺的另一条直角边经过点 $A$，沿该边画出直线，即为直线 $b$ 的垂线。标出直角符号。
+}
+
+
+%% ==============================
+%% 小河过河最短路线
+%% ==============================
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：小河过河最短路线}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+{\small \textbf{题目要求：} 如图，一艘汽艇由点 $A$ 开到河对岸，怎样开路线最短？把路线画出来。}
+
+\vspace{1.0cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.5, >=Stealth]
+    % 1. 绘制河岸
+    % 下岸 (水平)
+    \draw[cyan!70!blue, line width=1.0pt] (0, 0) -- (6, 0);
+    % 上岸 (倾斜)
+    \draw[cyan!70!blue, line width=1.0pt] (0, 1) -- (5.5, 2.5);
+    \node[right] at (6, 1.2) {\small 小河};
+    
+    % 2. 绘制水纹效果 (装饰性)
+    \foreach \n in {1,2,...,15}{
+      \draw[cyan!40!white, thin] ({rand*2.5+3}, {rand*0.6+0.8}) -- ++(0.3, 0);
+    }
+    
+    % 3. 定义出发点 A
+    \coordinate (A) at (2.5, 0);
+    \node[vertex dot, blue] at (A) {};
+    \node[below, blue] at (A) {$A$};
+    
+    % 4. 计算并绘制最短路线 (垂线段)
+    % 对岸直线经过 (0, 1) 和 (5.5, 2.5)
+    % 向量 D = (5.5, 1.5)
+    % 点 P0 = (0, 1)
+    \coordinate (BankTopStart) at (0, 1);
+    \coordinate (BankTopEnd) at (5.5, 2.5);
+    
+    % 使用 TikZ 投影
+    \coordinate (Foot) at ($(BankTopStart)!(A)!(BankTopEnd)$);
+    
+    % 绘制红色的最短路线
+    \draw[red!70!black, line width=1.5pt, dashed] (A) -- (Foot);
+    \node[right=3pt, red!70!black, font=\tiny, rotate=15.25] at ($(A)!0.5!(Foot)$) {最短路线};
+    
+    % 5. 标注直角符号
+    % 上岸倾斜角 atan(1.5/5.5) 约为 15.25 度
+    % 垂线倾斜角约为 105.25 度
+    \draw[red!70!black, thin] (Foot) -- ++(285.25:0.25) -- ++(15.25:0.25) -- ++(105.25:0.25);
+
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.4cm}
+
+% 说明
+{\small
+\textbf{作图解析：} \\
+1. \textbf{核心原理：} 从直线外一点到这条直线所画的所有线段中，**垂直线段**最短。 \\
+2. \textbf{作图方法：} 利用三角尺的直角边，将其一条边与河对岸的直线重合，另一条边经过点 $A$，画出点 $A$ 到对岸的垂直线段。 \\
+3. \textbf{结论：} 这条垂直线段即为汽艇行驶的最短路线。在对岸交点处应标出直角符号。
+}
+
+
+%% ==============================
+%% 将正方形平均分成 4 份的四种方法
+%% ==============================
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：画出从学校到公路的最短路线}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+{\small \textbf{题目要求：} 要修一条从学校到公路的小路，画出最短路线。}
+
+\vspace{0.8cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2, >=Stealth]
+    
+    % 公路 (双线折线) - 间距放大
+    % 内缘: y=1.6, 折点 (1.25, 1.6), 坡度 -1
+    % 外缘: y=2.4, 折点 (1.75, 2.4), 坡度 -1
+    \draw[cyan!70!blue, line width=1.0pt] (-2.2, 2.4) -- (1.75, 2.4) -- (4.35, -0.2); % 外缘
+    \draw[cyan!70!blue, line width=1.0pt] (-1.8, 1.6) -- (1.25, 1.6) -- (3.65, -0.8); % 内缘
+    
+    \node[above, cyan!80!blue] at (0, 2.4) {公路};
+    \node[right, cyan!80!blue, rotate=-45] at (3.2, 0.2) {公路};
+    
+    % 学校 (点) - 坐标计算: (0.82, 0.4)
+    % 距水平线 (y=1.6) 距离: 1.6 - 0.4 = 1.2cm = 12mm
+    % 距斜线 (x+y=2.85) 距离: |0.82+0.4-2.85|/sqrt(2) = 1.63/1.414 = 1.152cm = 11.52mm
+    \node[vertex dot, blue] (School) at (0.82, 0.4) {};
+    \node[left=4pt, font=\small] at (0.82, 0.4) {学校};
+    
+    % 最短路线 (垂线，点到斜线最短)
+    % 垂足计算: 
+    % 斜线过 (1.25, 1.6), 斜率为 -1 => x+y = 2.85
+    % 学校在 (0.82, 0.4), 垂线斜率为 1 => y-0.4 = x-0.82 => y = x - 0.42
+    % 交点: x + (x - 0.42) = 2.85 => 2x = 3.27 => x = 1.635, y = 1.215
+    \draw[red!70!black, line width=1.2pt] (0.82, 0.4) -- (1.635, 1.215);
+    
+    % 直角符号 (旋转并平移到垂足)
+    \begin{scope}[shift={(1.635, 1.215)}, rotate=45]
+      \draw[red!70!black, thin] (-0.2, 0) -- (-0.2, -0.2) -- (0, -0.2);
+    \end{scope}
+    
+    \node[below=1.5cm] at (1, 0) {\textit{（最短路线为垂线段）}};
+    
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.4cm}
+
+% 说明
+{\small
+\textbf{原理说明：} \\
+1. \textbf{点到直线的距离：} 直线外一点到这条直线的所有线段中，垂线段最短。 \\
+2. \textbf{作图：} 从代表“学校”的点向代表“公路”的直线作垂线，这条垂线段就是从学校到公路的最短路线。
+}
+
+
+%% ==============================
+%% 小鸭去小猫家怎样走比较省力
+%% ==============================
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：村庄到公路的最短距离}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent{\small \textbf{题目要求：}点 $P$ 表示一个村庄，要在距离村庄不远地方修一条通往公路的水泥路，怎样修最近？在图上画出来。}
+
+\vspace{1.0cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.5, >=Stealth]
+    % 定义路宽和倾斜角度
+    % 竖直公路左右边缘: x=-0.4 和 x=0.4
+    % 横向倾斜公路上下边缘 (倾斜角约 10 度)
+    
+    % --- 绘制公路轮廓 (cyan!70!blue) ---
+    % 竖直部分
+    \draw[cyan!70!blue, line width=1pt] (-0.4, 0.43) -- (-0.4, 3);
+    \draw[cyan!70!blue, line width=1pt] (0.4, 0.57) -- (0.4, 3);
+    
+    % 倾斜部分 (上边缘被竖直路打断)
+    \draw[cyan!70!blue, line width=1pt] (-3, 0) -- (-0.4, 0.43);
+    \draw[cyan!70!blue, line width=1pt] (0.4, 0.57) -- (3, 1);
+    
+    % 倾斜部分 (下边缘连续)
+    \draw[cyan!70!blue, line width=1pt] (-3, -0.8) -- (3, 0.2);
+
+    % 公路文字
+    \node[gray!80!black] at (0, 2.2) {\small 公};
+    \node[gray!80!black] at (0, 1.4) {\small 路};
+    
+    \node[gray!80!black] at (-1.5, -0.1) {\small 公};
+    \node[gray!80!black] at (1.5, 0.4) {\small 路};
+
+    % --- 绘制村庄 P ---
+    \coordinate (P) at (2.2, 2.2);
+    \fill[cyan!70!blue] (P) circle (1.5pt);
+    \node[right] at (P) {\small $P$};
+
+    % --- 绘制最短路径 (红色) ---
+    % 从 P 向竖直公路的最短路径是水平向左垂线
+    \coordinate (Cross) at (0.4, 2.2);
+    \draw[red!80!black, line width=1.2pt, dashed] (P) -- (Cross);
+
+    % 直角符号
+    \draw[red!80!black, thin] (0.4, 2.35) -- (0.55, 2.35) -- (0.55, 2.2);
+
+  \end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+\hrule
+\vspace{0.4cm}
+
+{\small
+\textbf{作图说明与几何原理：} \\
+1. \textbf{原理}：根据几何学中的公理，“直线外一点到已知直线的所有连线中，\textbf{垂线段最短}”。这也称为点到直线的距离。 \\
+2. \textbf{分析}：观察公路形状，距离村庄 $P$ 点最近的公路路段是左侧竖直方向的公路。因此，我们只需要从点 $P$ 向该竖直公路所在的直线作垂直线段。 \\
+3. \textbf{作图步骤}：
+   \begin{itemize}
+     \item 从点 $P$ 出发，向左作一条水平线段（因为目标公路边缘是竖直的，与其垂直的线必然是水平的）。
+     \item 该线段与竖直公路的右侧边缘相交。
+     \item 在交点处标上直角符号（$\llcorner$），表示这条路是垂直于公路的。
+   \end{itemize}
+这根红色的虚线线段就是修筑通往公路最短水泥路的方案。
+}
+
+
+%% ==============================
+%% 三年级一班男生1分钟跳绳成绩统计图
+%% ==============================
+
+\newpage
+
+\subsection{第 6 题：垂线与平行线}
+
+\textbf{6.} 过直线外一点 $A$，分别画已知直线 $l$ 的垂线和平行线。
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}[>={Stealth[length=6pt]}, line width=0.8pt]
+  % 利用 rotate 旋转坐标系，将作图过程降维成单纯的水平和垂直
+  \def\angle{15}
+  
+  \begin{scope}[rotate=\angle]
+    % 1. 已知直线 l (局部水平)
+    \draw[gray, line width=0.6pt] (-3.5, 0) -- (3.5, 0) node[right, text=black] {$l$};
+    
+    % 2. 已知点 A 
+    % 因答案填空要求为 2cm，在默认 1单位=1cm 的 TikZ 中，
+    % 将点 A 纵坐标定为 2，如此垂线距离就会恰好满足比例的 2 厘米。
+    \fill (-1, 2) circle (1.5pt) node[left=3pt, above left] {$A$};
+    
+    % 3. 平行线 (过 A 且平行于 l，即画局部的水平直线 y=2)
+    \draw[black, line width=1.2pt] (-3.5, 2) -- (2.5, 2);
+    
+    % 4. 垂线 (过 A 且垂直于 l，即画局部的垂直线段 x=-1)
+    \draw[black, line width=1.2pt] (-1, 2) -- (-1, 0);
+    
+    % 5. 垂直的直角符号 (边长 0.2)
+    \draw[black, line width=0.6pt] (-1, 0.2) -- (-0.8, 0.2) -- (-0.8, 0);
+  \end{scope}
+\end{tikzpicture}
+
+\vspace{0.8cm}
+{\Large 点 $A$ 到直线 $l$ 的距离是 (\;\textcolor{blue}{2}\;) 厘米。}
+\end{center}
+
+\vspace{0.5cm}
+\textbf{绘图原理：}
+\begin{enumerate}
+    \item \textbf{局部偏转系：} 设定 \texttt{\textbackslash begin\{scope\}[rotate=15]} 构成偏置 $15^\circ$ 的局部参照态，规避了直接三角计算。
+    \item \textbf{线距尺度：} 设定已知源线段于 $y=0$ 位置。指定点 $A$ 置居 $(-1,2)$ 位置，使得垂线长在参数绝对量与实际长度显示中均严定为 $2\text{cm}$。
+    \item \textbf{平垂生成：} 源点 $A$ 横出的段线表示其过点的平行状态；点 $A$ 笔直下落则表示其垂线落轨状况，附着对应的角标以供图纸阅读。
+\end{enumerate}
+
+\vspace{1.5cm}

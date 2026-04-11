@@ -1,0 +1,588 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 图形变换_平移
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：平移组合图案设计}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 17.} \textbf{设计一个图案，使其可以由一个基本图形经过多次平移后组合得到，并给它赋予一定的含义。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）设计思路：}
+
+选取\textbf{"拼图块"}（带凸凹卡口的异形方块）作为基本图形。该形状的右侧有一个半圆形凸起，左侧有一个对应的半圆形凹槽：
+\begin{itemize}
+    \item \textbf{水平平移：}将基本图形向右平移 $1.8$ 厘米，后一块的左侧凹槽恰好吞入前一块的右侧凸起，形成咬合。重复 $3$ 次，组成一行 $4$ 块互锁链条。
+    \item \textbf{垂直平移：}将整行向下平移 $1.4$ 厘米，重复 $2$ 次，形成 $3$ 行 $\times$ $4$ 列共 $12$ 块全方位镶嵌阵列。
+\end{itemize}
+
+\textbf{图案含义：} \lq \lq 团结协作\rq \rq ——每一块拼图都不可或缺，只有通过紧密配合（平移拼接），才能组成完整的画面，象征团队合作的力量。
+
+\vspace{0.4cm}
+\textbf{（2）基本图形与完整图案：}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round]
+
+  % ---- 定义拼图块路径宏 ----
+  % 参数 #1=x偏移, #2=y偏移, #3=填充色
+  % 块体尺寸：宽约1.8cm，高约1.4cm
+  % 右侧凸起半圆（半径0.18），左侧凹入半圆（半径0.18）
+  \newcommand{\puzzle}[3]{
+    \begin{scope}[xshift=#1 cm, yshift=#2 cm]
+      \fill[#3, draw=black!70, line width=0.5pt]
+        (0, 0) -- (0.7, 0)
+        % 底部凸起
+        arc[start angle=180, end angle=0, radius=0.18]
+        -- (1.8, 0)
+        -- (1.8, 0.5)
+        % 右侧凸起
+        arc[start angle=-90, end angle=90, radius=0.18]
+        -- (1.8, 1.4)
+        -- (1.06, 1.4)
+        % 顶部凹入
+        arc[start angle=0, end angle=180, radius=0.18]
+        -- (0, 1.4)
+        -- (0, 0.86)
+        % 左侧凹入
+        arc[start angle=90, end angle=-90, radius=0.18]
+        -- cycle;
+    \end{scope}
+  }
+
+  % ---- 左侧：展示基本图形 ----
+  \node[font=\large\bfseries, above] at (0.9, 2.0) {基本图形};
+  \puzzle{0}{0}{orange!40}
+
+  % 标注凸凹特征
+  \draw[->, line width=0.5pt, blue!80!black] (2.3, 0.7) -- (2.0, 0.7);
+  \node[right, font=\footnotesize, text=blue!80!black] at (2.3, 0.7) {凸起};
+  \draw[->, line width=0.5pt, blue!80!black] (-0.6, 0.7) -- (-0.15, 0.7);
+  \node[left, font=\footnotesize, text=blue!80!black] at (-0.6, 0.7) {凹槽};
+
+  % ---- 中间：平移箭头指引 ----
+  \draw[->, line width=1.2pt, blue!80!black] (3.4, 0.7) -- (4.6, 0.7);
+  \node[above, font=\small, text=blue!80!black] at (4, 0.8) {平移};
+
+  % ---- 右侧：完整图案（4列 × 3行拼图阵列）----
+  \node[font=\large\bfseries, above] at (8.1, 5.0) {完整图案：\lq \lq 团结协作\rq \rq };
+
+  % 定义四种颜色交替排布
+  % 第 1 行 (y=2.8)
+  \puzzle{4.5}{2.8}{red!30}
+  \puzzle{6.3}{2.8}{cyan!30}
+  \puzzle{8.1}{2.8}{yellow!40}
+  \puzzle{9.9}{2.8}{green!30}
+
+  % 第 2 行 (y=1.4)
+  \puzzle{4.5}{1.4}{cyan!30}
+  \puzzle{6.3}{1.4}{yellow!40}
+  \puzzle{8.1}{1.4}{green!30}
+  \puzzle{9.9}{1.4}{red!30}
+
+  % 第 3 行 (y=0)
+  \puzzle{4.5}{0}{yellow!40}
+  \puzzle{6.3}{0}{green!30}
+  \puzzle{8.1}{0}{red!30}
+  \puzzle{9.9}{0}{cyan!30}
+
+  % ---- 标注平移方向与距离 ----
+  % 水平平移标注
+  \draw[<->, line width=0.6pt, blue!80!black] (5.4, 4.6) -- (7.2, 4.6);
+  \node[above, font=\footnotesize, text=blue!80!black] at (6.3, 4.6) {向右平移};
+
+  % 垂直平移标注
+  \draw[<->, line width=0.6pt, blue!80!black] (12.2, 2.8) -- (12.2, 1.4);
+  \node[right, font=\footnotesize, text=blue!80!black] at (12.2, 2.1) {向下平移};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 基本图形构造：} 拼图块主体为 $1.8 \times 1.4$ cm 矩形，右侧和底部各带一个半径 $0.18$ cm 的半圆凸起（\texttt{arc} 外弧），左侧和顶部各带一个对应的半圆凹槽（\texttt{arc} 内弧）。凸凹尺寸严格匹配，确保平移后咬合。\\
+\textbf{2. 平移实现方式：} 定义 \texttt{\textbackslash{}puzzle\{x\}\{y\}\{color\}} 宏，通过 \texttt{xshift/yshift} 控制平移。水平间距 $1.8$ cm（等于块宽），垂直间距 $1.4$ cm（等于块高），共 $4 \times 3 = 12$ 块。每块凸起恰好嵌入相邻块的凹槽。\\
+\textbf{3. 颜色编码：} 使用红、青、黄、绿四色循环填充，使相邻块易于区分，清晰展示每块的独立性与整体的组合性。\\
+\textbf{4. 标注系统：} 左侧展示单个拼图块并标注凸凹特征，右侧完整阵列附带平移方向和距离标注。
+}
+%% ==============================
+%% 第33题（补充题）：多边形轴对称图形判断
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：网格图中的图形平移}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 49.} \textbf{（例 1）如图 9-2，平移 $\triangle ABC$，使点 $A$ 移动到点 $D$ 的位置。}
+
+\textbf{（1）画出平移后所得的 $\triangle DEF$，并写出对应点、对应边、对应角。}
+
+\textbf{（2）结合平移的定义，写出 $\triangle DEF$ 是由 $\triangle ABC$ 经过怎样的平移得到的。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）画图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8]
+  % 绘制网格背景 (13x7)
+  \draw[dashed, gray] (0,0) grid (15,9);
+  
+  % 定义坐标
+  \coordinate (A) at (5,7);
+  \coordinate (B) at (3,3);
+  \coordinate (C) at (7,4);
+  \coordinate (D) at (13,6);
+  \coordinate (E) at (11,2);
+  \coordinate (F) at (15,3);
+  
+  % 绘制原三角形 ABC (黑色)
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \filldraw[black] (A) circle (1.5pt);
+  \filldraw[black] (B) circle (1.5pt);
+  \filldraw[black] (C) circle (1.5pt);
+  \node[above] at (A) {$A$};
+  \node[below left] at (B) {$B$};
+  \node[below right] at (C) {$C$};
+  
+  % 绘制平移后的三角形 DEF (红色显示区分)
+  \draw[thick, red] (D) -- (E) -- (F) -- cycle;
+  \filldraw[red] (D) circle (1.5pt);
+  \filldraw[red] (E) circle (1.5pt);
+  \filldraw[red] (F) circle (1.5pt);
+  \node[above right, text=red] at (D) {$D$};
+  \node[below left, text=red] at (E) {$E$};
+  \node[below right, text=red] at (F) {$F$};
+
+  % 补充平移的虚线箭头
+  \draw[->, dashed, blue!70] (A) -- (D);
+  \draw[->, dashed, blue!70] (B) -- (E);
+  \draw[->, dashed, blue!70] (C) -- (F);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+\textbf{对应关系：}
+
+对应点：点 $A$ 和点 $D$，点 $B$ 和点 $E$，点 $C$ 和点 $F$。
+
+对应边：线段 $AB$ 和 $DE$，线段 $BC$ 和 $EF$，线段 $AC$ 和 $DF$。
+
+对应角：$\angle BAC$ 和 $\angle EDF$，$\angle ABC$ 和 $\angle DEF$，$\angle ACB$ 和 $\angle DFE$。
+
+\vspace{0.4cm}
+\textbf{（2）平移过程说明：}
+
+观察网格可知，把点 $A$ 移动到点 $D$ 的位置，相当于将其\textbf{向右平移了 $\mathbf{6}$ 个单位长度，再向下平移了 $\mathbf{1}$ 个单位长度}。
+
+因此，$\triangle DEF$ 是由 $\triangle ABC$ 经过\textbf{向右平移 $\mathbf{6}$ 个单位长度，再向下平移 $\mathbf{1}$ 个单位长度}得到的。（或者描述为：沿射线 $AD$ 的方向，平移线段 $AD$ 的长度。）
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 网格与坐标系：} 建立大小为 $13 \times 7$ 的 \texttt{dashed} 虚线网格系统，左下角定为 $(0,0)$。\\
+\textbf{2. 顶点推算：} 观察原图设定点 $B(2,2)$，向右 $3$ 向上 $1$ 得 $C(5,3)$，从 $B$ 向右 $2$ 向上 $3$ 定出 $A(4,5)$。从 $A$ 向右 $6$ 向下 $1$ 得目标点 $D(10,4)$。\\
+\textbf{3. 向量平移：} 求出平移向量 $\vec{v} = (6, -1)$，得到对应点 $E = B + \vec{v} = (8,1)$ 和 $F = C + \vec{v} = (11,2)$。\\
+\textbf{4. 图形渲染：} 用黑色实线绘制 $\triangle ABC$；用红色描绘平移后的 $\triangle DEF$ 并附以蓝色虚线箭头指示对应点的平移轨迹方向，使作图清晰直观且便于区分原图与目标图。
+}
+
+%% ==============================
+%% 第59题（补充题）：三角形平移的两种作图方法
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：三角形平移的两种作图方法}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 50.} \textbf{（例 1）已知 $\triangle ABC$ 的顶点 $A$ 平移到顶点 $D$，请用两种不同的方法，在图 9-5 中作出平移后的图形。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）方法一：利用“经过平移，对应点所连的线段平行且相等”作图。}
+
+\textbf{作法：}
+
+① 分别过点 $B$、$C$ 作射线 $AD$ 的平行线；
+
+② 在所作的平行线上沿 $A \to D$ 的方向分别截取 $BE = AD$，$CF = AD$，得到点 $B$ 的对应点 $E$ 和点 $C$ 的对应点 $F$；
+
+③ 顺次连接 $D$、$E$、$F$。$\triangle DEF$ 即为所求作的图形。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.9]
+  % 坐标设定
+  \coordinate (A) at (1, 3);
+  \coordinate (B) at (0, 0);
+  \coordinate (C) at (2.5, 0.5);
+  \coordinate (D) at (5, 2.5);
+  
+  \coordinate (E) at (4, -0.5);
+  \coordinate (F) at (6.5, 0);
+
+  % 原三角形
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \filldraw (A) circle (1.2pt) node[above] {$A$};
+  \filldraw (B) circle (1.2pt) node[below left] {$B$};
+  \filldraw (C) circle (1.2pt) node[below right] {$C$};
+  
+  % 点D
+  \filldraw (D) circle (1.2pt) node[above] {$D$};
+  
+  % 连线对应点 (作法一的特征)
+  \draw[dashed, blue!80, ->] (A) -- (D);
+  \draw[dashed, blue!80, ->] (B) -- (E);
+  \draw[dashed, blue!80, ->] (C) -- (F);
+
+  % 目标三角形
+  \draw[thick, red] (D) -- (E) -- (F) -- cycle;
+  \filldraw[red] (E) circle (1.2pt) node[below left, text=red] {$E$};
+  \filldraw[red] (F) circle (1.2pt) node[below right, text=red] {$F$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）方法二：利用“经过平移，对应线段平行且相等”作图。}
+
+\textbf{作法：}
+
+① 过点 $D$ 作线段 $AB$ 的平行线，并在该线上沿 $A \to B$ 的方向截取 $DE = AB$，得到点 $B$ 的对应点 $E$；
+
+② 过点 $D$ 作线段 $AC$ 的平行线，并在该线上沿 $A \to C$ 的方向截取 $DF = AC$，得到点 $C$ 的对应点 $F$；
+
+③ 连接 $EF$。$\triangle DEF$ 即为所求作的图形。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.9]
+  % 坐标设定
+  \coordinate (A) at (1, 3);
+  \coordinate (B) at (0, 0);
+  \coordinate (C) at (2.5, 0.5);
+  \coordinate (D) at (5, 2.5);
+  
+  \coordinate (E) at (4, -0.5);
+  \coordinate (F) at (6.5, 0);
+
+  % 原三角形
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \filldraw (A) circle (1.2pt) node[above] {$A$};
+  \filldraw (B) circle (1.2pt) node[below left] {$B$};
+  \filldraw (C) circle (1.2pt) node[below right] {$C$};
+  
+  % 点D与平移向量示意
+  \filldraw (D) circle (1.2pt) node[above] {$D$};
+  \draw[dashed, gray] (A) -- (D);
+
+  % 作法二的特征：作平行边 (只呈现最终红边和少许延长引线)
+  \draw[dashed, orange] (D) -- (E); 
+  \draw[dashed, orange] (D) -- (F);
+
+  % 目标三角形
+  \draw[thick, red] (D) -- (E) -- (F) -- cycle;
+  \filldraw[red] (E) circle (1.2pt) node[below left, text=red] {$E$};
+  \filldraw[red] (F) circle (1.2pt) node[below right, text=red] {$F$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 图形定位：} 设置原图基准比例点 $A(1,3), B(0,0), C(2.5,0.5)$ 以及目标点 $D(5,2.5)$。计算平移向量为 $\vec{v} = D-A = (4,-0.5)$，由此求出 $E = B + \vec{v} = (4,-0.5)$，及 $F = C + \vec{v} = (6.5,0)$。\\
+\textbf{2. 方法一特征绘图：} 核心为“对应点连线长短一致、互相平行”。用\texttt{dashed, blue!80, ->}蓝色虚线箭头连接对应顶点 $A \to D$、$B \to E$、$C \to F$ 直观展示每个顶点的位移过程。\\
+\textbf{3. 方法二特征绘图：} 核心为“对应边平行且相等”。图中省略了连接其余顶点的连线（仅保留了灰色的 $AD$ 参照），通过绘制橙色虚线底层与红色的平移线段重叠，体现由已知点 $D$ 引出的平行线逻辑。\\
+\textbf{4. 图形呈现：} 统一原图图形为黑色实线，平移构成的目标图形 $\triangle DEF$ 加上红色实线与端点以高亮区分。两图上下呼应体现“异曲同工”。
+}
+
+%% ==============================
+%% 第60题（补充题）：轴对称图形的画法
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：平移的两次中心旋转等效变换}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 56.} \textbf{（第 5 题）如图，已知 $\triangle A'B'C'$ 是由 $\triangle ABC$ 经过平移得到的。 $\triangle A'B'C'$ 是否还可以看作由 $\triangle ABC$ 经过两次旋转得到？若能，请画出示意图；若不能，请说明理由。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{能看作是由两次旋转得到的。}
+
+\textbf{理由与示意图作法：} 
+
+根据几何原理，任意一个**平移**变换都可以分解为**连续两次 $180^\circ$ 的旋转（即中心对称）**。
+我们可以在空间中任意提取一个中转核心 $O_1$，将 $\triangle ABC$ 绕点 $O_1$ 先旋转 $180^\circ$ 得到过渡图形 $\triangle A_1B_1C_1$；然后再在过渡图形对应顶点（如 $A_1$）与目标图形对应顶点（如 $A'$）之间取中点作为第二个中心 $O_2$，将 $\triangle A_1B_1C_1$ 绕着点 $O_2$ 再度旋转 $180^\circ$，即可成功翻折得出平移体 $\triangle A'B'C'$。
+
+\textbf{示意图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8]
+  % 定义原三角形坐标 (依比例 800宽, 630横 x 510高 缩放构建, 缩小200倍)
+  \coordinate (A) at (0.15, 2.05);
+  \coordinate (B) at (-3, -0.5);
+  \coordinate (C) at (1, -0.5);
+
+  % 设定平移向量 v = (5, 1)，得出目标三角形
+  \coordinate (A') at (5.15, 3.05);
+  \coordinate (B') at (2, 0.5);
+  \coordinate (C') at (6, 0.5);
+
+  % 任意选取第一次旋转中心 O_1
+  \coordinate (O1) at (0.5, -1.5);
+  
+  % 计算过渡三角形 A1, B1, C1 (绕 O1 旋转 180 度，即基于 O1 的镜像点)
+  \coordinate (A1) at (0.85, -5.05);
+  \coordinate (B1) at (4, -2.5);
+  \coordinate (C1) at (0, -2.5);
+  
+  % 计算第二次旋转中心 O_2，为 A1 和 A' 的中点
+  \coordinate (O2) at (3, -1);
+
+  % 过渡三角形 (灰色虚线)
+  \draw[dashed, gray, thick] (A1) -- (B1) -- (C1) -- cycle;
+  \filldraw[gray] (A1) circle (1.5pt) node[below] {$A_1$};
+  \filldraw[gray] (B1) circle (1.5pt) node[right] {$B_1$};
+  \filldraw[gray] (C1) circle (1.5pt) node[left] {$C_1$};
+
+  % 原三角形
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \filldraw (A) circle (1.5pt) node[above] {$A$};
+  \filldraw (B) circle (1.5pt) node[left] {$B$};
+  \filldraw (C) circle (1.5pt) node[right] {$C$};
+
+  % 目标三角形
+  \draw[thick, red] (A') -- (B') -- (C') -- cycle;
+  \filldraw[red] (A') circle (1.5pt) node[above, text=red] {$A'$};
+  \filldraw[red] (B') circle (1.5pt) node[left, text=red] {$B'$};
+  \filldraw[red] (C') circle (1.5pt) node[right, text=red] {$C'$};
+
+  % 旋转中心点 (橙色)
+  \filldraw[orange] (O1) circle (1.5pt) node[above right, text=orange] {$O_1$};
+  \filldraw[orange] (O2) circle (1.5pt) node[left, text=orange] {$O_2$};
+
+  % 旋转辅助线 (仅以顶点 A 的转变为例进行视觉指引)
+  \draw[dashed, blue!50] (A) -- (A1);
+  \draw[dashed, blue!50] (A1) -- (A');
+  
+  % O1 圆弧指示 (旋转 180度, 环绕 O1 的左侧)
+  \draw[orange, ->] (O1) ++(100:0.8) arc (100:280:0.8);
+  \node[orange, font=\small] at (-0.8, -1.7) {$180^\circ$};
+
+  % O2 圆弧指示 (旋转 180度, 环绕 O2 的右下侧)
+  \draw[orange, ->] (O2) ++(-112:0.8) arc (-112:68:0.8);
+  \node[orange, font=\small] at (4.2, -1.4) {$180^\circ$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 证明拆解依据：} 数学性质定理指引：任意两次中心点的 $180^\circ$ 旋转必定等同于单一的一个平移变换，并且该平移向量 $\vec{v}$ 的模等同于两旋转中心距离 $O_1 O_2$ 的 2 倍（极向同理）。\\
+\textbf{2. 虚拟构建系建立：} 设原 $\triangle ABC$ 左下角置于第三象限。平移出红色目标图形 $\triangle A'B'C'$。\\
+\textbf{3. 推导出中转图与 O 点：} 任意选定点 $O_1(0.5, -1.5)$，并藉 $A \to A_1$ 推算全图点绕 $O_1$ 的 $180^\circ$（点反衍）坐标，汇聚成由灰色虚线构成的过渡态 $\triangle A_1B_1C_1$。随后严格定义出过渡点 $A_1$ 运动到终点 $A'$ 的中点即为确切的二次旋转圆心 $O_2(3,-1)$。\\
+\textbf{4. 定向旋转诠释辅助线：} 不添加繁杂的全部网状连线，仅抽取最具有代表性的端点动作流 $A \to O_1 \to A_1 \to O_2 \to A'$，以蓝紫色虚点划线作为骨架关联，以贴身橙色 $180^\circ$ 弧形指向标展示连续两次扭转。
+}
+
+%% ==============================
+%% 第66题（补充题）：选择合适的统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：图形的平移与面积转化}
+
+\vspace{0.4cm}
+
+\noindent\textbf{4. 把下面平行四边形中的涂色三角形向右平移 5 格，看一看，平移后的三角形与平行四边形中的空白部分组成了一个什么图形？ (\makebox[2cm][c]{\textcolor{blue}{\textbf{长方形}}})}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt, scale=0.75] % 整体思路：先画方格背景，再画原平行四边形及左侧阴影三角形，接着把这个三角形按“向右平移 5 格”得到新位置，用箭头说明移动过程
+
+  % 外层实线网格边框
+  \draw[gray, thin] (0,0) rectangle (11,5); % 画最外层矩形边框，范围是 11×5 的方格区域
+  % 内部虚线网格
+  \draw[gray, dashed, thin, step=1] (0,0) grid (11,5); % 用步长 1 的虚线网格填满区域；step=1 表示每格边长为 1 个坐标单位
+  % 再绘制一次清晰的实线外框以覆盖重叠的虚线边角
+  \draw[gray, thin] (0,0) rectangle (11,5); % 再描一次实线边框，使外框不被虚线削弱
+
+  % 原始平行四边形在方格图中的严谨真实坐标
+  \coordinate (A) at (2,1); % 定义原平行四边形左下顶点 A
+  \coordinate (B) at (7,1); % 定义原平行四边形右下顶点 B
+  \coordinate (C) at (9,4); % 定义右上顶点 C，较底边向右偏 2 格、向上 3 格
+  \coordinate (D) at (4,4); % 定义左上顶点 D
+  \coordinate (H) at (4,1); % 定义高的垂足 H，也是左侧小三角形在底边上的右端点
+
+  % 原涂色三角形 (灰色)
+  \fill[black!30] (A) -- (H) -- (D) -- cycle; % 填充左侧直角三角形 AHD，作为要平移的涂色部分
+  
+  % 原平行四边形黑色实线轮廓
+  \draw (A) -- (B) -- (C) -- (D) -- cycle; % 画原平行四边形外轮廓
+  % 内部高线 (作为三角形和右侧空白部分的分割线)
+  \draw (D) -- (H); % 画内部高线 DH，把平行四边形分成左侧三角形与右侧空白部分
+  
+  % 原图中直角标记标注在高的右边
+  \pic [draw, line width=0.8pt, angle radius=0.25cm] {right angle = D--H--B}; % 在 H 处画直角标记，说明 DH 垂直于底边 HB
+
+  % --- 平移后的目标位置三角形 ---
+  % 根据题意严格按比例：横向坐标向右平移 +5，纵向坐标 +0
+  \coordinate (A') at (7,1); % 平移后点 A'，即原 A 向右移动 5 格的位置
+  \coordinate (H') at (9,1); % 平移后点 H'
+  \coordinate (D') at (9,4); % 平移后点 D'，正好与原顶点 C 重合
+  
+  % 平移辅助箭头
+  \draw[->, blue, line width=1.4pt] (3.0, 2.5) -- (8.0, 2.5); % 画蓝色箭头表示平移方向与距离；箭头从左向右
+  \node[blue, above, font=\small, fill=white, inner sep=2pt] at (6, 2.5) {向右平移 5 格}; % 在箭头上方放说明文字；fill=white 给节点白底，避免与网格线重叠
+  
+  % 平移后的新三角形填色与虚线轮廓 (以淡蓝色突显出它的平移结果痕迹)
+  \fill[blue!15, opacity=0.8] (A') -- (H') -- (D') -- cycle; % 在平移后位置填充淡蓝色三角形，表示新位置的图形；opacity=0.8 表示略带透明度
+  \draw[blue, dashed, line width=1.2pt] (A') -- (H') -- (D') -- cycle; % 用蓝色虚线描出平移后三角形轮廓
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+{\small\color{gray}
+\textbf{解析：}\\
+观察方格图可以看出，左侧涂色的三角形是一个底边长为 $2$ 格、高为 $3$ 格的直角三角形。平行四边形被高切分开后，其右边空出的部分由于原先是平行倾斜的所以有一个正好也是底向外延展了 $2$ 格、高为 $3$ 格的缺口形补位。\\
+当我们把这块涂色的三角形严格沿着格子\textbf{向右平移 5 格}（代码中的坐标精准体现了由横向长度相加 $5$ 推导而来）后，它的垂直边完全平移到了 $x=9$ 的纵线上，而其斜边则地同平行四边形原本右侧的那条倾斜边（从 $(7,1)$ 到 $(9,4)$）重合了。平移补齐后，与原有的右侧空白部分拼放在一起，形成了左右边都为铅质垂线、上下边都在水平网格线上的新四边形。数一数下方的网格可知，这个新图形的长边为平移落差赋予的 $5$ 个单位、短边（宽）为原来的高 $3$ 个单位，且四个角通过平移互补都被凑成了规整的直角，因此这个合并后的图形是一个\textbf{长方形}。
+}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 同底等高的平行四边形画法
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：先画一个图形，再进行平移和旋转，设计出美丽的图案}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=0.72]
+  
+  % ===================================
+  % 底板：16 x 8 方格虚线网格
+  % ===================================
+  \foreach \y in {1,...,7} {
+    \draw[gray!45, dashed, line width=0.4pt] (0,\y) -- (16,\y);
+  }
+  \foreach \x in {1,...,15} {
+    \draw[gray!45, dashed, line width=0.4pt] (\x,0) -- (\x,8);
+  }
+  \draw[black, line width=1.2pt] (0,0) rectangle (16,8);
+
+  % ===================================
+  % 统一图案线条样式：深蓝粗线、无填色
+  % 参考了原图浓重的纯几何线条特征
+  % ===================================
+  \tikzset{
+    blueLine/.style={draw=blue!85!black, line width=1.5pt}
+  }
+
+  % ===================================
+  % 贯穿所有风车中心的水平轴线
+  % 覆盖范围从全体风车最左端 (x=0) 到最右端 (x=16)
+  % ===================================
+  \draw[blueLine] (0, 4) -- (16, 4);
+
+  % ===================================
+  % 循环：构造中心位于 cx=3, 8, 13 的 3 个“四叶风车”图案
+  %
+  % 步骤 1：构造一个非等腰直角三角形
+  %         直角顶点在 (cx,4), 两个直角边分别是 3(水平) 和 2(垂直) 
+  % 步骤 2：绕中心点连续 3 次顺时针旋转 90 度，得到 4 个直角三角形
+  %         这 4 个不对称的三角形刚好重叠形成了一个大风车
+  % 步骤 3：整行风车的平移间距为 5，由于长尖瓣长 3，短尖瓣长 2，
+  %         前一风车的长尖与后一风车的短尖正好在网格交叉点零误差重叠连接
+  % ===================================
+  \foreach \cx in {3, 8, 13} {
+    
+    % 十字骨架（除中心平轴外，补齐垂直直角边）
+    \draw[blueLine] (\cx, 1) -- (\cx, 7);
+    
+    % 连接四个象限的直角三角形斜边
+    % 1. 右上角：横边 3，竖高 2
+    \draw[blueLine] (\cx+3, 4) -- (\cx, 6);
+    
+    % 2. 右下角：竖深 3，横宽 2 (顺时针旋转90度)
+    \draw[blueLine] (\cx, 1) -- (\cx+2, 4);
+    
+    % 3. 左下角：横宽 3，竖深 2 (再旋转90度)
+    \draw[blueLine] (\cx-3, 4) -- (\cx, 2);
+    
+    % 4. 左上角：竖高 3，横宽 2 (再旋转90度)
+    \draw[blueLine] (\cx, 7) -- (\cx-2, 4);
+    
+    % ===================================
+    % 在该风车构架的所有外围尖端和直角节点上添加明显的黑色圆点
+    % ===================================
+    \fill[black] (\cx, 4) circle (2.2pt);     % 中心
+    \fill[black] (\cx+3, 4) circle (2.2pt);   % 右长尖
+    \fill[black] (\cx, 6) circle (2.2pt);     % 上短尖
+    \fill[black] (\cx, 1) circle (2.2pt);     % 下长尖
+    \fill[black] (\cx+2, 4) circle (2.2pt);   % 右短尖
+    \fill[black] (\cx-3, 4) circle (2.2pt);   % 左长尖
+    \fill[black] (\cx, 2) circle (2.2pt);     % 下短尖
+    \fill[black] (\cx, 7) circle (2.2pt);     % 上长尖
+    \fill[black] (\cx-2, 4) circle (2.2pt);   % 左短尖
+  }
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{基本图形（直角三角形）}：如图所示，首先构造一个底边长为 3 格、高为 2 格的非等腰直角三角形。\\
+2. \textbf{旋转成风车}：以该直角的顶点为中心，将它连续 3 次顺时针旋转 $90^\circ$（共表现出 4 个方向）。由于两条直角边长度不同（分别为 3 和 2），原本单个的直角三角形相互交叠咬合后，轮廓刚好形成了一个具有独特动感与中心对称美感的“四叶风车”图案。\\
+3. \textbf{平移串联}：将这枚由旋转诞生的“四叶风车”作为一个整体单元，沿着原有的水平中线进行 2 次向右平移，平移的间隔距离精心设计为 5 个方格。这样一来，前一个风车长长的横向尖端（长 3 格）刚好与后一个风车的反向短尖端（长 2 格）合拢。最终组合成了一排连绵不断、首尾相扣的绝美几何图案。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 矩阵旋转衍生风车：}确定单个图案的直角中心坐标 $(x_c, 4)$。绘制第一象限（直角边分别是 3 和 2）的直角三角形后，连续应用 $90^\circ$ 旋转变换 $(x,y) \to (y,-x)$ 推导出其余三个不对称叶片的交叠位置，形成一个标准的四片风车单元。\\
+\textbf{2. 剥离填充与线形重塑：}参考参考图的特有风格，完全去掉色彩填充，仅使用统一配置的粗线条（\texttt{line width=1.5pt}）和深蓝色绘制外沿框架与公共中线，毫无保留地展现依靠“平移加旋转”构造出来的几何内在秩序美。\\
+\textbf{3. 步进平移参数计算：}引入循环 $x_c \in \{3, 8, 13\}$ 执行精确位移。因为风车水平方向外缘最长端点在 $(xc+3)$，而反向较短端点在 $(xc-2)$，若平移步长设为 5，则前一尖端坐标恰好完全等于下一次循环后的反向端点坐标 $(xc+5-2)$。借此代数巧合打造出视觉上的交接，最后在系统图元的各顶点补全黑色节点描绘从而强化手绘感。
+}
+
+%% ==============================
+%% 补充题：找出等式与方程并连一连
+%% ==============================
+\newpage

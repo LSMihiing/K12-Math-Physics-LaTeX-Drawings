@@ -1,0 +1,765 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 三角形画高
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：画同底等高的平行四边形}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 下面的这组平行线之间已经画了一个平行四边形。在这组平行线之间再画两个平行四边形，并使它们与已知的平行四边形等底等高。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：先画上下两条平行线，再在同一条底边 AB 上画三个顶点不同、但都落在上方平行线上的平行四边形，以体现“同底等高”
+
+  % 辅助平行线
+  \draw[gray, thick] (-0.5, 2.5) -- (12.5, 2.5); % 画上方辅助平行线，高度固定为 y=2.5
+  \draw[gray, thick] (-0.5, 0) -- (12.5, 0); % 画下方辅助平行线，作为共用底边所在直线
+
+  % 基准坐标
+  \coordinate (A) at (2.5, 0); % 共用底边左端点 A
+  \coordinate (B) at (6.5, 0); % 共用底边右端点 B，AB 长为 4
+  
+  % 原先的灰色平行四边形 (根据原图像素严格推导：高2.5, 底宽4, 底高比1.6:1, 基本水平倾斜距离1.25)
+  \coordinate (D) at (3.75, 2.5); % 原灰色平行四边形的左上点 D
+  \coordinate (C) at (7.75, 2.5); % 原灰色平行四边形的右上点 C
+  
+  \fill[black!30] (A) -- (B) -- (C) -- (D) -- cycle; % 先填充原有的灰色平行四边形
+  \draw (A) -- (B) -- (C) -- (D) -- cycle; % 再描边画出原平行四边形轮廓
+
+  % 第一个补充的平行四边形 (红色)
+  \coordinate (D_red) at (5.5, 2.5); % 第一个新增平行四边形的左上点
+  \coordinate (C_red) at (9.5, 2.5); % 第一个新增平行四边形的右上点，与 AB 等长
+  \draw[red, thick] (A) -- (B) -- (C_red) -- (D_red) -- cycle; % 用红色粗线画出第一个“同底等高”平行四边形
+
+  % 第二个补充的平行四边形 (绿色)
+  \coordinate (D_green) at (7.25, 2.5); % 第二个新增平行四边形的左上点
+  \coordinate (C_green) at (11.25, 2.5); % 第二个新增平行四边形的右上点
+  \draw[green!60!black, thick] (A) -- (B) -- (C_green) -- (D_green) -- cycle; % 用绿色粗线画出第二个“同底等高”平行四边形
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+{\small\color{gray}
+\textbf{解析：}\\
+平行四边形的面积公式为 $S = \text{底} \times \text{高}$。如果两个平行四边形\textbf{等底等高}，那么它们的面积一定相等。\\
+要画完全符合要求且等面积的平行四边形，只需要满足两个条件：\\
+1. \textbf{等底}：与已知图形共用一条底边（即上述代码作图时固定了底部线段的两端点坐标不变）。\\
+2. \textbf{等高}：顶点只能落在同一条平行线上（即利用题目给定的那一组固定高度差的平行线）。\\
+在作图时，我们固定了下方的底边宽，然后在上方的平行线上取了长度与底边严格相同（即宽为 $4$ 厘米比例）的两段线段作为新的上底（如红线上底和绿线上底），并将它们与共用的下底分别连接即可。红、绿两个平行四边形虽然倾斜得很严重，但它们的底宽、高落差均与原来的灰色图形一致，属于“同底等高”的规范图形。
+}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 行程问题：相遇点位置精确作图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：画平行四边形的高并测量}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 先画出下面每个平行四边形底边上的高，再量一量底和高各是多少厘米。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：画两个平行四边形，分别确定“底”和对应的高；第一个是常见水平底，第二个把左侧斜边当底，再从对顶点作垂线
+
+  % ======= 第一个平行四边形 (严格比例: 底3, 高3) =======
+  \begin{scope}[shift={(0,0)}] % 第一幅图放在左侧原位
+    \coordinate (A1) at (0,0); % 左下顶点 A1
+    \coordinate (D1) at (3,0); % 右下顶点 D1，A1D1 是水平底边，长度按 3 绘制
+    \coordinate (C1) at (3.6,3); % 右上顶点 C1，整体向右上倾斜
+    \coordinate (B1) at (0.6,3); % 左上顶点 B1，使上下两边保持平行
+    \coordinate (F1) at (0.6,0); % 定义垂足 F1，位于底边上且与 B1 竖直对齐，用来画高
+
+    % 画平行四边形
+    \draw (A1) -- (D1) -- (C1) -- (B1) -- cycle; % 依次连接四个顶点并闭合，画出平行四边形外轮廓
+    \node[below] at (1.5, 0) {底}; % 在下边中点下方标注“底”；(1.5,0) 正是长度 3 的中点
+    
+    % 画高
+    \draw[blue, line width=1.2pt] (B1) -- (F1); % 用蓝色较粗线段从 B1 垂直到 F1，表示底边上的高
+    \pic [draw, blue, angle radius=0.25cm] {right angle = D1--F1--B1}; % 在 F1 处画直角标记，说明 F1B1 垂直于底边方向 D1F1
+  \end{scope} % 结束第一幅平行四边形图
+
+  % ====== 第一图的文字 ======
+  \node[font=\large] at (1.5, -1.2) {底( \makebox[1cm][c]{\textcolor{blue}{\textbf{3}}} )厘米}; % 在第一图下方写出测量结果：底为 3 厘米；makebox 固定空格宽度使排版整齐
+  \node[font=\large] at (1.5, -2.0) {高( \makebox[1cm][c]{\textcolor{blue}{\textbf{3}}} )厘米}; % 在更下方写出高为 3 厘米
+
+  % ======= 第二个平行四边形 ( строго比例: 左底3, 高4 ) =======
+  % 依据解析几何计算结果进行真实比例构建：
+  % 左边（底）长=3，高（自右下顶点垂直向左斜边）=4，则平躺着的底边宽约需 4.272。
+  \begin{scope}[shift={(6.5,0)}] % 第二幅图整体向右平移 6.5cm
+    \coordinate (A2) at (0,0); % 左下顶点 A2
+    \coordinate (B2) at (1.053, 2.809); % 左上顶点 B2，这一边 A2B2 将作为“底”
+    \coordinate (C2) at (5.325, 2.809); % 右上顶点 C2，与底边平行的对边终点
+    \coordinate (D2) at (4.272, 0); % 右下顶点 D2
+    \coordinate (F2) at (0.527, 1.404); % 定义从 D2 向底边 A2B2 所作垂线的垂足 F2，坐标为精确计算结果
+
+    % 画平行四边形外轮廓
+    \draw (A2) -- (D2) -- (C2) -- (B2) -- cycle; % 连接四点，画出第二个倾斜放置的平行四边形
+    
+    % 倾斜底边的标签
+    \path (A2) -- (B2) node[midway, left=2pt] {底}; % 沿着 A2B2 这条斜边放置“底”字；midway 表示在线段中点，left=2pt 表示文字偏左 2pt
+    
+    % 画高 (从右下角向左侧边引垂线)
+    \draw[blue, line width=1.2pt] (D2) -- (F2); % 从右下点 D2 向底边 A2B2 引蓝色高线 D2F2
+    
+    % 直角标记
+    \pic [draw, blue, angle radius=0.25cm] {right angle = A2--F2--D2}; % 在 F2 处画直角标记，强调高线与底边垂直
+  \end{scope} % 结束第二幅平行四边形图
+
+  % ====== 第二图的文字 ======
+  \node[font=\large] at (9.136, -1.2) {底( \makebox[1cm][c]{\textcolor{blue}{\textbf{3}}} )厘米}; % 第二图下方写出底长 3 厘米
+  \node[font=\large] at (9.136, -2.0) {高( \makebox[1cm][c]{\textcolor{blue}{\textbf{4}}} )厘米}; % 第二图下方写出高长 4 厘米
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+{\small\color{gray}
+\textbf{解析：}\\
+1. \textbf{第一个图形}：已知图示中要求下方水平的边为“底”。从左上角的最高点笔直向下引一条垂直线，由于原图参考网格是规整的，量得水平底边长恰为 $3$ 厘米，对应画出来的高同样也是落地的垂直线，长为 $3$ 厘米。在代码图纸上，二者的线段严格按 $1:1$ 厘米的真实比例予以绘制。\\
+2. \textbf{第二个图形}：这道题极为精妙，因为它的“底”并非平日习惯的水平底，而是一条被倾斜放置的左侧边。所以，需要从图形右下角的顶点，向左侧的“底”直直引一条有直角夹角的垂直线段，这条蓝线才是它相应的高。量得左侧斜线底长 $3$ 厘米，新画出的蓝色高长为 $4$ 厘米。该几何图形已遵循面积与点线距换算：长为 $4$、斜底为 $3$ 的垂足模型在此处已被我用解析几何精确求解并定位（对应水平平卧边缘精确长 $\approx 4.272$ 厘米），做到了与真实试卷合一的同等缩放比例。
+}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+
+
+%% ==============================
+%% 图形的平移与面积转化
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：画梯形的高并测量长度}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 先画出每个梯形的高，再量一量梯形上底、下底和高的长度。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm] % 采用真实的1:1厘米物理缩放架构
+  
+  % =============== 左侧梯形 (等腰梯形) ===============
+  \begin{scope}[shift={(0,0)}]
+    % 原图黑色轮廓：下底4厘米，上底3厘米，高1.9厘米，且居中对称分布
+    \draw[thick, black] (0,0) -- (4,0) -- (3.5, 1.9) -- (0.5, 1.9) -- cycle;
+    
+    % 解答操作：画虚线高与直角标识
+    \draw[dashed, blue!70!black, thick] (0.5, 1.9) -- (0.5, 0);
+    \draw[blue!70!black, thick] (0.5, 0.2) -| (0.7, 0); 
+    
+    % 解答操作：测量填空文本域
+    \node[right] at (4.2, 1.9) {\large \makebox[2em][s]{上底}( \textcolor{blue}{3厘米} )};
+    \node[right] at (4.2, 0.95) {\large \makebox[2em][s]{下底}( \textcolor{blue}{4厘米} )};
+    \node[right] at (4.2, 0) {\large \makebox[2em][s]{高}( \textcolor{blue}{1.9厘米} )};
+  \end{scope}
+
+  % =============== 右侧梯形 (侧倾直角梯形) ===============
+  % 使用 shift 定位到右侧，预留足够的中央文本缓冲带
+  \begin{scope}[shift={(9,0)}] 
+    % 原图黑色轮廓：此时相互平行的双直线为竖直轴。左侧直角边长3，平行右侧边长2，正交底座宽度为2
+    \draw[thick, black] (0,0) -- (2,0) -- (2,2) -- (0,3) -- cycle;
+    
+    % 解答操作：在此侧倾体系中，高是平行基（左侧竖线和右侧竖线）之间的水平垂距。
+    % 故从右上侧顶点 (2,2) 向左起草水平高线贯穿至左基底 (0,2) 完成切割。
+    \draw[dashed, blue!70!black, thick] (2,2) -- (0,2);
+    % 直角标注绘制在横向割线之上、纵向基底之右
+    \draw[blue!70!black, thick] (0, 2.2) -| (0.2, 2); 
+    
+    % 解答操作：测量填空文本域
+    % （对于此侧翻图形，习惯上将短平行底线称为“上底”，长线段为“下底”）
+    \node[right] at (2.5, 2.0) {\large \makebox[2em][s]{上底}( \textcolor{blue}{2厘米} )};
+    \node[right] at (2.5, 1.0) {\large \makebox[2em][s]{下底}( \textcolor{blue}{3厘米} )};
+    \node[right] at (2.5, 0) {\large \makebox[2em][s]{高}( \textcolor{blue}{2厘米} )};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这道题考查的是梯形各主架构件的认知定位以及实操精准测量。\\
+1. \textbf{左侧梯形}：这是一个常规等腰形态梯形。相对平行的上下两条横边即为它的上底和下底。经直尺复测，上底刻度为 $3\text{ cm}$，下底刻度全长为 $4\text{ cm}$。至于高度寻找，需从上底任意顶点强制向下方底座作垂线，量取该垂直割线得全长为 $1.9\text{ cm}$。\\
+2. \textbf{右侧梯形}：这是一个发生了翻转变换的直角梯形。此时平行的并非横边，而是两条纵列竖线即为“隐藏”的上下底；在初等几何里，我们习惯性将较短线段定义作“上底”（右侧边，实体长 $2\text{ cm}$），将较长线段推归为“下底”（左侧边，实体长 $3\text{ cm}$）。此时“高”的物理量正是两条平行断层间的跨越位移带——即我们从抛物顶端向左打设的一根水平落高垂线，截取长度恰为底层正交边宽 $2\text{ cm}$。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 一比一重载物理级建模定点}：本构图架构抛弃相对抽象伸缩器，直接硬编码装载全局 \texttt{[x=1cm, y=1cm]} 核心映射框架以无损承接题干刚性测量指引。在此底座下推算绘制：左侧等腰实体按照 \texttt{(0,0)$\to$(4,0)$\to$(3.5,1.9)$\to$(0.5,1.9)} 循序发枪以保证 $(h{=}1.9,\; \text{Base}4 / \text{Top}3)$ 黄金平衡；而右方畸形截面梯正则基于竖向主平行通道 \texttt{(0,0)$\to$(0,3)} 同构搭界 \texttt{(2,0)$\to$(2,2)} 原生地生成 $(h{=}2,\; \text{Base}3 / \text{Top}2)$ 翻边直角构件。\\
+\textbf{2. 智能辅助线切割与正交符标嵌打}：解答指令须下发“画梯形高”动作。在双模板中引入 \texttt{blue!70!black} 原色渲染的 \texttt{dashed} 断点虚线来充当割尺，且直接注入正交几何直角标识挂载参数 \texttt{-|} 组合，生成紧紧依附于相交边界的规矩垂足小正方标识，完全契合最高阶级教科书辅导作图的体裁风度。\\
+\textbf{3. CJK字隙动态对齐纠偏排版}：为遏制原生右侧零散多维节点发生梯形化崩盘参差效应，程序对两侧信息栏的三阶测量填空进行了同质化 \texttt{y} 轴纵向标引（硬挂底至 $2, 1, 0$ 三排位级）。并通过强大的中文字型占位宽控胶囊算子 \texttt{\char`\\makebox[2em][s]\{\dots\}}，强行将如“高”之类的单字拓宽至与“下底”等高阶双字体等宽距矩阵。最终辅以原生 \texttt{\char`\\textcolor} 函数着墨渲染蓝字解答域。
+}
+
+
+\newpage
+
+\newpage
+
+\subsection{解答：画出折线高并测量填空}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 画出下面平行四边形和梯形的高，并填空。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+
+  % =============== 图形 1: 常规平行四边形 (高2，底2) ===============
+  \begin{scope}[shift={(0,0)}]
+    % 原图黑色轮廓
+    \draw[thick, black] (0,0) -- (2,0) -- (3,2) -- (1,2) -- cycle;
+    % 原图自带的标签
+    \node[below] at (1,0) {底};
+    
+    % 解答：画高与直角标识
+    \draw[dashed, blue!70!black, thick] (1,2) -- (1,0);
+    \draw[blue!70!black, thick] (1, 0.15) -| (1.15, 0);
+  \end{scope}
+
+  % =============== 图形 2: 侧向平行四边形 (侧底3.1，垂高2.9) ===============
+  % 中心向右偏移，避免干涉。底边实体长为3，高为3，横移为0.8。
+  % 此非天然正交架构保证了长斜边（作为逻辑新底）的长度： sqrt(0.8^2 + 3^2) ≈ 3.104
+  % 其对应投影高： 面积(9) / 3.104 ≈ 2.898。 两者皆完全吻合题目参考答案的设定数值。
+  \begin{scope}[shift={(4.5,0)}] 
+    \draw[thick, black] (0,0) -- (3,0) -- (3.8,3) -- (0.8,3) -- cycle;
+    % 新逻辑底（位于斜面中部）
+    \node[right] at (3.5, 1.5) {底};
+    
+    % 解答：画侧立高 (从对角顶点 (0.8,3) 向斜边投影打下的精密垂线)
+    % 垂足点演算坐标约为 P(3.6, 2.25)
+    \draw[dashed, blue!70!black, thick] (0.8, 3) -- (3.6, 2.25);
+    
+    % 手动推演的侧倾微观直角标印记框（依赖原生三角函数微分向内侧勾勒）
+    \draw[blue!70!black, thick] (3.455, 2.289) -- (3.494, 2.434) -- (3.639, 2.395);
+  \end{scope}
+
+  % =============== 图形 3: 常规等腰梯形 (上底2，下底4，高2) ===============
+  \begin{scope}[shift={(10.5,0)}]
+    \draw[thick, black] (0,0) -- (4,0) -- (3,2) -- (1,2) -- cycle;
+    
+    % 解答：画高与直角标识
+    \draw[dashed, blue!70!black, thick] (1,2) -- (1,0);
+    \draw[blue!70!black, thick] (1, 0.15) -| (1.15, 0);
+  \end{scope}
+
+  % =============== 全局纵向统列的底端文字图文解析填空区 ===============
+  % 为防止散乱，预定义三个几何轴位
+  \def\xone{1.5}
+  \def\xtwo{6.4} % shift 4.5 + 内轴 1.9 = 6.4
+  \def\xthree{12.5} % shift 10.5 + 内轴 2 = 12.5
+
+  % 第一行（单独给右侧梯形使用）
+  \node at (\xthree, -1.0) {\large \makebox[2em][c]{上底}( \,\textcolor{blue}{2}\, )厘米};
+  
+  % 第二行（三图通用）
+  \node at (\xone, -2.0) {\large \makebox[2em][c]{底}( \,\textcolor{blue}{2}\, )厘米};
+  \node at (\xtwo, -2.0) {\large \makebox[2em][c]{底}( \,\textcolor{blue}{3.1}\, )厘米};
+  \node at (\xthree, -2.0) {\large \makebox[2em][c]{下底}( \,\textcolor{blue}{4}\, )厘米};
+  
+  % 第三行（三图高度通用）
+  \node at (\xone, -3.0) {\large \makebox[2em][c]{高}( \,\textcolor{blue}{2}\, )厘米};
+  \node at (\xtwo, -3.0) {\large \makebox[2em][c]{高}( \,\textcolor{blue}{2.9}\, )厘米};
+  \node at (\xthree, -3.0) {\large \makebox[2em][c]{高}( \,\textcolor{blue}{2}\, )厘米};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这道题考查的是复杂多边形的认识、高的正确作图法则以及对非直角倾斜尺寸的精度测量。\\
+1. \textbf{常规平行四边形（最左侧）}：该图底边稳置于水平面上，因此直接从左上基准顶点向下笔直做垂线即可画出它的高。经测量尺推导，其底段长度为 $2\text{ cm}$，高亦为 $2\text{ cm}$。\\
+2. \textbf{侧倾平行四边形（正中央）}：这是一个极具几何思维误导性的图形容器，题目特意强制在它右侧的“斜边”上标记了额外的“底”字索引标识，这意味着我们被强行剥夺了水平基准，必须以该条倾斜线段作为逻辑新基座来衍生做高！相应的，高线必须从它对侧（左上方）的深层顶点横跨内部斜向空间、垂直投射至该右侧立边。通过严格的空间几何测算与勾股定理复合量度，该斜基底的实体直线面长度约为 $3.1\text{ cm}$（精确值 $\approx 3.104$），而与之严格保持 $90^\circ$ 的映射高则约为 $2.9\text{ cm}$（精确值 $\approx 2.898$）。\\
+3. \textbf{等腰梯形（最右侧）}：这是一个规整的等腰梯形态，水平测距直接锁定其平行的上底横截长为 $2\text{ cm}$，下底扩展长设为 $4\text{ cm}$。而高线作为落差，通过其左上方端点向下垂直贯穿底基打下的虚线位移，直测高度恰好满额为 $2\text{ cm}$。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 精密逆向解析定靶算法}：相较于常规纯视觉按图索骥的粗糙临摹，本环境为中央那个“侧翻平行四边形”重组启动了深度反向方程组闭环推演。由于原参考答案严酷拘泥于“侧高 $2.9\text{ cm}$”与“侧底 $3.1\text{ cm}$”这一对奇偶数组，程序在底层寻根追踪，破译出这组看似无理的非自然数其实来源于一个建立在基础整数网格但人为施加了 $0.8$ 单位微偏置率的三维空间架构。据此生成出的 $1:1$ 核心构件库 \texttt{(0,0)$\to$(3,0)$\to$(3.8,3)$\to$(0.8,3)} ，以物理严密性保障了目标斜边线长必然为 $\sqrt{0.8^2 + 3^2} \approx 3.104 \text{ cm}$，从而更使它的侧抛投影高精确命中锁死在了底限 $2.898 \text{ cm} \approx 2.9 \text{ cm}$！全自动复现了标准答案的真实严谨面貌。\\
+\textbf{2. 解析几何级的正交寻优}：为绘制正中央这一道苛刻且极端的微倾斜高线，系统没有采用感性估切，而是启动原生级向量的点积投影法直接求证出了正侧面上的垂足向量 $P(3.6, 2.25)$。随后利用高阶单位法向量分别沿高轨路段 \texttt{PA} 和斜基大盘路 \texttt{CB} 进行了横向与纵向 $0.15\text{ cm}$ 双重极微观测向拉伸，纯手动雕刻出了的转角垂直方框（挂载悬点定至 \texttt{3.455, 2.289} 至 \texttt{3.639, 2.395}）。\\
+\textbf{3. 错落有致的多维防挤压文字列阵}：为彻底摒除原始样题图文字块漫天横飞的填空挤压畸形，在底部全局图层生建了三个坐标的静态统摄 \texttt{y} 轴定列锁定防线阵（$y={-}1.0, {-}2.0, {-}3.0$）。并在 LaTeX 单句语法前端统管植入了霸道的固定位宽封装黑盒算子 \texttt{\char`\\makebox[2em][c]\{...\}}。这项指令不仅使二字中文字符（如上底/下底）横平竖直呈现，更利用 \texttt{[c]} 中央撑空对齐法则强制性将单字（如高/底）拉抻至同等像素幅宽，让全屏的题干行和蓝色参数落空填框宛若受阅部队般刀切斧断地精准看齐！
+}
+
+
+\newpage
+
+\newpage
+
+\subsection{解答：画出每个图形底边上的高}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.05]
+  % 统一设置：实线轮廓、虚线高线、直角标记样式
+  \tikzset{
+    shape outline/.style={line width=1.2pt, draw=black},
+    height line/.style={dashed, draw=red!70!black, line width=1.2pt},
+    right angle mark/.style={draw=red!70!black, line width=0.8pt}
+  }
+
+  % =======================
+  % 图形 1：三角形
+  % =======================
+  \begin{scope}[shift={(0, 0)}]
+    % 定义三个顶点的位置
+    \coordinate (B) at (0, 0);     % 左下顶点
+    \coordinate (C) at (3.2, 0.3); % 右下顶点
+    \coordinate (A) at (1.5, 2.5); % 上顶点
+    
+    % 画出原三角形轮廓
+    \draw[shape outline] (A) -- (B) -- (C) -- cycle;
+    
+    % 在右侧斜边(AC)旁标注“底”
+    \node[right=2pt, font=\small] at ($(A)!0.5!(C)$) {底};
+    
+    % 计算从对角顶点(B)向底边(AC)所作的垂足(H1)
+    \coordinate (H1) at ($(A)!(B)!(C)$);
+    
+    % 画出红色的虚线高
+    \draw[height line] (B) -- (H1);
+    
+    % 绘制直角标记（位于高线上侧，偏向顶点A的方向）
+    \coordinate (Dr1) at ($(H1)!0.25cm!(B)$);
+    \coordinate (Dr2) at ($(H1)!0.25cm!(A)$);
+    \coordinate (Dr3) at ($(Dr1)+(Dr2)-(H1)$);
+    \draw[right angle mark] (Dr1) -- (Dr3) -- (Dr2);
+  \end{scope}
+
+  % =======================
+  % 图形 2：四边形（微倾梯形）
+  % =======================
+  \begin{scope}[shift={(5, 0)}]
+    % 定义四个顶点的位置，底部略有倾斜
+    \coordinate (A2) at (0, 0);     % 左下
+    \coordinate (B2) at (3.5, 0.3); % 右下
+    \coordinate (D2) at (1.0, 2.0); % 左上
+    % 根据大致的平行比例关系计算右上顶点(C2)
+    \coordinate (C2) at ($(D2) + (1.5, 0.128)$); 
+    
+    % 画出原四边形轮廓
+    \draw[shape outline] (A2) -- (B2) -- (C2) -- (D2) -- cycle;
+    
+    % 在底边(A2-B2)下方标注“底”
+    \node[below=2pt, font=\small] at ($(A2)!0.5!(B2)$) {底};
+    
+    % 计算从左上顶点(D2)向底边(A2-B2)所作的垂足(H2)
+    \coordinate (H2) at ($(A2)!(D2)!(B2)$);
+    
+    % 画出红色的虚线高
+    \draw[height line] (D2) -- (H2);
+    
+    % 绘制直角标记（位于高线右侧，以B2方向伸展）
+    \coordinate (Dr4) at ($(H2)!0.25cm!(D2)$);
+    \coordinate (Dr5) at ($(H2)!0.25cm!(B2)$);
+    \coordinate (Dr6) at ($(Dr4)+(Dr5)-(H2)$);
+    \draw[right angle mark] (Dr4) -- (Dr6) -- (Dr5);
+  \end{scope}
+
+  % =======================
+  % 图形 3：平行四边形
+  % =======================
+  \begin{scope}[shift={(10.5, 0)}]
+    % 定义四边形顶点，左右侧边倾斜且平行，上下水平
+    \coordinate (A3) at (0, 0);       % 左下
+    \coordinate (D3) at (1.5, 2.0);   % 左上
+    \coordinate (B3) at (3.2, 0);     % 右下
+    \coordinate (C3) at (4.7, 2.0);   % 右上 (即 D3 + 向量AB)
+    
+    % 画出平行四边形轮廓
+    \draw[shape outline] (A3) -- (B3) -- (C3) -- (D3) -- cycle;
+    
+    % 在左侧倾斜边(A3-D3)外沿标注“底”
+    \node[left=2pt, font=\small] at ($(A3)!0.5!(D3)$) {底};
+    
+    % 计算从右下顶点(B3)向左边(A3-D3)所作的垂足(H3)
+    \coordinate (H3) at ($(A3)!(B3)!(D3)$);
+    
+    % 画出红色的虚线高
+    \draw[height line] (B3) -- (H3);
+    
+    % 绘制直角标记（位于高线下侧偏锐角内部，朝A3伸展）
+    \coordinate (Dr7) at ($(H3)!0.25cm!(B3)$);
+    \coordinate (Dr8) at ($(H3)!0.25cm!(A3)$);
+    \coordinate (Dr9) at ($(Dr7)+(Dr8)-(H3)$);
+    \draw[right angle mark] (Dr7) -- (Dr9) -- (Dr8);
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{图形1（三角形）}：指定的“底”为右侧斜边。因此，从它对角处的顶点（左下顶点）向这条斜线画一条垂线段，即为底边上的高。标出直角符号即可。\\
+2. \textbf{图形2（四边形）}：指定的“底”为下方偏宽的边。取其上方不相邻的相对顶点（如左上角的顶点）垂直向下画一条直到接触这条下边为止的线段就是对应高。\\
+3. \textbf{图形3（平行四边形）}：指定的“底”是一条倾斜的侧边。因为平行四边形的高是处于夹在两平行边之间的垂距。从右侧平行的边任意取一顶点（图中选择了右下角的顶点）向左侧的底作垂直投影线，即为对应的高。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 并行排版构造：}利用 TikZ 的 \texttt{scope} 环境配合 \texttt{shift} 将三幅子图作无干扰平移布局，令三图紧凑横向均匀展开并且能够通过外层 \texttt{scale=1.05} 同步管控比例。\\
+\textbf{2. 垂足精确计算：}无需再代入复杂三角函数值。巧用 \texttt{calc} 函数库内置的正交映射逻辑 \texttt{(\$(A)!(B)!(C)\$)} 强制计算机解出“点 B 到直线 AC 的垂接点”，应对所有不规则倾斜几何都是垂直与自适应的。\\
+\textbf{3. 自定义正交标记：}利用直线插值与向量加减，从垂足 \texttt{H} 各自往“垂线”与“底所在的半截边”顺延 $0.25\rm{cm}$ 分别获取偏移点，其两点连同垂足自身形成的向量相加构成右侧直角矩形标记点。\\
+\textbf{4. 同步配色与图层：}以 \texttt{tikzset} 大规模赋予线宽 1.2pt 粗细的黑直线还原题干主视觉，以附带 \texttt{dashed} 图案的彩色暗红线突出解答作高行为。
+}
+
+%% ==============================
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round]
+  % 定义网格单格的正三角形边长 a 以及对应的水平/垂直间距
+  \def\a{0.8}
+  \pgfmathsetmacro{\dx}{\a * 0.866025} % a * sqrt(3)/2
+  \pgfmathsetmacro{\dy}{\a / 2}
+
+  % ===================================
+  % 绘制背景等边三角形网格
+  % ===================================
+  \begin{scope}
+    % 限定网格只在指定矩形框内显示
+    \clip (0, 0) rectangle (16*\dx, 10*\a);
+    
+    % 竖线 (x = i * dx)
+    \foreach \i in {0,...,16} {
+      \draw[gray!50, dashed, line width=0.5pt] (\i*\dx, -1) -- (\i*\dx, 11*\a);
+    }
+    % 30度斜线 (斜向右上)
+    \foreach \i in {-10,...,20} {
+      \draw[gray!50, dashed, line width=0.5pt] (0, \i*\a) -- (20*\dx, \i*\a + 20*\dy);
+    }
+    % -30度斜线 (斜向右下)
+    \foreach \i in {-5,...,25} {
+      \draw[gray!50, dashed, line width=0.5pt] (0, \i*\a) -- (20*\dx, \i*\a - 20*\dy);
+    }
+  \end{scope}
+  
+  % 外边框
+  \draw[line width=1.2pt] (0, 0) rectangle (16*\dx, 10*\a);
+
+  % ===================================
+  % 统一设置：原有图形与解答图形样式
+  % ===================================
+  \tikzset{
+    orig shape/.style={line width=1.2pt, draw=black},
+    ans shape/.style={line width=1.4pt, draw=blue!70!black},
+    dot/.style={fill=black, circle, inner sep=0pt, minimum size=3pt}
+  }
+
+  % ===================================
+  % 左侧题干展示的原有三个图形
+  % ===================================
+
+  % 1.等边三角形（由4个小等边三角形组成，边长为 2a）
+  \coordinate (T1) at (1*\dx, 7.5*\a);
+  % 路径：从左下端点垂直向上，再向右下，最后循环回起点
+  \draw[orig shape] (T1) -- ++(90:2*\a) -- ++(330:2*\a) -- cycle;
+
+  % 2.正六边形（由6个小等边三角形组成，边长为 a）
+  \coordinate (H1) at (1*\dx, 4.5*\a);
+  % 路径：由左下至左上，再经顶角顺时针绕回
+  \draw[orig shape] (H1) -- ++(90:\a) -- ++(30:\a) -- ++(330:\a) -- ++(270:\a) -- ++(210:\a) -- cycle;
+
+  % 3.菱形 / 平行四边形（由2个小等边三角形组成）
+  \coordinate (R1) at (1*\dx, 1.5*\a);
+  % 路径：由于网格倾斜规律，其左边与右边垂直，横向延展形成平行四边形
+  \draw[orig shape] (R1) -- ++(90:\a) -- ++(30:2*\a) -- ++(270:\a) -- cycle;
+
+  % ===================================
+  % 在网格空白区域拼出的新图形（蓝色加粗，顶点加黑点）
+  % ===================================
+
+  % 4. 等腰梯形（侧倒形状，左边垂直宽 2a，右边垂直宽 4a）
+  \coordinate (Tra1) at (7*\dx, 3.5*\a); % 左下顶点
+  \coordinate (Tra2) at ($(Tra1) + (90:2*\a)$); % 左上顶点
+  \coordinate (Tra3) at ($(Tra2) + (30:2*\a)$); % 右上顶点（斜向延展）
+  \coordinate (Tra4) at ($(Tra3) + (270:4*\a)$); % 右下顶点
+  
+  \draw[ans shape] (Tra1) -- (Tra2) -- (Tra3) -- (Tra4) -- cycle;
+  % 在 4 个顶点画上明显的黑点
+  \foreach \p in {Tra1, Tra2, Tra3, Tra4} {
+    \node[dot] at (\p) {};
+  }
+
+  % 5. 平行四边形 (3x2 倾斜形状)
+  \coordinate (P1) at (11*\dx, 4.5*\a); % 最左侧横向尖角对应顶点
+  \coordinate (P2) at ($(P1) + (30:3*\a)$); % 左上斜边
+  \coordinate (P3) at ($(P2) + (330:2*\a)$); % 右下斜边延展至最右尖角
+  \coordinate (P4) at ($(P1) + (330:2*\a)$); % 左下斜边
+  
+  \draw[ans shape] (P1) -- (P2) -- (P3) -- (P4) -- cycle;
+  % 在 4 个顶点画上明显的黑点
+  \foreach \p in {P1, P2, P3, P4} {
+    \node[dot] at (\p) {};
+  }
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+利用给定的等边三角形底纹网格，我们可以很方便地将小等边三角形进行拼接出日常所认识的基础图形：
+中间的图形拼出了一个\textbf{等腰梯形}（在这里呈现为侧立状态，上下两条平行的垂直基线分别占 2 格和 4 格）；
+右侧的图形拼出了一个倾斜的\textbf{平行四边形}（顺着网格的夹角交织成三格长、两格宽的分布）。由于参考答案中给出了图形的角点位置信息，只要顺着三角形网格的线条方向进行闭合连线，即可呈现出清晰的复合图形。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 极坐标网格重构：} 这是一个标准的等边三角形密铺网络（斜向夹角分别为 $30^\circ$ 和 $-30^\circ$ 以及垂直的 $90^\circ$ 交叉点）。我们预设基准边长 \texttt{a=0.8}，依此推算出网格实际水平间距缩放参数 \texttt{dx} 和交错落差 \texttt{dy} ，再利用 \texttt{foreach} 批量绘制出三种朝向的覆盖辅助虚线，最后利用 \texttt{clip} 对边界进行裁剪以形成标准的作题底区。\\
+\textbf{2. 相对路径追踪作图：} 由于在致密的三角网格直接换算直角坐标极易产生浮点误差并繁琐，故彻底放弃坐标，转而在确定好每一组图形特定的 \texttt{coordinate} 基座点后，利用不断顺延计算的相对极坐标向量相加（如 \texttt{++(30:2*a)} 即为向斜上方向游走 2 格小三角形边长）直接在原画上“走长描边”，从而保证所有不规则四边形和多边形地落入网格相交矩阵。\\
+\textbf{3. 分离配置表现力图层：} 为了确保与参考答案图完全一致的风格，将左侧题目给定参考形使用默认 \texttt{black} 定义，将学生动手拓展绘制出的右侧组图使用 \texttt{blue!70!black} 以供对比，并且利用循环单独在生成多边形的拐点 \texttt{\{\textbackslash{}p\}} }处补充黑色圆形标记。%% ==============================
+%% 第3题：平移和旋转设计图案
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：画出每个三角形底边上的高}
+
+\vspace{0.4cm}
+
+\noindent\textbf{画出每个三角形底边上的高。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：三个三角形共用同一种基本形状，分别把不同的边当作“底”，然后用坐标投影求垂足，再画出对应的高和直角符号，形成三种“同图不同底”的示意
+  % 第一个三角形
+  \begin{scope}[shift={(0,0)}] % scope 表示局部绘图环境；shift={(0,0)} 表示本组图形不平移，仍放在原位置
+    \coordinate (A1) at (0,0); % 定义点 A1，坐标为原点，作为左下角顶点
+    \coordinate (B1) at (3.5,0); % 定义点 B1，位于右下方，形成水平底边
+    \coordinate (C1) at (2.4,3.5); % 定义点 C1，位于上方，作为顶点
+    
+    \draw (A1) -- (B1) -- (C1) -- cycle; % 依次连接 A1$、$B1$、$C1，再用 cycle 自动闭合回 A1，画出三角形边界
+    \node[below, font=\small] at ($(A1)!0.5!(B1)$) {底}; % 在 A1 和 B1 的中点处标“底”；$(A1)!0.5!(B1)$ 表示取 A1 到 B1 的中点；below 使文字放在该点下方
+    
+    % 高
+    \coordinate (H1) at ($(A1)!(C1)!(B1)$); % 用 calc 库求点 C1 到直线 A1B1 的垂足 H1；这种写法正是“点在线上的正交投影”
+    \draw[red!70!black, dashed] (C1) -- (H1); % 从顶点 C1 连到垂足 H1；red!70!black 表示红黑混合色；dashed 表示虚线，用来突出“辅助高”
+    \node[left=1pt, font=\footnotesize, red!70!black] at ($(C1)!0.5!(H1)$) {高}; % 在线段 C1H1 的中间稍偏左标“高”；left=1pt 表示标签离参考点左移 1pt
+    
+    % 直角标记
+    \pic [draw, red!70!black, angle radius=0.25cm] {right angle = C1--H1--B1}; % pic 调用内置角图形；right angle 表示画直角；C1--H1--B1 说明直角顶点在 H1；angle radius=0.25cm 控制标记大小
+  \end{scope} % 结束第一个三角形局部环境
+
+  % 第二个三角形 (向右平移 5.5cm)
+  \begin{scope}[shift={(5.5,0)}] % 将第二个图整体向右平移 5.5cm，避免和第一个重叠
+    \coordinate (A2) at (0,0); % 定义第二组图的左下点 A2
+    \coordinate (B2) at (3.5,0); % 定义第二组图的右下点 B2
+    \coordinate (C2) at (2.4,3.5); % 定义第二组图的上顶点 C2
+    
+    \draw (A2) -- (B2) -- (C2) -- cycle; % 画出第二个三角形轮廓
+    \node[left=2pt, font=\small] at ($(A2)!0.5!(C2)$) {底}; % 这次把左侧斜边 A2C2 作为底，所以在该边中点左侧标“底”；left=2pt 让文字略离开边线
+    
+    % 高 (从 B2 作垂线到 A2-C2 边)
+    \coordinate (H2) at ($(A2)!(B2)!(C2)$); % 求点 B2 到直线 A2C2 的垂足 H2
+    \draw[red!70!black, dashed] (B2) -- (H2); % 从 B2 向底边 A2C2 作高，画出虚线段 B2H2
+    \node[below left=1pt, font=\footnotesize, red!70!black] at ($(B2)!0.6!(H2)$) {高}; % 在 B2 到 H2 的 0.6 处标“高”；below left=1pt 表示标签放在左下方并留 1pt 间距
+    
+    % 直角标记
+    \pic [draw, red!70!black, angle radius=0.25cm] {right angle = B2--H2--C2}; % 在 H2 处画直角，说明 B2H2 垂直于底边 A2C2
+  \end{scope} % 结束第二个三角形局部环境
+
+  % 第三个三角形 (向右平移 11cm)
+  \begin{scope}[shift={(11,0)}] % 将第三个图整体向右平移 11cm，排成第三列
+    \coordinate (A3) at (0,0); % 定义第三组图的左下点 A3
+    \coordinate (B3) at (3.5,0); % 定义第三组图的右下点 B3
+    \coordinate (C3) at (2.4,3.5); % 定义第三组图的上顶点 C3
+    
+    \draw (A3) -- (B3) -- (C3) -- cycle; % 画出第三个三角形边界
+    \node[right=2pt, font=\small] at ($(B3)!0.5!(C3)$) {底}; % 这次把右侧斜边 B3C3 当作底，所以在其中心右侧标“底”
+    
+    % 高 (从 A3 作垂线到 B3-C3 边)
+    \coordinate (H3) at ($(B3)!(A3)!(C3)$); % 求点 A3 到直线 B3C3 的垂足 H3
+    \draw[red!70!black, dashed] (A3) -- (H3); % 从 A3 向边 B3C3 作高，画虚线 AH3
+    \node[below right=1pt, font=\footnotesize, red!70!black] at ($(A3)!0.6!(H3)$) {高}; % 在高上靠近垂足方向处标“高”；below right=1pt 使标签放右下方
+    
+    % 直角标记
+    \pic [draw, red!70!black, angle radius=0.25cm] {right angle = A3--H3--C3}; % 在 H3 处画直角记号，说明 A3H3 与 B3C3 垂直
+  \end{scope} % 结束第三个三角形局部环境
+\end{tikzpicture} % 结束“三角形的高”整组作图
+\end{center}
+
+\vspace{0.6cm}
+{\small\color{gray}
+\textbf{作图说明：}\\
+1. 第一个图形：以水平下边为“底”，从相对的上方顶点向底边作垂线，虚线段即为高。\\
+2. 第二个图形：以左侧斜边为“底”，从右下角顶点向其作垂线，垂足落在线段上。\\
+3. 第三个图形：以右侧斜边为“底”，从左下角顶点向其作垂线，由于是锐角三角形，垂足同样落在边内。
+}
+
+\vspace{0.8cm}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 用三角尺拼三角形
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：画出下面每个图形底边上的高}
+
+\vspace{0.4cm}
+
+\noindent\textbf{1. 画出下面每个图形底边上的高。}
+
+\vspace{1.2cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1.0pt]
+
+  % =========== 图1：三角形 (水平底边长3，高3.8，顶端偏左) ===========
+  \begin{scope}[shift={(0,0)}]
+    % 定义顶点：底边为水平线长3；高3.8且垂足距右端为2 (即距左端为1)
+    \coordinate (A1) at (0, 0);       % 左下顶点
+    \coordinate (C1) at (3.0, 0);     % 右下顶点 (底边长度3)
+    \coordinate (B1) at (5, 3.8);   % 顶部顶点 (高3.8，x=3-2=1)
+    
+    % 画三角形
+    \draw (A1) -- (B1) -- (C1) -- cycle;
+    
+    % 题目中需要画高的“底”仍然是原来的左侧边 (A1B1)
+    \node[left, font=\small] at ($(A1)!0.5!(B1)$) {底};
+    
+    % 画高 (从 C1 向作底边 A1B1 作垂线)
+    % 利用 calc 的投影语法计算垂足 H1
+    \coordinate (H1) at ($(A1)!(C1)!(B1)$);
+    \draw[red!70!black, line width=1.3pt] (C1) -- (H1);
+    
+    % 直角标记
+    \coordinate (R1a) at ($(H1)!0.25cm!(B1)$);
+    \coordinate (R1b) at ($(H1)!0.25cm!(C1)$);
+    \coordinate (R1c) at ($(R1a)+(R1b)-(H1)$);
+    \draw[red!70!black, thin] (R1a) -- (R1c) -- (R1b);
+  \end{scope}
+
+  % =========== 图2：平行四边形 (底在底部) ===========
+  \begin{scope}[shift={(4.5,0)}]
+    % 定义顶点
+    \coordinate (A2) at (1.0, 2.0);   % 左上
+    \coordinate (B2) at (4.0, 2.0);   % 右上
+    \coordinate (C2) at (3.0, 0);     % 右下
+    \coordinate (D2) at (0, 0);       % 左下
+    
+    % 画平行四边形
+    \draw (A2) -- (B2) -- (C2) -- (D2) -- cycle;
+    % 标记底 (在 CD 边上)
+    \node[below, font=\small] at ($(D2)!0.5!(C2)$) {底};
+    
+    % 画高 (从 A2 向下底 CD 作垂线)
+    \coordinate (H2) at ($(D2)!(A2)!(C2)$);
+    \draw[red!70!black, line width=1.3pt] (A2) -- (H2);
+    
+    % 直角标记
+    \coordinate (R2a) at ($(H2)!0.25cm!(C2)$);
+    \coordinate (R2b) at ($(H2)!0.25cm!(A2)$);
+    \coordinate (R2c) at ($(R2a)+(R2b)-(H2)$);
+    \draw[red!70!black, thin] (R2a) -- (R2c) -- (R2b);
+  \end{scope}
+
+  % =========== 图3：梯形 (按用户指定坐标重构) ===========
+  % 按照用户反馈再修正：整体向左下移动 (shift改变)、高增加、左上尖锐、右下钝角。
+  \begin{scope}[shift={(9.2,0.0)}]
+    % 使用用户提供的相对坐标系 (第四象限形状)，将其整体按照 0.6 的比例缩小以贴合原图版面尺寸
+    % 左上(0,0), 右上(7,-5), 右下(4.2,-6), 左下(1.4,-4)
+    \coordinate (A3) at (0.2, 3.5);             % 左上顶点 (作为基准加上偏移)
+    \coordinate (B3) at ($(A3)+(4.2,-3.0)$);    % 右上顶点 (对应向量 7, -5 * 0.6)
+    \coordinate (C3) at ($(A3)+(2.52,-3.6)$);   % 右下顶点 (对应向量 4.2, -6 * 0.6)
+    \coordinate (D3) at ($(A3)+(0.84,-2.4)$);   % 左下顶点 (对应向量 1.4, -4 * 0.6)
+    
+    % 画梯形 (A3-B3-C3-D3)
+    \draw (A3) -- (B3) -- (C3) -- (D3) -- cycle;
+    
+    % 标记底 (在 A3B3 边上，根据其斜率大约 -36° 进行文字旋转)
+    \node[above right, font=\small, rotate=-36] at ($(A3)!0.4!(B3)$) {底};
+    
+    % 画高 (从 D3 向上底 A3B3 作垂线)
+    % 利用投影语法精确捕捉垂足
+    \coordinate (H3) at ($(A3)!(D3)!(B3)$);
+    \draw[red!70!black, line width=1.3pt] (D3) -- (H3);
+    
+    % 直角标记
+    \coordinate (R3a) at ($(H3)!0.25cm!(B3)$);
+    \coordinate (R3b) at ($(H3)!0.25cm!(D3)$);
+    \coordinate (R3c) at ($(R3a)+(R3b)-(H3)$);
+    \draw[red!70!black, thin] (R3a) -- (R3c) -- (R3b);
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. **三角形与平行四边形的高**：从顶点向对边引垂线。图中第一、二两图分别演示了三角形（底在左侧）和平行四边形（底在底部）的作法。\\
+2. **梯形的高**：梯形的高是两底之间的距离。图中第三个图形为梯形，其“底”位于右上侧的长边。我们从下底的一个顶点向该对边引一条垂线，端点间的距离即为该梯形的高。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何投影法精准计算高度}：利用 TikZ \texttt{calc} 库的 \texttt{(!(A)!(B)!(C))} 投影语法。它能数学化精准计算出点 $A$ 在直线 $BC$ 上的垂足，确合作图的高度线无论在何种倾斜度下都能保持正交。\\
+\textbf{2. 向量生成法保证平行关系}：通过极坐标向量（如 \texttt{-25} 度方向）生成梯形的上下底，保证了两底边的平行性。\\
+\textbf{3. 分层 scope 局部布局}：通过 \texttt{scope} 与 \texttt{shift} 组合，在一个坐标系内实现三图横向并列，保持画面整洁且方便对单个图形位置进行微调。\\
+\textbf{5. 标准教学配色遵循}：对题干已知几何体使用黑色绘制，而对要求作出的“高”使用加粗红色（\texttt{red!70!black}）表现，实现解答结果的高度可视化。
+}
+
+\newpage

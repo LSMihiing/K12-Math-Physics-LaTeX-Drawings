@@ -1,0 +1,427 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 线段图 / 行程问题线段图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：行程问题解析图}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\begin{center}
+\begin{tikzpicture}[scale=0.45, >=Stealth, line width=1pt]
+  % 定义颜色
+  \definecolor{pathblue}{RGB}{0,191,255}
+
+  % 坐标点定义
+  \coordinate (Home) at (0, 0);          % 方华家
+  \coordinate (Supermarket) at (-10, 0); % 超市 (1000m -> 10单位)
+  \coordinate (School) at (0, 20);      % 学校 (2000m -> 20单位)
+
+  % 绘制路线
+  \draw[pathblue, line width=2pt] (Supermarket) -- (Home) -- (School);
+
+  % 绘制各地点标识圆圈
+  \filldraw[white, draw=pathblue, line width=1.5pt] (Home) circle (0.6);
+  \filldraw[white, draw=pathblue, line width=1.5pt] (Supermarket) circle (0.6);
+  \filldraw[white, draw=pathblue, line width=1.5pt] (School) circle (0.6);
+
+  % 地点文字标注
+  \node[right=8pt] at (Home) {方华家};
+  \node[below=8pt] at (Supermarket) {超市};
+  \node[right=8pt] at (School) {学校};
+
+  % % 原始距离标注 (大括号)
+  % \draw[decorate, decoration={brace, amplitude=10pt, raise=15pt}]
+  %   (Home) -- (Supermarket) node[midway, above=28pt] {1000米};
+
+  % \draw[decorate, decoration={brace, amplitude=10pt, raise=15pt, mirror}]
+  %   (Home) -- (School) node[midway, right=28pt] {2000米};
+
+  % --- 第(1)问标注 ---
+  % 计算位置：5分钟 * 60米/分 = 300米 -> 3单位 (向超市方向，即水平向左)
+  \coordinate (Now) at (-3, 0);
+  \node[red, font=\Large] at (Now) {$\bigstar$};
+  \node[red, above=10pt, font=\small] at (Now) {现在位置 (300米)};
+
+  % 剩余距离标注
+  \draw[<->, red!70!black, line width=0.8pt] (-3.6, -1) -- (-9.4, -1)
+    node[midway, below] {\small 剩余700米};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{1.2cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解析文字：}\\
+① \textbf{计算现在位置：}\\
+速度 $60 \times$ 时间 $5 = 300$（米）。\\
+方华现在距离家 $300$ 米，在去超市的路上（见图中 $\bigstar$ 标识）。\\
+离超市还有：$1000 - 300 = 700$（米）。
+
+\vspace{0.3cm}
+② \textbf{判断能否走到学校：}\\
+走 $35$ 分钟的路程：$60 \times 35 = 2100$（米）。\\
+由于家到学校的距离是 $2000$ 米，$2100 > 2000$，\\
+所以他\textbf{能}走到学校，并且超过了 $100$ 米。
+}
+
+
+%% ==============================
+%% 找规律接着画一画
+%% ==============================
+
+\newpage
+
+\subsection{解答：行程问题相遇点按比例标位}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 下面是从甲地到乙地的公路示意图，正中间是服务区。}
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：先画甲地、服务区、乙地三点共线的示意图，为后面的“相遇点位置”提供空白底图
+  % 线段 (总长 14，代表 168 千米的题目空图)
+  \draw (0,0) -- (14,0); % 画一条长度为 14 的水平线段，表示从甲地到乙地的公路
+  % 甲地
+  \fill (0,0) circle (3pt); % 在左端点画实心圆点表示甲地
+  \node[below=8pt] at (0,0) {甲地}; % 在甲地下方标注名称
+  % 服务区
+  \fill (7,0) circle (3pt); % 在线段中点画服务区位置
+  \node[below=8pt] at (7,0) {服务区}; % 在服务区下方标注
+  % 乙地
+  \fill (14,0) circle (3pt); % 在右端点画乙地实心点
+  \node[below=8pt] at (14,0) {乙地}; % 在乙地下方标注名称
+\end{tikzpicture}
+\end{center}
+\vspace{0.4cm}
+
+\noindent 一辆小客车从甲地出发开往乙地，每小时行 120 千米；一辆大客车从乙地出发开往甲地，每小时行 90 千米。两车同时出发，经过 0.8 小时相遇。\\
+\textbf{（1）在图上标出两车相遇地点的大概位置。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：沿用上一幅公路线段，在相同基准上再加出蓝色“相遇点”，让读者看到相遇位置略偏向乙地一侧
+
+  % 线段作图基底 (总长度 14，代表 168 千米的解答落点图)
+  \draw (0,0) -- (14,0); % 画公路基准线
+
+  % 原始标记点
+  % 甲地
+  \fill (0,0) circle (3pt); % 甲地点
+  \node[below=8pt] at (0,0) {甲地}; % 甲地标签
+
+  % 服务区在中点
+  \fill (7,0) circle (3pt); % 服务区点，仍在中点
+  \node[below=8pt] at (7,0) {服务区}; % 服务区标签
+
+  % 乙地极端点
+  \fill (14,0) circle (3pt); % 乙地点
+  \node[below=8pt] at (14,0) {乙地}; % 乙地标签
+
+  % 解答新加的相遇点 (严格按 96:72=4:3 比例落点于坐标刻度 8)
+  \fill[blue] (8,0) circle (3.5pt); % 在 x=8 处加蓝色圆点，表示相遇位置
+  \node[below=8pt, blue, font=\bfseries] at (8,1) {相遇点}; % 在相遇点上方偏一点放蓝色加粗标签
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+{\small\color{gray}
+\textbf{解析：}\\
+1. \textbf{计算各自行驶的路程}：\\
+\indent 小客车（从甲地出发向右开）行驶路程：$120 \times 0.8 = 96$（千米）。\\
+\indent 大客车（从乙地出发向左开）行驶路程：$90 \times 0.8 = 72$（千米）。\\
+2. \textbf{计算总路程及中点真实位置}：\\
+\indent 甲乙两地总路程为相遇之和：$96 + 72 = 168$（千米）。\\
+\indent 服务区在公路的正中间，说明服务区距离原点甲地距离为：$168 \div 2 = 84$（千米）。\\
+3. \textbf{确定相遇点并按严谨数学比例作图}：\\
+\indent 在相遇时，小客车已经行驶了 $96$ 千米。因为 $96 > 84$，说明相遇点肯定越过了正中间的“服务区”，继续向乙地方向偏离了 $12$ 千米。\\
+\indent 在作图代码中，依据最新指示**“确保线段真实比例缩放”**的要求，我将整条 $168$ 千米的行程等比放大投影到了长度为 $14$ 的作图坐标系横轴上（即缩放比例为 $12:1$）。甲地位处坐标极限原点 $0$，服务区在黄金中点 $7$ 处。而根据比例映射关系 $168 : 96 = 14 : x$，相遇点位置的理论坐标精确计算出 $x = 8$。\\
+\indent 因此，图中带着蓝色粗体提示的**相遇点**，已被我对齐地点在了横坐标刻度正好为 $8$ 的位置，这样的出图落点不存在哪怕一毫米的主观估算误差，是拥有精确参考价值的标位。
+}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+
+%% ==============================
+%% 第2题：体育用品商店购买问题——单价、数量的关系
+%% ==============================
+
+\newpage
+
+\subsection{解答：行程问题线段图与计算（同向而行）}
+
+\vspace{0.4cm}
+
+\noindent\textbf{1. 小军和小英同时从学校出发，沿同一条路到少年宫。小军每分钟行 $70$ 米，小英每分钟行 $60$ 米。$10$ 分钟后小军到了少年宫，这时小英离少年宫还有多少米？（先画图整理，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.95] % 整体思路：把学校到少年宫的路抽象成一条线段，再在 10 分钟后分别标出小英和小军的位置，用两条同向箭头比较路程长短，最后把二者之间的差用大括号标出
+  \draw[line width=1.1pt] (0,0) -- (14,0); % 画整段路线主线；scale=0.95 让整体略缩小以适应版面；从 0 到 14 的长度表示从学校到少年宫
+  
+  % 位置和端点 (标签放在下方，双行居中对齐以防文字重叠)
+  \draw[line width=1pt] (0,0.2) -- (0,-0.2) node[below=5pt] {学校 (起点)}; % 左端竖短线表示共同起点学校；标签放下方
+  \draw[line width=1pt] (12,0.2) -- (12,-0.2) node[below=5pt, align=center] {小英位置}; % 在 x=12 处标出小英 10 分钟后的位置；align=center 让多行时居中对齐
+  \draw[line width=1pt] (14,0.2) -- (14,-0.2) node[below=5pt, align=center] {小军位置\\(少年宫)}; % 在最右端标出小军位置，同时注明这里就是少年宫；\\ 表示节点内换行
+  
+  % 行驶方向箭头 (上方)
+  \draw[->, line width=1pt, blue!70!black] (0, 1.5) -- (14, 1.5) node[midway, above] {\small 小军 $10$ 分钟路程（$70$ 米/分）}; % 蓝色箭头画出小军 10 分钟走的全程，方向由左向右；标签放中点上方
+  \draw[->, line width=1pt, orange!90!black] (0, 0.4) -- (12, 0.4) node[midway, above] {\small 小英 $10$ 分钟路程（$60$ 米/分）}; % 橙色箭头画出小英 10 分钟走的较短路程
+  
+  % 图示标明剩余距离 (移到上方，与小英的箭头同高对齐)
+  \draw[decorate, decoration={brace, amplitude=5pt}, line width=0.8pt, red!70!black] % 用向上的红色大括号标出剩余距离；未写 mirror，所以括号默认朝上
+    (12, 0.4) -- (14, 0.4) node[midway, above=6pt, font=\small\bfseries] {小英与少年宫距离}; % 从小英位置到少年宫位置画括号；above=6pt 控制文字离括号距离
+
+\end{tikzpicture} % 结束“同向而行路程差”线段图
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{解答：}\\
+\textbf{方法一（分别计算两人路程）：}\\
+小军的路程：$70 \times 10 = 700$（米）\\
+小英的路程：$60 \times 10 = 600$（米）\\
+两人相差：$700 - 600 = 100$（米）
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{方法二（按速度差计算）：}\\
+$(70 - 60) \times 10 = 10 \times 10 = 100$（米）
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{答：}这时小英离少年宫还有 $100$ 米。
+
+\vspace{0.8cm}
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 画三角形的高
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：根据题意画线段图并解答}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 四年级三个班的同学为庆祝元旦做纸花，一共做了 $85$ 朵。二班比一班多做了 $4$ 朵，三班和一班做的同样多。三个班各做了多少朵？（先根据题意画出线段图，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 定义行距 y 坐标
+  \def\yone{0}
+  \def\ytwo{-1.2}
+  \def\ythree{-2.4}
+  
+  % 定义标准长度(一班和三班的基准产量) 和 超出部分的长度(二班多出部分)
+  \def\L{4}
+  \def\dL{1.5}
+  \def\Lx{5.5} % \L + \dL
+  
+  % 左侧题签：班级名称对齐列阵
+  \node[left] at (-0.2, \yone) {\large 一班};
+  \node[left] at (-0.2, \ytwo) {\large 二班};
+  \node[left] at (-0.2, \ythree) {\large 三班};
+  
+  % =============== 一班线段 ===============
+  \draw[thick] (0, \yone) -- (\L, \yone);
+  % 纯手工极细起始截断线，长度高度统一为物理标量 0.15cm
+  \draw[thick] (0, \yone-0.15) -- (0, \yone+0.15);
+  \draw[thick] (\L, \yone-0.15) -- (\L, \yone+0.15);
+
+  % =============== 二班线段 ===============
+  \draw[thick] (0, \ytwo) -- (\Lx, \ytwo);
+  \draw[thick] (0, \ytwo-0.15) -- (0, \ytwo+0.15);
+  \draw[thick] (\L, \ytwo-0.15) -- (\L, \ytwo+0.15);  % 基准分割刻度点
+  \draw[thick] (\Lx, \ytwo-0.15) -- (\Lx, \ytwo+0.15); % 最终收尾断点
+  
+  % 二班多出的部分括号标记 (朝上的 \overbrace，文字在中点正上方)
+  \draw[decorate, decoration={brace, amplitude=4pt, raise=2pt}, thick] (\L, \ytwo+0.15) -- (\Lx, \ytwo+0.15) node[midway, above=6pt] {$4$朵};
+  
+  % =============== 三班线段 ===============
+  \draw[thick] (0, \ythree) -- (\L, \ythree);
+  \draw[thick] (0, \ythree-0.15) -- (0, \ythree+0.15);
+  \draw[thick] (\L, \ythree-0.15) -- (\L, \ythree+0.15);
+  
+  % =============== 全局汇总大括号 ===============
+  % 朝右的巨大汇总括号 \rcase，文字在尖端右侧。
+  \draw[decorate, decoration={brace, amplitude=6pt, raise=2pt}, thick] (\Lx+0.2, \yone+0.15) -- (\Lx+0.2, \ythree-0.15) node[midway, right=8pt] {$85$朵};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这是一道经典的“和差问题”变式。题目给出三个班的总和为 $85$ 朵，且通过文字描述了三个班数量之间的逻辑差值系统。\\
+1. \textbf{基准线的确立}：根据题干中的“三班和一班同样多”，我们将这两个班级作为标准参照底。在绘制线段图时，画出两条等长的线段分别代表一班和三班。\\
+2. \textbf{差异量的外延}：根据“二班比一班多做 $4$ 朵”，我们在绘制二班线段时，并非毫无规律的拉长，而是首先精准画出一段与一班坐标系对齐且完全相同长度的基段（并钉下刻度作为隔断印记），随后以此为延伸向右侧长出一段附加尾线。在这段延长尾线的上方，植入向上突起的正反小括号，用于表示特有的增量“$4$ 朵”。\\
+3. \textbf{总量的闭环锁死}：一切就绪后，在画面矩阵的最右翼拉起一张硕大的总数收束大右括号圈起这所有的三行横线，它的尖端精确直指核心参量——总和“$85$ 朵”。\\
+4. \textbf{算术逆推化归}：经过这套严谨的“削峰填谷”可视化图形梳理，即使是四年级的学生也能一眼看穿真相——如果把二班多出来的那一截显眼的“由于攀比产生的 $4$ 朵小尾巴”强行斩断扔掉，那么剩下的存量将瞬间变成三个完完全全一模一样的一班的复刻品！剩下的总数就是 $(85-4=81)$，而均分给三个班也就是 $81 \div 3 = 27$ 朵。由此基础产量便水落石出了！
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何对齐点列硬约束控制}：程序从源头上废弃了原书由于排版散乱带来文字漂移的隐患；这里通过固化调用的中心本地宏常量 \texttt{\char`\\def\char`\\yone\{0\}}, \texttt{\char`\\ytwo\{-1.2\}}, \texttt{\char`\\ythree\{-2.4\}} 施加了全矩阵的横断截点约束，从根源强制让原本独立在外文字层排布的主语“一、二、三”班（通过 \texttt{\char`\\node[left] at (-0.2...)}）及其尾随的图段发生了捆绑并展现出了极致严整的工业排版对齐美学阵列感。\\
+\textbf{2. 古典边界断点物理复刻指令}：为了还原线段图中不可替代的终局停顿阻隔感，每一道主线段的起止点甚至基准中继点 \texttt{(0, y)} 和 \texttt{(\char`\\L, y)} 上，都未采用默认自带的箭头组件，而是通过极精湛地手动向下向上各执行一根物理跨度 $0.15\text{ cm}$ 的原生微游标短划垂线（例如 \texttt{(0, y-0.15) -- (0, y+0.15)}）。它甚至复刻了木制实体黑板尺中硬性粉笔敲击断点的摩擦顿搓阻力痕迹。\\
+\textbf{3. 矢量正反括印域自适应嵌套技术}：在展示差异属性以及收束总量闭环时，核心库启用了其自身最引以为豪的强劲原生 \texttt{decorations.pathreplacing} 前端微调计算组件：例如针对二班的凸起标识段小括印，指令库通过自左向右的正向路径扫描演算技术自动凭空膨化向上弹出了抓取曲率小括号（带自适应居中的 \texttt{node[midway, above]} 面置物器）；而面对拦截封杀右翼三线阵列收口局面的总和数目标量大括号印，程序利用了绝妙的扫描轨迹法则，通过从大矩阵的高坐标点自上而下进行不可逆硬跌落穿刺至矩阵极底端坐标点，硬算出了向右发生形变的极粗大闭环保裹圆弧曲线壁垒包络！
+}
+
+\vspace{0.6cm}
+
+\textbf{解答：}\\
+根据线段图分析，如果从总数中减去二班多出来的 $4$ 朵（即线段图中多余的后缀部分），那么此时三个班的数量就全部变得齐平，即相当于 $3$ 个一班做的数量总和。
+\begin{align*}
+\text{一班：}& \quad (85 - 4) \div 3 \\
+      & = 81 \div 3 \\
+      & = 27\text{（朵）} \\[6pt]
+\text{二班：}& \quad 27 + 4 = 31\text{（朵）} \\[6pt]
+\text{三班：}& \quad \text{由于三班和一班同样多，故三班也做了 } 27\text{ 朵。}
+\end{align*}
+
+\noindent\textbf{答：}一班做了 $27$ 朵，二班做了 $31$ 朵，三班做了 $27$ 朵。
+
+%% ==============================
+%% 画出图形底边上的高
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：行程问题线段图与计算}
+
+\vspace{0.4cm}
+
+\noindent\textbf{4. 先画图整理，再解答。}\\
+\textbf{轿车每小时行 $100$ 千米，客车每小时行 $80$ 千米。}
+
+\vspace{0.4cm}
+
+\noindent\textbf{（1）如果两车同时从两地出发，沿同一条公路相对而行，2小时后正好在加油站相遇。两地之间的公路长多少千米？}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0] % 整体思路：先画一条表示公路全长的水平线段，再在左右端标出 A$、$B 两地，中间标出相遇点，接着用方向箭头表示两车相向而行，最后用括号标出两段路程和总路程
+  \draw[line width=1.1pt] (0,0) -- (13,0); % 画主公路线段；line width=1.1pt 表示稍粗主线；从 (0,0) 到 (13,0) 表示整段路
+  
+  % 端点和相遇点
+  \draw[line width=1pt] (0,-0.2) -- (0,0.2) node[above=5pt] {$A$地}; % 在 x=0 处画竖短线表示 A 地位置；node[above=5pt] 表示标签放在线上方 5pt 处
+  \draw[line width=1pt] (13,-0.2) -- (13,0.2) node[above=5pt] {$B$地}; % 在最右端 x=13 处画 B 地标记
+  \draw[line width=1pt] (7,-0.2) -- (7,0.2) node[above=5pt, font=\small\bfseries, red!70!black] {加油站（相遇点）}; % 在中间 x=7 处画相遇点；font=\small\bfseries 让文字较小但加粗；red!70!black 用红色强调关键位置
+  
+  % 行驶方向箭头
+  \draw[->, line width=1pt, blue!70!black] (1.0, 0.4) -- (4.5, 0.4) node[midway, above] {\small 轿车 $100$ 千米/时}; % 蓝色箭头从左向右，表示轿车行驶方向；midway 表示标签放在线段中点；above 放在线上方
+  \draw[->, line width=1pt, orange!90!black] (12.0, 0.4) -- (9.5, 0.4) node[midway, above] {\small 客车 $80$ 千米/时}; % 橙色箭头从右向左，表示客车向相遇点驶来
+  
+  % 下方大括号标注距离
+  \draw[decorate, decoration={brace, amplitude=6pt, mirror}, line width=0.8pt, blue!70!black] % decorate 表示启用装饰；decoration={brace,...} 指定大括号；amplitude=6pt 控制括号鼓起幅度；mirror 表示括号朝下
+    (0,-0.3) -- (7,-0.3) node[midway, below=8pt, font=\small] {轿车 $2$ 小时路程}; % 从 A 地到相遇点下方画蓝色大括号；below=8pt 让文字离括号稍远一些
+  \draw[decorate, decoration={brace, amplitude=5pt, mirror}, line width=0.8pt, orange!90!black] % 第二个大括号同理，amplitude=5pt 使形状略小以适应较短区间
+    (7,-0.3) -- (13,-0.3) node[midway, below=6pt, font=\small] {客车 $2$ 小时路程}; % 从相遇点到 B 地下方画客车 2 小时路程括号
+    
+  \draw[decorate, decoration={brace, amplitude=8pt, mirror}, line width=1pt] % 最下方大括号表示全长；amplitude=8pt 更醒目
+    (0,-1.4) -- (13,-1.4) node[midway, below=10pt, font=\bfseries] {两地全长}; % 从 A 到 B 整段下方画总长括号；font=\bfseries 加粗突出整体
+\end{tikzpicture} % 结束“相向而行”线段图
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{解答：}\\
+$(100 + 80) \times 2 = 180 \times 2 = 360$（千米）\\[4pt]
+\textbf{答：}两地之间的公路长 $360$ 千米。
+
+\vspace{0.8cm}
+\hrule
+\vspace{0.8cm}
+
+\noindent\textbf{（2）如果两车同时从加油站出发，沿同一条公路相背而行，2小时后正好同时到达目地。两地之间的公路长多少千米？}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0] % 整体思路：图形结构与上一题类似，但方向改成从中间向两端相背而行，所以保留同一条公路线段，中点作为出发点，两侧为目地，再用相反方向箭头说明运动过程
+  \draw[line width=1.1pt] (0,0) -- (13,0); % 画表示整段公路的水平主线
+  
+  % 端点和出发点
+  \draw[line width=1pt] (0,-0.2) -- (0,0.2) node[above=5pt] {目地 $A$}; % 左端竖短线表示目地 A
+  \draw[line width=1pt] (13,-0.2) -- (13,0.2) node[above=5pt] {目地 $B$}; % 右端竖短线表示目地 B
+  \draw[line width=1pt] (7,-0.2) -- (7,0.2) node[above=5pt, font=\small\bfseries, red!70!black] {加油站（出发点）}; % 中点标记加油站，并强调这里是共同出发点
+  
+  % 行驶方向箭头
+  \draw[->, line width=1pt, blue!70!black] (4.5, 0.4) -- (1.0, 0.4) node[midway, above] {\small 轿车 $100$ 千米/时}; % 蓝色箭头从中间偏左指向更左边，表示轿车向 A 地方向行驶
+  \draw[->, line width=1pt, orange!90!black] (9.5, 0.4) -- (12.0, 0.4) node[midway, above] {\small 客车 $80$ 千米/时}; % 橙色箭头从中间偏右指向更右边，表示客车向 B 地方向行驶
+  
+  % 下方大括号标注距离
+  \draw[decorate, decoration={brace, amplitude=6pt, mirror}, line width=0.8pt, blue!70!black] % 画左半段蓝色大括号，说明轿车 2 小时所行路程
+    (0,-0.3) -- (7,-0.3) node[midway, below=8pt, font=\small] {轿车 $2$ 小时路程}; % 从左端到中点的下方标注轿车路程
+  \draw[decorate, decoration={brace, amplitude=5pt, mirror}, line width=0.8pt, orange!90!black] % 画右半段橙色大括号，说明客车 2 小时所行路程
+    (7,-0.3) -- (13,-0.3) node[midway, below=6pt, font=\small] {客车 $2$ 小时路程}; % 从中点到右端的下方标注客车路程
+    
+  \draw[decorate, decoration={brace, amplitude=8pt, mirror}, line width=1pt] % 再用更大的总括号统一标记整段公路全长
+    (0,-1.4) -- (13,-1.4) node[midway, below=10pt, font=\bfseries] {两地全长}; % 在最下方给出全长提示
+\end{tikzpicture} % 结束“相背而行”线段图
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{解答：}\\
+$(100 + 80) \times 2 = 180 \times 2 = 360$（千米）\\[4pt]
+\textbf{答：}两地之间的公路长 $360$ 千米。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 线段图行程建模}：将公路抽象为从 $(0,0)$ 到 $(13,0)$ 的水平线段，分别用竖短线标注起止和关键地点（$A$ 地、$B$ 地、加油站/出发点）。\\
+\textbf{2. 方向箭头}：蓝色箭头 \texttt{blue!70!black} 和橙色箭头 \texttt{orange!90!black} 分别表示两车运动方向，直观对比速度和距离。\\
+\textbf{3. 大括号装饰器}：使用 \texttt{decorations.pathreplacing} 库的 \texttt{brace} 绘制路程标注大括号。\texttt{amplitude} 控制括号鼓出幅度，\texttt{mirror} 使括号朝下。近距离和远距离括号通过不同 $y$ 偏移量错开排列避免重叠。
+}
+
+%% ==============================
+%% 画图解题：同向而行与路程差
+%% ==============================
+\newpage

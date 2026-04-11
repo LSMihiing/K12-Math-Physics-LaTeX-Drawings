@@ -1,0 +1,258 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 复式条形统计图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：爱心捐赠条形与扇形统计图（图①、②）}
+
+\vspace{0.6cm}
+
+\textbf{（1）从图①中可以看出，该班捐赠金额在 $10\sim 15$ 元的人数有} \underline{\quad $\textbf{15}$ \quad} \textbf{人。}
+
+\vspace{0.4cm}
+
+\textbf{（2）补全条形统计图，并计算扇形统计图中 $\boldsymbol{a}, \boldsymbol{b}$ 的值：}
+
+根据图表分析，$a = \boldsymbol{10}$，$b = \boldsymbol{50}$。补全红色的条形统计图与对应扇形数值如下：
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, font=\small, line join=round, line cap=round]
+
+  % ======================================
+  % 图①：条形统计图
+  % ======================================
+  \begin{scope}[shift={(0, 0)}]
+    % Y 轴
+    \draw[->, line width=0.8pt] (0,0) -- (0, 6) node[above] {人数};
+    
+    % Y 轴刻度及横向虚线网格
+    % 以 1 个单位（例如 1cm）代表 5 人，纵轴最高画到 30 人 (6 厘米)
+    \foreach \y/\val in {1/5, 2/10, 3/15, 4/20, 5/25} {
+      \draw[line width=0.6pt] (0,\y) -- (-0.15,\y) node[left] {$\val$};
+      \draw[gray!50, dashed, line width=0.6pt] (0,\y) -- (7,\y);
+    }
+    
+    % X 轴
+    \draw[->, line width=0.8pt] (0,0) -- (7.5, 0) node[right, yshift=-0.1cm] {金额/元};
+    
+    % X 轴刻度
+    \foreach \x/\val in {0/0, 1/5, 2/10, 3/15, 4/20, 5/25, 6/30} {
+      \draw[line width=0.6pt] (\x,0) -- (\x,-0.15) node[below] {$\val$};
+    }
+    
+    % 原有的条形 (10~15元：15人；20~25元：5人)
+    \draw[black, line width=1.0pt] (2,0) rectangle (3, 3);
+    \draw[black, line width=1.0pt] (4,0) rectangle (5, 1);
+    
+    % 补全的条形 (15~20元：25人；25~30元：5人)，使用红色边框及标注
+    \draw[red!70!black, line width=1.2pt] (3,0) rectangle (4, 5);
+    \node[red!70!black, above, font=\bfseries] at (3.5, 5) {$25$};
+    
+    \draw[red!70!black, line width=1.2pt] (5,0) rectangle (6, 1);
+    \node[red!70!black, above, font=\bfseries] at (5.5, 1) {$5$};
+    
+    % 图①编号
+    \node[below, font=\large] at (3.5, -1.0) {①};
+  \end{scope}
+
+  % ======================================
+  % 图②：扇形统计图 (半径设为 2.2 cm)
+  % ======================================
+  \begin{scope}[shift={(15.5, 2.5)}]
+    \def\R{2.2}
+    
+    % 15~20元 (50%) -> 取 180 到 360 度 (完整底部半圆)
+    \draw[black, line width=0.8pt] (0,0) -- (180:\R) arc (180:360:\R) -- cycle;
+    \node[align=center, red!70!black] at (270:1.3) {$15\sim 20$元 \\ $\boldsymbol{b=50\%}$};
+    
+    % 10~15元 (30%) -> 取 0 到 108 度
+    \draw[black, line width=0.8pt] (0,0) -- (0:\R) arc (0:108:\R) -- cycle;
+    \node[align=center] at (54:1.3) {$10\sim 15$元 \\ $30\%$};
+    
+    % 25~30元 (10%) -> 取 108 到 144 度
+    \draw[black, line width=0.8pt] (0,0) -- (108:\R) arc (108:144:\R) -- cycle;
+    % 由于10%的扇区较狭窄，故采用原图折线向左侧外引出标注
+    \draw[black, line width=0.6pt] (126:1.9) -- (126:2.5) -- ++(-0.6,0) node[left, align=center] {$25\sim 30$元 \\ $10\%$};
+    
+    % 20~25元 (10%) -> 取 144 到 180 度
+    \draw[black, line width=0.8pt] (0,0) -- (144:\R) arc (144:180:\R) -- cycle;
+    \node[align=center, red!70!black] at (162:1.4) {$20\sim 25$元 \\ $\boldsymbol{a=10\%}$};
+    
+    % 图②编号
+    \node[below, font=\large] at (0, -2.8) {②};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（3）估计全校学生捐赠总金额：}
+
+\vspace{0.4cm}
+全班人均捐款为：$900 \div 50 = 18$（元/人）。
+
+全校学生捐赠总金额约为：$1280 \times 18 = 23040 \approx 23000$（元）。
+
+\vspace{0.4cm}
+\textbf{答：}估计全校学生捐赠总金额约为 $23000$ 元。
+
+\vspace{0.8cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题解析说明：}\\
+1. \textbf{读频数定人数：}条形统计图在横轴刻度上有留空暗示数据组（$0\sim 5$ 和 $5\sim 10$ 为空）。从已知画出的图①中可直接读取：紧挨着 $10$ 和 $15$ 刻度线的柱子高为 $15$，说明捐赠金额在 $10\sim 15$ 元的有 \textbf{$15$ 人}；落在 $20$ 和 $25$ 之间的频数是 \textbf{$5$ 人}。\\
+2. \textbf{图表联动求变量：}题干给出 $25\sim 30$ 元占 $10\%$，总人数为 $50$ 人，即该组有 $50 \times 10\% = 5$ 人；条形图上 $20\sim 25$ 元也必定有 $5$ 人，其对应扇形占比自然也是 $10\%$，故得出解 $\boldsymbol{a=10}$。\\
+将全体总人数 $50$ 减去四个已知的组类人数（$15+5+5$），即可得出缺失的主力军—— $15\sim 20$ 元必定还剩下 \textbf{$25$ 人}，占全体的恰好半壁江山，即百分比是 $\boldsymbol{50\%}$ 从而求得解 $\boldsymbol{b=50}$。由此可以在原条形图中用红笔补充上这两条高低悬殊的柱条。\\
+3. \textbf{均值样本推断总体：}利用题目给出的非常精确的该班级集体捐款实际总数 $900$ 元，算出该班人均捐赠额为（$18$元/人），最后用具有代表性的样本平均数乘上全校总规模 $1280$ 人并根据“精确到 1000 元”的要求做类似四舍五入的合理截断。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 矩阵式直方框架：}通过定义底端坐标起点 $(0,0)$ ，横轴采用 \texttt{\textbackslash foreach \textbackslash x/\textbackslash val} 序列一次性精准抛出间距与底下文字锚点；同时纵轴依据同列原理每步进 1 个视觉高度对应增加 5 个人次，并在对应的节点上拉出贯穿整图具备 \texttt{dashed} 属性的深灰色横向辅助网格参照虚线，使图作严格规范。\\
+\textbf{2. 分色补全高亮：}依据计算所得值，原有的 $10\sim 15$ ($15$人)、$20\sim 25$ ($5$人) 两段黑框数据按位绘制。需要补全的数据柱由醒目的 \texttt{red!70!black} 框线描出并且在立柱顶部额外写上黑体强调数字加深判定印象。\\
+\textbf{3. 极速扇形区域闭合：}在右侧图②确立极坐标基准。由于求出极大概率的解 $b=50(15\sim 20\text{元})$ ，故首先直接写下起始直线 \texttt{(0,0) -{}- (180:R)} 并平滑接合 \texttt{arc(180:360:R)} 生成一个占满下半球的完整半圆形区块。剩下三块按照已计算解析的真实比例转化为各自跨越角度（$30\%\rightarrow 108^\circ, 10\%\rightarrow 36^\circ$ 等），以严格首尾角度相接序列（即 $0^\circ\rightarrow 108^\circ\rightarrow 144^\circ\rightarrow 180^\circ$）拼合其余全部半圆。其中最狭窄的区块依据原参考图特征灵活用连线将标识语通过 \texttt{-{}- ++(-0.6,0)} 拉至图表外。
+}
+
+%% ==============================
+%% 第1题：复式折线统计图的分析与绘制
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：复式条形统计图绘制}
+
+\vspace{0.4cm}
+
+\noindent\textbf{1. 下面是华兴村 2019 年至 2022 年水稻、小麦产量统计表：（单位：吨）}
+
+\vspace{0.4cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\makebox[2cm][c]{年份} & \makebox[2cm][c]{2019 年} & \makebox[2cm][c]{2020 年} & \makebox[2cm][c]{2021 年} & \makebox[2cm][c]{2022 年} \\
+\hline
+水稻 & 400 & 450 & 480 & 650 \\
+\hline
+小麦 & 300 & 320 & 400 & 380 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+
+\noindent\textbf{（1）根据表中的数据，完成下面的统计图。}
+
+\vspace{0.6cm}
+
+\begin{center}
+\textbf{\large 华兴村水稻、小麦产量统计图}\\
+\textbf{（2019$\sim$2022 年）}
+
+\vspace{0.4cm}
+
+% =====================================================================
+% 【复式条形图绘制思路】
+% 1. X 轴原样扩展为 13 列网格区块。
+% 2. 映射关系：大格 y=1 代指物理高度 100 吨，通过 `产量 / 100` 来获取矩形的 y 高。全系 y 以 0.6cm 拉伸系数绘制。
+% 3. “分组并置排版”：每一年的产量组占用独立的隔离区 (x=1~3, x=4~6, x=7~9, x=10~12 等)。其中紧凑绘制斜线填充格“水稻” (x 延伸到 x+1)，与灰底格“小麦” (x+1 延伸到 x+2)。
+% =====================================================================
+\begin{tikzpicture}[x=0.85cm, y=0.6cm, font=\small]
+  % 顶栏：产量，图例，日期
+  \node[above left, inner sep=0pt] at (1.5, 7.8) {产量/吨};
+  
+  \draw[thick, fill=white, pattern=north west lines] (5, 7.6) rectangle (6, 8.0);
+  \node[right] at (6, 7.8) {水稻};
+  
+  \draw[thick, fill=gray!30] (8, 7.6) rectangle (9, 8.0);
+  \node[right] at (9, 7.8) {小麦};
+  
+  \node[above left, inner sep=0pt] at (13, 7.8) {2026年 \ 3月};
+  
+  % 网格
+  \draw[step=1, black, thin] (0,0) grid (13,7);
+  
+  % Y 轴标签
+  \foreach \y/\val in {0/0, 1/100, 2/200, 3/300, 4/400, 5/500, 6/600, 7/700} {
+    \node[left] at (0, \y) {\val};
+  }
+  
+  % X 轴标签
+  \node[below] at (2, 0) {2019年};
+  \node[below] at (5, 0) {2020年};
+  \node[below] at (8, 0) {2021年};
+  \node[below] at (11, 0) {2022年};
+  \node[below] at (12.5, 0) {年份};
+
+  % --- 水稻 (pattern=north west lines) ---
+  % 2019: 400 (h=4) -> [1,2]
+  \draw[thick, fill=white, pattern=north west lines] (1, 0) rectangle (2, 4);
+  \node[above, inner sep=2pt] at (1.5, 4) {400};
+  
+  % 2020: 450 (h=4.5) -> [4,5]
+  \draw[thick, fill=white, pattern=north west lines] (4, 0) rectangle (5, 4.5);
+  \node[above, inner sep=2pt] at (4.5, 4.5) {450};
+  
+  % 2021: 480 (h=4.8) -> [7,8]
+  \draw[thick, fill=white, pattern=north west lines] (7, 0) rectangle (8, 4.8);
+  \node[above, inner sep=2pt] at (7.5, 4.8) {480};
+  
+  % 2022: 650 (h=6.5) -> [10,11]
+  \draw[thick, fill=white, pattern=north west lines] (10, 0) rectangle (11, 6.5);
+  \node[above, inner sep=2pt] at (10.5, 6.5) {650};
+
+  % --- 小麦 (fill=gray!30) ---
+  % 2019: 300 (h=3) -> [2,3]
+  \draw[thick, fill=gray!30] (2, 0) rectangle (3, 3);
+  \node[above, inner sep=2pt] at (2.5, 3) {300};
+  
+  % 2020: 320 (h=3.2) -> [5,6]
+  \draw[thick, fill=gray!30] (5, 0) rectangle (6, 3.2);
+  \node[above, inner sep=2pt] at (5.5, 3.2) {320};
+  
+  % 2021: 400 (h=4) -> [8,9]
+  \draw[thick, fill=gray!30] (8, 0) rectangle (9, 4);
+  \node[above, inner sep=2pt] at (8.5, 4) {400};
+  
+  % 2022: 380 (h=3.8) -> [11,12]
+  \draw[thick, fill=gray!30] (11, 0) rectangle (12, 3.8);
+  \node[above, inner sep=2pt] at (11.5, 3.8) {380};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这是一道经典的复式条形统计图问题。\\
+1. \textbf{刻度映射换算}：\\
+- 观察纵轴（Y轴），每一个物理网格的高度代表增量为 100 吨，因此数据的转化规则为：\textbf{目标高度格数 = 实际产量 $\div$ 100}。\\
+- “水稻”数据：$2019\sim 2022$年分别为 $400, 450, 480, 650$ 吨，换算出的绘图高度则分别为 $4, 4.5, 4.8, 6.5$ 个网高刻度。\\
+- “小麦”数据：$2019\sim 2022$年分别为 $300, 320, 400, 380$ 吨，换算出的绘图高度则分别为 $3, 3.2, 4, 3.8$ 个网高刻度。\\
+2. \textbf{水平区间排布（复式原理）}：\\
+- 与单式统计图不同，复式图的横轴（X轴）为每个“年份”分配了 2 个相邻的基础网格列。\\
+- 第 1 列、第 4 列、第 7 列、第 10 列起到了“安全预留间隙”的作用（用于分隔不同年份）；\\
+- 一切“水稻”列都必须填在上文空隙后面的首排空间（如 $1\sim2, 4\sim5$ 区域内），并且画上 \textbf{“斜线阴影” (\texttt{north west lines})}\\
+- 一切“小麦”列都要与其紧挨相贴在后半程空间（如 $2\sim3, 5\sim6$ 区域内），并且画上 \textbf{“浅灰色填充” (\texttt{gray!30})}；最后在顶部打上蓝色具体数值标签。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 宽幅矩阵阵列搭建}：底层系统通过构建 `(13,7)` 的笛卡尔网格进行初始化托底。在顶端利用 \texttt{node[above left/right]} 等命令自由摆放悬浮刻度计量单位“产量/吨”与复式分类专属图例。在横轴刻度标签上，利用 `(2,0)`、`(5,0)` 将“201X年”字样正向对准 `X` \texttt{->} `X+1` 这一复式组合宽度的质心点位。\\
+\textbf{2. 样式化模式嵌套 (\texttt{patterns} 库)}：对水稻采用了特殊的画笔着色样式 \texttt{pattern=north west lines} 添加左下到右上的经典并行斜剖纹理，而小麦柱体则继续采用标准的教辅灰 \texttt{fill=gray!30}，两者完全贴合左右侧面及下方边框。
+}
+
+\newpage

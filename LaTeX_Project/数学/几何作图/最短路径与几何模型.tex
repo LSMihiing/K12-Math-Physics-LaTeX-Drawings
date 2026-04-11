@@ -1,0 +1,295 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 最短路径与几何模型
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：最短路径问题（饮马模型及应用）}
+
+\vspace{0.6cm}
+
+\textbf{（1）如图①，在直线 $\boldsymbol{l}$ 上找一点 $\boldsymbol{P}$，使得 $\boldsymbol{PA+PB}$ 最短（画图即可）。}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.2]
+  % 1. 基本结构：直线 l 和两个点 A, B
+  \draw[line width=1.0pt, black] (0, 0) -- (6, 0) node[right, font=\large] {$l$};
+  \coordinate (A) at (1.5, 1.0);
+  \coordinate (B) at (4.5, 2.5);
+  
+  \fill (A) circle (2pt) node[above left] {$A$};
+  \fill (B) circle (2pt) node[above right] {$B$};
+  
+  % 2. 作图步骤：作点 A 关于直线 l 的对称点 A'
+  \coordinate (A1) at (1.5, -1.0); % A 的对称点
+  \fill[blue!70!black] (A1) circle (2pt) node[below right, text=blue!70!black] {$A'$}; % 将 A' 画出并加注蓝色区分作图印记
+  \draw[dashed, blue!70!black, line width=0.8pt] (A) -- (A1); % 对称辅助虚线
+  
+  % 在横轴投影视角画一组直角标记
+  \draw[blue!70!black, line width=0.6pt] (1.5, 0.2) -- (1.7, 0.2) -- (1.7, 0);
+  
+  % 3. 找点 P：连接 A' 和 B，交直线 l 于点 P
+  % 运用 TikZ 的智能交点功能 intersect 找到 l 和射线的交汇
+  \coordinate (P) at (intersection of A1--B and 0,0--6,0);
+  \fill[red!80!black] (P) circle (2.5pt) node[below right, text=red!80!black, yshift=-3pt] {$P$};
+  
+  % 绘制辅助连接线 A'B
+  \draw[dashed, blue!70!black, line width=0.8pt] (A1) -- (B);
+  
+  % 4. 绘制原像上的最终极值最短折线段路线： AP, PB
+  \draw[red!80!black, line width=1.5pt] (A) -- (P) -- (B);
+  
+  % 图①编号
+  \node[below, font=\large] at (3, -1.8) {①};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+
+\textbf{（2）如图②，在正方形 $\boldsymbol{ABCD}$ 中，$\boldsymbol{E}$ 为 $\boldsymbol{AB}$ 的中点，在线段 $\boldsymbol{BD}$ 上找一点 $\boldsymbol{P}$，使得 $\boldsymbol{PA+PE}$ 的值最小（画图即可）。}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.3]
+  \def\a{3.0} % 正方形基本变长
+  % 1. 基本结构：原正方形及给定的中心对角连线图元
+  \coordinate (A) at (0, \a);
+  \coordinate (D) at (\a, \a);
+  \coordinate (B) at (0, 0);
+  \coordinate (C) at (\a, 0);
+  
+  \draw[line width=1.0pt, black] (A) -- (D) -- (C) -- (B) -- cycle;
+  
+  % 绘制原题已经含有的对角线段 AC 和 BD
+  \draw[line width=0.8pt, black] (A) -- (C);
+  \draw[line width=0.8pt, black] (B) -- (D);
+  
+  \node[above left] at (A) {$A$};
+  \node[above right] at (D) {$D$};
+  \node[below left] at (B) {$B$};
+  \node[below right] at (C) {$C$};
+  
+  % 定义出左侧一半位置上的点 E
+  \coordinate (E) at (0, \a/2);
+  \fill (E) circle (2pt) node[left] {$E$};
+  
+  % 2. 饮马模型原理活用化归：
+  % 点 A 取法相对要求反弹的最底折面（轴是对角线 BD）自然得出的系统对称点，正是其自身位于全方框底围实相存在的另外一条右下角端点 C！
+  
+  % 利用算法找到连接 EC 这段线与既底大长轴 BD 的横切物理碰撞点即为我们要求的全局总长最短中转 P
+  \coordinate (P) at (intersection of E--C and B--D);
+  \fill[red!80!black] (P) circle (2.5pt) node[above, text=red!80!black, yshift=2pt] {$P$};
+  
+  % 绘制映射替代的最省长辅助视线 CE
+  \draw[dashed, blue!70!black, line width=1.0pt] (E) -- (C);
+  
+  % 3. 压高渲染原始模型题干实际所走的半段路线 (A -> P -> E)
+  \draw[red!80!black, line width=1.5pt] (A) -- (P) -- (E);
+  
+  % 图②编号
+  \node[below, font=\large] at (\a/2, -0.6) {②};
+\end{tikzpicture}
+\end{center}
+
+
+\vspace{0.4cm}
+
+\textbf{（3）如图③，在正方形 $\boldsymbol{ABCD}$ 中，$\boldsymbol{E}$ 为 $\boldsymbol{AB}$ 的中点，动点 $\boldsymbol{M}$ 在 $\boldsymbol{BC}$ 上，动点 $\boldsymbol{N}$ 在 $\boldsymbol{CD}$ 上，连接 $\boldsymbol{EM, MN, NA}$，请你应用 (1) 的原理，在图③中找出点 $\boldsymbol{M, N}$，使得 $\boldsymbol{EM+MN+NA}$ 的值最小（画图即可）。}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.3]
+  \def\a{3.0} % 正方形主骨架宽度设定
+  % 1. 全局基本黑视大边框构建
+  \coordinate (A) at (0, \a);
+  \coordinate (D) at (\a, \a);
+  \coordinate (B) at (0, 0);
+  \coordinate (C) at (\a, 0);
+  
+  \draw[line width=1.0pt, black] (A) -- (D) -- (C) -- (B) -- cycle;
+  
+  \node[above left] at (A) {$A$};
+  \node[above right] at (D) {$D$};
+  \node[below left] at (B) {$B$};
+  \node[below right] at (C) {$C$};
+  
+  \coordinate (E) at (0, \a/2);
+  \fill (E) circle (2pt) node[left] {$E$};
+  
+  % 2. “双管齐下”两段式延展镜像作法逻辑：
+  % 分别作源路径起始头 E 和 末段收缩端 A 关于所在反射折返边壁（即底面底线 BC 、与对面强身墙线 CD）做各自的双向对外镜像发散点投影。
+  
+  % 第一维展开作案：建立 E 相对横亘底轴 BC 的下翻镜像 E' (- \a/2)
+  \coordinate (E1) at (0, -\a/2);
+  \fill[blue!70!black] (E1) circle (2pt) node[left, text=blue!70!black] {$E'$};
+  \draw[dashed, blue!70!black, line width=0.8pt] (E) -- (E1); % 辅助垂直投影拉扯虚线段
+  
+  % 在横轴投影视角画一组直角标记
+  \draw[blue!70!black, line width=0.6pt] (0.2, 0) -- (0.2, -0.2) -- (0, -0.2);
+  
+  % 第二维发力拓界：确立原始收口 A 点相对于另一强反射立面 CD 沿出边界横插到平面的平移反位点 A'
+  \coordinate (A1) at (2*\a, \a);
+  \fill[blue!70!black] (A1) circle (2pt) node[above, text=blue!70!black] {$A'$};
+  \draw[dashed, blue!70!black, line width=0.8pt] (A) -- (A1); % 横向飞拉线
+  
+  % 在纵轴投影视角画一组直角标记
+  \draw[blue!70!black, line width=0.6pt] (\a, \a-0.2) -- (\a+0.2, \a-0.2) -- (\a+0.2, \a);
+  
+  % 3. 终结大势已定：使用两仪终极解——直连已被我们破开完全平展化为一条平直极通线 E'A'
+  \draw[dashed, blue!70!black, line width=1.0pt] (E1) -- (A1);
+  
+  % 4. 寻觅目标点：利用其虚直线划破实心原始二维底区时撞破割断两堵物理边界的原始出入角落差定位出真实题解 M 和 N。
+  \coordinate (M) at (intersection of E1--A1 and B--C);
+  \coordinate (N) at (intersection of E1--A1 and C--D);
+  
+  \fill[red!80!black] (M) circle (2.5pt) node[above left, text=red!80!black, xshift=-1pt, yshift=2pt] {$M$};
+  \fill[red!80!black] (N) circle (2.5pt) node[below left, text=red!80!black, xshift=-2pt, yshift=-4pt] {$N$};
+  
+  % 5. 大功告成将原主命题极具弯曲折叠性质且无解般的内部路线真实浮现高亮填色
+  \draw[red!80!black, line width=1.5pt] (E) -- (M) -- (N) -- (A);
+  
+  % 图③编号
+  \node[below, font=\large] at (\a/2, -0.6-\a/2) {③};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题解析说明：}\\
+这三道小题同属于经典的初中数学同构压轴模型：\textbf{“将军饮马”的最短路径问题及其多阶衍生。}其核心思想就在于利用点对线段（镜面）的对称原理将折线段拉扯并展开映射到一整侧，最后化归为最基本的两点间直线位移。\\
+1. \textbf{第（1）题（基础一次反射）：}题目要求在给定平直边界 $l$ 上找到打在岸边的拐点 $P$ 使得入与出路径加和 $PA+PB$ 最小。由“两点之间线段最短”，只需找出 $A$ 相对边界 $l$ 的垂直镜像对称点 $A'$，然后用直尺直接连接 $A'B$ 两点。由于垂直平分线性质约束了该线段必与 $l$ 交过一个点且长度就是全域最极致的小，从而找出交点定为 $P$ 即可。\\
+2. \textbf{第（2）题（正方形巧妙应用）：}要求在固定的斜坡对角线 $BD$ 上寻走点 $P$ 使得两线夹带 $PA+PE$ 最短。将此置于有着极强高轴对称度正方形 $ABCD$ 框架中。无需像上题那般盲目标划辅助线建立：点 $A$ 关于约束转折轴对角线 $BD$ 因为正方形自身的属性自然生成的物理镜像点——正是图内的另一固定实景定点 $C$。以此题立马被化解成了单纯在问求“$PC+PE$”的最短折线值。由于定点均已暴露无遗，把固定起点的 $C$ 与定死身位的 $E$ 大笔连接，其一刀斩截 $BD$ 直线所遗留的必然是极正解 $P$。\\
+3. \textbf{第（3）题（高难度二次复合反弹推图）：}本题动点横跨两条且彼此完全垂直的硬性反射面（下端硬底 $BC$ 面与右侧边沿墙角线 $CD$），构建这套诸如台球桌角连续反弹两遭所累积的最少全损耗：此时只需发挥 (1) 原理的三生万物的威力，让最开头的初始端发力点 $E$ 对脚下那堵墙 $BC$ 实施狠狠一次下翻强发展开成完全镜像出外援点 $E'$；然后同理针对落脚点的终极大头目的 $A$ ，继续毫不手软对着隔壁那一堵垂直的墙壁（触板 $CD$）如法炮制硬向反域展平一格平移出一个对等的假定目的 $A'$。所有点皆开界后，所有障碍墙尽破，两极连点相通成毫无弯曲阻挠且必是最短路径的一整条长达虚拟走廊大直线（$E'A'$）。顺藤摸瓜回头看其在经过虚拟位面前物理戳爆了主平原两次护栏边界割裂下来的那两具血淋淋的节点交界便是正解题里呼之欲出的全息打点 $M$ 和 $N$ 所在。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 锚点基础代数建模：}在建立这三组同气连枝的小图结构中其基本的定位 \texttt{coordinate} 分散坐标系统均摒弃生硬硬算，把整个全系定边基元用极强普适扩展性的参数 \texttt{\textbackslash a} 进行依赖耦合。比如第三幅的对称目标只需要推写下 \texttt{A1(2*\textbackslash a, \textbackslash a)} 即可轻松跨过所有比例运算约束完成精准大框架对标对立。\\
+\textbf{2. 代数交点原研求解器（\texttt{intersection of}）：}全代码组的核心黑科技解压神器！使用 TikZ 系统自带且在此物理线相交题中能够发挥核弹级效率的自带计算命令。在精细且直观推演算出假想镜像辅助端点的相对偏移外延参数后（即使像第三张跨过全底沿这种极限折平外抛投射），不用手工推解各种斜率联立解析二元甚至二次多元方程根。直观交给机器运行 \texttt{coordinate (M) at (intersection of E1--A1 and B--C);} 让图形库算法直接在虚拟内存截下空间投射切割心。保证每次成图必然重合并且具备小数点满位精确度。\\
+\textbf{3. 分层风格与虚实图纸分立术：}针对此题考研强烈的空间物理拉扯脑暴：在维持原版基础的墨黑 $1.0\rm{pt}$ 基调中；利用浅发冷调又伴有散漫感的蓝色 \texttt{dashed} 点划色系将抽象推理出所有平移投射出来的多维虚拟折射镜像区、辅外投引线作完全退位后方的大背书参照展示，既保留完整的思维解答推演论证走线全细节却又一点不抢夺本源戏份：最后仅给题纸提问的最重点答案大纲（所行最优质有效折算路轨）以最为极尽粗大的正红高警预报属性描出 \texttt{red!80!black} 及 \texttt{line width=1.5pt} 并追加强加注了全部解题落位黑点！
+}
+
+%% ==============================
+%% 第16题：爱心捐赠活动条形与扇形统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：数学实验与几何概型}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 47.} \textbf{完成下列数学实验}
+
+\textbf{（1）【画图】 ① 画一个半径为 $a$ 的圆； ② 在圆的内部画一个边长为 $a$ 的正方形。}
+
+\textbf{（4）【猜想】当试验次数很大时，$\dfrac{n}{m}$ 的值是否会在某一个常数附近摆动？若存在，写出这个常数。}
+
+\textbf{（5）【说理】通过计算说明上述猜想的合理性。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）【画图】}
+
+如图所示：
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  % 比例参数，设 a = 2.5cm
+  \def\a{2.5}
+  
+  % 参照题干中的线段 a
+  \draw[thick] (-\a/2, 3.5) -- (\a/2, 3.5);
+  \filldraw[black] (-\a/2, 3.5) circle (1.5pt);
+  \filldraw[black] (\a/2, 3.5) circle (1.5pt);
+  \node[below, font=\normalsize] at (0, 3.5) {$a$};
+
+  % ① 画一个半径为 a 的圆
+  \coordinate (O) at (0,0);
+  \draw[thick] (O) circle (\a);
+  \filldraw[black] (O) circle (1.5pt) node[below left, font=\normalsize] {$O$};
+  
+  % 标示圆的半径 a
+  \draw[thick, dashed] (O) -- (45:\a) node[midway, above left, font=\normalsize] {$a$};
+
+  % ② 画正方形（在圆内部居中放置，边长为 a）
+  \draw[thick] (-\a/2, -\a/2) rectangle (\a/2, \a/2);
+  
+  % 标示正方形边长 a
+  \draw[thin] (-\a/2, -\a/2) -- (-\a/2, -\a/2 - 0.4);
+  \draw[thin] (\a/2, -\a/2) -- (\a/2, -\a/2 - 0.4);
+  \draw[<->] (-\a/2, -\a/2 - 0.2) -- (\a/2, -\a/2 - 0.2);
+  \node[below, font=\normalsize] at (0, -\a/2 - 0.2) {$a$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{（3）【统计】}
+
+在下表中记录实验数据，并完成相应计算。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\cellcolor{gray!25} \textbf{试验序号} & 第 1 次 & 第 2 次 & 第 3 次 & 第 4 次 & 第 5 次 & 第 6 次 & $~~~\cdots~~~$ \\
+\hline
+\cellcolor{gray!25} \textbf{落在圆内的米粒数 $\boldsymbol{m}$} & 100 & 200 & 500 & 1000 & 2000 & 5000 & \\
+\hline
+\cellcolor{gray!25} \textbf{落在正方形内的米粒数 $\boldsymbol{n}$} & 31 & 64 & 158 & 318 & 637 & 1591 & \\
+\hline
+\cellcolor{gray!25} \textbf{$\dfrac{\boldsymbol{n}}{\boldsymbol{m}}$ 的值（精确到 $\boldsymbol{0.01}$）} & 0.31 & 0.32 & 0.32 & 0.32 & 0.32 & 0.32 & \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{（4）【猜想】}
+
+当试验次数很大时，$\dfrac{n}{m}$ 的值会在某一个常数附近摆动。
+
+存在这个常数，它是 $\underline{\textcolor{red}{\,\dfrac{1}{\pi}\,}}$。
+
+\vspace{0.3cm}
+\textbf{（5）【说理】}
+
+理由如下：
+
+这是一个几何概型（蒙特卡洛方法）问题。小米落在纸上圆内任一点是等可能的。
+
+正方形的边长为 $a$，所以其面积 $S_{\text{正方形}} = a^2$；
+
+圆的半径为 $a$，所以其面积 $S_{\text{圆}} = \pi a^2$。
+
+小米落在正方形内的概率 $P_1$ 与正方形的面积成正比，小米落在圆内的概率 $P_2$ 与圆的面积成正比。
+
+根据题意，“落在圆内的米粒数 $m$”，“落在正方形内的米粒数 $n$”，
+在已知小米落入了圆内的前提下，小米也落入了正方形内部的主观概率为两者的面积之比。
+
+在大量重复试验中，根据频率估计概率的原理：落在正方形内的米粒数 $n$ 与落在圆内的米粒数 $m$ 的比值，趋近于二者的面积之比。
+
+即：
+$$\frac{n}{m} \approx \frac{S_{\text{正方形}}}{S_{\text{圆}}} = \frac{a^2}{\pi a^2} = \frac{1}{\pi}$$
+
+所以，当试验次数很大时，$\dfrac{n}{m}$ 的值会在 $\dfrac{1}{\pi}$ 附近摆动，上述猜想合理。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 尺寸设定：} 令 $a = 2.5$cm 以展示清晰的图形比例。\\
+\textbf{2. 线段 $a$ 参照图：} 在上方复刻题干中的线段，起止点画上实心小圆点。\\
+\textbf{3. 圆形绘制：} 以 $O(0,0)$ 为圆心，半径 $a$ 画实线圆，用虚线连接圆心与圆周并标注半径 $a$。\\
+\textbf{4. 正方形绘制：} 根据题意，正方形只需在圆内部即可。为兼顾美观性，将其居中放置，即左下角坐标为 $(-a/2, -a/2)$，右上角坐标为 $(a/2, a/2)$，并在外侧用引线标注边长 $a$。
+}
+
+%% ==============================
+%% 第57题（补充题）：父母生日调查方案设计与统计图
+%% ==============================
+\newpage

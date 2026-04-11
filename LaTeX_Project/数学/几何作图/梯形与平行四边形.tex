@@ -1,0 +1,568 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 梯形与平行四边形
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：Rt$\triangle$ABC 中线与菱形证明}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 43.} \textbf{（10 分）如图，在 Rt$\triangle ABC$ 中，$CD$ 是斜边上的中线，$BE \parallel DC$ 交 $AC$ 的延长线于点 $E$。}
+
+\textbf{（1）用直尺和圆规作 $\angle ECM$，使得 $\angle ECM = \angle A$，且射线 $CM$ 交 $BE$ 于点 $F$（保留作图痕迹，不写作法）。}
+
+\textbf{（2）求证：四边形 $CDBF$ 是菱形。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）作图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1]
+  % ============================================================
+  % 坐标设定（30-60-90 直角三角形，∠C = 90°）
+  % A = (0,0), B = (6,0), ∠A = 60°, ∠B = 30°
+  % C 在以 D 为圆心、半径 3 的圆上（中线性质 CD = AB/2 = 3）
+  % C = (1.5, 2.598)  [即 (1.5, 1.5√3)]
+  % D = (3,0)  AB 中点
+  % E = (3, 5.196) [即 (3, 3√3)]  BE∥DC 与 AC 延长线交点
+  % F = (4.5, 2.598) 射线 CM（水平）与 BE 的交点
+  % ∠ECM = ∠A = 60°
+  % ============================================================
+  \coordinate (A) at (0, 0);
+  \coordinate (B) at (6, 0);
+  \coordinate (D) at (3, 0);
+  \coordinate (C) at (1.5, 2.598);
+  \coordinate (E) at (3, 5.196);
+  \coordinate (F) at (4.5, 2.598);
+  \coordinate (M) at (7.5, 2.598);
+
+  % 1. 三角形 ABC
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+  % 2. 中线 CD
+  \draw[thick] (C) -- (D);
+
+  % 3. AC 延长线到 E
+  \draw[thick] (C) -- (E);
+
+  % 4. BE 线段（BE∥DC）
+  \draw[thick] (B) -- (E);
+
+  % 5. 射线 CM（水平向右，交 BE 于 F，延长至 M）
+  \draw[thick] (C) -- (F);
+  \draw[thick, ->] (F) -- (M);
+
+  % 6. 连 BF$、$DF 构成四边形 CDBF
+  \draw[thick] (B) -- (F);
+  \draw[thick] (D) -- (F);
+
+  % 7. 直角标记（∠ACB = 90°）
+  % CA 方向单位向量 = (-0.5, -0.866)，CB 方向单位向量 = (0.866, -0.5)
+  \coordinate (R1) at ($(C) + (-0.125, -0.2165)$);  % C + 0.25*CA方向
+  \coordinate (R2) at ($(C) + (0.2165, -0.125)$);   % C + 0.25*CB方向
+  \coordinate (R3) at ($(C) + (0.0915, -0.3415)$);  % R1 + 0.25*CB方向
+  \draw[thin] (R1) -- (R3) -- (R2);
+
+  % ============================================================
+  % 8. 尺规作图痕迹——复制 ∠A 到 C 处
+  % ============================================================
+
+  % (a) 在 A 处画弧：圆心 A，半径 1.2，扫过 ∠A（0° 到 60°）
+  %     弧交 AB 于 P1=(1.2, 0)，交 AC 于 P2=(0.6, 1.039)
+  %     弦长 |P1P2| = 1.2（60° 弧对应弦长 = 半径）
+  \draw[thin, black] ([shift={(-15:1.2)}]A) arc (-15:75:1.2);
+
+  % (b) 在 C 处画弧：圆心 C，半径 1.2，扫过从 CM 方向 (0°) 到 CE 方向 (60°)
+  %     弧交 CM 于 Q2=(2.7, 2.598)，交 CE 于 Q1=(2.1, 3.637)
+  \draw[thin, black] ([shift={(-15:1.2)}]C) arc (-15:75:1.2);
+
+  % (c) 从 Q1 画弧：圆心 Q1=(2.1, 3.637)，半径 1.2（= 弦长 |P1P2|）
+  %     该弧与 (b) 中弧交于 Q2=(2.7, 2.598)，确定 CM 方向
+  %     只画 Q2 附近一小段弧（约 -30° 到 -70° 方向）
+  \coordinate (Q1) at (2.1, 3.637);
+  \draw[thin, black] ([shift={(-35:1.2)}]Q1) arc (-35:-75:1.2);
+
+  % ============================================================
+  % 9. 顶点标签
+  % ============================================================
+  \node[below left, font=\normalsize] at (A) {$A$};
+  \node[below right, font=\normalsize] at (B) {$B$};
+  \node[above left, font=\normalsize] at (C) {$C$};
+  \node[below, font=\normalsize] at (D) {$D$};
+  \node[above, font=\normalsize] at (E) {$E$};
+  \node[above, font=\normalsize] at (F) {$F$};
+  \node[right, font=\normalsize] at (M) {$M$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{（2）证明四边形 $CDBF$ 是菱形：}
+
+\begin{itemize}
+    \item 在 Rt$\triangle ABC$ 中，$\angle ACB = 90^\circ$，$CD$ 是斜边 $AB$ 上的中线，
+
+    故 $CD = \dfrac{1}{2}AB = DB$。
+
+    \item 由作图知 $\angle ECM = \angle A$。
+
+    又 $\angle A + \angle ACD = 90^\circ$（$\triangle ACD$ 中），$\angle ECM + \angle MCB + \angle BCD = 90^\circ$；
+
+    而 $\angle ACD = \angle MCB + \angle BCD$，故 $\angle ECM = \angle A$ $\Rightarrow$ $\angle MCB = \angle BCD$，
+
+    即 $CF$ 平分 $\angle BCD$。
+
+    \item 因为 $BE \parallel DC$，所以 $\angle CFB = \angle FCD$（内错角），
+
+    又 $\angle FCB = \angle FCD$（$CF$ 平分 $\angle BCD$），
+
+    故 $\angle CFB = \angle FCB$，即 $\triangle BCF$ 为等腰三角形，$BF = BC$。
+
+    \item 又 $BE \parallel DC$，$CD = DB$，四边形 $CDBF$ 中 $CD \parallel BF$（$BE \parallel DC$），
+
+    且 $CD = DB = BF$，故 $CDBF$ 是平行四边形且有邻边相等，
+
+    因此四边形 $CDBF$ 是\textbf{菱形}。$\square$
+\end{itemize}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 坐标计算：} 基于 $30$-$60$-$90$ 直角三角形。$A = (0,0)$，$B = (6,0)$，$\angle C = 90^\circ$，$C$ 在以 $D = (3,0)$ 为圆心、半径 $3$ 的圆上，取 $C = (1.5,\,1.5\sqrt{3})$。$E$ 为 $BE \parallel DC$ 与 $AC$ 延长线交点，解联立方程得 $E = (3,\,3\sqrt{3})$。$CM$ 水平向右（因 $\angle ECM = 60^\circ$ 使得旋转后为 $0^\circ$），交 $BE$ 于 $F = (4.5,\,1.5\sqrt{3})$。\\
+\textbf{2. 菱形验证：} $CD = DB = BF = CF = 3$，四边等长。\\
+\textbf{3. 尺规痕迹：} 在 $A$ 处画半径 $1.2$ 的弧（$0^\circ$--$60^\circ$）截取 $\angle A$。在 $C$ 处画同半径弧（$0^\circ$--$60^\circ$），再从弧上点 $Q_1$ 以弦长为半径画弧交于 $Q_2$，确定 $CM$ 方向。\\
+\textbf{4. 直角标记：} 在 $C$ 点沿 $CA$、$CB$ 方向各取 $0.25$ 倍单位向量构成直角方块。
+}
+
+%% ==============================
+%% 第53题（补充题）：BMI 条形统计图补全
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：平行四边形面积与全等关系}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 76.} \textbf{画一个平行四边形 $ABCD$，连接它的两条对角线交于点 $O$，说说图中 $4$ 个小三角形之间的关系。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 定义平行四边形的四个顶点
+  \coordinate (A) at (0, 0);
+  \coordinate (B) at (4, 0);
+  \coordinate (C) at (5, 3);
+  \coordinate (D) at (1, 3);
+  
+  % 计算对角线交点 O
+  \coordinate (O) at (2.5, 1.5);
+  
+  % 绘制平行四边形 ABCD
+  \draw[line width=0.8pt] (A) -- (B) -- (C) -- (D) -- cycle;
+  
+  % 绘制对角线
+  \draw[line width=0.8pt] (A) -- (C);
+  \draw[line width=0.8pt] (B) -- (D);
+  
+  % 标注顶点
+  \filldraw[black] (A) circle (1.5pt) node[below left, font=\small] {$A$};
+  \filldraw[black] (B) circle (1.5pt) node[below right, font=\small] {$B$};
+  \filldraw[black] (C) circle (1.5pt) node[above right, font=\small] {$C$};
+  \filldraw[black] (D) circle (1.5pt) node[above left, font=\small] {$D$};
+  \filldraw[black] (O) circle (1.5pt) node[above, yshift=2pt, font=\small] {$O$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{图中 $4$ 个小三角形之间的关系：}
+
+如：$\triangle AOB \cong \triangle COD,\ \triangle AOD \cong \triangle COB,\ S_{\triangle AOB} = S_{\triangle COB} = S_{\triangle COD} = S_{\triangle AOD}$ 等。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 顶点映射：} 根据平行四边形性质（对边平行且相等），在平面直角坐标系中赋予四个严谨的坐标点：$A(0, 0)$、$B(4, 0)、C(5, 3)、D(1, 3)$。建立起了一个底边长为 $4$、高度为 $3$ 且向右倾斜的平行四边形基础轮廓。\\
+\textbf{2. 绘制连线与交点：} 勾勒顺畅闭合的多边形边界后，补充跨越对角的切割线 $AC$ 和 $BD$。依据平行四边形的“对角线互相平分”几何规律，两线交点必然精准落于质心处 $(2.5, 1.5)$ 并以实心圆点标注出 $O$，无死角地复刻了题设所表述的面积切割图景。
+}
+
+%% ==============================
+%% 第86题（补充题）：在网格中寻找和平行四边形
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：网格图中的平行四边形探索}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 77.} \textbf{（第 5 题）如图，以格点 $A, B, C, D, E, F$ 中的四个点为顶点，你能画出多少个不同的平行四边形？请画出来，并用符号表示。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{分析：} 在网格中寻找平行四边形，除了直观地寻找平行的对边之外，更核心且无遗漏的判断法则是“对角线互相平分”。
+我们在网格中建立坐标系（设左下角为原点 $(0,0)$），可以得到各点坐标：
+$A(1,2), B(4,2), C(3,0), D(6,0), E(0,1), F(7,1)$。
+计算各相关点配对的坐标和（即推断中点的共性），可以发现：
+$A$、$D$ 坐标之和为 $(7,2)$；
+$B$、$C$ 坐标之和为 $(7,2)$；
+$E$、$F$ 坐标之和为 $(7,2)$。
+这恰好说明线段 $AD$、$BC$、$EF$ 三条线段互相平分于网格中心点 $(3.5, 1)$。
+根据“对角线互相平分的四边形是平行四边形”这一判定定理，任选这三条线段中的两条作为对角线，首尾相连均能直接构成精准的平行四边形。一共有 $3$ 种组合方式：
+1. 取 $AD$ 和 $BC$ 为对角线 $\to$ 构成 $\text{平行四边形} ABDC$；
+2. 取 $AD$ 和 $EF$ 为对角线 $\to$ 构成 $\text{平行四边形} AEDF$；
+3. 取 $BC$ 和 $EF$ 为对角线 $\to$ 构成 $\text{平行四边形} EBFC$。
+
+\vspace{0.6cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.55cm, y=0.55cm]
+
+  % 定义绘制网格与顶点的宏
+  \def\drawGrid#1{
+    \begin{scope}[shift={(#1,0)}]
+      % 画网格线 (7x2)
+      \draw[step=1, gray!80, line width=0.5pt] (0, 0) grid (7, 2);
+      % 画外框
+      \draw[black, line width=0.8pt] (0, 0) rectangle (7, 2);
+      % 画六个格点 A(1,2), B(4,2), C(3,0), D(6,0), E(0,1), F(7,1)
+      \filldraw[black] (1, 2) circle (2pt) node[above, font=\small] {$A$};
+      \filldraw[black] (4, 2) circle (2pt) node[above, font=\small] {$B$};
+      \filldraw[black] (3, 0) circle (2pt) node[below, font=\small] {$C$};
+      \filldraw[black] (6, 0) circle (2pt) node[below, font=\small] {$D$};
+      \filldraw[black] (0, 1) circle (2pt) node[left, font=\small] {$E$};
+      \filldraw[black] (7, 1) circle (2pt) node[right, font=\small] {$F$};
+    \end{scope}
+  }
+
+  % 第一个图：\text{平行四边形}ABDC
+  \drawGrid{0}
+  \begin{scope}[shift={(0,0)}]
+    \draw[line width=1.2pt, blue!80!black] (1, 2) -- (4, 2) -- (6, 0) -- (3, 0) -- cycle;
+    \node[below, font=\small] at (3.5, -0.6) {① $\text{平行四边形} ABDC$};
+  \end{scope}
+
+  % 第二个图：\text{平行四边形}AEDF
+  \drawGrid{9}
+  \begin{scope}[shift={(9,0)}]
+    \draw[line width=1.2pt, blue!80!black] (1, 2) -- (0, 1) -- (6, 0) -- (7, 1) -- cycle;
+    \node[below, font=\small] at (3.5, -0.6) {② $\text{平行四边形} AEDF$};
+  \end{scope}
+
+  % 第三个图：\text{平行四边形}EBFC
+  \drawGrid{18}
+  \begin{scope}[shift={(18,0)}]
+    \draw[line width=1.2pt, blue!80!black] (0, 1) -- (4, 2) -- (7, 1) -- (3, 0) -- cycle;
+    \node[below, font=\small] at (3.5, -0.6) {③ $\text{平行四边形} EBFC$};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+\textbf{结论：} 能画出 $3$ 个不同的平行四边形，分别记作 $\text{平行四边形} ABDC、平行四边形 AEDF、平行四边形 EBFC$。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 中点对称拓扑：} 原型网格蕴含了极为隐秘的中心对偶属性，借助坐标代数将点阵映射为数学实体后，提取出了 $AD$、$BC$、$EF$ 三条主轴交汇于极点 $(3.5, 1)$。依据四边形判定原理将复杂视觉穷举化作排列组合问题，避免了人工目视连线的错漏。\\
+\textbf{2. 解耦实例渲染：} 为实现三种有效闭合在一张宽幅中的均分展示而免于线条相互覆盖，构筑了带传参偏移机制的 \texttt{\textbackslash drawGrid} 作用域。使三张等大基底在 $X$ 轴分别跨步 $0, 8.5$ 和 $17$ 列阵铺展。\\
+\textbf{3. 闭包多边形绘制：} 基于推导出来的三组双对角线构型，对每个衍生实例按其首尾相连的凸多边形周长循环依次执行粗线追踪（如 $A\to B\to D\to C\to A$），搭配专属文字说明，迎合参考答案的呈现风范。
+}
+
+%% ==============================
+%% 第87题（补充题）：三角形旋转与平行四边形判定
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：利用平行线作平行四边形}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 80.} \textbf{下面两条直线互相平行，利用它们画一个长方形和一个正方形。画出的长方形长（\underline{ $4$ }）厘米，宽（\underline{ $2$ }）厘米；画出的正方形边长（\underline{ $2$ }）厘米。}
+\\ \textit{（注：实际试题中两平行线的客观间距若有所不同，以实量为准。此处以两平行线间距恰好为 $2\text{ cm}$ 进行示例作图）}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{分析：}
+要在两条指定的水平平行线之间画图形，这两个图形的高度必然受限于平行线间的距离。
+经“虚拟测量”假定两根平行线间距为 $2\text{ cm}$。
+- 正方形的四边必须相等，其高度受限于 $2\text{ cm}$，故正方形的边长必须锁定为 $2\text{ cm}$。
+- 长方形的宽可直接等同于平行线间距（$2\text{ cm}$），长可自己视版面美观定夺，如拉长为 $4\text{ cm}$。
+根据长宽，分别作垂线截断两条平行直线即可形成精准的闭合图形。
+
+\vspace{0.6cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+
+  % 1. 画两条原始的平行的天然水平线（黑色实线，横跨视野）
+  \draw[line width=0.8pt] (0, 2) -- (13, 2);
+  \draw[line width=0.8pt] (0, 0) -- (13, 0);
+  
+  % 2. 在左侧利用平行线画一个长方形 (4x2)
+  % 画两条垂线段封闭长方形
+  \draw[line width=1.2pt, blue!80!black] (1, 0) -- (1, 2);
+  \draw[line width=1.2pt, blue!80!black] (5, 0) -- (5, 2);
+  % 用蓝色加粗长方形的上下边，突出所拼接利用的这部分平行线
+  \draw[line width=1.2pt, blue!80!black] (1, 2) -- (5, 2);
+  \draw[line width=1.2pt, blue!80!black] (1, 0) -- (5, 0);
+  
+  % 标注长方形的边长
+  \node[above, font=\small, blue!80!black] at (3, 2) {$4\text{ cm}$};
+  \node[left, font=\small, blue!80!black] at (1, 1) {$2\text{ cm}$};
+  \node[below, font=\small, blue!80!black] at (3, -0.6) {长方形};
+
+  % 标注直角符号
+  \draw[line width=0.5pt, blue!80!black] (1.2, 0) -- (1.2, 0.2) -- (1, 0.2);
+  \draw[line width=0.5pt, blue!80!black] (4.8, 0) -- (4.8, 0.2) -- (5, 0.2);
+  \draw[line width=0.5pt, blue!80!black] (1.2, 2) -- (1.2, 1.8) -- (1, 1.8);
+  \draw[line width=0.5pt, blue!80!black] (4.8, 2) -- (4.8, 1.8) -- (5, 1.8);
+
+  % 3. 在右侧利用平行线画一个正方形 (2x2)
+  \draw[line width=1.2pt, red!80!black] (8, 0) -- (8, 2);
+  \draw[line width=1.2pt, red!80!black] (10, 0) -- (10, 2);
+  % 用红色加粗正方形的上下边
+  \draw[line width=1.2pt, red!80!black] (8, 2) -- (10, 2);
+  \draw[line width=1.2pt, red!80!black] (8, 0) -- (10, 0);
+
+  % 标注正方形的边长
+  \node[above, font=\small, red!80!black] at (9, 2) {$2\text{ cm}$};
+  \node[left, font=\small, red!80!black] at (8, 1) {$2\text{ cm}$};
+  \node[below, font=\small, red!80!black] at (9, -0.6) {正方形};
+
+  % 标注直角符号
+  \draw[line width=0.5pt, red!80!black] (8.2, 0) -- (8.2, 0.2) -- (8, 0.2);
+  \draw[line width=0.5pt, red!80!black] (9.8, 0) -- (9.8, 0.2) -- (10, 0.2);
+  \draw[line width=0.5pt, red!80!black] (8.2, 2) -- (8.2, 1.8) -- (8, 1.8);
+  \draw[line width=0.5pt, red!80!black] (9.8, 2) -- (9.8, 1.8) -- (10, 1.8);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 测定约束系：} 平行线具备“处处等距”的几何特性。将卷面给定的两根既定直线作为强制横坐标边界，并假设通过直尺实测其“铅垂间距”恒为 $2\text{ cm}$。这物理锁死了内部嵌套图形的定高上限。\\
+\textbf{2. 刚性截取：} 正方形因生来具备四边相等的强束缚，显然当它的高被困局于 $2\text{ cm}$ 时，它的“宽”也就没有退路地被锚定为 $2\text{ cm}$。为此我们利用直角坐标系统，作了两条硬性垂直的线段予以斩断闭合，染红作显眼标识。\\
+\textbf{3. 柔性延展：} 同理长方形只有邻接互相垂直的限制。在继承高度同样为 $2\text{ cm}$ 的天然宽容度下，它得以按主观构图往主轴方向伸长。排版上自由将其长度扩展两倍定为 $4\text{ cm}$（蓝色渲染区块），最后加上完整的顶角正交标识符，彻底夯实解答的专业感。
+}
+
+%% ==============================
+%% 第90题（补充题）：在方格纸上拼基本图形
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：求梯形的周长}
+
+\vspace{0.4cm}
+
+\noindent\textbf{1.} 有一个上底是 $4$ 厘米、下底是 $7$ 厘米的梯形，在这个梯形上剪一刀刚好剪成一个正方形和一个三角形。已知剪出的三角形中有一条边是 $5$ 厘米，求这个梯形的周长。（先画图，再计算）
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.9] % 整体思路：先画梯形外轮廓，再在右侧画出剪开的虚线，把它分成左边正方形和右边三角形，最后标注已知边长
+  % 顶点坐标
+  \coordinate (A) at (0, 4);   % 定义左上顶点 A
+  \coordinate (B) at (0, 0);   % 定义左下顶点 B
+  \coordinate (C) at (7, 0);   % 定义右下顶点 C，对应下底 7cm
+  \coordinate (D) at (4, 4);   % 定义右上顶点 D，对应上底 4cm
+  \coordinate (E) at (4, 0);   % 定义底边上的裁剪点 E，与 D 竖直对齐
+
+  % 画实线边框
+  \draw[line width=1.2pt] (A) -- (B) -- (C) -- (D) -- cycle; % 依次连接 A$、$B、C$、$D 并闭合，画出梯形外框
+  
+  % 画虚线（剪开的一刀）
+  \draw[line width=1.2pt, dashed] (D) -- (E); % 画从 D 到 E 的虚线，表示“剪一刀”的位置
+
+  % 标注边长 (参照参考答案原图位置)
+  \node[above, font=\small\bfseries] at (2, 4) {4cm}; % 在上底上方标 4cm
+  \node[right, font=\small\bfseries] at (0, 2) {4cm}; % 在左腰右侧标 4cm，说明左边形成正方形边长
+  \node[below, font=\small\bfseries] at (3.5, 0) {7cm}; % 在下底下方标 7cm
+  \node[right=2pt, font=\small\bfseries] at (5.5, 2) {5cm}; % 在右侧斜边旁标 5cm
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\noindent
+$4 + 4 + 7 + 5 = 20 \text{（cm）}$
+
+\vspace{0.4cm}
+
+\noindent
+答：这个梯形的周长是20厘米。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 顶点坐标布局}：以梯形左下角为原点，根据题意设定坐标 $A(0,4)$、$B(0,0)、C(7,0)、D(4,4)$。上底 $AD=4$cm、下底 $BC=7$cm 完全由坐标差值体现。裁剪点 $E(4,0)$ 使 $DE$ 竖直虚线恰好将梯形分为左侧正方形和右侧三角形。\\
+\textbf{2. 虚线切割表达}：使用 \texttt{dashed} 参数绘制 $D \to E$ 虚线表示"剪一刀"操作，区分原有边框（实线）与操作痕迹（虚线）。\\
+\textbf{3. 边长标注定位}：各 \texttt{node} 通过 \texttt{above}、\texttt{right}、\texttt{below} 等锚点方向分散放置于各边的视觉中心位置，避免文字和线条重叠。
+}
+
+
+
+%% ==============================
+%% 直角三角形分割（等边三角形与等腰三角形）
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：多边形的分割与三角形个数规律}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 观察下面的图形并填表。}
+
+\vspace{0.8cm}
+
+% =====================================================================
+% 【整体绘制思路】
+% 目标：在同一行内并排绘制三角形、四边形、五边形、六边形四个多边形，
+%       并从每个多边形的"顶部顶点（A）"出发，用虚线对角线将其分割，
+%       直观体现"n 边形可分成 n-2 个三角形"的规律。
+%
+% 核心策略——水平偏移（scope + shift）：
+%   每个多边形放在一个独立的 scope 作用域中，并通过 shift 参数沿 x
+%   轴方向整体平移，使四个图形依次排列于同一水平基线上，互不干扰。
+%
+% 顶点坐标设计原则：
+%   - 所有顶点坐标均为局部坐标（相对于当前 scope 的原点）。
+%   - "A" 顶点统一置于偏上方，作为对角线的公共出发点。
+%   - 底部顶点（如 B$、$C）的 y 坐标通常为 0，保证图形"站"在同一基线上。
+%   - 各多边形的宽度约为 2~2.5 单位，shift 间距约 3~4 单位，留有适当间隔。
+% =====================================================================
+
+\begin{center}
+\begin{tikzpicture}[
+  >=Stealth,      % 箭头样式为实心三角（此图不画箭头，但保留全局配置）
+  line width=0.8pt, % 全局默认线宽 0.8pt，比默认细一点，显得精致
+  scale=1.0        % 整体缩放比例为 1:1（不缩放），可改为 0.8 等值整体缩小
+]
+
+  % =========== 第一幅：三角形（3 边 → 1 个三角形，无需对角线）===========
+  % shift={(0,0)}：此图作为基准，不平移，从坐标原点开始绘制。
+  \begin{scope}[shift={(0,0)}]
+    \coordinate (A1) at (0.7, 1.3); % 顶点 A1：位于偏右上方，作为三角形的"顶角"
+    \coordinate (B1) at (0, 0);     % 顶点 B1：位于左下角，y=0 贴紧基线
+    \coordinate (C1) at (1.8, 0);   % 顶点 C1：位于右下角，y=0 贴紧基线
+    % \draw ... -- ... -- ... -- cycle：
+    %   依次连接 A1→B1→C1，最后 cycle 表示自动闭合回 A1，画出三角形轮廓。
+    %   三角形本身就是最小单元，无需对角线。
+    \draw (A1) -- (B1) -- (C1) -- cycle;
+  \end{scope}
+
+  % =========== 第二幅：四边形（4 边 → 2 个三角形，需 1 条对角线）===========
+  % shift={(3,0)}：相对原点向右平移 3 单位，与三角形保持间距。
+  \begin{scope}[shift={(3,0)}]
+    \coordinate (A2) at (0.4, 1.5); % 顶点 A2：左上角（高点），作为对角线出发点
+    \coordinate (B2) at (0, 0.4);   % 顶点 B2：左侧偏下，y=0.4 略高于基线，使图形倾斜更自然
+    \coordinate (C2) at (1.5, 0);   % 顶点 C2：右下角，y=0 贴紧基线
+    \coordinate (D2) at (2.0, 1.2); % 顶点 D2：右上角，y=1.2 与 A2 高度相近，形成四边形
+    % 画四边形轮廓：A2→B2→C2→D2→A2（cycle 自动闭合）
+    \draw (A2) -- (B2) -- (C2) -- (D2) -- cycle;
+    % 画对角线 A2→C2：
+    %   dashed  = 虚线样式，与轮廓实线区分，表示这是"辅助分割线"而非边
+    %   thin    = 线宽比默认更细（约 0.4pt），突出对角线是次要元素
+    \draw[dashed, thin] (A2) -- (C2); % 唯一一条对角线，将四边形分成 2 个三角形
+  \end{scope}
+
+  % =========== 第三幅：五边形（5 边 → 3 个三角形，需 2 条对角线）===========
+  % shift={(6.5,0)}：继续向右平移 6.5 单位（四边形约占 2 单位宽 + 间距 1.5）。
+  \begin{scope}[shift={(6.5,0)}]
+    \coordinate (A3) at (0.8, 1.6); % 顶点 A3：顶部偏右，作为所有对角线的公共起点
+    \coordinate (B3) at (0, 0.8);   % 顶点 B3：左侧中部，y=0.8
+    \coordinate (C3) at (0.7, 0);   % 顶点 C3：左下，y=0 贴紧基线
+    \coordinate (D3) at (1.9, 0);   % 顶点 D3：右下，y=0 贴紧基线
+    \coordinate (E3) at (2.5, 1.2); % 顶点 E3：右侧中上部，y=1.2
+    % 画五边形轮廓：A3→B3→C3→D3→E3→A3（cycle 闭合）
+    \draw (A3) -- (B3) -- (C3) -- (D3) -- (E3) -- cycle;
+    % 对角线 1：A3→C3（跨越顶点 B3，将左上三角形分离出来）
+    \draw[dashed, thin] (A3) -- (C3);
+    % 对角线 2：A3→D3（进一步分割，形成第 3 个三角形）
+    %   两条对角线共同将五边形分成 3 个三角形（5-2=3）
+    \draw[dashed, thin] (A3) -- (D3);
+  \end{scope}
+
+  % =========== 第四幅：六边形（6 边 → 4 个三角形，需 3 条对角线）===========
+  % shift={(10.5,0)}：再向右平移，与五边形间距约 4 单位。
+  \begin{scope}[shift={(10.5,0)}]
+    \coordinate (A4) at (1, 1.7);   % 顶点 A4：最高点，居中偏右，所有对角线从此出发
+    \coordinate (B4) at (0.1, 1.1); % 顶点 B4：左上侧，y=1.1
+    \coordinate (C4) at (0, 0.3);   % 顶点 C4：左侧偏下，y=0.3
+    \coordinate (D4) at (1.2, 0);   % 顶点 D4：左下，y=0 贴紧基线
+    \coordinate (E4) at (2.2, 0);   % 顶点 E4：右下，y=0 贴紧基线
+    \coordinate (F4) at (2.4, 1.1); % 顶点 F4：右上侧，y=1.1
+    % 画六边形轮廓：A4→B4→C4→D4→E4→F4→A4（cycle 闭合）
+    \draw (A4) -- (B4) -- (C4) -- (D4) -- (E4) -- (F4) -- cycle;
+    % 对角线 1：A4→C4（跨 B4，分出第 1 个三角形 A4-B4-C4）
+    \draw[dashed, thin] (A4) -- (C4);
+    % 对角线 2：A4→D4（分出第 2 个三角形 A4-C4-D4）
+    \draw[dashed, thin] (A4) -- (D4);
+    % 对角线 3：A4→E4（分出第 3, 4 个三角形 A4-D4-E4 与 A4-E4-F4）
+    %   三条对角线共同将六边形分成 4 个三角形（6-2=4）
+    \draw[dashed, thin] (A4) -- (E4);
+  \end{scope}
+
+  % =========== 省略号 ===========
+  \node at (14.5, 0.8) {\Large $\dots\dots$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{c|c|c|c|c|c|c}
+\noalign{\hrule height 1pt}
+\textbf{图 \quad 形} & \textbf{三角形} & \textbf{四边形} & \textbf{五边形} & \textbf{六边形} & \textbf{\dots} & \textbf{$n$ 边形} \\ \hline
+\textbf{边 \quad 数} & \textcolor{blue}{3} & \textcolor{blue}{4} & \textcolor{blue}{5} & \textcolor{blue}{6} & \textbf{\dots} & \textcolor{blue}{$n$} \\ \hline
+\textbf{分成三角形的个数} & \textcolor{blue}{1} & \textcolor{blue}{2} & \textcolor{blue}{3} & \textcolor{blue}{4} & \textbf{\dots} & \textcolor{blue}{$n-2$} \\ \noalign{\hrule height 1pt}
+\end{tabular}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. **寻找分割规律**：从 $n$ 边形的一个顶点出发，可以向不相邻的所有顶点引对角线。\\
+2. **确定三角形数量**：对角线的数量为 $n-3$ 条，这些对角线将多边形分成了 $n-2$ 个三角形。\\
+3. **验证规律**：
+   - 三角形：$n=3$，$3-2=1$（个）；
+   - 四边形：$n=4$，$4-2=2$（个）；
+   - 五边形：$n=5$，$5-2=3$（个）；
+   - 以此类推，多边形的边数每增加 $1$，分成的三角形个数也随之增加 $1$。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 多边形顶点的动态布局}：使用坐标点定义从 $3$ 到 $6$ 边的多边形轮廓。为了保证视觉一致性，所有图形均采用类似的顶点高度。\\
+\textbf{2. 关键顶点的选择}：将最上方或最突出的一个顶点作为公共起点，利用 \texttt{dashed} 虚线连接各个非相邻顶点，清晰展示“分割”动作。\\
+\textbf{3. 数据规律的响应式表格}：利用 \texttt{tabular} 环境与规律化的行高，将图形名称、边数与三角形个数一一映射。\\
+\textbf{4. 色彩标注逻辑}：所有动态变化的数值（包括变量 $n$ 和公式 $n-2$）统一采用蓝色着色，突出其作为“答案/变量”的属性。
+}
+
+
+
+\newpage

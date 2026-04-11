@@ -1,0 +1,101 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 线段图 / 日历与其他
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：2016 年 2 月月历}
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent{\small 2016 年是闰年，2 月共有 \textbf{29} 天。2 月 1 日是星期一。}
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % 定义网格参数
+  \def\cellW{1.1}
+  \def\cellH{0.65}
+  \def\cols{7}
+  \def\rows{6}  % 1 header + 5 data rows
+
+  % 绘制所有格线
+  \foreach \r in {0,...,\rows}{
+    \draw[cyan!70!blue, line width=0.8pt] (0, -\r*\cellH) -- (\cols*\cellW, -\r*\cellH);
+  }
+  \foreach \c in {0,...,\cols}{
+    \draw[cyan!70!blue, line width=0.8pt] (\c*\cellW, 0) -- (\c*\cellW, -\rows*\cellH);
+  }
+
+  % 表头 (row 0)
+  \foreach \c/\day in {0/日, 1/一, 2/二, 3/三, 4/四, 5/五, 6/六}{
+    \node at (\c*\cellW + 0.5*\cellW, -0.5*\cellH) {\small \day};
+  }
+
+  % 数据行: 日历数据 (日 一 二 三 四 五 六)
+  % Row 1:  _  1  2  3  4  5  6
+  \foreach \c/\n in {1/1, 2/2, 3/3, 4/4, 5/5, 6/6}{
+    \node at (\c*\cellW + 0.5*\cellW, -1.5*\cellH) {\small \n};
+  }
+  % Row 2:  7  8  9  10 11 12 13
+  \foreach \c/\n in {0/7, 1/8, 2/9, 3/10, 4/11, 5/12, 6/13}{
+    \node at (\c*\cellW + 0.5*\cellW, -2.5*\cellH) {\small \n};
+  }
+  % Row 3:  14 15 16 17 18 19 20
+  \foreach \c/\n in {0/14, 1/15, 2/16, 3/17, 4/18, 5/19, 6/20}{
+    \node at (\c*\cellW + 0.5*\cellW, -3.5*\cellH) {\small \n};
+  }
+  % Row 4:  21 22 23 24 25 26 27
+  \foreach \c/\n in {0/21, 1/22, 2/23, 3/24, 4/25, 5/26, 6/27}{
+    \node at (\c*\cellW + 0.5*\cellW, -4.5*\cellH) {\small \n};
+  }
+  % Row 5:  28 29 _ _ _ _ _
+  \foreach \c/\n in {0/28, 1/29}{
+    \node at (\c*\cellW + 0.5*\cellW, -5.5*\cellH) {\small \n};
+  }
+
+  % 高亮小亮生日 (29日，红色方块)
+  % \draw[red!70!black, line width=1.2pt]
+  %   (1*\cellW, -5*\cellH) rectangle (2*\cellW, -6*\cellH);
+  % \node[red!70!black] at (1*\cellW + 0.5*\cellW, -5.5*\cellH) {\small\textbf{29}};
+
+  % 标注春节 (8日) 和元宵节 (22日)
+  % \node[below, red, font=\tiny] at (1*\cellW + 0.5*\cellW, -2*\cellH) {春节};
+  % \node[below, orange!80!black, font=\tiny] at (1*\cellW + 0.5*\cellW, -4*\cellH) {元宵};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\noindent{\small\textit{注：红框为小亮的生日（29日）；春节标注在 8 日，元宵节标注在 22 日。}}
+
+\vspace{0.8cm}
+\hrule
+\vspace{0.5cm}
+
+{\small
+\textbf{(1)} 小亮的生日在 2 月（\textbf{29}）日，这个月在第（\textbf{一}）季度。
+
+\vspace{0.3cm}
+\textbf{(2)} 3 月 1 日是星期（\textbf{二}）。\\
+\textit{分析：2 月 29 日是星期一，所以次日 3 月 1 日是星期二。}
+
+\vspace{0.3cm}
+\textbf{(3)} 这个月的 8 日是春节（农历正月初一），（\textbf{22}）日是元宵节。\\
+\textit{分析：元宵节 = 农历正月十五 = 春节后第 14 天 = 2 月 $8 + 14 = 22$ 日。}
+
+\vspace{0.3cm}
+\textbf{(4)} 2016 年是（\textbf{闰}）年，全年一共有（\textbf{366}）天。\\
+\textit{分析：$2016 \div 4 = 504$，能整除 4，故为闰年，共 366 天。}
+}
+
+
+%% ==============================
+%% 第 3 题：周期规律图形序列
+%% ==============================

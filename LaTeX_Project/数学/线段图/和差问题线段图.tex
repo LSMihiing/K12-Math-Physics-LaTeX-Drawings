@@ -1,0 +1,205 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 线段图 / 和差问题线段图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：三角形内角和与线段图求解}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 一个三角形，$\angle 2$ 与 $\angle 1$ 的度数相等，$\angle 3$ 比 $\angle 1$ 大 $30^\circ$。 $\angle 1、\angle 2$ 和 $\angle 3$ 各是多少度？（先把线段图补充完整，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：用三条横线分别表示三个角的大小关系，先画已知的一份，再复制出相等的第二份，最后在第三份后补上多出的 30°，并用总括号表示内角和 180°
+  % 标签
+  \node[left=10pt, font=\large] at (0, 0) {$\angle 1$}; % 在第一条线左侧标注“角1”；left=10pt 表示与参考点左隔 10pt
+  \node[left=10pt, font=\large] at (0, -1.2) {$\angle 2$}; % 在第二条线左侧标“角2”
+  \node[left=10pt, font=\large] at (0, -2.4) {$\angle 3$}; % 在第三条线左侧标“角3”
+
+  % 角1的线段 (原图黑色)
+  \draw (0, 0) -- (4, 0); % 画角1的主线段，长度取 4 个单位作为一份
+  \draw (0, 0.2) -- (0, -0.2); % 在左端画竖短线，表示线段起点
+  \draw (4, 0.2) -- (4, -0.2); % 在右端画竖短线，表示角1的终点长度
+
+  % 角2的线段 (蓝色补充)
+  \draw[blue] (0, -1.2) -- (4, -1.2); % 用蓝色复制与角1同长的线段，表示角2=角1
+  \draw[blue] (0, -1.0) -- (0, -1.4); % 角2左端刻线
+  \draw[blue] (4, -1.0) -- (4, -1.4); % 角2右端刻线
+
+  % 角3的线段 (蓝色补充)
+  \draw[blue] (0, -2.4) -- (6.4, -2.4); % 画角3的线段，总长比前两条多出一截，用来表示“比角1大 30°”
+  \draw[blue] (0, -2.2) -- (0, -2.6); % 角3左端刻线
+  \draw[blue] (4, -2.2) -- (4, -2.6); % 在 x=4 处刻线，表示与角1相等的部分终点
+  \draw[blue] (6.4, -2.2) -- (6.4, -2.6); % 在最右端刻线，表示加上“多出的 30°”后的总终点
+  
+  % 30度的大括号和文字
+  \draw[decorate, decoration={brace, amplitude=5pt}, blue] (4, -2.1) -- (6.4, -2.1) node[midway, above=6pt] {$30^\circ$}; % 用蓝色上括号标出角3比角1多出来的那一段，对应 30°
+
+  % 180度的大括号
+  \draw[decorate, decoration={brace, amplitude=8pt}, blue] (6.8, 0.2) -- (6.8, -2.6) node[midway, right=10pt, font=\large] {$180^\circ$}; % 在右边用竖向大括号把三条线整体并起来，说明三个角加起来等于 180°
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\textbf{解答：}\\
+根据“三角形内角和为 $180^\circ$”，结合线段图可知：三个角减去多出的 $30^\circ$ 后，正好等于 $3$ 个 $\angle 1$ 的度数。\\
+\indent $\angle 1 = (180^\circ - 30^\circ) \div 3 = 150^\circ \div 3 = 50^\circ$ \\
+\indent $\angle 2 = \angle 1 = 50^\circ$ \\
+\indent $\angle 3 = 50^\circ + 30^\circ = 80^\circ$ \\
+
+\vspace{0.2cm}
+\noindent\textbf{答：} $\angle 1$ 是 $50^\circ$，$\angle 2$ 是 $50^\circ$，$\angle 3$ 是 $80^\circ$。
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+%% ==============================
+%% 等腰三角形周长与线段图求解
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：等腰三角形周长与线段图求解}
+
+\vspace{0.4cm}
+
+\noindent\textbf{7. 一个等腰三角形的周长是 34 厘米，它的一条腰比底长 5 厘米。这个等腰三角形的底和腰各长多少厘米？(先画线段图，再解答)}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt] % 整体思路：用三条横向线段表示等腰三角形的两条腰和一条底，其中底比腰短 5 厘米，再用虚线补齐差值，最后用大括号表示总周长 34 厘米
+  % 标签
+  \node[left=10pt, font=\large] at (0, 0) {腰}; % 第一条线左侧写“腰”
+  \node[left=10pt, font=\large] at (0, -1.2) {腰}; % 第二条线左侧也写“腰”，表示两腰相等
+  \node[left=10pt, font=\large] at (0, -2.4) {底}; % 第三条线左侧写“底”
+
+  % 第一条腰
+  \draw (0, 0) -- (3.9, 0); % 画第一条腰的线段，长度取 3.9 个单位
+  \draw (0, 0.2) -- (0, -0.2); % 在左端画竖短线标记起点
+  \draw (3.9, 0.2) -- (3.9, -0.2); % 在右端画竖短线标记终点
+
+  % 第二条腰
+  \draw (0, -1.2) -- (3.9, -1.2); % 画第二条腰，与第一条同长
+  \draw (0, -1.0) -- (0, -1.4); % 第二条腰左端刻线
+  \draw (3.9, -1.0) -- (3.9, -1.4); % 第二条腰右端刻线
+
+  % 底和补充虚线
+  \draw (0, -2.4) -- (2.4, -2.4); % 画底边线段，长度比腰短
+  \draw (0, -2.2) -- (0, -2.6); % 底边左端刻线
+  \draw (2.4, -2.2) -- (2.4, -2.6); % 底边现有终点刻线
+  
+  \draw[red, dashed, line width=1.2pt] (2.4, -2.4) -- (3.9, -2.4); % 用红色虚线把底边向右补齐到与腰同长；dashed 强调这是“补上去”的差值
+  \draw[red] (3.9, -2.2) -- (3.9, -2.6); % 在补齐后的终点处再画一个红色刻线
+  
+  \node[below=6pt] at (3.15, -2.4) {5厘米}; % 在补出的那一段下方标差值 5 厘米
+  
+  % 大括号
+  \draw[decorate, decoration={brace, amplitude=6pt}, thick] (4.4, 0.2) -- (4.4, -2.6) node[midway, right=10pt, font=\large] {34厘米}; % 右侧竖向大括号把三条边并起来，表示三边总和是 34 厘米
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\textbf{解答：}\\
+根据线段图可知，如果给“底”补充上 $5$ 厘米，那么三条边就统统和“腰”一样长了。此时三条边的总长度将变为 $34 + 5 = 39$ 厘米。\\
+\indent 腰长：$(34 + 5) \div 3 = 13$（厘米）\\
+\indent 底长：$13 - 5 = 8$（厘米）
+
+\vspace{0.2cm}
+\noindent\textbf{答：}这个等腰三角形的底长 $8$ 厘米，腰长 $13$ 厘米。
+
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 坐标定位与几何构建}：根据题意中的已知长度和角度，使用 \texttt{coordinate} 定义关键顶点坐标，通过 \texttt{draw} 指令按序连接成完整几何图形。线宽、颜色参数区分原图（黑色）与答案（红色 \texttt{red!70!black}）图层。\\
+\textbf{2. 辅助量标注}：利用 \texttt{node} 的方向锚点（\texttt{above}、\texttt{below}、\texttt{left}、\texttt{right}）将角度、边长、面积等数据标注在图形周围，避免与线条或其他标注重叠。若涉及角弧则使用 \texttt{arc} 或 \texttt{pic[angle]} 命令渲染。\\
+\textbf{3. 虚实线分层}：题干已知条件用实线绘制，解答新增的辅助线或操作痕迹用 \texttt{dashed} 虚线或彩色加粗线标识，确保读者一眼区分原有信息与作答内容。
+}
+
+
+%% ==============================
+%% 平行四边形：画高与度量
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：和差问题——图书数量分配}
+
+\vspace{0.4cm}
+
+\noindent\textbf{5. 小军和小芳一共有图书 184 本，小芳比小军多 18 本。两人各有图书多少本？（先根据题意画出线段图，再解答）}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=1pt, scale=1.2] % 整体思路：用上下两条平齐线段表示小军和小芳的图书数量，再用虚线对齐相同部分，用括号分别标出“多出的18本”和“总共184本”
+  % 标签
+  \node[left=10pt, font=\large] at (0, 0.4) {小军：}; % 在上方线段左侧标注“小军”
+  \node[left=10pt, font=\large] at (0, -0.4) {小芳：}; % 在下方线段左侧标注“小芳”
+
+  % 小军的线段 (83本, L=4.15)
+  \draw (0, 0.4) -- (4.15, 0.4); % 画小军的线段，长度代表 83 本
+  \draw (0, 0.6) -- (0, 0.2); % 小军线段左端刻线
+  \draw (4.15, 0.6) -- (4.15, 0.2); % 小军线段右端刻线
+
+  % 小芳的线段 (101本, L+d=5.05)
+  \draw (0, -0.4) -- (5.05, -0.4); % 画小芳的线段，长度更长，表示比小军多 18 本
+  \draw (0, -0.2) -- (0, -0.6); % 小芳线段左端刻线
+  \draw (5.05, -0.2) -- (5.05, -0.6); % 小芳线段右端刻线
+
+  % 垂直虚线
+  \draw[dashed, thin] (4.15, 0.4) -- (4.15, -0.4); % 从小军终点向下作虚线，帮助看出小芳多出来的一段
+
+  % 18本的小括号和标签 (d=0.9, representing 18 books)
+  \draw[decorate, decoration={brace, amplitude=4pt}, blue] (4.15, -0.15) -- (5.05, -0.15) node[midway, above=4pt, font=\small] {18本}; % 在多出的那一段上方画蓝色括号，标出差是 18 本
+
+  % 184本的大括号和标签 (Total)
+  \draw[decorate, decoration={brace, amplitude=6pt}, thick] (5.4, 0.6) -- (5.4, -0.6) node[midway, right=10pt, font=\large] {184本}; % 在右侧用竖向大括号括起两条线段整体，表示两人合计 184 本
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这是一道典型的“和差问题”。已知两数之和（184本）与两数之差（18本），求这两个数。\\
+通过线段图可以看出，如果我们从总量中减去“多出来的 18 本”，剩下的部分就正好是小军图书数量的 2 倍（即 166 本）。\\
+因此，小军的图书数量 = (184 - 18) $\div$ 2 = 83（本）。\\
+小芳越过了这一平齐线 18 本，所以小芳的图书数量 = 83 + 18 = 101（本）。
+}
+
+\vspace{0.4cm}
+\noindent\textbf{解答：}\\
+\indent 小军的图书：$(184 - 18) \div 2 = 83$（本）\\
+\indent 小芳的图书：$83 + 18 = 101$（本）
+
+\vspace{0.2cm}
+\noindent\textbf{答：}小军有图书 83 本，小芳有图书 101 本。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 线段平齐与对比}：通过两条起始点一致的水平线段，直观展示两个数量的大小关系。\\
+\textbf{2. 差异可视化}：利用垂直虚线（Dashed Line）将较短线段的终点投影到较长线段上，从而精确划定出“多出”的部分。\\
+\textbf{3. 符号化标注}：使用 \texttt{TikZ} 的 \texttt{brace} 装饰器分别标注出局部差值（18本）与总体和值（184本），实现数形高度统一。
+}
+
+\newpage

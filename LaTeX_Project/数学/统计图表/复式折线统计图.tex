@@ -1,0 +1,666 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 复式折线统计图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：复式折线统计图的绘制}
+
+\vspace{0.6cm}
+
+\textbf{（1）绘制适当的统计图，要求从图中可以清楚地看出两家花店销售额的变化情况。}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, font=\small, x=1cm, y=0.8cm]
+  % 1. 网格：依据原图，横向 10 格，纵向 6 格
+  \draw[cyan!50, line width=0.6pt, step=1] (0,0) grid (10,6);
+  
+  % 2. 坐标轴及名称
+  \draw[->, black, line width=1.0pt] (0,0) -- (10.8,0);
+  \draw[->, black, line width=1.0pt] (0,0) -- (0,6.8);
+  
+  \node[above, font=\small] at (0, 6.8) {销售额/万元};
+  \node[right, font=\small, yshift=-0.1cm] at (10.8, 0) {年份};
+  
+  % 3. Y 轴刻度 (0~60)
+  \foreach \y/\val in {0/0, 1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
+    \node[left, font=\small] at (0, \y) {\val};
+  }
+  
+  % 4. X 轴刻度及标注 (年份：依据题干表填入 2021～2025)
+  % 原图每隔两个网格标记一个年份
+  \foreach \x/\val in {2/2021, 4/2022, 6/2023, 8/2024, 10/2025} {
+    \node[below, font=\small] at (\x, -0.1) {(\ \val\ )};
+  }
+  
+  % 5. 标题与信息
+  \node[above, font=\large\bfseries] at (5, 8) {两家花店 2021～2025 年的销售额情况统计图};
+  
+  % 日期 (位于右上角)
+  \node[right, font=\small] at (8.5, 7) {2026\text{ 年 }4\text{ 月}};
+  
+  % 6. 图例设计 (严格遵守无颜色区分原则，利用线型与描点不同区分)
+  % 芝兰店：实线，实心圆点
+  \node[font=\small] at (2.5, 6.4) {(};
+  \draw[black, line width=1.2pt] (2.7, 6.4) -- (3.7, 6.4);
+  \fill[black] (3.2, 6.4) circle (2.5pt);
+  \node[font=\small] at (3.9, 6.4) {)};
+  \node[right, font=\small] at (4.0, 6.4) {芝兰店};
+  
+  % 芳菲店：粗虚线，实心方块 (利用 pt 单位保证在不同比例系下始终是正方形)
+  \node[font=\small] at (6.0, 6.4) {(};
+  \draw[black, dashed, line width=1.2pt] (6.2, 6.4) -- (7.2, 6.4);
+  \fill[black] (6.7, 6.4) +(-2.5pt,-2.5pt) rectangle +(2.5pt,2.5pt);
+  \node[font=\small] at (7.4, 6.4) {)};
+  \node[right, font=\small] at (7.5, 6.4) {芳菲店};
+  
+  % ===================================
+  % 7. 绘制实际数据折线
+  % ===================================
+  
+  % (A) 芝兰店坐标位数据 (Solid, Dots)
+  \coordinate (Z1) at (2, 4.14);
+  \coordinate (Z2) at (4, 3.6);
+  \coordinate (Z3) at (6, 4.23);
+  \coordinate (Z4) at (8, 5.22);
+  \coordinate (Z5) at (10, 3.51);
+  
+  % 画出主连线
+  \draw[black, line width=1.2pt] (Z1) -- (Z2) -- (Z3) -- (Z4) -- (Z5);
+  
+  % 描点并附带数据批注 (增加白底 inner sep 防止网格线切割文字干扰阅读)
+  \fill[black] (Z1) circle (2.5pt) node[above, yshift=2pt, fill=white, inner sep=1pt] {\textbf{41.4}};
+  \fill[black] (Z2) circle (2.5pt) node[above, yshift=2pt, fill=white, inner sep=1pt] {\textbf{36}};
+  \fill[black] (Z3) circle (2.5pt) node[above, yshift=2pt, fill=white, inner sep=1pt] {\textbf{42.3}};
+  \fill[black] (Z4) circle (2.5pt) node[above, yshift=2pt, fill=white, inner sep=1pt] {\textbf{52.2}};
+  % 最后一个点为了防止与上方芳菲店数据打架，故放在下方
+  \fill[black] (Z5) circle (2.5pt) node[below, yshift=-3pt, fill=white, inner sep=1pt] {\textbf{35.1}};
+  
+  
+  % (B) 芳菲店坐标位数据 (Dashed, Squares)
+  \coordinate (F1) at (2, 1.8);
+  \coordinate (F2) at (4, 2.25);
+  \coordinate (F3) at (6, 3.06);
+  \coordinate (F4) at (8, 2.97);
+  \coordinate (F5) at (10, 3.78);
+  
+  % 画出虚线主连线
+  \draw[black, dashed, line width=1.2pt] (F1) -- (F2) -- (F3) -- (F4) -- (F5);
+  
+  % 描点并附带数据批注
+  \fill[black] (F1) +(-2.5pt,-2.5pt) rectangle +(2.5pt,2.5pt); \node[below, yshift=-4pt, fill=white, inner sep=1pt] at (F1) {\textbf{18}};
+  \fill[black] (F2) +(-2.5pt,-2.5pt) rectangle +(2.5pt,2.5pt); \node[below, yshift=-4pt, fill=white, inner sep=1pt] at (F2) {\textbf{22.5}};
+  \fill[black] (F3) +(-2.5pt,-2.5pt) rectangle +(2.5pt,2.5pt); \node[below, yshift=-4pt, fill=white, inner sep=1pt] at (F3) {\textbf{30.6}};
+  \fill[black] (F4) +(-2.5pt,-2.5pt) rectangle +(2.5pt,2.5pt); \node[below, yshift=-4pt, fill=white, inner sep=1pt] at (F4) {\textbf{29.7}};
+  \fill[black] (F5) +(-2.5pt,-2.5pt) rectangle +(2.5pt,2.5pt); \node[above, yshift=4pt, fill=white, inner sep=1pt] at (F5) {\textbf{37.8}};
+  
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+1. \textbf{题干分析：}统计量涉及到两个主体（芝兰店、芳菲店）随着同一组离散时间序列（$2021\sim 2025$年）的连续变化情况。因为题目核心命题要求“清楚地看出两家花店销售额的\textbf{变化情况}”，所以最为适当且反映此类增减变化直观趋势的统计学范式是选定并手绘\textbf{复式折线统计图}。\\
+2. \textbf{纠错重置坐标轴：}细致比对题干表格：考察年份清楚写明的是 $2021\sim 2025$ 五组数据！这和原版给的参考答案图图片截然不同（原参考答案图中批卷老师显然手误誊抄平移了年份时间轴写成了 $2019\sim 2023$）。真正的作图理应完全忠于卷面考题本源，将横轴年份按照 $2021, 2022, 2023, 2024, 2025$ 的纪年标定在对应的方格槽括号内。\\
+3. \textbf{精准查表落点：}纵轴每向上 $1$ 个网格单元跨度代表真实的 $10$ 万元人民币销售额，且底横宽跨越 $10$ 单元；每个观测点的实际物理距离占跨 $2$ 个完整网格横距。提取表格两组数据按位对应转换坐标即可落在交点空间。其间 $2024\sim 2025$ 年段会出现两店曲线的自然反转倒挂。\\
+4. \textbf{黑白防串样式隔离：}严格按照规范作图“不依赖彩色区分不同曲线”的独立要求，我们将全图还原成为黑白工程图打印规格。放弃颜料区别，改在图例端通过严密的符号化线型系统予以区分：芝兰店采用\textbf{实线连线 + 实心小圆圈打板}；而芳菲店则采用跳跃感极强的\textbf{长虚线连线 + 实心小正方块截停}以从视模上进行严谨防混淆隔离。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 极简网络背书板：}使用 \texttt{\textbackslash draw[cyan!50, step=1]} 瞬间打底铺开一整层带有浓浓的公办校教辅风的淡青色小正方形 $10\times 6$ 整矩阵格。\\
+\textbf{2. 防干涉浮显渲染引擎：}在将这些有着大量小数点的精密浮点数额标注挂靠上折线折点背部时；如果仅仅普通附带 \texttt{node} 势必会导致许多横纵深青色交错的网格背景线条粗暴地切割穿透了黑体数字本身，严重影响辨识度。此代码专门额外开启了白盒底衬 \texttt{fill=white, inner sep=1pt} 的后台特性，确保每一簇数字外侧都被镀上一层极紧凑的隐形“空白掩膜保护涂层”从而强制掐断经过底部的底纹走线，达到工程印刷级别的极净无斑感。\\
+\textbf{3. 全代码隔离复式图例引擎：}化用几何元素封装实现了无颜色限制指令，第一组曲线由原生自带的 \texttt{circle(2.5pt)} 圆点定点配合全连贯的主实线 \texttt{draw} 发动；第二组则巧用 \texttt{\textbackslash def\textbackslash sq} 变量以及其加减半宽相对坐标公式 \texttt{+(-sq,-sq) rectangle +(sq,sq)} 自定义打出实心小黑方块，配合 \texttt{dashed} 主流属性实现同色系异构化大分离。并且在最终的 $2025$ 节点人工智能预测到了数据倒转拉拉扯扯带来的拥挤交叉车祸，特别手工将其芝兰点底置芳菲标高拉，实现了无瑕避开数字重叠图元互穿。
+}
+
+%% ==============================
+%% 第3题：抛正方体游戏情况统计表
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：复式折线统计图绘制与数据转换}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 37.} \textbf{下表是强强摘录的北京和南京两地一周内每天的最高气温。}
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+\toprule[1.2pt]
+\multirow{2}{*}{\makecell{城\quad 市}} & \multicolumn{7}{c}{最高气温 / $^\circ$C} \\
+\cline{2-8}
+ & 2 日 & 3 日 & 4 日 & 5 日 & 6 日 & 7 日 & 8 日 \\
+\hline
+北\quad 京 & 15 & 15 & 13 & 10 & 5 & 6 & 7 \\
+\hline
+南\quad 京 & 25 & 21 & 22 & 23 & 25 & 26 & 14 \\
+\bottomrule[1.2pt]
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{根据表中的数据，完成下面的折线统计图。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\begin{center}
+\textbf{\large 北京、南京一周内每天最高气温统计图}
+\end{center}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  % 核心缩放参数
+  \def\xstep{1.25} % X轴每个日期的间距
+  \def\ystep{0.12} % Y轴1度所占长度，使得10度为1.2cm
+  
+  % 1. 绘制网格系统与外框：X轴分8个格子(0-8)，Y轴共30度(0-30的间隔5)
+  \draw[step=1, xscale=\xstep, yscale=5*\ystep, gray!80, thin] (0,0) grid (8,6);
+  \draw[thick, black] (0,0) rectangle (8*\xstep, 30*\ystep);
+  
+  % 2. 轴标签文字
+  % Y轴
+  \foreach \y in {0, 10, 20, 30} {
+      \node[left, font=\normalsize] at (0, \y*\ystep) {\y};
+  }
+  
+  % X轴
+  \foreach \x/\label in {1/2 日, 2/3 日, 3/4 日, 4/5 日, 5/6 日, 6/7 日, 7/8 日} {
+      \node[below, font=\normalsize] at (\x*\xstep, -0.1) {\label};
+  }
+  \node[below, font=\normalsize, xshift=4pt] at (8*\xstep, -0.1) {日期};
+  
+  % ==============================
+  % 图表顶部信息阵列 (使用坐标，避免宏展开问题)
+  % 30*\ystep = 30*0.12 = 3.6cm 为图表顶部
+  % 图例行 = 4.2cm，年份行 = 4.8cm
+  % ==============================
+  
+  % 左上角：最高气温标题
+  \node[right, font=\normalsize] at (-0.3, 4.2) {最高气温 / $^\circ$C};
+  % 右上角：年月
+  \node[left, font=\normalsize] at (8*\xstep + 0.2, 4.8) {2026 年 1 月};
+  
+  % 3. 图例绘制 (与最高气温标题同一水平线 y=4.2)
+  \draw[very thick, black] (3.6*\xstep, 4.2) -- (4.4*\xstep, 4.2);
+  \node[right, font=\normalsize] at (4.4*\xstep, 4.2) {北京};
+  \draw[very thick, dashed, black] (5.6*\xstep, 4.2) -- (6.4*\xstep, 4.2);
+  \node[right, font=\normalsize] at (6.4*\xstep, 4.2) {南京};
+  
+  % 4. 绘制折线与数据标点
+  
+  % 北京数据线 (Solid Line)
+  \draw[very thick, black] 
+    (1*\xstep, 15*\ystep) --
+    (2*\xstep, 15*\ystep) --
+    (3*\xstep, 13*\ystep) --
+    (4*\xstep, 10*\ystep) --
+    (5*\xstep,  5*\ystep) --
+    (6*\xstep,  6*\ystep) --
+    (7*\xstep,  7*\ystep);
+    
+  % 北京标点与避障型数字标签定位
+  \fill[black] (1*\xstep, 15*\ystep) circle (1.5pt) node[left, xshift=-2pt, font=\normalsize] {15};
+  \fill[black] (2*\xstep, 15*\ystep) circle (1.5pt) node[below, xshift=-2pt, font=\normalsize] {15};
+  \fill[black] (3*\xstep, 13*\ystep) circle (1.5pt) node[below left, font=\normalsize] {13};
+  \fill[black] (4*\xstep, 10*\ystep) circle (1.5pt) node[above right, font=\normalsize] {10};
+  \fill[black] (5*\xstep,  5*\ystep) circle (1.5pt) node[below left, font=\normalsize] {5};
+  \fill[black] (6*\xstep,  6*\ystep) circle (1.5pt) node[below right, font=\normalsize] {6};
+  \fill[black] (7*\xstep,  7*\ystep) circle (1.5pt) node[right, xshift=2pt, font=\normalsize] {7};
+
+  % 南京数据线 (Dashed Line)
+  \draw[very thick, dashed, black] 
+    (1*\xstep, 25*\ystep) --
+    (2*\xstep, 21*\ystep) --
+    (3*\xstep, 22*\ystep) --
+    (4*\xstep, 23*\ystep) --
+    (5*\xstep, 25*\ystep) --
+    (6*\xstep, 26*\ystep) --
+    (7*\xstep, 14*\ystep);
+    
+  % 南京标点与避障型数字标签定位
+  \fill[black] (1*\xstep, 25*\ystep) circle (1.5pt) node[above right, font=\normalsize] {25};
+  \fill[black] (2*\xstep, 21*\ystep) circle (1.5pt) node[above right, font=\normalsize] {21};
+  \fill[black] (3*\xstep, 22*\ystep) circle (1.5pt) node[above left, font=\normalsize] {22};
+  \fill[black] (4*\xstep, 23*\ystep) circle (1.5pt) node[above left, font=\normalsize] {23};
+  \fill[black] (5*\xstep, 25*\ystep) circle (1.5pt) node[above left, font=\normalsize] {25};
+  \fill[black] (6*\xstep, 26*\ystep) circle (1.5pt) node[above right, font=\normalsize] {26};
+  \fill[black] (7*\xstep, 14*\ystep) circle (1.5pt) node[above right, font=\normalsize] {14};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 全域封锁的高压闭合式栅栏主轴：} 根据深度解析提取的原图坐标轴指纹，这并不是常见的三面漏风型普通直角坐标系！其本体是由 $8 \times 6$ （列向被日期及文字封锁、行向由温度刻度封死）的严密矩形封闭空间组成。为了准确还原那一抹试卷打印特有的压抑严谨感，绘图引擎剥离了外放射线，从系统底层用 \texttt{grid} 函数铸造出了 \texttt{gray!80} 的弱灰色毛孔网纹打底，并运用厚重的纯黑色粗线条矩阵框接合（即 \texttt{rectangle}）。就连最边缘的特供字幕“日期”、“最高气温”及“2026年1月”，也被我们一比一定宽死死按在了考规制定的排版锚点上！\\
+\textbf{2. 极端交错路况下的全人工悬浮避障导航：} 在同一个坐标空腔里硬塞进两条缠斗交织的走势线，如何让密密麻麻的文本标签完全规避画线和相撞风险？系统为每一个悬空的孤悬分子均开启了独立的坐标偏置锚泊模块（如 \texttt{above left/right} 定向锁定区）。以实线狂跌区的北京队 $4$ 日节点为例（数字 $10$），为了给左翼的极速下坠陡坡让出缓冲视觉带，系统将其刁钻地甩挂到了右偏上方（\texttt{above right}）的安全防空洞中；而反观虚线区的南京队大牛市主升浪（$22-25$ 这整整三天的震荡抬升），系统引擎又强行将数字牌阵列集体向左方冷空域进行了倒板退让（\texttt{above left}），生怕其刮擦到粗黑上扬的骨架主体。没有任何数值重叠相撞，在极端密集的重装战区展现出极致的图纸解剖艺术感！
+}
+
+%% ==============================
+%% 第47题（补充题）：复式折线统计图——水费电费
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：复式折线统计图——水电费支出}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 38.} \textbf{收集你家去年下半年水、电费支出数据（精确到整元数），并完成下面的折线统计图。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）题目分析：}
+
+题目要求收集去年下半年（7 月至 12 月）的水费和电费数据，绘制复式折线统计图。根据参考答案，数据如下：
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c|c|c|c|c|c|c}
+\toprule[1.2pt]
+月份 & 七月 & 八月 & 九月 & 十月 & 十一月 & 十二月 \\
+\hline
+水费 / 元 & 100 & 150 & 50 & 60 & 80 & 120 \\
+\hline
+电费 / 元 & 450 & 500 & 350 & 300 & 350 & 400 \\
+\bottomrule[1.2pt]
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）折线统计图绘制：}
+
+\begin{center}
+{\textbf{\large \underline{小明}家去年下半年水、电费支出情况统计图}}
+\end{center}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  % 核心缩放参数
+  \def\xstep{1.5}  % X轴每月间距
+  \def\ystep{0.01} % Y轴每元对应长度，500元对应5cm
+
+  % 1. 绘制网格与外框
+  % X轴共7格(0~7)，Y轴共10格(0~500，每50一格)
+  \draw[gray!60, thin, xscale=\xstep, yscale=50*\ystep] (0,0) grid (7,10);
+  \draw[thick, black] (0,0) rectangle (7*\xstep, 500*\ystep);
+
+  % 2. Y轴刻度标签 (每100标一个)
+  \foreach \y in {0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500} {
+      \node[left, font=\small] at (0, \y*\ystep) {\y};
+  }
+
+  % 3. X轴月份标签
+  \foreach \x/\label in {1/七, 2/八, 3/九, 4/十, 5/十一, 6/十二} {
+      \node[below, font=\normalsize] at (\x*\xstep, -0.15) {\label};
+  }
+  \node[below, font=\normalsize] at (7*\xstep, -0.15) {月份};
+
+  % 4. 图表顶部信息 (Y坐标，500*0.01=5.0cm为顶部)
+  % 图例行 y=5.6，年份行 y=6.2
+  \node[right, font=\normalsize] at (-0.3, 5.6) {数量/元};
+  \node[left, font=\normalsize] at (7*\xstep + 0.2, 6.2) {2026 年 1 月};
+
+  % 图例
+  \draw[very thick, black] (3.0*\xstep, 5.6) -- (3.8*\xstep, 5.6);
+  \node[right, font=\normalsize] at (3.8*\xstep, 5.6) {水费};
+  \draw[very thick, dashed, black] (5.0*\xstep, 5.6) -- (5.8*\xstep, 5.6);
+  \node[right, font=\normalsize] at (5.8*\xstep, 5.6) {电费};
+
+  % 5. 水费折线 (实线)
+  \draw[very thick, black]
+    (1*\xstep, 100*\ystep) --
+    (2*\xstep, 150*\ystep) --
+    (3*\xstep,  50*\ystep) --
+    (4*\xstep,  60*\ystep) --
+    (5*\xstep,  80*\ystep) --
+    (6*\xstep, 120*\ystep);
+
+  % 水费标点与数值标注
+  \fill[black] (1*\xstep, 100*\ystep) circle (1.5pt) node[below, font=\small, text=red] {100};
+  \fill[black] (2*\xstep, 150*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {150};
+  \fill[black] (3*\xstep,  50*\ystep) circle (1.5pt) node[below, font=\small, text=red] {50};
+  \fill[black] (4*\xstep,  60*\ystep) circle (1.5pt) node[below, font=\small, text=red] {60};
+  \fill[black] (5*\xstep,  80*\ystep) circle (1.5pt) node[below, font=\small, text=red] {80};
+  \fill[black] (6*\xstep, 120*\ystep) circle (1.5pt) node[below right, font=\small, text=red] {120};
+
+  % 6. 电费折线 (虚线)
+  \draw[very thick, dashed, black]
+    (1*\xstep, 450*\ystep) --
+    (2*\xstep, 500*\ystep) --
+    (3*\xstep, 350*\ystep) --
+    (4*\xstep, 300*\ystep) --
+    (5*\xstep, 350*\ystep) --
+    (6*\xstep, 400*\ystep);
+
+  % 电费标点与数值标注
+  \fill[black] (1*\xstep, 450*\ystep) circle (1.5pt) node[above left, font=\small, text=red] {450};
+  \fill[black] (2*\xstep, 500*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {500};
+  \fill[black] (3*\xstep, 350*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {350};
+  \fill[black] (4*\xstep, 300*\ystep) circle (1.5pt) node[above, font=\small, text=red] {300};
+  \fill[black] (5*\xstep, 350*\ystep) circle (1.5pt) node[above left, font=\small, text=red] {350};
+  \fill[black] (6*\xstep, 400*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {400};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{（3）从图中获取的信息：}
+
+\begin{itemize}
+    \item 电费支出远高于水费支出，每月电费约为水费的 $3 \sim 6$ 倍。
+    \item 八月电费最高（$500$ 元），九月水费最低（$50$ 元）。
+    \item 夏季（七、八月）水电费均较高，秋季（九、十月）有所回落。
+\end{itemize}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 坐标系结构：} 采用 $7 \times 10$ 封闭矩形网格。X 轴 7 格对应 6 个月份及末尾"月份"标签，Y 轴 10 格对应 $0$--$500$ 元（每格 $50$ 元）。缩放参数 \texttt{\textbackslash{}xstep=1.5}（每月间距 1.5cm），\texttt{\textbackslash{}ystep=0.01}（每元 0.01cm，即 $500$ 元 $= 5$cm）。\\
+\textbf{2. 图例与标题定位：} 使用 Y 坐标。图表顶部为 $500 \times 0.01 = 5.0$cm，图例行固定于 $y=5.6$cm，年份行固定于 $y=6.2$cm，确保不与网格重叠。\\
+\textbf{3. 双线绘制：} 水费使用实线（\texttt{very thick, black}），电费使用虚线（\texttt{very thick, dashed, black}）。两组数据分离度大（水费 $50$--$150$，电费 $300$--$500$），无交叉冲突。\\
+\textbf{4. 标注策略：} 数值标签使用红色（\texttt{text=red}）突出显示。水费数据较低，标签多置于下方（\texttt{below}）；电费数据较高，标签多置于上方（\texttt{above left/right}），根据折线走势方向选择左右偏移以避免遮挡连线。
+}
+
+%% ==============================
+%% 第48题（补充题）：10天最高最低气温统计表与折线图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：10天气温调查统计表与复式折线统计图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 39.} \textbf{调查了解本地近 10 天的最高气温和最低气温，并分别完成下面的统计表和折线统计图。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）统计表：}
+
+\begin{center}
+{\textbf{\large \underline{上海}地区\underline{\,1\,}月\underline{\,1\,}日至\underline{\,1\,}月\underline{\,10\,}日气温情况统计表}}
+\end{center}
+
+%\vspace{-0.4cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+\multicolumn{11}{r}{2026 年 1 月} \\[2pt]
+\noalign{\hrule height 1.2pt}
+日\quad 期 & 1.1 & 1.2 & 1.3 & 1.4 & 1.5 & 1.6 & 1.7 & 1.8 & 1.9 & 1.10 \\
+\hline
+最高气温/$^\circ$C & 14 & 14 & 11 & 8 & 12 & 14 & 17 & 17 & 16 & 15 \\
+\hline
+最低气温/$^\circ$C & 6 & 9 & 2 & 1 & 1 & 1 & 4 & 6 & 8 & 7 \\
+\noalign{\hrule height 1.2pt}
+\end{tabular}
+\end{center}
+
+\vspace{0.6cm}
+\textbf{（2）折线统计图：}
+
+\begin{center}
+{\textbf{\large \underline{上海}地区\underline{\,1\,}月\underline{\,1\,}日至\underline{\,1\,}月\underline{\,10\,}日气温情况统计图}}
+\end{center}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  % 缩放参数
+  \def\xstep{1.0}  % X轴每天间距 1.0cm
+  \def\ystep{0.14}  % Y轴每度 0.14cm => 35度=4.9cm
+
+  % 1. 网格与外框
+  % X轴11格(0~11)，Y轴7格(0~35，每5一格)
+  \draw[gray!60, thin, xscale=\xstep, yscale=5*\ystep] (0,0) grid (11,7);
+  \draw[thick, black] (0,0) rectangle (11*\xstep, 35*\ystep);
+
+  % 2. Y轴标签
+  \foreach \y in {0, 5, 10, 15, 20, 25, 30, 35} {
+      \node[left, font=\small] at (0, \y*\ystep) {\y};
+  }
+
+  % 3. X轴标签
+  \foreach \x in {1,...,10} {
+      \node[below, font=\small] at (\x*\xstep, -0.15) {\x};
+  }
+  \node[below, font=\normalsize] at (11*\xstep, -0.15) {第几天};
+
+  % 4. 顶部信息 (Y坐标: 35*0.14=4.9cm为顶部)
+  % 图例行 y=5.5，年份行 y=6.0
+  \node[right, font=\normalsize] at (-0.3, 5.5) {气温/$^\circ$C};
+  \node[left, font=\normalsize] at (11*\xstep + 0.2, 6.0) {2026 年 1 月};
+
+  % 图例
+  \draw[very thick, black] (3.5*\xstep, 5.5) -- (4.5*\xstep, 5.5);
+  \node[right, font=\normalsize] at (4.5*\xstep, 5.5) {最高气温};
+  \draw[very thick, dashed, black] (6.5*\xstep, 5.5) -- (7.5*\xstep, 5.5);
+  \node[right, font=\normalsize] at (7.5*\xstep, 5.5) {最低气温};
+
+  % 5. 最高气温折线 (实线)
+  % 数据: 14, 14, 11, 8, 12, 14, 17, 17, 16, 15
+  \draw[very thick, black]
+    ( 1*\xstep, 14*\ystep) --
+    ( 2*\xstep, 14*\ystep) --
+    ( 3*\xstep, 11*\ystep) --
+    ( 4*\xstep,  8*\ystep) --
+    ( 5*\xstep, 12*\ystep) --
+    ( 6*\xstep, 14*\ystep) --
+    ( 7*\xstep, 17*\ystep) --
+    ( 8*\xstep, 17*\ystep) --
+    ( 9*\xstep, 16*\ystep) --
+    (10*\xstep, 15*\ystep);
+
+  % 最高气温标注
+  \fill[black] ( 1*\xstep, 14*\ystep) circle (1.5pt) node[above left, font=\small, text=red] {14};
+  \fill[black] ( 2*\xstep, 14*\ystep) circle (1.5pt) node[above, font=\small, text=red] {14};
+  \fill[black] ( 3*\xstep, 11*\ystep) circle (1.5pt) node[above, font=\small, text=red] {11};
+  \fill[black] ( 4*\xstep,  8*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {8};
+  \fill[black] ( 5*\xstep, 12*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {12};
+  \fill[black] ( 6*\xstep, 14*\ystep) circle (1.5pt) node[above, font=\small, text=red] {14};
+  \fill[black] ( 7*\xstep, 17*\ystep) circle (1.5pt) node[above left, font=\small, text=red] {17};
+  \fill[black] ( 8*\xstep, 17*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {17};
+  \fill[black] ( 9*\xstep, 16*\ystep) circle (1.5pt) node[above, font=\small, text=red] {16};
+  \fill[black] (10*\xstep, 15*\ystep) circle (1.5pt) node[above right, font=\small, text=red] {15};
+
+  % 6. 最低气温折线 (虚线)
+  % 数据: 6, 9, 2, 1, 1, 1, 4, 6, 8, 7
+  \draw[very thick, dashed, black]
+    ( 1*\xstep,  6*\ystep) --
+    ( 2*\xstep,  9*\ystep) --
+    ( 3*\xstep,  2*\ystep) --
+    ( 4*\xstep,  1*\ystep) --
+    ( 5*\xstep,  1*\ystep) --
+    ( 6*\xstep,  1*\ystep) --
+    ( 7*\xstep,  4*\ystep) --
+    ( 8*\xstep,  6*\ystep) --
+    ( 9*\xstep,  8*\ystep) --
+    (10*\xstep,  7*\ystep);
+
+  % 最低气温标注
+  \fill[black] ( 1*\xstep,  6*\ystep) circle (1.5pt) node[below left, font=\small, text=red] {6};
+  \fill[black] ( 2*\xstep,  9*\ystep) circle (1.5pt) node[below, font=\small, text=red] {9};
+  \fill[black] ( 3*\xstep,  2*\ystep) circle (1.5pt) node[below, font=\small, text=red] {2};
+  \fill[black] ( 4*\xstep,  1*\ystep) circle (1.5pt) node[below right, font=\small, text=red] {1};
+  \fill[black] ( 5*\xstep,  1*\ystep) circle (1.5pt) node[below, font=\small, text=red] {1};
+  \fill[black] ( 6*\xstep,  1*\ystep) circle (1.5pt) node[below left, font=\small, text=red] {1};
+  \fill[black] ( 7*\xstep,  4*\ystep) circle (1.5pt) node[below right, font=\small, text=red] {4};
+  \fill[black] ( 8*\xstep,  6*\ystep) circle (1.5pt) node[below right, font=\small, text=red] {6};
+  \fill[black] ( 9*\xstep,  8*\ystep) circle (1.5pt) node[below, font=\small, text=red] {8};
+  \fill[black] (10*\xstep,  7*\ystep) circle (1.5pt) node[below right, font=\small, text=red] {7};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 坐标系结构：} 采用 $11 \times 7$ 封闭矩形网格。X 轴 11 格对应 10 天及末尾"第几天"标签，Y 轴 7 格对应 $0$--$35$$^\circ$C（每格 $5$$^\circ$C）。缩放参数 \texttt{\textbackslash{}xstep=1.0}，\texttt{\textbackslash{}ystep=0.14}（每度 0.14cm，$35$ 度 $= 4.9$cm）。\\
+\textbf{2. 图例与标题定位：}  Y 坐标。图表顶部 $35 \times 0.14 = 4.9$cm，图例行 $y=5.5$cm，年份行 $y=6.0$cm。\\
+\textbf{3. 双线绘制：} 最高气温实线，最低气温虚线。两组数据无交叉（最高 $8$--$17$，最低 $1$--$9$），标签分设上下方避碰。\\
+\textbf{4. 标注策略：} 红色文字标注。最高气温标签置于上方，最低气温标签置于下方，根据线段走向选择 left/right 偏移防撞。
+}
+
+%% ==============================
+%% 第49题（补充题）：条形统计图补全与扇形统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：复式折线统计图绘制}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 2022 年甲、乙两个城市月平均气温如下表：（单位：$^\circ$C）}
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+\noalign{\hrule height 1pt}
+月份 & 1月 & 2月 & 3月 & 4月 & 5月 & 6月 & 7月 & 8月 & 9月 & 10月 & 11月 & 12月 \\
+\hline
+甲市 & 2 & 5 & 10 & 14 & 22 & 28 & 31 & 30 & 27 & 22 & 12 & 3 \\
+\hline
+乙市 & 13 & 15 & 17 & 20 & 22 & 23 & 25 & 24 & 21 & 20 & 16 & 15 \\
+\noalign{\hrule height 1pt}
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+
+\noindent\textbf{（1）根据表中的数据，完成下面的统计图。}
+
+\vspace{0.6cm}
+
+\begin{center}
+\textbf{\large 2022 年甲、乙两个城市月平均气温统计图}
+
+\vspace{0.4cm}
+% =====================================================================
+% 【复式折线制图设计说明】
+% 1. 结构矩阵：横向分配 13 个单位列长度，第1条辅线对应1月，最终的第13条辅线对应“月份”标签。纵向大格跨度代表 5 级增量，高度单位通过除以 5 (如 y/5) 将数值简化渲染到具体坐标内。
+% 2. 区分度控制：甲市遵循给定的连续实线，乙市配置为虚线 "dashed"。二者点位通过 "\filldraw" 锚定。
+% 3. 标签碰撞剥离算法：人工判别了两条线的走势锐度。比如甲市攀升陡峭，左侧前期的数据放置于 `node[below right]`；乙市平缓，左侧放置于 `node[above left]`；在 5月份的公共汇合交点统一向左上方挂载，有效避免了文字叠加、笔画穿刺等糟糕的视觉污点。
+% =====================================================================
+\begin{tikzpicture}[x=0.7cm, y=0.8cm, font=\scriptsize]
+  % 顶栏：主属性标签，图例矩阵，右上角落时间戳
+  % 利用坐标系锚点，使得文本与网格浑然一体，下沉浑厚不飘忽
+  \node[above, inner sep=0pt] at (0, 8.5) {平均气温/$^\circ$C};
+  \node[above, inner sep=0pt] at (6.5, 8.5) {—— 甲市 \qquad - - - - 乙市};
+  \node[above left, inner sep=0pt] at (13, 8.5) {2026年 \ 3月};
+
+  % 网格骨架背景
+  \draw[step=1, black, thin] (0,0) grid (13,8);
+  
+  % Y 轴纵向温度标签 ($0 \sim 40$, 间隔 5)
+  \foreach \y/\val in {0/0, 1/5, 2/10, 3/15, 4/20, 5/25, 6/30, 7/35, 8/40} {
+    \node[left] at (0, \y) {\val};
+  }
+  
+  % X 轴横向时序标签 (1月 ~ 12月, 月份单位)
+  % 使用 \! 负间距消除 CTeX 在数字与汉字之间自动插入的四分空
+  \node[below] at (1, 0) {1\!月};
+  \node[below] at (2, 0) {2\!月};
+  \node[below] at (3, 0) {3\!月};
+  \node[below] at (4, 0) {4\!月};
+  \node[below] at (5, 0) {5\!月};
+  \node[below] at (6, 0) {6\!月};
+  \node[below] at (7, 0) {7\!月};
+  \node[below] at (8, 0) {8\!月};
+  \node[below] at (9, 0) {9\!月};
+  \node[below] at (10, 0) {10\!月};
+  \node[below] at (11, 0) {11\!月};
+  \node[below] at (12, 0) {12\!月};
+  \node[below] at (13, 0) {月份};
+
+  % ======================= 甲市 (实线) =======================
+  \draw[thick, black] 
+    (1, 0.4) -- (2, 1.0) -- (3, 2.0) -- (4, 2.8) -- (5, 4.4) -- 
+    (6, 5.6) -- (7, 6.2) -- (8, 6.0) -- (9, 5.4) -- (10, 4.4) -- 
+    (11, 2.4) -- (12, 0.6);
+    
+  \filldraw[black] (1, 0.4) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{2}};
+  \filldraw[black] (2, 1.0) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{5}};
+  \filldraw[black] (3, 2.0) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{10}};
+  \filldraw[black] (4, 2.8) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{14}};
+  % 5月 为双线重合公共枢纽，统一归口延后处理以防重复复写
+  \filldraw[black] (6, 5.6) circle (1.5pt) node[above left, inner sep=2pt] {\textcolor{blue}{28}};
+  \filldraw[black] (7, 6.2) circle (1.5pt) node[above, inner sep=2pt] {\textcolor{blue}{31}};
+  \filldraw[black] (8, 6.0) circle (1.5pt) node[above right, inner sep=2pt] {\textcolor{blue}{30}};
+  \filldraw[black] (9, 5.4) circle (1.5pt) node[above right, inner sep=2pt] {\textcolor{blue}{27}};
+  \filldraw[black] (10, 4.4) circle (1.5pt) node[above right, inner sep=2pt] {\textcolor{blue}{22}};
+  \filldraw[black] (11, 2.4) circle (1.5pt) node[below left, inner sep=2pt] {\textcolor{blue}{12}};
+  \filldraw[black] (12, 0.6) circle (1.5pt) node[below left, inner sep=2pt] {\textcolor{blue}{3}};
+
+  % ======================= 乙市 (虚线) =======================
+  \draw[thick, black, dashed] 
+    (1, 2.6) -- (2, 3.0) -- (3, 3.4) -- (4, 4.0) -- (5, 4.4) -- 
+    (6, 4.6) -- (7, 5.0) -- (8, 4.8) -- (9, 4.2) -- (10, 4.0) -- 
+    (11, 3.2) -- (12, 3.0);
+
+  \filldraw[black] (1, 2.6) circle (1.5pt) node[above left, inner sep=2pt] {\textcolor{blue}{13}};
+  \filldraw[black] (2, 3.0) circle (1.5pt) node[above left, inner sep=2pt] {\textcolor{blue}{15}};
+  \filldraw[black] (3, 3.4) circle (1.5pt) node[above left, inner sep=2pt] {\textcolor{blue}{17}};
+  \filldraw[black] (4, 4.0) circle (1.5pt) node[above left, inner sep=2pt] {\textcolor{blue}{20}};
+  % 执行 5月份公共重合点的绘制 (22度)
+  \filldraw[black] (5, 4.4) circle (1.5pt) node[above left, inner sep=2pt] {\textcolor{blue}{22}};
+  
+  \filldraw[black] (6, 4.6) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{23}};
+  \filldraw[black] (7, 5.0) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{25}};
+  \filldraw[black] (8, 4.8) circle (1.5pt) node[below right, inner sep=2pt] {\textcolor{blue}{24}};
+  \filldraw[black] (9, 4.2) circle (1.5pt) node[below left, inner sep=2pt] {\textcolor{blue}{21}};
+  \filldraw[black] (10, 4.0) circle (1.5pt) node[below left, inner sep=2pt] {\textcolor{blue}{20}};
+  \filldraw[black] (11, 3.2) circle (1.5pt) node[above right, inner sep=2pt] {\textcolor{blue}{16}};
+  \filldraw[black] (12, 3.0) circle (1.5pt) node[above right, inner sep=2pt] {\textcolor{blue}{15}};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这是一道双层复式折线统计图的典型问题：\\
+1. \textbf{刻度映射换算}：\\
+- 纵轴（Y轴）代表气温数值，大网格每格高度映射物理温度 $5^\circ$C。因此落点规则为：\textbf{纵向作图高度 $Y$坐标 = 具体温度 $\div$ 5}。\\
+- 以前期数据为例：甲市 1月气温为 $2^\circ$C，它在网格里的坐标高度就是 $2 \div 5 = 0.4$ 格；乙市 1月为 $13^\circ$C，在此框架下则换算为 $13 \div 5 = 2.6$ 格高度。\\
+2. \textbf{分立节点与防遮挡渲染}：\\
+- 首先绘制“甲市”，按常理逐月推演所有曲折点（实线）并标上数值。针对它上升及下降猛烈陡峭的特点，比如 $3$ 月、$4$ 月等，将其数字标注果断放置在圆点的右下方等空余面，成功躲开爬升线条本身。\\
+- 然后绘制“乙市”，采用规定的间断虚线衔接各个坐标点。它在开头几个月位于甲市曲线的上方，故而其文字顺势悉数安排于左上方。\\
+- 特别注意：到了 $5$ 月份，两市气温均精确归拢到了 $22^\circ$C（坐标标高达 $4.4$ 格）。此时两个圆点在该位置彻底重逢，折线呈现交叉而过。只需在此处放出一个代表性的纯蓝文字“22”共用提示字眼即可。\\
+- 全方位绘制完毕后进行蓝字标记，以显示学生用笔答题痕迹。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 大幅笛卡尔网格集成}：构建了跨度极广的 \texttt{grid (13,8)} 架构底模，并通过 \texttt{x=0.7cm, y=0.8cm} 对画布进行挤压缩放，使得生成的每一个底基网格在视觉上呈现为您要求的“竖置长方形且近似正方形”结构。这种纵向微微拉长的几何视觉映射了气温剧烈攀升的感官冲击力。同时弃去了外置的悬挂式日期独立区块框，直接使用 TikZ 独有的原生系指令，给最高层空域分配了极细颗粒度的辅助文本群位。\\
+\textbf{2. 智能重避退全方位计算排线}：此折线因系双轨架构混合绘制且频发局部交集重叠，若全凭单一方向打设坐标温度挂标（如一律标出顶部 \texttt{above}）必将引发大规模数值阻断与折线割裂干扰现象。为杜绝排版瑕疵丑态，针对全部共 24 个游离节点人工进行了精密的“风向指向位判定”。以动态干预技术大量指派引入 \texttt{below right}、\texttt{above left} 等细碎修补命令来做差异化隔离排位。尤其是面对 5 月双线相织的死结区，成功强制共享一处 \texttt{above left} 节点作为合流，维护了页面整体的清冷严整之美。
+}
+
+\newpage

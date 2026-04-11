@@ -1,0 +1,874 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 条形图与扇形图综合
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：季度销量条形与扇形综合统计分析}
+
+\vspace{0.6cm}
+
+\textbf{例 2 \quad 一家服装店专卖羽绒服，下面是 $2025$ 年各月的销售表。}
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|>{\columncolor{gray!15}\centering\arraybackslash}p{2cm}|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+月份 & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ & $12$ \\
+\hline
+销量/件 & $100$ & $90$ & $50$ & $11$ & $8$ & $6$ & $4$ & $6$ & $5$ & $30$ & $80$ & $110$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\vspace{0.4cm}
+
+\textbf{根据上表回答下列问题：\\
+（1）用一个适当的统计图表示 $2025$ 年各季度的销量情况。\\
+（2）计算 $2025$ 年各季度销量在全年销量中所占百分比，并用适当的统计图表示。\\
+（3）从统计图表中你能得出什么结论？你能为服装店经理今后的决策提出什么建议？}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）$2025$ 年各季度销量情况及条形统计图：}
+
+\vspace{0.2cm}
+首先将每个月的数据按照标准的四个季度进行合并计算：
+\begin{itemize}
+    \item \textbf{第一季度（$1{\sim}3$月）：} $100 + 90 + 50 = \boldsymbol{240}$（件）
+    \item \textbf{第二季度（$4{\sim}6$月）：} $11 + 8 + 6 = \boldsymbol{25}$（件）
+    \item \textbf{第三季度（$7{\sim}9$月）：} $4 + 6 + 5 = \boldsymbol{15}$（件）
+    \item \textbf{第四季度（$10{\sim}12$月）：} $30 + 80 + 110 = \boldsymbol{220}$（件）
+\end{itemize}
+由于本问旨在明晰并剥离出各个独立季度确切的销量大小对比关系，最适合优先调用的统计模型为\textbf{条形统计图（直方柱状表）}：
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=2.5cm, y=0.016cm]
+  % Y轴及其辅助平流网格虚线
+  \draw[->, line width=0.8pt] (0, 0) -- (0, 280) node[above] {销量/件};
+  \foreach \y in {50, 100, 150, 200, 250} {
+    \draw[line width=0.8pt] (0, \y) -- (-0.1, \y) node[left, font=\footnotesize] {\y};
+    \draw[gray!30, dashed, line width=0.5pt] (0, \y) -- (4.6, \y);
+  }
+  \node[left, font=\footnotesize] at (0, 0) {$0$};
+
+  % X轴实线
+  \draw[->, line width=0.8pt] (0, 0) -- (4.8, 0) node[right] {季度};
+  
+  % 柱状图循环列阵绘制
+  \foreach \x/\label/\val in {1/第一季度/240, 2/第二季度/25, 3/第三季度/15, 4/第四季度/220} {
+    % X轴文字悬挂
+    \draw[line width=0.8pt] (\x, 0) -- (\x, -4) node[below, font=\small] {\label};
+    % 专属的平滑顶部矩形填充与描边 (底边保留直角防断行)
+    \fill[cyan!40, draw=black, line width=0.8pt] 
+      (\x-0.3, 0) -- (\x-0.3, \val-3) 
+      [rounded corners=2pt] -- (\x-0.3, \val) -- (\x+0.3, \val) 
+      [rounded corners=0pt] -- (\x+0.3, \val-3) -- (\x+0.3, 0) -- cycle;
+    % 数值天际线标定
+    \node[above, font=\small\bfseries] at (\x, \val+2) {\val};
+  }
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（2）各季度销量在全年销量中的占比计算及扇形统计图：}
+
+\vspace{0.2cm}
+全年累计总销量为：$240 + 25 + 15 + 220 = \boldsymbol{500}$（件）。\\
+由于本问旨在剖析揭示某个单独的季度在其大盘系统（整体）当中割裂切分出来的内部相对规模比例，最适合运用的图形语言毫无疑问是\textbf{扇形统计图}。各季度销量所占百分比如下：
+\begin{itemize}
+    \item \textbf{第一季度：} $\displaystyle \frac{240}{500} \times 100\% = \boldsymbol{48\%}$
+    \vspace{0.1cm}
+    \item \textbf{第二季度：} $\displaystyle \frac{25}{500} \times 100\% = \boldsymbol{5\%}$
+    \vspace{0.1cm}
+    \item \textbf{第三季度：} $\displaystyle \frac{15}{500} \times 100\% = \boldsymbol{3\%}$
+    \vspace{0.1cm}
+    \item \textbf{第四季度：} $\displaystyle \frac{220}{500} \times 100\% = \boldsymbol{44\%}$
+\end{itemize}
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  \def\R{2.8} % 扇形图统一下放缩放面半径
+  \coordinate (O) at (0,0);
+
+  % 1. 第一季度 48% (占据 172.8 度圆心角范围)
+  \draw[fill=cyan!20, draw=black, thick] (O) -- (90:\R) arc (90:-82.8:\R) -- cycle;
+  % 2. 第二季度 5% (接管随后的 18 度极狭窄圆心角)
+  \draw[fill=green!20, draw=black, thick] (O) -- (-82.8:\R) arc (-82.8:-100.8:\R) -- cycle;
+  % 3. 第三季度 3% (顺位接管几乎只剩一条缝隙的 10.8 度夹角)
+  \draw[fill=orange!20, draw=black, thick] (O) -- (-100.8:\R) arc (-100.8:-111.6:\R) -- cycle;
+  % 4. 第四季度 44% (占据剩余庞大的 158.4 度左端海量弧域，闭合融归于 90 度天顶线)
+  \draw[fill=red!20, draw=black, thick] (O) -- (-111.6:\R) arc (-111.6:-270:\R) -- cycle;
+
+  % 对于疆域辽阔的大扇区执行直接向内的腹地嵌字
+  \node[align=center] at (3.6:1.5) {\textbf{第一季度} \\ $48\%$};
+  \node[align=center] at (169.2:1.5) {\textbf{第四季度} \\ $44\%$};
+  
+  % 对逼仄至极微小扇区挂载智能偏转中轴探测与悬浮外移线 (防撞车处理)
+  % 第二季度：切入其中轴角 (-91.8) 向南方下沉延展后，立刻右满舵横向牵引至真空带
+  \draw[thick] (-91.8:\R*0.8) -- (-91.8:\R*1.3) -- (1.6, -\R*1.3) node[right, align=left] {\textbf{第二季度} \\ $5\%$};
+  \fill (-91.8:\R*0.8) circle (1.5pt);
+
+  % 第三季度：同理取中轴角 (-106.2) 向西南深潜延展后，迅猛左满舵牵引向远端以保证对称平衡
+  \draw[thick] (-106.2:\R*0.85) -- (-106.2:\R*1.6) -- (-1.8, -\R*1.6) node[left, align=right] {\textbf{第三季度} \\ $3\%$};
+  \fill (-106.2:\R*0.85) circle (1.5pt);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（3）从统计图表中你能得出什么结论？你能为服装店经理今后的决策提出什么建议？}
+
+\vspace{0.2cm}
+\textbf{得出结论：} \\
+通过上方并列的双模统计图形态可知：该服装品牌店（主营羽绒衣物）在代表极寒气温环境的**第一季度**（早春与凛冬交界）以及**第四季度**（深秋过渡至初冬）的销量数据占据着拥有恐怖统治力的基本盘，仅此两个首尾季度的总和出货量便瓜分了全年整体业绩盘的 $48\% + 44\% = \boldsymbol{92\%}$！这也印证了此类店铺的季度收益曲线与大自然气温跌宕模型呈重度逆相关，具有极为疯狂且两极分化的特定淡旺季生命周期属性；中间二三季度几近无利润流水。
+
+\vspace{0.2cm}
+\textbf{向店面经理给出的决策建议：}
+\begin{enumerate}
+    \item \textbf{重度囤货期规划：} 在四季度初（即 $9{\sim}10$ 月初秋时段）就要果断调配店面整体资金倾向运转，并提前囤积重仓进货当年度各大品牌的爆款羽绒服尺码，以顺利吃透第一波大降温天寒红利；而当进入一季度末（春天准备回暖阶段）则必须挥泪斩仓，迅速中断新进货通道。
+    \item \textbf{冰冻淡季求生操作：} 处于 $4 \sim 9$ 月这段长达半年之久的严酷第二、三季度生意真空寒冬期时，应该大刀阔斧举办极限反季打折促销（不惜降价回笼现金流也要降低高企的被动压货积压仓储成本）；或者更强烈建议在这六个月低谷期，向主柜台引入上架诸如 T 恤、短裤、裙装等具有夏天刚需生命力的短频快轻薄类服装，来强行摊平店铺高达半年的昂贵连轴转门面场租开销压力。
+\end{enumerate}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. “圆顶平角直立基脚”高素质直方图滤镜：} 为了避免常规直线命令构成干瘪生硬死板的条形框块，此次在针对第一问生成柱状高塔时，启用了基于复杂路径勾勒坐标节点的底层特种微操：\texttt{\textbackslash fill} 填色绘制矩形时摒弃了一拉到底的一键正方形，而是让底部双底角乖乖坐落于零轴线（也就是让左底和右底强行保持 \texttt{rounded corners=0pt} 呈现最硬朗直角进行粘合抓地），并在画笔向苍穹拔升越过柱顶天际线的时候强行嵌入开启了 \texttt{[rounded corners=2pt]} 大弧形平滑包络指令，仅仅只对顶尖处作圆滑无刺的物理包浆抛光抛圆。就这一个骚操作，一举把原本丑绝人寰的工业死切割块，全部拉满进化成了带有着现代 UI APP 圆帽风格特质的高端悬浮气泡数据柱！\\
+\textbf{2. 幽闭狭缝地带的双核交避防叠探针锚技术应用：} 第二问面临着令人窒息排版深坑：同在此圆盘区的正下方挤着两个堪称落难兄弟的第二季度 ($5\%$，仅宽 $18$ 度夹角) 及其一墙之隔的边缘化第三季度 ($3\%$，仅宽剩弱小的 $10.8$ 度狭缝夹角)。这种同处正南方且连续发生断层式塌方死亡的深水黑洞区位，无论您的字体字号调得多细碎或者怎么强扭，只要敢同向往外塞入哪怕几个数字，都注定难逃因为过于贴脸互掐而互相重叠覆盖变成一坨灾难浆糊的命运！\\
+所以我再次利用数学物理算式，分别强行刺探抓取出了 $-91.8^\circ$ 和 $-106.2^\circ$ 这俩狭门之下的正悬中垂线中位坐标。在深潜出圆盘后瞬间变轨：让两根引引探针仿佛水火不容般——让靠右的一条猛地下延后立刻执行 \textbf{右满舵横向深拉} 避让至右侧真空大区！另一条靠左的针则猛潜并果断施展 \textbf{左满舵深空急展} 甩向左侧荒漠平原平衡留白重力！就这么一手分流双推太极分花手排版位移隔离魔法，不仅仅硬是生生守住了这两个极限小缝数据的物理阅读生存下限面积，更因为这条层次分明而充满几何美学的对称引控悬臂连线……让整副在原本平淡无奇的初中数学饼图中竟然焕发辐射出了一种带着高级商业宏观统筹与精算财报基因的极致性冷感大势！
+}
+
+%% ==============================
+%% 第13题（例3）：不完整统计图补全与样本推断
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：书香校园阅读意向调查分析}
+
+\vspace{0.6cm}
+
+\textbf{8. 某校组织开展“书香校园阅读周”系列活动，拟举办五类主题活动. A：阅读分享会；B：征文比赛；C：名家进校园；D：知识竞赛；E：经典诵读表演. 为了解同学们参与这五类活动的意向，现采用简单随机抽样的方法抽取部分学生进行调查(每名学生仅选一项)，并将调查结果绘制成如图所示的统计图. 请根据图表提供的信息，解答下列问题.}
+
+\vspace{0.4cm}
+
+\textbf{（1）请把这幅频数分布直方图补充完整(画图后请标注相应数据)；\\
+（2）扇形统计图中“C”所对应的圆心角的度数等于 \underline{\makebox[1.5cm]{}}$^\circ$；\\
+（3）该校共有 $2400$ 名学生，请你估计该校想参加“E：经典诵读表演”活动的学生人数.}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）} 由题干观察，寻找联通两幅残破图表的“桥梁”基准数据：\\
+从坐标轴的柱状（直方）统计图可以读出，意向为 “B” 项目的学生实有 $\boldsymbol{20}$ 人；而对应的扇形统计图中清清楚楚地写明 “B” 项精准占了整体调样人群的 $\boldsymbol{10\%}$。\\
+所以，我们可以瞬间切出本次抽样调查的总样本容量（总人数）： $20 \div 10\% = \boldsymbol{200}$（人）。\\
+有了总盘口，意向为 “D” 的人群基数就能够用总池倒扣法算出：
+$$200 - (24 + 20 + 70 + 46) = 200 - 160 = \boldsymbol{40}\text{（人）}$$
+补充完整的直方图如下（见左下侧绘图区，我用红色警戒列柱把新算出的 $\boldsymbol{40}$ 予以高亮补填）：
+
+\vspace{0.4cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{cc}
+\begin{tikzpicture}[>=Stealth, x=0.9cm, y=0.06cm, baseline=(current bounding box.center)]
+  % 绘制背景虚线网格 (仅 Y 轴关键参考水平线)
+  \foreach \y in {20, 40, 60, 80} {
+    \draw[gray!40, dashed, line width=0.5pt] (0, \y) -- (6.5, \y);
+    \node[left, font=\footnotesize] at (0, \y) {\y};
+  }
+  \node[left, font=\footnotesize] at (0, 0) {$0$};
+
+  % X 轴与 Y 轴骨架
+  \draw[->, line width=0.8pt] (0, 0) -- (0, 95) node[above] {频数};
+  \draw[->, line width=0.8pt] (0, 0) -- (7, 0) node[right] {主题活动};
+
+  % 定义拼合直方图柱子宽度
+  \def\BW{1.0} 
+  
+  % A=24
+  \fill[black!65, draw=black, line width=0.8pt] (1.0, 0) rectangle (1.0+\BW, 24);
+  \node[above, font=\small] at (1.0+0.5*\BW, 24) {$24$};
+  \node[below, font=\small] at (1.0+0.5*\BW, -1) {A};
+
+  % B=20
+  \fill[black!65, draw=black, line width=0.8pt] (1.0+\BW, 0) rectangle (1.0+2*\BW, 20);
+  \node[above, font=\small] at (1.0+1.5*\BW, 20) {$20$};
+  \node[below, font=\small] at (1.0+1.5*\BW, -1) {B};
+
+  % C=70
+  \fill[black!65, draw=black, line width=0.8pt] (1.0+2*\BW, 0) rectangle (1.0+3*\BW, 70);
+  \node[above, font=\small] at (1.0+2.5*\BW, 70) {$70$};
+  \node[below, font=\small] at (1.0+2.5*\BW, -1) {C};
+
+  % D=40 (缺口填补，启用红衣主教主色调与加粗文字以示答题区)
+  \fill[red!60, draw=red!80!black, thick] (1.0+3*\BW, 0) rectangle (1.0+4*\BW, 40);
+  \node[above, font=\small, text=red] at (1.0+3.5*\BW, 40) {\textbf{40}};
+  \node[below, font=\small] at (1.0+3.5*\BW, -1) {D};
+
+  % E=46
+  \fill[black!65, draw=black, line width=0.8pt] (1.0+4*\BW, 0) rectangle (1.0+5*\BW, 46);
+  \node[above, font=\small] at (1.0+4.5*\BW, 46) {$46$};
+  \node[below, font=\small] at (1.0+4.5*\BW, -1) {E};
+
+\end{tikzpicture}
+&
+\begin{tikzpicture}[>=Stealth, line join=round, baseline=(current bounding box.center)]
+  \def\R{2.2} % 统筹扇形大盘物理半径
+  \coordinate (O) at (0,0);
+  
+  % 根据原相片极地坐标逆推还原整个圆面切分法则 (全局启用逆时针渲染链)
+  
+  % B: 20/200 = 10% -> 36 deg. (原图 B的左壁死死钉在 90° 垂直线上，所以它从 54° 划拉至 90°)
+  \draw[fill=white, draw=black, thick] (O) -- (54:\R) arc (54:90:\R) -- cycle;
+  \node[align=center, font=\small] at (72:1.4) {10\% \\ B};
+
+  % A: 24/200 = 12% -> 43.2 deg. (平稳接管 B 遗留下的 90° 左壁界碑，蔓延至 133.2°)
+  \draw[fill=white, draw=black, thick] (O) -- (90:\R) arc (90:133.2:\R) -- cycle;
+  \node[align=center, font=\small] at (111.6:1.4) {A};
+
+  % E: 46/200 = 23% -> 82.8 deg. (接管 A，从 133.2° 急坠横跨整个左半球至 216°)
+  \draw[fill=white, draw=black, thick] (O) -- (133.2:\R) arc (133.2:216:\R) -- cycle;
+  \node[align=center, font=\small] at (174.6:1.4) {E};
+
+  % D: 40/200 = 20% -> 72 deg. (从 216° 接管至 288° 也就是 -72°)
+  \draw[fill=red!5, draw=red!60, thick] (O) -- (216:\R) arc (216:288:\R) -- cycle; % 注入极浅的一丝绯红暗示其为推演出的附庸答案带
+  \node[align=center, font=\small, text=red!80!black] at (252:1.4) {D};
+
+  % C: 70/200 = 35% -> 126 deg. (从 288° 强势拉横跨太平洋合拢回首发阵地 54°/即 414° 形成时空闭环)
+  \draw[fill=white, draw=black, thick] (O) -- (288:\R) arc (288:414:\R) -- cycle;
+  \node[align=center, font=\small] at (351:1.4) {C};
+  
+\end{tikzpicture}
+\\
+\textbf{全量复现意向频数分布直方图} & \textbf{推演还原的关联扇形统计图}
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）} 从上图的数据解构成效可知，扇形统计图中 “C”（名家进校园）大组网罗的死忠样本量为 $\boldsymbol{70}$ 人。由于已知总调阅人数是敲定的 $\boldsymbol{200}$，它在大盘内的霸占比例极高：
+$$\frac{70}{200} \times 100\% = 35\%$$
+所以将其映射投影到 $360^\circ$ 的实心圆盘中，它毫不客气地切走的圆心中心角版图度数为：
+$$360^\circ \times 35\% = \boldsymbol{126^\circ}$$
+\textbf{故，本填空横线上应精准填入：$\boldsymbol{126}$。}
+
+\vspace{0.4cm}
+\textbf{（3）估计参加“E：经典诵读表演”活动的学生人数：} \\
+由题设背景获悉，该校大底盘的总体人口基数坐拥 $\boldsymbol{2400}$ 名学员。\\
+在前期仅仅只有 200 号人参与的小范围随机抽样微观培养皿中，点名想要选择 “E” 组项目的人数定格在 $\boldsymbol{46}$ 人，这意味着该项目在群众内的初始拥护比例为： $\displaystyle\frac{46}{200} = 23\%$。\\
+根据统计学中最引以为豪的“用样本局部特征去全息估计总体分布”的宏观铁律法则加以成倍放大同化投影：
+$$2400 \times 23\% = \boldsymbol{552}\text{（人）}$$
+\textbf{答：} 经由科学随机取样倍率化估算评测，预计该校全校范围内想要报名挤进“E：经典诵读表演”系列活动的学生规模大约会有 $552$ 人。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 连续假直方的高拟真级涂装：} 对于这类由分类名称（A/B/C/D）拼合起来的条形统计图，原本各个色块理应是各自抱团的独立柱边。但偏偏本题官方给予的出题样张就是紧紧贴合的连续形式。为此我在 \texttt{TikZ} 代码底层架设时强制启动了锁边调参器（每个纵柱长宽定幅无死角咬合），其表层色泽也被霸气地注入了硬朗厚重的原矿生铁黑色 \texttt{black!65} 石墨填充颜料；同时对于要解答的死角项目 $D$ 则调配出一身扎眼的大红色系 \texttt{red!60} 实现视觉撕裂级的高端聚焦辨识！\\
+\textbf{2. 极客微视角极限倒放扇形原画推位重制：} 全卷难度最高部分在于对一张无字天书空白饼状圆盘进行再造。在原发黑白图纸上，那一道切分 “B（$10\%$）” 和 “A” 的防波堤水文分割线处于微妙的**正正南北向垂直状态**！我果断将其加封为**零号北极星原点（强制立项为罗盘正 $90^\circ$ 极地天轴）**！随后代码引擎像齿轮咬合一样顺应着参数逆时针恐怖碾压排雷：把只剩 $12\%$ 的 $A$（$43.2^\circ$）狠狠卷入左偏上阵营；接着鲸吞拿捏了重达 $82.8^\circ$ 的巨鳄 $E$ 和我们亲手拔掉的钉子暗雷破洞补丁 $D$（$72^\circ$）；最后驱动着掌控东半球大航海运权的独角兽——日不落帝国 $C$（霸占 $126^\circ$ 的最绝世版图）把整个太平洋到东南亚航线一口吞没——此后合龙，靠纯正的参数推演护航了一场微米级不留间隙的极致复刻。
+}
+
+%% ==============================
+%% 第16题（我尝试1）：三角形三边关系判定
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：母亲节调查双统计图的计算与复原}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 4.} \textbf{母亲节快到了，某校调查了部分学生是否知道母亲的生日情况，下面图①，图②是相应的扇形和条形统计图。\\
+（1）本次被调查学生的人数为 $\underline{\textbf{    90    }}$ 人，并请补全条形统计图；\\
+（2）若全校共有 2700 名学生，你估计这所学校约多少名学生知道母亲的生日。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）计算总人数与各细项人数：}
+\begin{itemize}
+    \item \textbf{总人数}：从图②（条形图）中可知，“记不清”的学生有 $30$ 人；从图①（扇形图）中可知，“记不清”占 $33.3\%$（即 $\frac{1}{3}$）。\\
+    故本次被调查的总人数为：$30 \div \frac{1}{3} = 90$（人）。\textbf{（空栏处填入：90）}
+    \item \textbf{知道的人数}：总人数 $\times$ “知道”的占比 $= 90 \times 55.6\% \approx 90 \times \frac{5}{9} = 50$（人）。
+    \item \textbf{不知道的人数}：总人数 $\times$ “不知道”的占比 $= 90 \times 11.1\% \approx 90 \times \frac{1}{9} = 10$（人）。或用 $90 - 30 - 50 = 10$（人）。
+\end{itemize}
+
+\textbf{补全后的统计图形（坐标系与真实扇形圆周角还原）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+
+  %================================================%
+  % 左侧：扇形统计图 (图①)
+  %================================================%
+  \begin{scope}[shift={(0,0)}]
+    \def\R{2.2}
+    
+    % 1. 知道 (占 5/9, 200度). 视觉特征：左侧从水平 180° 起逆时针跨越底部到 380° (即 20°)
+    \draw[fill=white, draw=black, line width=0.8pt] (0,0) -- (180:\R) arc (180:380:\R) -- cycle;
+    \node[align=center] at (280:\R*0.5) {知道\\($55.6\%$)};
+    
+    % 2. 记不清 (占 1/3, 120度). 从 20° 到 140°
+    \draw[fill=gray!60, draw=black, line width=0.8pt] (0,0) -- (20:\R) arc (20:140:\R) -- cycle;
+    \node[align=center] at (80:\R*0.6) {记不清\\($33.3\%$)};
+    
+    % 3. 不知道 (占 1/9, 40度). 从 140° 到 180°
+    \draw[fill=white, draw=black, line width=0.8pt] (0,0) -- (140:\R) arc (140:180:\R) -- cycle;
+    % 由于区域狭小，复刻原图左上方外引线标注
+    \draw[line width=0.6pt, draw=black] (160:\R*0.8) -- (160:\R*1.2) -- ++(-0.8,0) node[left, align=right] {不知道\\($11.1\%$)}; % 追加 align 参数以修复带换行的报错
+    
+    \node[below, font=\large] at (0, -\R-0.6) {①};
+  \end{scope}
+
+  %================================================%
+  % 右侧：条形统计图 (图②)
+  %================================================%
+  \begin{scope}[shift={(6, -2.1)}]
+    % 网格线与坐标轴刻度搭建 (Y轴缩放比例 0.08)
+    \foreach \y in {10, 20, 30, 40, 50} {
+        \draw[dashed, gray!80] (0, \y*0.08) -- (4.8, \y*0.08);
+        \node[left, font=\small] at (0, \y*0.08) {\y};
+    }
+    \node[left, font=\small] at (0, 0) {0};
+    \draw[->, line width=0.8pt] (0,0) -- (5.2,0) node[right, font=\small] {选项};
+    \draw[->, line width=0.8pt] (0,0) -- (0,4.8) node[above, font=\small] {学生人数};
+    
+    % X轴标签落位
+    \node[below, font=\small] at (1.2, 0) {知道};
+    \node[below, font=\small] at (2.5, 0) {记不清};
+    \node[below, font=\small] at (3.8, 0) {不知道};
+
+    \def\bw{0.6} % 柱子宽度
+    
+    % 补充柱状 1：知道 (50) - 置红高亮标注补充痕迹
+    \draw[fill=red!15, draw=red!80!black, line width=1pt] (1.2-\bw/2, 0) rectangle (1.2+\bw/2, 50*0.08);
+    \node[above, text=red!80!black, font=\bfseries] at (1.2, 50*0.08) {50};
+    
+    % 原有柱状 2：记不清 (30) - 灰度暗礁色还原
+    \draw[fill=gray!80, draw=black, line width=0.8pt] (2.5-\bw/2, 0) rectangle (2.5+\bw/2, 30*0.08);
+    
+    % 补充柱状 3：不知道 (10) - 置红高亮标注补充痕迹
+    \draw[fill=red!15, draw=red!80!black, line width=1pt] (3.8-\bw/2, 0) rectangle (3.8+\bw/2, 10*0.08);
+    \node[above, text=red!80!black, font=\bfseries] at (3.8, 10*0.08) {10};
+
+    \node[below, font=\large] at (2.5, -0.6) {②};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）估计全校知道母亲生日的学生人数：}
+\[
+2700 \times 55.6\% \approx 2700 \times \frac{5}{9} = 1500 \text{（名）}
+\]
+\textbf{答：}估计这所学校约有 1500 名学生知道母亲的生日。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 隐蔽小数向分数的数学逆穿透：} 题干中的 $33.3\%$ 和 $55.6\%$ 是典型的循环小数截断产物。若用它们带着近似值去相乘，必然导致“人数算出来带小数点”的非人造荒唐数据死循环。在推导逻辑中，计算引擎直接破除了表象调用其底层数学基因：强行挂载 $33.3\% \rightarrow \frac{1}{3}$，以及 $55.6\% \rightarrow \frac{5}{9}$。这种真值代换让第一问的总样本瞬间收敛至无懈可击的 $30 \div \frac{1}{3} = 90$ 人，并且“知道”的人数卡紧在整数解 $90 \times \frac{5}{9} = 50$ 人。\\
+\textbf{2. 原画透视 100\% 几何重建阵列：} 为了让新生成的扇形图（图①）与原考卷视觉透视位面完全融合匹配。我动用了底层刻度雷达审视了原截图：发现“知道”板块与“不知道”板块的夹界横线，精准地落枕在水平高度的 $180^\circ$ 极地左侧负半轴上！因此，画图指令链霸道地规定 \texttt{(180:R)} 为第一斩车起点，逆时针开动引擎撕下 $200^\circ$（占 $\frac{5}{9}$ 份额）的超宽幅广角底盘弧衣直达正右方略偏上的 \texttt{380°}（即 \texttt{20°}），且地印出了底部巨大的白色“知道”主板。紧跟其后的灰色雷区“记不清”（$120^\circ$）、以及细小扇面“不知道”（$40^\circ$ 附带超微引力悬空牵拉折线指示针）全部被闭合引擎锁在定点轨道内重印，实现了毫米级不跑偏的绝色复盘！\\
+\textbf{3. 条形残图补偿与审卷红色醒目聚焦：} 图②的废墟重绘里，启动了步长量纲为 $0.08$ 的超清 $Y$ 轴放大乘数器搭建网格坐标骨架栅栏；对原图残留的中间柱体（“记不清”$30$ 人）打上了 \texttt{black!80} 骨灰级厚重碳素水墨进行历史留档封存；而对于破局新求解出的双塔“知道 ($50$)”和“不知道 ($10$)”，则犹如注射式激活一样：高压灌注了 \texttt{red!15} 鲜血系警戒色与纯红的顶端数据大字，使得考生的解算成果犹如黑夜里的光柱般跳脱纸面，直刺阅卷老师的双眼，狂暴拉满答案聚焦打分的识别效率。
+}
+
+%% ==============================
+%% 第20题（补充题）：社团选择统计图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：社团课程选择双统计图的计算与复原}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 5.} \textbf{为丰富同学们的学习生活，某校打算在七年级开设四种不同社团课，分别是 A 羽毛球$、$B 插花、C 健身操、D 围棋。为了解同学们对此课程的倾向选择情况，学校在校园随机抽取部分七年级同学做“你最喜爱的社团课”的问卷调查，调查结果统计图部分如图所示。}
+
+\textbf{请你根据以上信息解决下列问题：\\
+（1）参加问卷调查的学生人数为 $\underline{\textbf{    100    }}$ 名，“羽毛球”社团课所对应的扇形圆心角的度数是 $\underline{\textbf{  126  }}^\circ$；\\
+（2）补全条形统计图（画图并标注相应数据）；\\
+（3）若该校七年级一共有 900 名学生，试估计选择“围棋”社团课的学生有多少名。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）计算总人数与“羽毛球”圆心角：}
+\begin{itemize}
+    \item \textbf{总人数}：从图①（条形图）可知，选择 C（健身操）的有 $25$ 名；从图②（扇形图）可知，C（健身操）占 $25\%$。\\
+    被调查的总人数：$25 \div 25\% = 100$（名）。\textbf{（第一空填：100）}
+    \item \textbf{“羽毛球”扇形圆心角}：图①中 A（羽毛球）的人数为 $35$ 名。它所占百分比为 $35 \div 100 = 35\%$。\\
+    对应的圆心角度数：$360^\circ \times 35\% = 126^\circ$。\textbf{（第二空填：126）}
+    \item \textbf{验证倒推补全项}：B（插花）在扇形图中占比 $35\%$，对应人数值为 $100 \times 35\% = 35$ 名。此时全盘选项加总为 $35(\text{A}) + 35(\text{B}) + 25(\text{C}) + 5(\text{D}) = 100$ 名，数据闭合无谬误。
+\end{itemize}
+
+\textbf{（2）补全条形统计图形（附带原相片级扇形高精度还原）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+
+  %================================================%
+  % 左侧：条形统计图 (图①)
+  %================================================%
+  \begin{scope}[shift={(0, 0)}]
+    % 网格线与Y坐标轴刻度搭建 (Y轴缩放乘数比例为 0.12 以控制高度不过载)
+    \foreach \y in {5, 10, 15, 20, 25, 30, 35, 40} {
+        \draw[gray!50, line width=0.4pt] (0, \y*0.12) -- (4.3, \y*0.12);
+        \node[left, font=\small] at (0, \y*0.12) {\y};
+    }
+    \node[left, font=\small] at (0, 0) {0};
+    \draw[->, line width=0.8pt] (0,0) -- (4.7,0) node[right, font=\small] {类别};
+    \draw[->, line width=0.8pt] (0,0) -- (0,5.3) node[above, font=\small] {人数};
+    
+    % X轴标签底座落位
+    \node[below, font=\small] at (0.8, 0) {A};
+    \node[below, font=\small] at (1.6, 0) {B};
+    \node[below, font=\small] at (2.4, 0) {C};
+    \node[below, font=\small] at (3.2, 0) {D};
+
+    \def\bw{0.55} % 单根塔柱极限宽度（由 0.35 加宽至 0.55，增强厚重图纸感）
+    
+    % 原有建筑 1：A (35)
+    \draw[pattern=north east lines, draw=black, line width=0.6pt] (0.8-\bw/2, 0) rectangle (0.8+\bw/2, 35*0.12);
+    \node[above, font=\small] at (0.8, 35*0.12) {35};
+    
+    % 待补偿建筑 2：B (35) - 注射大密度赤红色斜纹高亮与骨架描边
+    \draw[pattern=north east lines, pattern color=red!60, draw=red!80!black, line width=1pt] (1.6-\bw/2, 0) rectangle (1.6+\bw/2, 35*0.12);
+    \node[above, text=red!80!black, font=\bfseries] at (1.6, 35*0.12) {35};
+    
+    % 原有建筑 3：C (25)
+    \draw[pattern=north east lines, draw=black, line width=0.6pt] (2.4-\bw/2, 0) rectangle (2.4+\bw/2, 25*0.12);
+    \node[above, font=\small] at (2.4, 25*0.12) {25};
+
+    % 原有建筑 4：D (5)
+    \draw[pattern=north east lines, draw=black, line width=0.6pt] (3.2-\bw/2, 0) rectangle (3.2+\bw/2, 5*0.12);
+    \node[above, font=\small] at (3.2, 5*0.12) {5};
+
+    \node[below, font=\large] at (2.2, -0.6) {①};
+  \end{scope}
+
+  %================================================%
+  % 右侧：扇形统计图 (图②)
+  %================================================%
+  \begin{scope}[shift={(8.5, 2.5)}]
+    \def\R{2.1}
+    
+    % 1. C 健身操 (占 25%, 90度). 原照特征：纯正的数学第一象限：从 0° 延展至 90°
+    \draw[fill=white, draw=black, line width=0.8pt] (0,0) -- (0:\R) arc (0:90:\R) -- cycle;
+    \node[align=center] at (45:\R*0.5) {C\\$25\%$};
+    
+    % 2. D 围棋 (占 5%, 相当于 18度). 原照特征：紧贴Y轴高墙，从顶端 90° 向左推衍斜面至 108°
+    \draw[fill=white, draw=black, line width=0.8pt] (0,0) -- (90:\R) arc (90:108:\R) -- cycle;
+    \node[align=center] at (99:\R*0.7) {D};
+    
+    % 3. A 羽毛球 (人数 35 占 35%, 推演为 126度). 从 108° 边界接力挥刀，一路砍击削平至 234°
+    \draw[fill=white, draw=black, line width=0.8pt] (0,0) -- (108:\R) arc (108:234:\R) -- cycle;
+    \node[align=center] at (171:\R*0.55) {A}; % 108 到 234 的中心 171
+    
+    % 4. B 插花 (已给 35%, 126度). 从 234° 出发回旋，终极倒灌至 360°(即 0°) 的水平海平面截板线处
+    \draw[fill=white, draw=black, line width=0.8pt] (0,0) -- (234:\R) arc (234:360:\R) -- cycle;
+    \node[align=center] at (297:\R*0.5) {B\\$35\%$}; % 234 到 360 的中心 297
+    
+    \node[below, font=\large] at (0, -\R-1) {②};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（3）估计全校七年级选择“围棋”社团课的学生人数：}
+\[
+\text{“围棋”（即 D类社团）所占百分比} = \frac{5}{100} \times 100\% = 5\% 
+\]
+\[
+900 \times 5\% = 45 \text{（名）}
+\]
+\textbf{答：}估计该校七年级选择“围棋”社团课的学生约有 45 名。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 锚定矩阵交汇点作为数据母机引擎：} 最核心的破题定海神针藏在 C（健身操）身上。纵观全卷大图，只有 C 类别同时对外泄露了条形图的人口数（$25$ 人）与扇形图的相对身位（$25\%$）；只需一发除法算式 $25 \div 25\%$ 立刻产生核爆裂变，倒推出全量总样本池 $100$ 人的极值！有了这把统管一切的钥匙，随即解析出 A 羽毛球独占了 $35\%$ 以及惊人的圆心角宽频 $126^\circ$；引擎随后依靠大闭环公式从侧面疯狂逆向倒逼出 B 插花也同样身拥 $35\%$ 占比、$35$ 人的数值体量，全套四向数据锁链至此发条上膛、咬合。\\
+\textbf{2. 以默认视角重建坐标系神级重现扇形版图：} 为了还原那个视觉效果板正而诡异的扇面雷达（图②），我在绘制核心阵列中利用了图形透视简化打击：仔细看原相片中 C 版块的底部边缘呈现完全大地的水平，左侧边缘呈现建筑物的完全铅垂，这意味着它牢牢地、死板地占据了笛卡尔坐标系上的第一象限内膛！\\
+循着这个法门破绽，排版车床从 $0^\circ$（正东方）起刀笔直向上切割出的一级直角 $90^\circ$（整整 $25\%$）扔给 C；随后紧随着 Y 轴这堵墙，属于 D 区块的微弱地带（仅占 $5\%$，折算得 $18^\circ$ 刃宽）向左轻微后仰倒伏切到了 \texttt{108°} 防线；A 军团随后占据了左部整片的蛮荒大腹地（豪吞 $126^\circ$）疯狂接力画地圈到了南半球的 \texttt{234°} 处；最后剩下的残血 B 号矩阵（巧合般的也是 $126^\circ$），仿佛如同被安排好的宿命一般对齐地从 \texttt{234°} 起步收归回到了 $360^\circ$ 满级终点站（即当年起刀杀出的 \texttt{0°} 初始原生水平斩线），简直连一张 A4 纸都无法插入地还原了原卷出卷人的作风心理！\\
+\textbf{3. 条形图斜线阵列重型压铸与高频词眼着灯：} 在立柱建设上，没有填大平色，而是克制地利用了 \texttt{pattern=north east lines} 强行提取了 TikZ 的底板工业化东北角纯斜向影线细密水墨栅格列阵， $100\%$ 原本级硬碰硬复现了原相片中那种古板冷峻的碳素涂层质感样式！而那根在全图缺失、被我们自己生生推算出来需要“补给盖完”的 B 号大高楼大厦，我特别申请注射了 \texttt{red!60} 的高亮赤红油墨斜纹内脏、并在骨架外层套上了暴虐的鲜血色厚实线框和数字头冠，迫使审阅人在视觉搜索到的第一秒钟起，眼球就会被这根“补画”出来的 $35$ 楼高的红血大柱死死锁住、无法逃脱！给阅卷官最直接的粗暴判定服务。
+}
+
+%% ==============================
+%% 第21题（补充题）：频率与概率折线图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：综合成绩统计、图表补全与扇形图比例构建}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 31.} \textbf{\color{cyan!80!blue} 16. }\textbf{某校组织七年级学生体育健康抽测（满分为 $100$ 分），七年级（1）班 $25$ 名学生的成绩统计如下：\\
+$90, 74, 88, 65, 98, 76, 81, 42, 85, 70, 55, 80, 95, 88, 72, 87, 61, 56, 76, 66, 78, 72, 82, 63, 100$. \\[6pt]
+（1）$90$分及以上为A级，$75\sim 89$分为B级，$60\sim 74$分为C级，$60$分以下为D级。请把下面表格补充完整，并将图中的条形图补充完整。\\
+（2）该校七年级共有 $1000$ 名学生，如果 $60$ 分以上为合格，请估计七年级有多少人合格？\\
+（3）请选择合适的统计图表示出抽测中每一个等级的人数占总人数的百分比。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）成绩数据汇总与表格补全}
+
+通过遍历原始抽测数据进行归类清点：
+\begin{itemize}
+    \item \textbf{A级（$90$ 分及以上）：} $90, 98, 95, 100$，共 $\textcolor{red!80!black}{\mathbf{4}}$ 人。
+    \item \textbf{B级（$75\sim 89$ 分）：} $88, 76, 81, 85, 80, 88, 87, 76, 78, 82$，共 $\textcolor{red!80!black}{\mathbf{10}}$ 人。
+    \item \textbf{C级（$60\sim 74$ 分）：} $74, 65, 70, 72, 61, 66, 72, 63$，共 \textbf{$8$} 人（与原表核对一致）。
+    \item \textbf{D级（$60$ 分以下）：} $42, 55, 56$，共 $\textcolor{red!80!black}{\mathbf{3}}$ 人。
+\end{itemize}
+合计验证：$4 + 10 + 8 + 3 = 25$ 人，无遗漏。
+
+填充完毕的成绩等级分布表如下：
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\setlength{\arrayrulewidth}{0.8pt}
+\begin{tabular}{|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+\hline
+\textbf{等级} & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\
+\hline
+\textbf{人数} & \textcolor{red!80!black}{\textbf{4}} & \textcolor{red!80!black}{\textbf{10}} & 8 & \textcolor{red!80!black}{\textbf{3}} \\
+\hline
+\end{tabular}
+\end{center}
+
+完整补齐的条形统计图如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, font=\small, x=1.5cm, y=0.6cm]
+  % 坐标系基底
+  \draw[->, line width=0.8pt] (0,0) -- (5.5,0) node[right] {等级};
+  \draw[->, line width=0.8pt] (0,0) -- (0,11.5) node[above] {人数};
+  
+  \foreach \y in {1,2,3,4,5,6,7,8,9,10} {
+    \draw (0, \y) -- (-0.1, \y) node[left] {$\y$};
+  }
+  \node[left] at (-0.1, 0) {$0$};
+
+  \def\barw{0.45} % 定义柱体宽度
+
+  % A级柱状图
+  \filldraw[fill=blue!15, draw=black, line width=0.8pt] (0.5, 0) rectangle (0.5+\barw, 4);
+  \node[below] at (0.5+0.5*\barw, 0) {A};
+  \node[above, font=\bfseries] at (0.5+0.5*\barw, 4) {$4$};
+  \draw[dashed, thin, gray] (0, 4) -- (0.5, 4);
+
+  % B级柱状图
+  \filldraw[fill=blue!15, draw=black, line width=0.8pt] (1.7, 0) rectangle (1.7+\barw, 10);
+  \node[below] at (1.7+0.5*\barw, 0) {B};
+  \node[above, font=\bfseries] at (1.7+0.5*\barw, 10) {$10$};
+  \draw[dashed, thin, gray] (0, 10) -- (1.7, 10);
+
+  % C级柱状图 (原装自带数据，维持灰阶与原题样式统一)
+  \filldraw[fill=white, draw=black, line width=0.8pt] (2.9, 0) rectangle (2.9+\barw, 8);
+  \node[below] at (2.9+0.5*\barw, 0) {C};
+  \node[above, font=\bfseries] at (2.9+0.5*\barw, 8) {$8$};
+  \draw[dashed, thin, gray] (0, 8) -- (2.9, 8);
+
+  % D级柱状图
+  \filldraw[fill=blue!15, draw=black, line width=0.8pt] (4.1, 0) rectangle (4.1+\barw, 3);
+  \node[below] at (4.1+0.5*\barw, 0) {D};
+  \node[above, font=\bfseries] at (4.1+0.5*\barw, 3) {$3$};
+  \draw[dashed, thin, gray] (0, 3) -- (4.1, 3);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）估算全校合格人数}
+
+合格率为抽测的 $25$ 名学生中，分数在 $60$ 分以上（含 $60$ 分，即 A$、$B$、$C 共三个等级）的人数占比。
+$$ \text{合格人数占比} = \frac{4 + 10 + 8}{25} = \frac{22}{25} = 88\% $$
+故由抽样分布特征估计总体，全校七年级的合格人数大约为：
+$$ 1000 \times 88\% = \textcolor{red!80!black}{\mathbf{880}} \text{（人）} $$
+
+\vspace{0.4cm}
+\textbf{（3）采用合适的统计图分配各等级百分比}
+
+题目要求突出“抽测中每一个等级的人数占总人数的百分比”。对于直观展现部分与整体构成比例、体现各类别权重的统计算法，最标准的展示载体是\textbf{扇形统计图}。
+
+计算各项比率及中心对应圆心角：
+\begin{itemize}
+    \item A级： $\frac{4}{25} = 16\%$，圆心角 $16\% \times 360^\circ = 57.6^\circ$
+    \item B级： $\frac{10}{25} = 40\%$，圆心角 $40\% \times 360^\circ = 144^\circ$
+    \item C级： $\frac{8}{25} = 32\%$，圆心角 $32\% \times 360^\circ = 115.2^\circ$
+    \item D级： $\frac{3}{25} = 12\%$，圆心角 $12\% \times 360^\circ = 43.2^\circ$
+\end{itemize}
+
+对应的百分比扇形统计图如下：
+\begin{center}
+\begin{tikzpicture}[font=\small]
+  \def\R{2.8} % 设定主轮廓半径
+  % 开始锚点 90度，顺时针推进。
+  % A: 90 -> 32.4
+  \filldraw[fill=cyan!15, draw=black, line width=0.8pt] (0,0) -- (90:\R) arc (90:32.4:\R) -- cycle;
+  % B: 32.4 -> -111.6
+  \filldraw[fill=orange!20, draw=black, line width=0.8pt] (0,0) -- (32.4:\R) arc (32.4:-111.6:\R) -- cycle;
+  % C: -111.6 -> -226.8
+  \filldraw[fill=green!15, draw=black, line width=0.8pt] (0,0) -- (-111.6:\R) arc (-111.6:-226.8:\R) -- cycle;
+  % D: -226.8 -> -270 (=90)
+  \filldraw[fill=magenta!15, draw=black, line width=0.8pt] (0,0) -- (-226.8:\R) arc (-226.8:-270:\R) -- cycle;
+  
+  % 中心扇区悬浮文字标注（自动计算弧度平分角进行定位）
+  \node at (61.2: \R*0.65) {\textbf{A级} $16\%$};
+  \node at (-39.6: \R*0.65) {\textbf{B级} $40\%$};
+  \node at (-169.2: \R*0.65) {\textbf{C级} $32\%$};
+  
+  % 对于小区域（D级12%），通过外延引线法避免文字溢出
+  \draw[line width=0.5pt, gray] (111.6:\R*0.75) -- (111.6:\R*1.1);
+  \node at (111.6: \R*1.25) {\textbf{D级} $12\%$};
+  
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 条形制图（量化离散呈现）：} 首先根据计数结果还原了题干未给出完毕的柱状条块。原图中的 C 级柱子由于是初始设定，保留为纯净白色 \texttt{fill=white}。对于本次补充计算所得的 A$、$B$、$D 级数据柱，为其统一灌注了识别度极高的 \texttt{blue!15} 浅蓝辅色作为增改区分。所有数据柱的顶端都利用虚拟射向左坐标轴的虚线（\texttt{dashed, thin, gray}），实现了对齐的 Y 轴度量对正。\\
+\textbf{2. 扇形制图（极坐标切片逻辑）：} 因为第（3）题直击“各级占总人数百分比”的核心诉求，所以主动摒弃了折线图等结构，强启用标准的百分比宏模型——扇形图。通过解析各个项的所占比例系数，系统顺向演算出它们各自信奉的扇形圆心角（$57.6^\circ, 144^\circ, 115.2^\circ, 43.2^\circ$）。在 TikZ 中利用 \texttt{arc} 流式切出各自封闭极坐标切片，并着以柔和的粉彩分界以区分四个不同维度的评级空间；在文字标写上，利用圆心坐标系的居中角法，精准将比例标记挂载入独立封闭圈占的圆盘 $0.65R$ 内圈领地。
+}
+
+%% ==============================
+%% 第41题（补充题）：BMI统计条形图与扇形图综合应用
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：条形与扇形统计图的综合分析}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 32.} \textbf{\color{cyan!80!blue} 17. }\textbf{（12分）国际上常用体质指数 BMI (Body Mass Index) 衡量人体胖瘦程度，其计算公式是 $\text{BMI} = \frac{\text{体重}}{\text{身高}^2}$ （体重单位：$\mathrm{kg}$，身高单位：$\mathrm{m}$），如：某人身高 $1.60\mathrm{m}$，体重 $60\mathrm{kg}$，则他的 $\text{BMI} = \frac{60}{1.60^2} \approx 23.4$。中国成人的 BMI 数值与体重的关系为：$\text{BMI} < 18.5$ 为体重过低；$18.5 \leqslant \text{BMI} < 24$ 为体重正常；$24 \leqslant \text{BMI} < 28$ 为超重；$\text{BMI} \geqslant 28$ 为肥胖。某健身馆为了解顾客的健康情况，随机抽取了一部分顾客的身高体重数据，通过计算得到他们的 BMI 值并绘制了两幅不完整的统计图。}
+
+\vspace{0.4cm}
+% 原题复原绘图
+\begin{center}
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}[>=Stealth, x=1.4cm, y=0.45cm]
+  % 纵轴网格线
+  \foreach \y in {0,2,4,6,8,10} {
+    \draw[gray!40, dashed, line width=0.5pt] (0,\y) -- (5,\y);
+  }
+  % 坐标轴
+  \draw[->, line width=0.8pt] (0,0) -- (5,0) node[right, font=\small] {类别};
+  \draw[->, line width=0.8pt] (0,0) -- (0,11) node[above, font=\small] {人数};
+  % 纵轴刻度与数字
+  \foreach \y in {0,2,4,6,8,10} {
+    \draw (0,\y) -- (-0.1,\y);
+    \node[left, font=\small] at (-0.1,\y) {\y};
+  }
+  % 横轴标签 (重新启用换行并挂载缩进量负值规避撕裂，结合纵轴 y=0.45cm 放大防撞)
+  \node[below, align=center, font=\small] at (1,-0.2) {体重\\[-0.3em]过低};
+  \node[below, align=center, font=\small] at (2,-0.2) {体重\\[-0.3em]正常};
+  \node[below, align=center, font=\small] at (3,-0.2) {超重};
+  \node[below, align=center, font=\small] at (4,-0.2) {肥胖};
+  
+  % 原有条形图（体重过低、体重正常、肥胖）
+  \draw[line width=0.8pt, fill=white] (0.7,0) rectangle (1.3,2);
+  \node[above, font=\small] at (1,2) {2};
+  
+  \draw[line width=0.8pt, fill=white] (1.7,0) rectangle (2.3,7);
+  \node[above, font=\small] at (2,7) {7};
+  
+  \draw[line width=0.8pt, fill=white] (3.7,0) rectangle (4.3,3);
+  \node[above, font=\small] at (4,3) {3};
+  
+  % 补全缺失的图 (超重)
+  \draw[line width=1.0pt, red!80!black, fill=white] (2.7,0) rectangle (3.3,8);
+  \node[above, font=\small, text=red!80!black] at (3,8) {\textbf{8}};
+  
+  % 标题向下深潜（由于纵轴比例变大，此处物理下潜深度已经非常大）
+  \node[below] at (2.5, -2.8) {\textbf{抽取的员工体重情况的条形统计图}};
+  \node[below, font=\small] at (2.5, -3.8) {①};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+  % 扇形图（整体半径由 2.2 放大至 2.6）
+  \def\R{2.6}
+  % 肥胖 (54 deg): 90 -> 36
+  \draw[line width=0.8pt] (0,0) -- (90:\R) arc (90:36:\R) -- cycle;
+  \node[font=\small] at (63:1.65) {肥胖};
+  
+  % 超重 (144 deg): 36 -> -108
+  \draw[line width=0.8pt] (0,0) -- (36:\R) arc (36:-108:\R) -- cycle;
+  \node[font=\small] at (-36:1.65) {超重};
+  
+  % 体重正常 (126 deg): -108 -> -234 (= 126 deg positive)
+  \draw[line width=0.8pt] (0,0) -- (-108:\R) arc (-108:-234:\R) -- cycle;
+  \node[font=\small, align=center] at (189:1.6) {体重正常\\[-0.3em] $35\%$};
+  
+  % 体重过低 (36 deg): 126 -> 90
+  \draw[line width=0.8pt] (0,0) -- (126:\R) arc (126:90:\R) -- cycle;
+  
+  % 体重过低引线 (原图是引出的，半径变大后配套外移)
+  \draw[line width=0.6pt] (108:2.1) -- (108:3.0) -- +(-0.8,0) node[left, font=\small] {体重过低};
+
+  \draw[line width=0.8pt] (0,0) circle (\R);
+  
+  \node[below] at (0, -3.3) {\textbf{抽取的员工体重情况的扇形统计图}};
+  \node[below, font=\small] at (0, -4.3) {②};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{0.2cm}
+\textbf{根据以上信息回答下列问题：}\\
+\textbf{（1）} 抽取了 \underline{\makebox[1.5cm][c]{\textcolor{red!80!black}{\textbf{20}}}} 名顾客。\\
+\textbf{（2）} 补全条形统计图（画图并标注相应数据）。\textbf{（见上方左侧子图红色色框补全部分）}\\
+\textbf{（3）} 体重“肥胖”所对应的扇形圆心角的度数是 \underline{\makebox[2cm][c]{\textcolor{red!80!black}{\textbf{$\mathbf{54^\circ}$}}}}。\\
+\textbf{（4）} 基于上述统计结果，健身馆计划为每个顾客制订健身计划。顾客小张身高 $1.80\mathrm{m}$，BMI 值为 $27$，他想通过健身减重使自己的体重正常，则他至少需要减掉多少千克体重（结果精确到 $1\mathrm{kg}$）？
+
+\vspace{0.4cm}
+\textbf{【解析与演算步骤】}
+\begin{itemize}
+    \item \textbf{解题（1）：} 结合图①和图②可见，“体重正常”的顾客在条形图中对应 $7$ 人，在完全对应的扇形图中占比为 $35\%$。\\
+    抽取顾客总人数 $= \frac{7}{35\%} = \mathbf{20}$ （人）。
+    \item \textbf{解题（2）：} 条形图中缺失的“超重”维度的人数 $= \text{总人数} - (\text{过低} + \text{正常} + \text{肥胖}) = 20 - (2 + 7 + 3) = \mathbf{8}$ （人）。\\
+    \textit{（上方条形统计图已使用红色加粗边框拔高至 $8$ 刻度，并补充数字予以完善）}
+    \item \textbf{解题（3）：} “肥胖”顾客人数为 $3$ 人，在总体中的比例为 $\frac{3}{20} = 15\%$。\\
+    其所对应控制的扇面圆心内角 $= 360^\circ \times 15\% = \mathbf{54^\circ}$。
+    \item \textbf{解题（4）：} \\
+    小张目前的真实体重 $= \text{BMI} \times \text{身高}^2 = 27 \times (1.80)^2 = 27 \times 3.24 = 87.48 \, (\mathrm{kg})$。\\
+    使得体重归落入“正常”评级标准内，在数学上必须严格满足 $\text{BMI} < 24$。\\
+    那么目标体重的理论上限临界值 $= 24 \times (1.80)^2 = 24 \times 3.24 = 77.76 \, (\mathrm{kg})$。\\
+    由于他必须使得最终体重正常（打破门槛，即实测体重 $< 77.76$），需要减掉的当前体重量至少为：$87.48 - 77.76 = 9.72 \, (\mathrm{kg})$。\\
+    结合常景逻辑，且题目要求“结果精确到 $1\mathrm{kg}$”，减去 $9\mathrm{kg}$ （即此时称重 $78.48\mathrm{kg}$）测算得 BMI 约为 $24.22$ （依然落榜入“超重”行列），所以必须要跨越整级减掉更多，至少应减去 $\mathbf{10 \, \mathrm{kg}}$。
+\end{itemize}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 条形坐标系网格重构（图①）：} 解析读取纵轴人数刻度步长为 $2$，设定 $y$ 轴绘图缩放因子 \texttt{y=0.35cm} 以规避垂向版块越界。大面积铺贴 \texttt{gray!40, dashed} 构建出极为细致精准的高精度辅助横虚线网格，使得白板原框柱体顶端（过低 $2$、正常 $7$、肥胖 $3$）稳固靠泊于等高面；对缺失的“超重”维度直接动用 \texttt{red!80!black} 重制色施加补全操作，实现极为抢眼的结构增量。对横轴的中文长字则启用 \texttt{align=center} 特性予以折行叠放保证了水平游标的整洁。\\
+\textbf{2. 扇叶物理挂靠极坐标系法（图②）：} 严格破译逆工程推算出的基准角：将“肥胖”切蛋糕落座于第一象限右上界（角度 $90^\circ \to 36^\circ$），随后由其边界顺时针紧密啮合出极大的“超重”域（$36^\circ \to -108^\circ$），并在宏大左侧包藏“体重正常”（$-108^\circ \to -234^\circ$ 反兜式包抄），剩余的极窄天穹恰好留空以容纳“体重过低”（$126^\circ \to 90^\circ$ 锁定区）。针对空间过小造成的数据挤压塌陷，复刻了一套坐标游走的雷达指引牵引线（\texttt{-- +(-0.8,0)}），进行向左平移外端释放挂签，防止了视觉干扰。
+}
+
+%% ==============================
+%% 第42题（补充题）：频数直方图与分区域扇形图综合应用
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：条形统计图与扇形统计图综合}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 40.} \textbf{（8 分）某校开展了"文明校园"活动周，活动周设置了"A：文明礼仪，B：生态环境，C：交通安全，D：卫生保洁"四个主题活动，每个学生限选一个主题参与。为了了解活动开展情况，学校随机抽取了部分学生进行调查，并根据调查结果绘制了如图所示的不完整的条形统计图和扇形统计图。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）解题分析：}
+
+由扇形统计图知 A 占 $25\%$，条形图中 A $= 15$ 人，故总人数 $= 15 \div 25\% = 60$ 人。
+
+C 主题人数 $= 60 - 15 - 18 - 9 = 18$ 人。
+
+\vspace{0.2cm}
+\textbf{（2）补全条形统计图：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  % 缩放参数
+  \def\xstep{1.2}   % 每组柱子间距
+  \def\ystep{0.22}   % Y轴每人的高度，18人=3.96cm
+  \def\barw{0.7}     % 条形柱宽度
+
+  % 1. Y轴与X轴
+  \draw[thick, black, ->] (0,0) -- (0, 20*\ystep + 0.5) node[left, font=\normalsize] {人数};
+  \draw[thick, black, ->] (0,0) -- (5*\xstep + 0.3, 0);
+
+  % 2. Y轴刻度标签（仅标签，不画虚线）
+  \foreach \y in {3, 6, 9, 12, 15, 18} {
+      \node[left, font=\small] at (0, \y*\ystep) {\y};
+  }
+  % 0刻度
+  \node[left, font=\small] at (0, 0) {0};
+
+  % 3. 绘制条形柱（带浅灰填充）
+  % A = 15
+  \fill[gray!25] (1*\xstep - \barw/2, 0) rectangle (1*\xstep + \barw/2, 15*\ystep);
+  \draw[thick, black] (1*\xstep - \barw/2, 0) rectangle (1*\xstep + \barw/2, 15*\ystep);
+  \node[above, font=\small\bfseries] at (1*\xstep, 15*\ystep) {15};
+
+  % B = 18
+  \fill[gray!25] (2*\xstep - \barw/2, 0) rectangle (2*\xstep + \barw/2, 18*\ystep);
+  \draw[thick, black] (2*\xstep - \barw/2, 0) rectangle (2*\xstep + \barw/2, 18*\ystep);
+  \node[above, font=\small\bfseries] at (2*\xstep, 18*\ystep) {18};
+
+  % C = 18（补全项，红色标注）
+  \fill[gray!25] (3*\xstep - \barw/2, 0) rectangle (3*\xstep + \barw/2, 18*\ystep);
+  \draw[thick, black] (3*\xstep - \barw/2, 0) rectangle (3*\xstep + \barw/2, 18*\ystep);
+  \node[above, font=\small\bfseries, text=red] at (3*\xstep, 18*\ystep) {18};
+
+  % D = 9
+  \fill[gray!25] (4*\xstep - \barw/2, 0) rectangle (4*\xstep + \barw/2, 9*\ystep);
+  \draw[thick, black] (4*\xstep - \barw/2, 0) rectangle (4*\xstep + \barw/2, 9*\ystep);
+  \node[above, font=\small\bfseries] at (4*\xstep, 9*\ystep) {9};
+
+  % 4. 水平虚线——从Y轴延伸到对应条形柱左边缘即截止，在柱上层
+  % y=9 → D柱 (x=4*xstep)
+  \draw[dashed, gray!70] (0, 9*\ystep) -- (4*\xstep - \barw/2, 9*\ystep);
+  % y=15 → A柱 (x=1*xstep)
+  \draw[dashed, gray!70] (0, 15*\ystep) -- (1*\xstep - \barw/2, 15*\ystep);
+  % y=18 → B柱 (x=2*xstep)
+  \draw[dashed, gray!70] (0, 18*\ystep) -- (2*\xstep - \barw/2, 18*\ystep);
+
+  % 5. X轴标签
+  \foreach \x/\label in {1/A, 2/B, 3/C, 4/D} {
+      \node[below, font=\normalsize] at (\x*\xstep, -0.15) {\label};
+  }
+  \node[below, font=\normalsize] at (5*\xstep, -0.15) {主题};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（3）各问作答：}
+
+\begin{itemize}
+    \item[\textbf{(1)}] 本次随机调查的学生人数是 $\underline{\textcolor{red}{\,60\,}}$ 人。
+
+    （$15 \div 25\% = 60$）
+
+    \item[\textbf{(2)}] 条形统计图已补全（C 主题 $= 60 - 15 - 18 - 9 = 18$ 人）。
+
+    \item[\textbf{(3)}] B 主题对应扇形的圆心角 $= 360^\circ \times \dfrac{18}{60} = \underline{\textcolor{red}{\,108\,}}^\circ$。
+
+    \item[\textbf{(4)}] 估计参与"生态环境"主题的学生人数 $= 1800 \times \dfrac{18}{60} = \underline{\textcolor{red}{\,540\,}}$ 人。
+\end{itemize}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 坐标系：} 开放式直角坐标系（Y 轴带箭头）。Y 轴 $0$--$18$，每 $3$ 人一条水平虚线（\texttt{dashed, gray!70}）。X 轴放置 A/B/C/D 及"主题"标签。缩放参数 \texttt{\textbackslash{}xstep=1.2}，\texttt{\textbackslash{}ystep=0.22}，\texttt{\textbackslash{}barw=0.7}。\\
+\textbf{2. 条形柱：} \texttt{\textbackslash{}fill[gray!25]} 填充浅灰，\texttt{\textbackslash{}draw[thick]} 黑色描边。补全项 C 的数值标签用红色（\texttt{text=red}）。\\
+\textbf{3. 数据推导：} A 占 $25\% = 15$ 人 $\Rightarrow$ 总数 $60$ 人。C $= 60 - 15 - 18 - 9 = 18$。B 圆心角 $= 360^\circ \times 30\% = 108^\circ$。
+}
+
+%% ==============================
+%% 第50题（补充题）：代数拼图——矩形纸片拼接
+%% ==============================
+\newpage

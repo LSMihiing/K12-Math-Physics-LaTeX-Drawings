@@ -1,0 +1,122 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 转盘涂色
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：按要求给转盘涂色}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 任意转动转盘, 按要求给下面的转盘涂色。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, font=\small]
+  \def\R{1.5}
+  
+  % 定义填充复用命令，每份占据 60 度扇形
+  \def\fillred#1{
+    \foreach \st in {#1} { \fill[red!70] (0,0) -- (\st:\R) arc (\st:\st+60:\R) -- cycle; }
+  }
+  \def\fillblue#1{
+    \foreach \st in {#1} { \fill[cyan!60] (0,0) -- (\st:\R) arc (\st:\st+60:\R) -- cycle; }
+  }
+  \def\fillyellow#1{
+    \foreach \st in {#1} { \fill[yellow!90] (0,0) -- (\st:\R) arc (\st:\st+60:\R) -- cycle; }
+  }
+  
+  % 定义网格与指针骨架复用命令，在涂色后执行覆盖防遮挡
+  \def\drawgrid{
+    \draw[black, thin] (0,0) circle (\R);
+    \foreach \a in {30, 90, 150} { \draw[black, thin] (\a:-\R) -- (\a:\R); }
+    \fill[black] (0,0) circle (1.5pt);
+    \draw[->, thick] (0,0) -- (120:0.8);
+  }
+
+  % =======================
+  % 第一排
+  % =======================
+  % (1)
+  \node[text width=6cm, align=center] at (0, 0) {(1) 指针一定停在红色区域。};
+  \begin{scope}[shift={(0, -2.8)}]
+    \fillred{30, 90, 150, 210, 270, 330}
+    \drawgrid
+  \end{scope}
+
+  % (2)
+  \node[text width=6cm, align=center] at (7, 0) {(2) 指针不可能停在红色区域。};
+  \begin{scope}[shift={(7, -2.8)}]
+    \fillblue{30, 90, 150, 210, 270, 330}
+    \drawgrid
+  \end{scope}
+
+  % =======================
+  % 第二排
+  % =======================
+  % (3)
+  \node[text width=6.5cm, align=center] at (0, -6.0) {(3) 指针停在红色区域和蓝\\色区域的可能性相等。};
+  \begin{scope}[shift={(0, -9.0)}]
+    \fillred{90, 150, 210}
+    \fillblue{270, 330, 30}
+    \drawgrid
+  \end{scope}
+
+  % (4)
+  \node[text width=6.5cm, align=center] at (7, -6.0) {(4) 指针停在蓝色区域的可\\能性比红色区域大。};
+  \begin{scope}[shift={(7, -9.0)}]
+    \fillred{270}
+    \fillblue{330, 30, 90, 150, 210}
+    \drawgrid
+  \end{scope}
+
+  % =======================
+  % 第三排
+  % =======================
+  % (5)
+  \node[text width=6.5cm, align=center] at (0, -12.3) {(5) 指针停在红色、蓝色和黄\\色区域的可能性相等。};
+  \begin{scope}[shift={(0, -15.3)}]
+    \fillblue{30, 90}
+    \fillyellow{150, 210}
+    \fillred{270, 330}
+    \drawgrid
+  \end{scope}
+
+  % (6)
+  \node[text width=6.5cm, align=center] at (7, -12.3) {(6) 指针偶尔停在红色区域。};
+  \begin{scope}[shift={(7, -15.3)}]
+    \fillblue{30, 90, 330}
+    \fillyellow{150, 210}
+    \fillred{270}
+    \drawgrid
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+这道题考查的是事件发生的可能性大小与各颜色区域所占比例的关系。转盘共被平均分成了 $6$ 份（每份对应一个 $60^\circ$ 的几何扇形）。\\
+1. \textbf{（1）一定停在红色}：说明整个转盘全都是红色，因此 $6$ 份必须全部涂红。\\
+2. \textbf{（2）不可能停在红色}：说明转盘上一点红色都没有，本题答案示例全部涂上蓝色即可满足“绝无红色”的约束。\\
+3. \textbf{（3）红蓝可能性相等}：说明红色和蓝色占据的份数完全等同。将 $6$ 份均分，即涂 $3$ 份红色、$3$ 份蓝色（左右各占半壁江山）。\\
+4. \textbf{（4）蓝色比红色大}：要满足该概率现象，蓝色份数必须大于红色份数。解答采取压倒性的比例分配，涂 $5$ 份蓝色、仅保留 $1$ 份红色。\\
+5. \textbf{（5）红蓝黄可能性相等}：说明这三种颜色的份数必须一样多。将 $6$ 份自然平分给 $3$ 种颜料，$6 \div 3 = 2$，即各上色 $2$ 份（拼成三个大的复合扇形区）。\\
+6. \textbf{（6）偶尔停在红区}：“偶尔”这一词眼暗示小概率事件发生率。因此要求红色的块数占比极小。本分配方案赋予转盘 $3$ 份蓝色、$2$ 份黄色，并极力榨取红色空间只占 $1$ 份，满足条件。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 几何宏定义与代码层复用}：因包含 $6$ 个完全相同底图的转轮，通过底层的 \texttt{\char`\\def} 语句定义了专属的高阶着色循环算子 \texttt{\char`\\fillred}、\texttt{\char`\\fillblue}、\texttt{\char`\\fillyellow}，以及包含转盘网格和指针骨架在内的底图绘制宏指令 \texttt{\char`\\drawgrid}。这不仅使后续多次着色编译逻辑精简（DRY原则），更从根本上铲除了几何比例发生形变的风险。\\
+\textbf{2. 严格的图层覆压次序}：在着色渲染学中必须恪守“先印底色、后画网线”的堆叠防损思维。利用预推算完成的极坐标角起点（如 $30^\circ, 90^\circ$ 等段区）和终点角走弧切片（如跨度为 $60^\circ$），实现纯色块填充（\texttt{cyan!60} 呈现蓝色，\texttt{red!70} 与 \texttt{yellow!90} 取低明度柔和辅导调性）。基底色铺陈完毕后，再统一覆压外部边环框线及对角剖面线，杜绝发生内里色块吃掉基准黑线的边沿外溢瑕疵。\\
+\textbf{3. 独立系统全系网格排布}：本图阵列摒弃了会漂游错位的原生多表格容器，而是建立在一个巨大的全局 \texttt{tikzpicture} 环境之上。在统一虚拟坐标系下，它直接依赖坐标平移向量 \texttt{shift} 将分离的题干文本 \texttt{node} 与转盘绘图 \texttt{scope} 以两列三行的刚性格局（3$\times$2 定态矩阵）强行锁死。同时对局部的超长题干信息施加 \texttt{text width} 限宽约束与 \texttt{align=center} 换行，实现了比原生表格引擎更抗压的高精定位排版。
+}
+
+
+\newpage

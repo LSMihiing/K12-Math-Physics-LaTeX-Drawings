@@ -1,0 +1,351 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 力学作图 / 重力示意图
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：画出物体A所受的重力与物体A对墙壁的压力}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.2]
+  
+  % ===================================
+  % 一、 绘制原题干几何结构（黑色实线）
+  % ===================================
+
+  % 1. 绘制左侧竖直粗糙墙壁及其侧阴影修饰
+  \foreach \y in {0.2, 0.5, ..., 4.0} {
+    \draw[black, line width=0.6pt] (0, \y) -- (-0.3, \y-0.3);
+  }
+  \draw[black, line width=1.5pt] (0, 0) -- (0, 4.2);
+
+  % 2. 绘制物体 A (置于墙面中央，方形)
+  \draw[black, line width=1.5pt] (0, 1.1) rectangle (2.2, 3.1);
+  \node at (1.1, 2.1) {\Large A};
+
+  % 3. 绘制外部推力 F (水平向左，作用在物块右表面)
+  \draw[->, black, line width=1.0pt] (4.0, 2.1) -- (2.2, 2.1) 
+    node[midway, above, font=\large] {$F$};
+
+  % ===================================
+  % 二、 绘制题目所求的两个力（使用区分演示色）
+  % ===================================
+
+  % 【答案力 1】 物体A所受的重力 (Gravity)
+  % 作用点：在物体 A 的几何中心，方向：竖直向下
+  \coordinate (CenterA) at (1.1, 2.1);
+  \fill[blue!80!black] (CenterA) circle (2pt);
+  \draw[->, blue!80!black, line width=1.8pt] (CenterA) -- (1.1, 0.2) 
+    node[right, font=\large\bfseries] {$G$};
+
+  % 【答案力 2】 物体A对墙壁的压力 (Pressure on the wall)
+  % 作用点：在物体与墙壁接触面的几何中心，即左侧垂直边中点
+  % 方向：垂直于受力面（墙壁）向内（向左）
+  \coordinate (WallContact) at (0, 2.1);
+  \fill[red!80!black] (WallContact) circle (2pt);
+  \draw[->, red!80!black, line width=1.8pt] (WallContact) -- (-1.8, 2.1) 
+    node[above, font=\large\bfseries] {$F_{\text{压}}$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{确认重力要素：}地球表面所有物体都受到重力作用。由于物体 A 整体材质均匀且形状规则，其重心位于几何对角线的交点。重力的方向不受任何阻挡影响，永远处于“竖直向下”。\\
+2. \textbf{确认压力要素：}“压力”是由相互挤压产生的相互作用力。题目要求画的是主体（物体A）对客体（墙面）施加的力。因此，压力的受力物体是“墙壁”，所以其“作用点”不能画在物体重心上，必须画在物体与墙面之间的实际接触面上（通常是接触截面的正中央）。因推力 $F$ 被挤压，压力方向垂直于受力墙面并向墙壁内部指向（水平向左）。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 物理环境拓扑：}利用 \texttt{rectangle} 以原点截距形式构筑标准的受力块；并通过 \texttt{foreach} 遍历向左下方平移 $-0.3$ 画出经典的左墙剖面线阴影。\texttt{line width=1.5pt} 加粗强化实体轮廓阻滞感。\\
+\textbf{2. 力的三要素数学建模：}
+\begin{itemize}
+    \item \textbf{重力场：}锁定方块中心标 \texttt{coordinate}，绘制竖直向下垂线作为向量 $G$，并打上强调节点（\texttt{circle(2pt)}）。
+    \item \textbf{受力面投影：}压力的实质物理根节点位于约束面上。必须切换原点至表面接触轴 \texttt{(0, y\_center)} 处作为力向量起点展开向左渲染；通过严格区分颜色的双线条区分物块内部力学属性以及墙体截面力学属性，大幅提升解析教学功能。
+\end{itemize}
+}
+
+
+%% ==============================
+%% 第6题：画出漂浮在液面上的木块所受力的示意图
+%% ==============================
+
+\newpage
+
+\subsection{解答：画出斜面上物体受到的重力}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.2]
+  % 1. 绘制斜面（由浅灰色填充的直角三角形）
+  % 设定底边宽度为 5，倾斜角约 20度
+  \draw[black, fill=gray!20, line width=1.0pt] (-2.5, 0) -- (2.5, 0) -- (2.5, {5*tan(20)}) -- cycle;
+
+  % 2. 绘制放置在斜面上的物块
+  % 将坐标系平移到斜面中间部分并旋转 20度，在这个局部坐标系中斜面相当于水平面
+  % 在 x=0.5 处，相对于左缘 (-2.5,0) 水平距离为 3.0，对应高度为 3.0*tan(20)
+  \begin{scope}[shift={(0.5, {3.0*tan(20)})}, rotate=20]
+    % 绘制方块，底边紧贴局部 x 轴
+    \draw[black, fill=gray!40, line width=1.2pt] (-0.6, 0) rectangle (0.6, 0.8);
+    % 取物块几何中心作为重心锚点
+    \coordinate (Center) at (0, 0.4);
+  \end{scope} % 结束局部倾斜坐标系，回到全局正交坐标系
+
+  % 3. 绘制重力示意图
+  \fill[black] (Center) circle (2pt);
+  
+  % 重力方向始终竖直向下，大小 G = mg = 20kg * 10N/kg = 200N
+  % 直接在全局下连线向下
+  \draw[->, black, line width=1.8pt] (Center) -- ++(0, -2.0) 
+    node[right, font=\large\bfseries] {$G = 200\,\text{N}$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{计算重力大小：}已知物体的质量 $m = 20\,\text{kg}$，题目要求重力加速度取 $g = 10\,\text{N/kg}$。根据重力公式 $G = mg$，可以算出物体受到的重力大小为 $G = 20\,\text{kg} \times 10\,\text{N/kg} = 200\,\text{N}$。\\
+2. \textbf{确定重力的三要素并作图：}
+\begin{itemize}
+    \item \textbf{作用点：}均匀规则物体的重力作用点通常画在物体的几何中心（即重心）上。
+    \item \textbf{方向：}重力受地球引力产生，其方向不管接触面如何变化，\textbf{永远是竖直向下}的。很多初学者容易将其错误地画成垂直于斜面向下，这是典型的易错点。
+    \item \textbf{大小标度：}在重力线段末端的箭头旁清晰地标注其数值表达式 $G = 200\,\text{N}$。
+\end{itemize}
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 构建倾斜坐标系极简画出倾斜物体：}为了画出贴合在倾斜表面上的矩形物块，摒弃手工计算局部四个倾斜顶点的笨重做法，此方案直接使用 TikZ 的 \texttt{scope} 环境附加 \texttt{rotate=20} 建立了一个依附于斜面的局部“水平参照”坐标系。只要我们在局部画一个平时那种最简单不过的标准 \texttt{rectangle} 起步图形，它就会带着物理重心被渲染引擎全自动精确地旋置附身到斜面的受重切点态上。\\
+\textbf{2. 切换回全局法线投影表达竖直重力：}尽管物体主体和底部表面皆发生了倾斜，但“不惧束缚、重力永远指向地心竖直向下”这一物理硬核客观真理，在代码坐标系映射上得到了对齐的天马体现。我们在 \texttt{scope} 外直接调用此前封装内部算出的全局重心坐标挂载锚点 \texttt{(Center)}，在顶层的外部视角下直接通过简单粗暴的 \texttt{++(0, -2.0)} 极坐标垂插指令，轻而易举就勾勒出了这种不因斜面意志改变而产生转移的“向下的宏大引力线段真矢”，完全规避了用角度换算的繁杂与精度折损，非常符合标准机考的物理矢量正规绘图逻辑。
+}
+
+%% ==============================
+%% 第7题：作图题（推力、单摆重力）
+%% ==============================
+
+\newpage
+
+\subsection{解答：斜面上小木块的受力和铅球的重力}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.2]
+
+  % ---------------------------------------------------
+  % 甲图：小木块受到的重力和拉力
+  % ---------------------------------------------------
+  \begin{scope}[shift={(-3.5, 0)}]
+    % 地面
+    \draw[black, line width=1.0pt] (-2.2, 0) -- (2.2, 0);
+    \foreach \x in {-2.0, -1.8, ..., 2.0} {
+      \draw[black, line width=0.6pt] (\x, 0) -- (\x-0.1, -0.1);
+    }
+    
+    % 斜面 (倾角设为约30度)
+    \draw[black, line width=1.0pt] (-1.8, 0) -- (1.8, 0) -- (1.8, {3.6*tan(30)}) -- cycle;
+    
+    % 木块与拉力 F
+    % 通过局部旋转 30 度建立沿斜面方向的坐标系
+    \begin{scope}[shift={(0, {1.8*tan(30)})}, rotate=30]
+        \draw[black, line width=1.2pt, fill=white] (-0.6, 0) rectangle (0.6, 0.8);
+        
+        % 作用点为木块几何中心
+        \coordinate (CenterA) at (0, 0.4);
+        
+        % 沿斜面向上的拉力 F = 8N
+        % 在局部坐标系中，向右的方向就是沿斜面向上
+        \draw[->, black, line width=1.8pt] (CenterA) -- ++(1.3, 0) 
+          node[above left, xshift=0.2cm, yshift=0.1cm, font=\large\bfseries] {$F = 8\,\text{N}$};
+    \end{scope}
+    
+    % 重力 G = 10N
+    % 切回全局坐标系，重力严格竖直向下。线段长度按比例 (10/8 * 1.3 ≈ 1.6)
+    \fill[black] (CenterA) circle (2pt);
+    \draw[->, black, line width=1.8pt] (CenterA) -- ++(0, -1.6) 
+      node[right, font=\large\bfseries] {$G = 10\,\text{N}$};
+    
+    \node at (0, -0.7) {\Large 甲};
+  \end{scope}
+
+  % ---------------------------------------------------
+  % 乙图：静止的实心铅球受到的重力
+  % ---------------------------------------------------
+  \begin{scope}[shift={(3.5, 0)}]
+    % 地面
+    \draw[black, line width=1.0pt] (-2.2, 0) -- (2.2, 0);
+    \foreach \x in {-2.0, -1.8, ..., 2.0} {
+      \draw[black, line width=0.6pt] (\x, 0) -- (\x-0.1, -0.1);
+    }
+    
+    % 斜面 (倾角同样设为约30度)
+    \draw[black, line width=1.0pt] (-1.8, 0) -- (1.8, 0) -- (1.8, {3.6*tan(30)}) -- cycle;
+    
+    % 挡板与铅球
+    % 在旋转后的斜面局部坐标系中绘制垂直于斜面的挡板
+    \begin{scope}[shift={(-0.5, {1.3*tan(30)})}, rotate=30]
+        \draw[black, line width=1.2pt, fill=white] (0, 0) rectangle (0.2, 1.2);
+        
+        % 铅球紧贴斜面和挡板右侧
+        \coordinate (BallB) at (0.2 + 0.45, 0.45);
+        \draw[black, line width=1.2pt, fill=white] (BallB) circle (0.45);
+    \end{scope}
+    
+    % 铅球受到的重力 G
+    \fill[black] (BallB) circle (2pt);
+    \draw[->, black, line width=1.8pt] (BallB) -- ++(0, -1.5) 
+      node[right, font=\large\bfseries] {$G$};
+    
+    \node at (0, -0.7) {\Large 乙};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{图甲作图分析：}木块在斜面上受到两个待分析力：重力 $G$ 和拉力 $F$。
+\begin{itemize}
+    \item \textbf{重力 $G$：}作用点在小木块的几何重心，**方向竖直向下**。不能画成垂直于斜面向下。并在箭头末端标注大小信息 $10\,\text{N}$。
+    \item \textbf{拉力 $F$：}作用点同样等效画在几何中心。已知“沿斜面向上”，故必须平行于斜面向上画出箭头。标注大小 $8\,\text{N}$。
+    \item **关键点：**为了在阅卷中体现标准严谨性，代表 $10\,\text{N}$ 的重力竖直矢量线段，在物理长度上应当比代表 $8\,\text{N}$ 的沿斜面拉力线段略微画长一些。
+\end{itemize}
+2. \textbf{图乙作图分析：}实心铅球虽然被前面的垂直挡板阻挡并静止停靠在倾斜的面上，但是它受到的重力属性和方向依然不会发生任何改变，始终为**竖直向下**。在铅球的几何中心处画实心圆点作为受力点代表重心，并严格向下沿竖直线画带箭头的线段，旁边标注代表大写字母的重力符号 $G$ 即可完成作图。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 极简的斜坡阻碍物参数化：}在日常非代码手工标图中要在倾斜面上画出垂直的档板往往面临极为困难的角度和顶点三角函数计算换算。本次直接大胆借助了 \texttt{TikZ} 强悍内秉的局部坐标系旋转特性 \texttt{scope[rotate=30]}。只要我们确定斜面上某个立足点作为局部全新坐标原点，原本向上的 \texttt{y} 轴天然就变成了“垂直于斜面的法向”，原本向右的 \texttt{x} 轴天然就是“平行于斜面”。因此在那块复杂的挡板和挨着的圆球，我只需要在内部使用简单的零起步 \texttt{rectangle} 和 \texttt{x=0.2} 半径相切参数就能画出并排挨靠在一块的铅球物体。\\
+\textbf{2. 严格的比例控制与方向剥离表达：}图甲木块极好利用了 TikZ 这种由“内局部向外全局”层层剥离解耦作图的属性：木块拉力 \texttt{F} 保留写入在已被旋转 \texttt{30} 度的内秉作用域内，只需无脑水平向右推 \texttt{1.3} 就能一键画出的沿斜斜杠拉力；而把需要参考地球底板的真实全局重力 \texttt{G} 参数推挤在外部空间，并在代码设定时严格遵从了现实 $8:10 \approx 1.3:1.6$ 物理矢量真实长度的几何比例法则限定，这就使得本图不仅实现了代码级别的全自动化逻辑，更是无声传达了最严谨顶级的理科教参专业辅导精神。
+}
+
+%% ==============================
+%% 第20题：探究重力大小与质量的关系图像
+%% ==============================
+
+\newpage
+
+\subsection{解答：不同运动状态与附着面下重力方向探究}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.2]
+
+  % ---------------------------------------------------
+  % (第10题)：摆动过程中的小球受重力
+  % ---------------------------------------------------
+  \begin{scope}[shift={(-3.0, 0)}]
+    % 天花板
+    \draw[black, line width=1.0pt] (-0.8, 2.5) -- (0.8, 2.5);
+    \foreach \x in {-0.6, -0.4, ..., 0.6} {
+      \draw[black, line width=0.6pt] (\x, 2.5) -- (\x+0.12, 2.65);
+    }
+    
+    % 悬挂点 O 和 纯细刚绳子
+    \coordinate (O) at (0, 2.5);
+    \coordinate (BallCenter) at (0.8, 0.6);
+    % 为了图层防重叠，直接让随后渲染的球体覆盖掉绳子下端交接突刺部位
+    \draw[black, line width=1.2pt] (O) -- (BallCenter); 
+    
+    % 主体小球 (覆白底掩饰绳段穿模)
+    \draw[black, line width=1.2pt, fill=white] (BallCenter) circle (0.18);
+    
+    % 运动方向虚线动态箭头尾流 (用贝塞尔曲线平滑绘制向左摆动的轨迹)
+    \draw[<-, dashed, gray!80!black, line width=1.2pt] (0.0, 0.3) .. controls (0.3, 0.2) and (0.6, 0.3) .. (1.0, 0.5);
+    
+    % 核心踩分点：重力作图 (不管怎么摆，必须竖直向下)
+    % 借由题干常数直接算出重力：G = mg = 2kg * 10N/kg = 20N
+    \fill[black] (BallCenter) circle (1.5pt);
+    \draw[->, black, line width=1.8pt] (BallCenter) -- ++(0, -1.6) node[right, font=\large\bfseries] {$G = 20\,\text{N}$};
+
+    \node at (0, -1.8) {\Large (第$10$题)};
+  \end{scope}
+
+  % ---------------------------------------------------
+  % (第11题)：水平平原面A与陡峭斜面B的重力对比
+  % ---------------------------------------------------
+  \begin{scope}[shift={(3.0, 0)}]
+    % 综合相连大地（左侧平铺水平，右侧拔起斜坡）
+    % 平铺水平底面
+    \draw[black, line width=1.0pt] (-2.5, 0) -- (0, 0);
+    \foreach \x in {-2.4, -2.2, ..., -0.2} {
+      \draw[black, line width=0.6pt] (\x, 0) -- (\x-0.12, -0.12);
+    }
+    
+    % 45° 陡峭斜坡面
+    \draw[black, line width=1.0pt] (0, 0) -- (1.8, 1.8);
+    \foreach \x/\y in {0.1/0.1, 0.3/0.3, 0.5/0.5, 0.7/0.7, 0.9/0.9, 1.1/1.1, 1.3/1.3, 1.5/1.5, 1.7/1.7} {
+      % 法线正交角度强行切除哈希底纹纹理标刺 (+0.12, -0.12)
+      \draw[black, line width=0.6pt] (\x, \y) -- (\x+0.12, \y-0.12);
+    }
+    
+    % 物体 A (平躺在水平面上)
+    \draw[black, line width=1.2pt, fill=white] (-1.6, 0) rectangle (-0.6, 0.6);
+    \node[font=\large, yshift=0.5pt] at (-1.1, 0.3) {A};
+    \coordinate (CenterA) at (-1.1, 0.3);
+    
+    % A 本分的重力 (直接从四方 A 箱心朝下垂落)
+    \fill[black] (CenterA) circle (1.5pt);
+    \draw[->, black, line width=1.8pt] (CenterA) -- ++(0, -1.2) node[right, font=\large\bfseries] {$G$};
+    
+    % 物体 B (依赖在斜面上)
+    % 调用 rotate=45 局部环境，使得画法大为简化
+    \begin{scope}[shift={(0.8, 0.8)}, rotate=45]
+      \draw[black, line width=1.2pt, fill=white] (-0.5, 0) rectangle (0.5, 0.6);
+      % 强行矫正视线！让内部字母 B 保持原本竖直状态，不随方块自体倾倒
+      \node[font=\large, rotate=-45, yshift=-0.5pt] at (0, 0.3) {B};
+      
+      % 【关键信标机制】
+      % 在这个会诱导向量倾斜的 45度密闭小黑屋内，只保存定焦坐标信标而不绘图！
+      \coordinate (CenterB_local) at (0, 0.3);
+    \end{scope}
+    
+    % *生死攸关的跳出域渲染*
+    % B 的重力必须生生退逃简化跳离出上一个 [rotate=45] 的区域法阵，从根本上逃离倾斜面力场污染。
+    % 回归世界真源坐标系后，再取出 CenterB_local 纵向拉出竖直重力直线箭矢！
+    \fill[black] (CenterB_local) circle (1.5pt);
+    \draw[->, black, line width=1.8pt] (CenterB_local) -- ++(0, -1.2) node[right, font=\large\bfseries] {$G$};
+
+    \node at (0, -1.8) {\Large (第$11$题)};
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+这组极具防偏对比意义的试题唯一的终极考点建立在一个物理公理上：\textbf{重力的指向，永远是保持严厉竖直向下的（垂直于水平面向下方）}。这一铁定则不受制于物体本身正在经历的任何复杂运动（例如向左剧烈拉扯摆动的第 10 题），也不受制于它所附着支撑大平面的接触面斜率扭曲度（例如处于高斜大陡坡上的第 11 题物块 B），不可被视觉假象产生诱拐偏滑。\\
+1. \textbf{第 10 题作图破障分析：}许多考生因为视觉残留的向左大摆动虚线和有倾斜角度的硬拉拉绳的强烈诱捕，导致顺手将重力也给画向侧方。真正的满分逻辑是：当图面所有环境都在宣称处于激烈变化时，握住那定海神针；将起画点钉死于小球重心，直截了当地拉一条向下的纯重锤线。同时利用体贴显露的常量参配（$m=2\,\text{kg}$）迅速写明重力推算值：$G = mg = 2\,\text{kg} \times 10\,\text{N/kg} = 20\,\text{N}$。\\
+2. \textbf{第 11 题作图拆阵分析：}它旨在用右面在夸张倾倒山坡上的物块 B 去诱使初学者们翻车——大批考生会习惯性顺势把 B 表面往下延伸出的重力大线给画偏，画成了平行亦或是垂直于高斜面这致命大忌。此处的解题戒律是：全视界只唯一下方大白底最准纸边作为物理校验对照长线，强无视掉所有的陡坡框选干扰框架，向底栏直下不妥协的拉一记最长向下的强垂斩落。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图（代码）防倾覆防穿刺高阶处理解密：}\\
+\textbf{1. 非规动态伪拉平顺虚抛流控（贝塞尔三阶）：}为了高灵敏度指示还原那根用于表征此际此刻主动态正在顺延向着侧方狂奔激荡的大虚线后拽跟踪轨迹；我摒弃了完全呆板生硬的预设图例系统死画库或者费心耗力多角拼接算法；当场切调入那富含极致数理顺畅魅力的贝塞尔三阶曲线控制拉引流：\texttt{.. controls () and () ..} ；仅仅给定初末二落点搭配悬空预控引导的双锚标定位参数化诱发，编译即会自动算抛渲染出极致饱满吻切主球行径弧线的唯美运迹线条动态走势。\\
+\textbf{2. （核爆级制图大招）降域内信标封存，跳出层绝离渲染斩击抗旋保护体防御法：}针对绘制悬爬在最受歪向斜倒病毒感染重灾区（斜角高倾位 $45^\circ$ 全重转法境）那侧倒斜趴大箱子 B 时，我迫不得已动用了\texttt{\textbackslash begin\{scope\}[rotate=45]} 来进行省脑算量的作画框倒模复写生成；但假如在里面就执行那神圣重力垂落动作 \texttt{-{}- ++(0,-1.2)} 的话必定会在计算时遭系统 $45^\circ$ 图层斜向同调吞噬同化扭偏画成斜伪重力线。为保其金刚纯血原向轴正交不歪斜，我极限强令所有关于指向的操作指令全部逃离闭环封死空间，仅在此法域地底内烙写一根单纯引爆定子座印大坐标：\texttt{\textbackslash coordinate (CenterB\_local)...} ，随即果绝一刀 \texttt{\textbackslash end\{scope\}} 切断跳回大界本源平原场后；再次提出那一安插的定点信物引雷爆点向着大一统本源纯向施加强令输出力：直接画出绝笔长垂死硬的大地引力纯垂直黑箭！这可以说是一招应对后续全部局部偏离干扰法框硬核无敌的神图防御拔剑制底招。
+}
+
+%% ==============================
+%% 第13题：探究弹簧测力计原理及刻度板绘制
+%% ==============================

@@ -1,0 +1,836 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 统计图表 / 统计方案与图表选择
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：校服式样调查及结果分析}
+
+\vspace{0.6cm}
+
+\textbf{6. 某学校计划为 $1000$ 名学生做校服，拿出甲、乙、丙、丁四种式样的校服来征求师生的意见，得到如下的数据：}
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \rowcolor{gray!15} 
+  校服式样 & 甲 & 乙 & 丙 & 丁 \\
+  \hline
+  建议订的人数/人 & $300$ & $220$ & $320$ & $160$ \\
+  \hline
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
+
+\textbf{（1）计算建议订每种式样的校服的人数占总人数的百分比；}\\
+\textbf{（2）利用表中的数据绘制扇形统计图；}\\
+\textbf{（3）请你根据表中所提供的信息，向学校提出建议。}
+
+\vspace{0.4cm}
+
+\textbf{解：}
+
+\textbf{（1）计算各款式校服百分比：} \\
+已知四种款式建议订购的总人数为 $1000$ 人。各项所占据的总数百分比经推演如下：
+\begin{itemize}
+  \item 甲式样： $\frac{300}{1000} \times 100\% = \boldsymbol{30\%}$；
+  \item 乙式样： $\frac{220}{1000} \times 100\% = \boldsymbol{22\%}$；
+  \item 丙式样： $\frac{320}{1000} \times 100\% = \boldsymbol{32\%}$；
+  \item 丁式样： $\frac{160}{1000} \times 100\% = \boldsymbol{16\%}$。
+\end{itemize}
+
+\textbf{（2）推算各个圆心角并绘制最终无渲染骨架扇形统计图：} \\
+扇形统计图的总物理圆心基准角为 $360^\circ$，各部分相应的极坐标圆心角度数为：
+\begin{itemize}
+  \item 甲圆心角： $360^\circ \times 30\% = 108^\circ$；
+  \item 乙圆心角： $360^\circ \times 22\% = 79.2^\circ$；
+  \item 丙圆心角： $360^\circ \times 32\% = 115.2^\circ$；
+  \item 丁圆心角： $360^\circ \times 16\% = 57.6^\circ$。
+\end{itemize}
+
+根据等分角度在圆内顺次划分空白轮廓线区域，作表如下：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.5]
+  \coordinate (O) at (0,0);
+  \def\R{2.2}
+
+  % 外圈主轮廓
+  \draw[black, line width=0.8pt] (O) circle (\R);
+
+  % ==============================
+  % 依次划分扇区直属物理边界
+  % 绘制起点设为正上方标准圆角点(极坐标90°)
+  
+  % -> 隔离甲 108° (从 90 拨到 -18)
+  \draw[black, line width=0.8pt] (O) -- (90:\R);
+  
+  % -> 隔离乙 79.2° (顺拨从 -18 推进至 -97.2)
+  \draw[black, line width=0.8pt] (O) -- (-18:\R);
+  
+  % -> 隔离丙 115.2° (顺拨从 -97.2 降至 -212.4)
+  \draw[black, line width=0.8pt] (O) -- (-97.2:\R);
+  
+  % -> 隔离丁 57.6° (最后从 -212.4 补全 -270 即首尾 90 的闭合回路)
+  \draw[black, line width=0.8pt] (O) -- (-212.4:\R);
+
+  % ==============================
+  % 按提取各区块内圈平分角的值进行标签阵列字块的横竖对齐式贴压
+  
+  % 甲的角平分线: (90 - 18)/2 = 36
+  \node[align=center, font=\small] at (36:1.3) {甲\\$30\%$};
+  
+  % 乙的角平分线: (-18 - 97.2)/2 = -57.6
+  \node[align=center, font=\small] at (-57.6:1.4) {乙\\$22\%$};
+  
+  % 丙的角平分线: (-97.2 - 212.4)/2 = -154.8
+  \node[align=center, font=\small] at (-154.8:1.3) {丙\\$32\%$};
+  
+  % 丁的角平分线: (-212.4 - 270)/2 = -241.2 (相等于 118.8 偏角)
+  \node[align=center, font=\small] at (-241.2:1.4) {丁\\$16\%$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+
+\textbf{（3）基于数据的意见规划：} \\
+根据上述算出的真实支持率比重显示：全校建议选择“丙式样”校服的人数独占鳌头，达到了最高峰值份额 $32\%$；建议选用“甲式样”校服的人群紧随其后位居次席，共占 $30\%$。这两者总体累加占比已超越全员半数，属于压倒性主体偏好。\\
+\textbf{建议：}校方主要考虑投产制备\textbf{丙种}和\textbf{甲种}式样的校服系列。在特定需求下，可进一步抽调这两类偏好款式的经典元素进行最终整合。
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 精确角度闭环计算法：}为了迎合单色复印环境的呈现质量抗干扰性，绘图全程摒弃了块状阴影着色语法。代码依靠 $108^\circ, 79.2^\circ, 115.2^\circ, 57.6^\circ$ 这一递进序列，以圆点上方起始坐标（$90^\circ$）发散，沿着负方向展开逐步削减操作（$90^\circ \to -18^\circ \to -97.2^\circ \to -212.4^\circ \to -270^\circ$并强行首尾闭合折归到了起点的 $90^\circ$）。全程通过调用 \texttt{\textbackslash draw} 指令在圆中架切出了所有裸露区域的无底色隔断线条。\\
+\textbf{2. 挂载轴定位防干涉模型：}基于抽取的切割出的四个扇区的起止二倍角中值测出（即各角位截半中心点对应的平分夹角）；代码统一将 $R=1.3 \sim 1.4$ 设置为悬挂定点坐标常数进行向圆心聚拢缩推，并套用换行双列并置文本模式进行输出渲染。利用双参数隔离手段确保各扇形文本相互背向不互交融，使得百分比数值直接依附在相匹配的分类名额最内腹下侧完全避免溢边发生。
+}
+
+%% ==============================
+%% 第4题：数据统计整理与图表选择绘制
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：数据统计整理与图表选择绘制}
+
+\vspace{0.6cm}
+
+\textbf{4. 某商场家电部为了调动营业员的工作积极性，决定实行目标等级管理。商场家电部统计了 $20$ 名营业员在某月的销售额，数据如下(单位:万元)：}\\
+$23,17,16,20,32,30,16,15,15,26,15,32,23,17,15,15,28,28,16,21.$\\
+\textbf{商场规定月销售额达到或超过 $25$ 万元为 A 级，低于 $19$ 万元为 C 级，其他为 B 级。}\\
+\textbf{（1）整理相关的数据，完成下表；}\\
+\textbf{（2）你认为用哪种统计图反映不同等级人数的分布情况比较合理？绘制你选择的统计图。}
+
+\vspace{0.4cm}
+
+\textbf{解：}
+
+\textbf{（1）整理数据并完善表格：} \\
+根据规定的等级划分条件，对给定的 $20$ 个数据进行区间分拣与人数统计：
+\begin{itemize}
+  \item \textbf{A 级（$\geqslant 25$ 万元）：} $26, 28, 28, 30, 32, 32$。共计 $\boldsymbol{6}$ 名，占比 $6 \div 20 \times 100\% = \boldsymbol{30\%}$。
+  \item \textbf{C 级（$< 19$ 万元）：} $15, 15, 15, 15, 15, 15, 16, 16, 16, 17, 17$。共计 $\boldsymbol{10}$ 名，占比 $10 \div 20 \times 100\% = \boldsymbol{50\%}$。
+  \item \textbf{B 级（其他/即 $19 \sim 25$ 之间）：} $20, 21, 23, 23$。共计 $\boldsymbol{4}$ 名，占比 $4 \div 20 \times 100\% = \boldsymbol{20\%}$。
+\end{itemize}
+
+（*验证：$6+10+4=20$，分拣数据吻合无误）。填入下方表格中：
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+% 以首列最长中文字符段宽为依准，锁定四列均等宽度为 \p{3.2cm} 并做首列独立着灰处理
+\begin{tabular}{|>{\centering\arraybackslash}p{3.4cm}|>{\centering\arraybackslash}p{3.4cm}|>{\centering\arraybackslash}p{3.4cm}|>{\centering\arraybackslash}p{3.4cm}|}
+  \hline
+  \cellcolor{gray!15} 等级 & A & B & C \\
+  \hline
+  \cellcolor{gray!15} 人数/名 & \textbf{$6$} & \textbf{$4$} & \textbf{$10$} \\
+  \hline
+  \cellcolor{gray!15} 占总人数的百分比 & \textbf{$30\%$} & \textbf{$20\%$} & \textbf{$50\%$} \\
+  \hline
+\end{tabular}
+\end{center}
+\vspace{0.4cm}
+
+\textbf{（2）选择并绘制图表：} \\
+\textbf{选择：}用\textbf{扇形统计图}反映不同等级人数占总人数的分布情况合理。因为扇形统计图能够最直观体现出各个等级构成部分在总体中所占的百分比重。\textit{（也可选取条形统计图反映人数，此处提供标准的扇形占比法示例）}。
+
+推算三类等级对应的扇形圆心角度数：
+\begin{itemize}
+  \item A 级圆心角： $360^\circ \times 30\% = 108^\circ$；
+  \item B 级圆心角： $360^\circ \times 20\% = 72^\circ$；
+  \item C 级圆心角： $360^\circ \times 50\% = 180^\circ$（即半圆）。
+\end{itemize}
+
+作图如下（舍弃颜色填涂设定，回归极致纯白黑边高反差勾线状态）：
+
+\vspace{0.4cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.5]
+  \coordinate (O) at (0,0);
+  \def\R{2.2}
+
+  % 外圈主轮廓
+  \draw[black, line width=0.8pt] (O) circle (\R);
+
+  % ==============================
+  % 依次划分扇区物理边界边界
+  % 绘制起点设为正上方极坐标 90°
+  
+  % -> 隔离出 A 级 108° (从 90 拨拉至 -18)
+  \draw[black, line width=0.8pt] (O) -- (90:\R);
+  
+  % -> 隔离出 B 级 72° (顺拨从 -18 拉至 -90)
+  \draw[black, line width=0.8pt] (O) -- (-18:\R);
+  
+  % -> 留空隔离 C 级 180° (从起跳位 -90 直线穿越圆心拉回顶点 90)
+  \draw[black, line width=0.8pt] (O) -- (-90:\R);
+
+  % ==============================
+  % 置反中垂线方位文本悬空固定
+  
+  % A级的角平分线: (90 - 18)/2 = 36
+  \node[align=center, font=\small] at (36:1.3) {A 级\\$30\%$};
+  
+  % B级的角平分线: (-18 - 90)/2 = -54
+  \node[align=center, font=\small] at (-54:1.4) {B 级\\$20\%$};
+  
+  % C级的角平分线: (-90 - 270)/2 = -180 (或偏角左置半轴 180)
+  \node[align=center, font=\small] at (180:1.2) {C 级\\$50\%$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 黑白骨线切分极坐标模型：}出于最大程度适配教学讲义复印油墨的稳定性考量，全图完全摒除 \texttt{\textbackslash fill} 的底层着色方案指令。依托半径为 \texttt{R=2.2} 的正圆轴心基座面，按序置入前置求得的各个确切圆心角（$A=108^\circ, B=72^\circ, C=180^\circ$）；从正上方位节点（$90^\circ$）启动射线的向右顺时针向切割划分操作，完全依靠无底色裸骨架式排线划分干净图层。\\
+\textbf{2. 纯悬空式文本阵列控制法则：}精确撷取三大不规则半圆空白带中相对应切角的角均分夹角值，结合推移调节后的独立非相交挂载半径常数（约界于 $1.2 \sim 1.4$ 区间进行推拨测试）部署文本点坐标定位。\texttt{align=center} 指令配合内换横式换行的并向语法格式切断了文本数据字块外溢的干涉性隐患。
+}
+
+%% ==============================
+%% 第2题：九年级学生视力情况频数分布表
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：班级调查方案与统计图绘制}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 48.} \textbf{（第 6 题）请对本班学生进行“你知道父母的生日吗”的调查，调查要求如下：}
+
+\textbf{（1）采用普查方式；}
+
+\textbf{（2）全班设计统一的书面问卷调查表，由数学课代表带领大家共同完成调查；}
+
+\textbf{（3）各人独立整理数据，用条形统计图表示数据；}
+
+\textbf{（4）结合数据谈谈你的认识。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+这是一道开放型的实践操作题。以下为模拟某班 $40$ 名学生的问卷调查及数据处理全过程示范，同学们可作为参考：
+
+\vspace{0.3cm}
+\textbf{（1）（2）书面问卷调查表设计如下：}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{0.8\textwidth}|}
+\hline
+\begin{center}\textbf{“你知道父母的生日吗”问卷调查表}\end{center}
+同学你好！为了解大家对父母生日的知晓情况，特开展本次抽样调查（单选）。感谢你的配合！\\[0.2cm]
+\textbf{你清楚自己父母的生日吗？（\quad）}\\[0.1cm]
+A. 清楚父母双方的生日\\
+B. 只清楚父亲或母亲一方的生日\\
+C. 父母双方的生日都不清楚\\[0.1cm]
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（3）整理数据与绘制条形统计图：}
+
+在收齐 $40$ 份有效问卷后，假设整理得到的模拟数据如下：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{c|c|c|c}
+\noalign{\hrule height 1.2pt}
+类别 & A（双方清楚） & B（只清楚一方） & C（都不清楚） \\
+\hline
+人数 & 24 & 10 & 6 \\
+\noalign{\hrule height 1.2pt}
+\end{tabular}
+\end{center}
+
+根据全班数据，绘制条形统计图：
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  % 缩放参数
+  \def\xstep{1.8}   % 类别间距较宽以放下文字
+  \def\ystep{0.2}   % Y轴 1人 = 0.2cm 高度
+  \def\barw{0.8}    % 柱宽
+
+  % 1. Y 轴与 X 轴
+  \draw[thick, black, ->] (0,0) -- (0, 30*\ystep) node[left, font=\small] {人数};
+  \draw[thick, black, ->] (0,0) -- (4*\xstep, 0);
+
+  % 2. Y 轴刻度标签（每5人一个刻度）
+  \foreach \y in {5, 10, 15, 20, 25} {
+      \node[left, font=\small] at (0, \y*\ystep) {\y};
+      \draw[thin, black] (-0.08, \y*\ystep) -- (0, \y*\ystep);
+  }
+  \node[left, font=\small] at (0, 0) {0};
+
+  % 3. 条形柱
+  % A类 = 24
+  \fill[white] (1*\xstep - \barw/2, 0) rectangle (1*\xstep + \barw/2, 24*\ystep);
+  \draw[thick, black] (1*\xstep - \barw/2, 0) rectangle (1*\xstep + \barw/2, 24*\ystep);
+  \node[above, font=\small\bfseries] at (1*\xstep, 24*\ystep) {24};
+
+  % B类 = 10
+  \fill[white] (2*\xstep - \barw/2, 0) rectangle (2*\xstep + \barw/2, 10*\ystep);
+  \draw[thick, black] (2*\xstep - \barw/2, 0) rectangle (2*\xstep + \barw/2, 10*\ystep);
+  \node[above, font=\small\bfseries] at (2*\xstep, 10*\ystep) {10};
+
+  % C类 = 6
+  \fill[white] (3*\xstep - \barw/2, 0) rectangle (3*\xstep + \barw/2, 6*\ystep);
+  \draw[thick, black] (3*\xstep - \barw/2, 0) rectangle (3*\xstep + \barw/2, 6*\ystep);
+  \node[above, font=\small\bfseries] at (3*\xstep, 6*\ystep) {6};
+
+  % 4. 辅助虚线
+  \draw[dashed, gray!70] (0, 24*\ystep) -- (1*\xstep - \barw/2, 24*\ystep);
+  \draw[dashed, gray!70] (0, 10*\ystep) -- (2*\xstep - \barw/2, 10*\ystep);
+  \draw[dashed, gray!70] (0, 6*\ystep)  -- (3*\xstep - \barw/2, 6*\ystep);
+
+  % 5. X 轴标签
+  \node[below, font=\small] at (1*\xstep, -0.1) {清楚双方};
+  \node[below, font=\small] at (2*\xstep, -0.1) {只清楚一方};
+  \node[below, font=\small] at (3*\xstep, -0.1) {都不清楚};
+  \node[below, font=\normalsize] at (4.1*\xstep, -0.1) {类别};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（4）结合数据的认识与体会：}
+
+从统规模拟数据可以看出，大部分同学（$24$ 人，占 $60\%$）清楚父母双方的生日，说明同学们具备较好的感恩之心，关心父母；仍有少部分同学（$6$ 人，占 $15\%$）并不清楚父母的生日，说明部分同学对长辈的体贴关注度还不够。我们应当在日常生活中多与父母沟通，培养懂感恩的中华传统美德。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{答题原理与步骤：}\\
+\textbf{1. 问卷设计：} 设计简明扼要的三选项单选问卷（全知、知一半、全不知）。本题为开放探究实践活动，故编造\textbf{全套模拟场景数据}作为范例答案。\\
+\textbf{2. 模拟数据说明：} 设定全班总人数 $40$ 人，分配合理分布的探究数据 A$=24$，B$=10$，C$=6$，配合带粗框线的表格进行展示。\\
+\textbf{3. 条形图绘制：} 基于模拟数据，设定 Y 轴上限为 $30$，每 $5$ 人一刻度。使用白色填充、黑色描边，并带上每组数据的辅助虚线（截止在左侧柱边）。\\
+\textbf{4. 感悟升华：} 分析数据占比（大部分知晓，少数完全不知），引申出“体谅父母、学会感恩”的核心价值观。
+}
+
+%% ==============================
+%% 第58题（补充题）：网格中的图形平移
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：选择合适的统计图表}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 57.} \textbf{八年级(1)班共有 $40$ 名同学，骑自行车上学的同学有 $8$ 人，乘公交上学的有 $6$ 人，步行上学的有 $12$ 人，家长用车接送的有 $14$ 人。选用适当的统计图表示该班同学上学采用的交通方式。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+表示各部分数量的多少以及比例时，可以选用\textbf{条形统计图}或\textbf{扇形统计图}。两种图形解答如下（只需画出其中一种即可）：
+
+\vspace{0.4cm}
+\textbf{【方案一：条形统计图】}（直接表示各交通方式的具体人数）
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8]
+  % 绘制背景横向虚线网格 (Max Y = 8，对应16人)
+  \draw[dashed, gray!40] (0,0) grid[xstep=15, ystep=1] (11, 8); % xstep设大，仅显示横向网格
+
+  % 坐标轴
+  \draw[->, thick] (0,0) -- (11.5, 0) node[right] {交通方式};
+  \draw[->, thick] (0,0) -- (0, 8.5) node[above] {人数/人};
+  
+  % Y 轴刻度 (1个单位 = 2个人)
+  \foreach \y/\ytext in {1/2, 2/4, 3/6, 4/8, 5/10, 6/12, 7/14, 8/16} {
+    \draw (0, \y) -- (-0.1, \y) node[left, font=\small] {\ytext};
+  }
+  \node[left, font=\small] at (-0.1, 0) {0};
+
+  % 柱形图填充
+  % 骑自行车: 8人 -> 高4
+  \fill[white, draw=black, thick] (1, 0) rectangle (2.5, 4);
+  \node[above, font=\small] at (1.75, 4) {8};
+  \node[below, font=\small] at (1.75, -0.2) {骑自行车};
+
+  % 乘公交: 6人 -> 高3
+  \fill[white, draw=black, thick] (4, 0) rectangle (5.5, 3);
+  \node[above, font=\small] at (4.75, 3) {6};
+  \node[below, font=\small] at (4.75, -0.2) {乘公交};
+
+  % 步行: 12人 -> 高6
+  \fill[white, draw=black, thick] (7, 0) rectangle (8.5, 6);
+  \node[above, font=\small] at (7.75, 6) {12};
+  \node[below, font=\small] at (7.75, -0.2) {步行};
+
+  % 家长接送: 14人 -> 高7
+  \fill[white, draw=black, thick] (10, 0) rectangle (11.5, 7);
+  \node[above, font=\small] at (10.75, 7) {14};
+  \node[below, font=\small] at (10.75, -0.2) {家长接送};
+
+  % 图名
+  \node[below, font=\normalsize\bfseries] at (5.75, -1.5) {八年级(1)班同学上学交通方式条形统计图};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{【方案二：扇形统计图】}（表示各交通方式占总人数的百分比）
+
+\textbf{百分比及圆心角计算：}
+\begin{itemize}
+    \item \textbf{骑自行车}：占比 $8 \div 40 = 20\%$，圆心角 $360^\circ \times 20\% = 72^\circ$；
+    \item \textbf{乘公交}：占比 $6 \div 40 = 15\%$，圆心角 $360^\circ \times 15\% = 54^\circ$；
+    \item \textbf{步行}：占比 $12 \div 40 = 30\%$，圆心角 $360^\circ \times 30\% = 108^\circ$；
+    \item \textbf{家长接送}：占比 $14 \div 40 = 35\%$，圆心角 $360^\circ \times 35\% = 126^\circ$。
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \def\radius{2.5}
+  
+  % 1. 家长接送 35% = 126度 (起始 90, 终点 -36)
+  \fill[white] (0,0) -- (90:\radius) arc (90:-36:\radius) -- cycle;
+  \draw[thick] (0,0) -- (90:\radius) arc (90:-36:\radius) -- cycle;
+  \node[font=\small,align=center] at (27:1.5) {家长接送\\ $35\%$};
+
+  % 2. 步行 30% = 108度 (起始 -36, 终点 -144)
+  \fill[white] (0,0) -- (-36:\radius) arc (-36:-144:\radius) -- cycle;
+  \draw[thick] (0,0) -- (-36:\radius) arc (-36:-144:\radius) -- cycle;
+  \node[font=\small] at (-90:1.5) {步行 $30\%$};
+
+  % 3. 乘公交 15% = 54度 (起始 -144, 终点 -198 即 162)
+  \fill[white] (0,0) -- (-144:\radius) arc (-144:-198:\radius) -- cycle;
+  \draw[thick] (0,0) -- (-144:\radius) arc (-144:-198:\radius) -- cycle;
+  % 该扇区较窄（54度位于左侧），利用折线向外引出标签防拥挤
+  \draw[thin] (-171:\radius-0.5) -- (-171:\radius+0.4) -- ++(-0.4,0) node[left, font=\small, inner sep=2pt] {乘公交 $15\%$};
+
+  % 4. 骑自行车 20% = 72度 (起始 162, 终点 90)
+  \fill[white] (0,0) -- (162:\radius) arc (162:90:\radius) -- cycle;
+  \draw[thick] (0,0) -- (162:\radius) arc (162:90:\radius) -- cycle;
+  \node[font=\small,align=center] at (126:1.5) {骑自行车 \\ $20\%$};
+
+  % 图名
+  \node[below, font=\normalsize\bfseries] at (0, -\radius - 0.8) {八年级(1)班同学上学交通方式扇形统计图};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 图表选型：} 此类题目主要表现类别数量及比例分布，为增强严谨性与兼容性，同时提供直观展示人数分布的“条形统计图”与展示占比的“扇形统计图”两种参考解法。\\
+\textbf{2. 条形图绘制：} 基于 $40$ 人的体量设定以纵轴 $1$ 单位等价于 $2$ 个人。刻度由 $0$ 向上绘制到顶点的 $16$（即纵坐标 $8$ 的位置），绘制平行的灰色横向虚网格作辅助对齐；所有柱子采用无色彩影响的白底黑框，厚度固定排列，柱顶配顶接人数标签，清晰直观。\\
+\textbf{3. 扇形图绘制：} 严格换算出各项所占圆心角（$126^\circ$、$108^\circ、54^\circ$、$72^\circ$），锁定半径 $R=2.5$ 并在顶部（极坐标 $90^\circ$）处起笔，使用 TikZ 特有的 \texttt{arc(起始角:终止角:半径)} 命令依顺时针推演完成切图。鉴于其中“乘公交”占比仅 $15\%$ 弧段过窄，特别采用辅助引线折角外挂的形式排版注字，杜绝字线堆叠死角，确保图形整体张弛度与舒适度。
+}
+
+% ==============================
+% 第67题（补充题）：三角形中心对称作图
+% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：数据的收集与整理}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 68.} \textbf{（第 3 题）李梅调查了本班同学最喜爱的一项体育活动，调查结果如下。}\\
+
+% --- 计票原始表格 ---
+% 使用已有的 \zhengII/\zhengIII/\zhengIV 宏绘制不完整正字笔画
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\makebox[1.8cm]{跳\quad 绳} & \makebox[1.8cm]{滑\quad 冰} & \makebox[1.8cm]{踢足球} & \makebox[1.8cm]{打乒乓球} & \makebox[1.8cm]{游\quad 泳} \\
+\hline
+正 & 正正\,\zhengII & 正正 & \zhengIV & 正\,\zhengIII \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{0.4cm}
+\textbf{根据调查结果完成下面的统计表和统计图。}
+
+\vspace{0.6cm}
+\textbf{解：}
+
+由计票结果可知各项目人数为：
+跳绳 $5$ 人；滑冰 $12$ 人；踢足球 $10$ 人；打乒乓球 $4$ 人；游泳 $8$ 人。\\
+总人数为 $5 + 12 + 10 + 4 + 8 = 39$ 人。
+
+\vspace{0.4cm}
+
+% --- 答案统计表 ---
+\begin{center}
+\textbf{\large 某班同学最喜爱的一项体育活动统计表}
+
+\vspace{0.2cm}
+\hfill \makebox[2.5cm][r]{{\color{blue}3} \ 月 \ {\color{blue}9} \ 日}
+\end{center}
+
+\vspace{-0.4cm}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+% 表格样式设定：左右两边无竖线框，内含列分割，上下有横线
+\begin{tabular}{c|c|c|c|c|c|c}
+\hline
+项\quad 目 & 合\quad 计 & 跳\quad 绳 & 滑\quad 冰 & 踢足球 & 打乒乓球 & 游\quad 泳 \\
+\hline
+人\quad 数 & \textcolor{blue}{39} & \textcolor{blue}{5} & \textcolor{blue}{12} & \textcolor{blue}{10} & \textcolor{blue}{4} & \textcolor{blue}{8} \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{0.8cm}
+
+% --- 答案统计图（条形） ---
+\begin{center}
+\textbf{\large 某班同学最喜爱的一项体育活动统计图}
+
+\vspace{0.5cm}
+\begin{tikzpicture}[x=0.8cm, y=0.35cm]
+  % 标题附属文字
+  \node[above] at (0, 14.5) {数量/人};
+  \node[above] at (11, 14.5) {{\color{blue}3} \ 月 \ {\color{blue}9} \ 日};
+
+  % 绘制主网格（共11列，7行大格）
+  \draw[black, line width=0.8pt] (0,0) rectangle (11,14);
+  
+  % 内部横线（每行代表2人，真实高度标尺为14，所以画到12即可）
+  \foreach \y in {2,4,6,8,10,12} {
+    \draw[black, line width=0.4pt] (0,\y) -- (11,\y);
+  }
+  
+  % 内部竖线（共10条内部竖线，划分出11个空格）
+  \foreach \x in {1,2,...,10} {
+    \draw[black, line width=0.4pt] (\x,0) -- (\x,14);
+  }
+  
+  % 左侧 Y 轴刻度文字
+  \foreach \y in {0,2,4,6,8,10,12,14} {
+    \node[left, font=\small] at (0,\y) {\y};
+  }
+  
+  % 底部 X 轴项目类别名称（位于柱子中间）
+  \node[below, font=\small] at (1.5, -0.3) {跳绳};
+  \node[below, font=\small] at (3.5, -0.3) {滑冰};
+  \node[below, font=\small] at (5.5, -0.3) {踢足球};
+  \node[below, font=\small] at (7.5, -0.3) {打乒乓球};
+  \node[below, font=\small] at (9.5, -0.3) {游泳};
+  
+  \node[below, right, font=\small] at (11, -0.3) {项目};
+
+  % 绘制数据蓝柱子（对齐王哥/网格背景边界）
+  % 设间隔为空白格。第1个矩形位于(1,0)-(2,y)，第2个位于(3,0)-(4,y)...
+  \fill[cyan!70!blue] (1, 0) rectangle (2, 5);
+  \node[above, font=\large] at (1.5, 5) {5};
+  
+  \fill[cyan!70!blue] (3, 0) rectangle (4, 12);
+  \node[above, font=\large] at (3.5, 12) {12};
+  
+  \fill[cyan!70!blue] (5, 0) rectangle (6, 10);
+  \node[above, font=\large] at (5.5, 10) {10};
+  
+  \fill[cyan!70!blue] (7, 0) rectangle (8, 4);
+  \node[above, font=\large] at (7.5, 4) {4};
+  
+  \fill[cyan!70!blue] (9, 0) rectangle (10, 8);
+  \node[above, font=\large] at (9.5, 8) {8};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 计票宏复用与字体拟合：} 沿用文档头部的 \texttt{\textbackslash zhengII} 至 \texttt{\textbackslash zhengIV} 宏，精准嵌入计票表格残缺汉字笔画。\\
+\textbf{2. 方阵化条形图格栅排布：} 解析原题照片可以提取出一个隐蔽的排版内核：它根本不是 $7$ 列均匀分布柱，而是一张标准的“隔一画一” $11$ 列方形网格（包含 $11$ 个方格列）。代码依据此规则，使用 \texttt{\textbackslash foreach \textbackslash x in \{1,2,...,10\}} 布下硬核钢线网格；所有的蓝色直方图块（如跳绳在 \texttt{x=1} 到 \texttt{x=2} 之间）均使用贴边填充，彻底抹除空隙 \texttt{margin}，严格落实让柱状图“强制对齐网格（即王哥）背景”的视觉标准。
+}
+
+%% ==============================
+%% 第78题（补充题）：横向条形图与数据转换
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：横向统计图的识别与制备}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 69.} \textbf{（第 1 题）东阳小学合唱队女生的身高情况记录如下。（单位：厘米）}
+
+\vspace{0.4cm}
+% --- 原始数据表格 ---
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+姓\quad 名 & 身\quad 高 & 姓\quad 名 & 身\quad 高 & 姓\quad 名 & 身\quad 高 & 姓\quad 名 & 身\quad 高 \\
+\hline
+吴\quad 凡 & $143$ & 王思雨 & $138$ & 陈一洋 & $132$ & 吴\quad 菁 & $138$ \\
+\hline
+刘一辰 & $139$ & 刘\quad 婧 & $147$ & 刘\quad 丽 & $140$ & 陈君好 & $146$ \\
+\hline
+王\quad 晓 & $145$ & 尹\quad 鸣 & $139$ & 朱平凡 & $139$ & 杨\quad 柳 & $143$ \\
+\hline
+葛\quad 楠 & $135$ & 卢小菲 & $141$ & 吴\quad 婷 & $148$ & 夏晴天 & $136$ \\
+\hline
+凌雨桐 & $144$ & 沈语嘉 & $144$ & 赵\quad 婕 & $150$ & 张\quad 焱 & $142$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{身高低于 140 厘米的适合穿小号服装，身高 140$\sim$145 厘米的适合穿中号服装，身高超过 145 厘米的适合穿大号服装。根据上表完成下面的统计图。}\\
+\textbf{根据完成的统计图填空：小号服装要准备(\qquad)套，中号服装比大号服装要多准备(\qquad)套。}
+
+\vspace{0.8cm}
+\textbf{解：}
+
+由上表数据逐一筛选统计：
+\begin{itemize}
+    \item \textbf{低于 140 厘米（小号）}：王思雨(138)、陈一洋(132)、吴菁(138)、刘一辰(139)、尹鸣(139)、朱平凡(139)、葛楠(135)、夏晴天(136)，共计 $8$ 人。
+    \item \textbf{140$\sim$145 厘米（中号）}：吴凡(143)、刘丽(140)、王晓(145)、杨柳(143)、卢小菲(141)、凌雨桐(144)、沈语嘉(144)、张焱(142)，共计 $8$ 人。
+    \item \textbf{超过 145 厘米（大号）}：刘婧(147)、陈君好(146)、吴婷(148)、赵婕(150)，共计 $4$ 人。
+\end{itemize}
+
+计算得出：小号服装要 $8$ 套。中号服装 $8$ 套，大号服装 $4$ 套，中号比大号多 $8 - 4 = 4$ 套。
+
+%\vspace{0.4cm}
+\newpage
+% --- 横向条形统计图 ---
+\begin{center}
+\textbf{东阳小学合唱队女生身高情况统计图}
+
+\vspace{0.6cm}
+\begin{tikzpicture}[x=1.8cm, y=0.71cm]
+  % 标题附属文字
+  \node[above left] at (0, 7.3) {身高/厘米};
+  \node[above left] at (6, 7.5) {{\color{blue}3} \ 月 \ {\color{blue}9} \ 日};
+
+  % 绘制主网格（共6列单位，7行单位大格）
+  \draw[black, line width=0.8pt] (0,0) rectangle (6,7);
+  
+  % 内部横线（横切分类：6 条内横线）
+  \foreach \y in {1,2,3,4,5,6} {
+    \draw[black, line width=0.4pt] (0,\y) -- (6,\y);
+  }
+  
+  % 内部竖线（共 5 条内竖线，划分出 6 列）
+  \foreach \x in {1,2,3,4,5} {
+    \draw[black, line width=0.4pt] (\x,0) -- (\x,7);
+  }
+  
+  % 底部 X 轴数字与说明（每格代表2人）
+  \node[below] at (0, -0.1) {0};
+  \node[below] at (1, -0.1) {( {\color{blue}2} )};
+  \node[below] at (2, -0.1) {( {\color{blue}4} )};
+  \node[below] at (3, -0.1) {( {\color{blue}6} )};
+  \node[below] at (4, -0.1) {( {\color{blue}8} )};
+  \node[below] at (5, -0.1) {( {\color{blue}10} )};
+  
+  \node[below right] at (6.1, -0.1){数量/人};
+
+  % 左侧 Y 轴类目名称（居中对齐到对应的着色条行：y=1.5, 3.5, 5.5）
+  \node[left] at (-0.1, 1.5) {低于140};
+  \node[left] at (-0.1, 3.5) {140$\sim$145};
+  \node[left] at (-0.1, 5.5) {超过145};
+
+  % 绘制数据蓝色条柱
+  % 根据题干照片网格重构：严格对齐网格（即王哥背景）。
+  % 第一行（y=0~1）留空，第二行（y=1~2）为“低于140”。
+  % 每个 x 单位代表 2 人。8人对应 x=4；4人对应 x=2。
+  
+  % 低于 140 (8人 -> x=4)
+  \fill[cyan!70!blue] (0, 1) rectangle (4, 2);
+  
+  % 140~145 (8人 -> x=4)
+  \fill[cyan!70!blue] (0, 3) rectangle (4, 4);
+  
+  % 超过 145 (4人 -> x=2)
+  \fill[cyan!70!blue] (0, 5) rectangle (2, 6);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+根据完成的统计图填空：小号服装要准备({\color{blue}\textbf{ 8 }})套，中号服装比大号服装要多准备({\color{blue}\textbf{ 4 }})套。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 中文字符组与长表格的数据映射：} 快速定位四列长表进行区间分类求和（ $8,8,4$ ），为底部横向网格预判图元位置。\\
+\textbf{2. 强制对齐极简网格域：} 根据要求，完全舍弃了之前的虚空坐标悬挂逻辑！直接建构严格的 $6 \times 7$ 网格矩阵。针对“格列长宽比例 $9.4:3.7$”的视觉约束，设置坐标缩放域 \texttt{x=0.94cm, y=0.37cm} 以确保的“砖块型长孔”质感。所有的条形色柱不留一丝外边距（ \texttt{margin} ），像泥瓦匠一样横死死砌入 $y=1\sim2, 3\sim4, 5\sim6$ 的预留孔内，达到了最高质量的“对齐背景”要求。
+}
+
+%% ==============================
+%% 第79题（补充题）：竖向条形统计图、正字法与统计表
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：原始数据记录与统计图表转化}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 70.} \textbf{（第 1 题）乐乐现有图书情况记录如下。（单位：本）}
+
+\vspace{0.4cm}
+% --- 原始正字数据表 ---
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\makebox[3cm][c]{故\ 事\ 书} & \quad \zheng\quad \zheng\quad \zheng\quad \zheng\quad \zheng\quad \zhengIV \\
+\hline
+\makebox[3cm][c]{文\ 艺\ 书} & \quad \zheng\quad \zheng\quad \zheng\quad \zheng\quad \zheng\quad \zheng\quad \zheng \\
+\hline
+\makebox[3cm][c]{科\ 普\ 书} & \quad \zheng\quad \zheng\quad \zheng\quad \zhengIII \\
+\hline
+\makebox[3cm][c]{学习辅导书} & \quad \zheng\quad \zheng\quad \zheng\quad \zheng\quad \zhengI \\
+\hline
+\makebox[3cm][c]{工\ 具\ 书} & \quad \zheng\quad \zhengII \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{根据上面的记录完成下面的统计表和统计图。}
+
+\vspace{0.6cm}
+\textbf{解：}
+
+由“正”字计票法计算各类图书总量：
+\begin{itemize}
+    \item \textbf{故事书}： $5 \times 5 + 4 = 29$ 本
+    \item \textbf{文艺书}： $7 \times 5 = 35$ 本
+    \item \textbf{科普书}： $3 \times 5 + 3 = 18$ 本
+    \item \textbf{学习辅导书}： $4 \times 5 + 1 = 21$ 本
+    \item \textbf{工具书}： $5 \times 1 + 2 = 7$ 本
+\end{itemize}
+合计总数 $= 29 + 35 + 18 + 21 + 7 = 110$ 本。
+
+\vspace{0.4cm}
+% --- 统计表（注意左右无边框样式） ---
+\begin{center}
+\textbf{\large 乐乐现有图书情况统计表}
+
+\vspace{0.4cm}
+\hfill \_\_\_\_ 月 \_\_\_\_ 日
+
+\vspace{0.2cm}
+\renewcommand{\arraystretch}{2.0}
+% 故意剥离左右端外侧竖线，仅留内部的 \c 从而形成跑风式布局
+\begin{tabular}{c|c|c|c|c|c|c}
+\hline
+类\quad 别 & 合\quad 计 & 故\ 事\ 书 & 文\ 艺\ 书 & 科\ 普\ 书 & 学习辅导书 & 工\ 具\ 书 \\
+\hline
+数量/本 & {\color{blue}\textbf{110}} & {\color{blue}\textbf{29}} & {\color{blue}\textbf{35}} & {\color{blue}\textbf{18}} & {\color{blue}\textbf{21}} & {\color{blue}\textbf{7}} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1.0cm}
+
+% --- 竖向直方图 ---
+\begin{center}
+\textbf{\large 乐乐现有图书情况统计图}
+
+\vspace{0.6cm}
+\begin{tikzpicture}[x=0.97cm, y=0.45cm]
+  % 标题附属文字
+  \node[above left] at (0, 8.3) {数量/本};
+  \node[above left] at (11, 8.4) {{\color{blue}3} \ 月 \ {\color{blue}9} \ 日};
+
+  % 绘制主网格（共 11 列横向单元格，8 行纵向大格）
+  \draw[black, line width=0.8pt] (0,0) rectangle (11,8);
+  
+  % 内部横向标线（切割行）
+  \foreach \y in {1,2,3,4,5,6,7} {
+    \draw[black, line width=0.4pt] (0,\y) -- (11,\y);
+  }
+  
+  % 内部竖向标线（切割列）
+  \foreach \x in {1,2,...,10} {
+    \draw[black, line width=0.4pt] (\x,0) -- (\x,8);
+  }
+  
+  % 左侧 Y 轴纵轴数字 (每格代表 5 本)
+  \foreach \y/\ytext in {0/0, 1/5, 2/10, 3/15, 4/20, 5/25, 6/30, 7/35, 8/40} {
+    \node[left] at (-0.1, \y) {\ytext};
+  }
+
+  % 底部 X 轴类目说明（对齐到 1单位宽的柱子中心）
+  \node[below] at (1.5, -0.2) {故事书};
+  \node[below] at (3.5, -0.2) {文艺书};
+  \node[below] at (5.5, -0.2) {科普书};
+  \node[below] at (7.5, -0.2) {学习辅导书};
+  \node[below] at (9.5, -0.2) {工具书};
+  
+  \node[below right] at (11.1, -0.2) {种类};
+
+  % ===================================
+  % 绘制蓝色填色柱体与对应数值
+  % ===================================
+  % 参数说明：#1:起始X刻度, #2: 高度Y刻度计算结果, #3: 显示文字
+  \def\drawbar#1#2#3{
+    \fill[cyan!70!blue] (#1, 0) rectangle (#1+1, #2);
+    % 为了防止顶部网格线穿透字体产生视觉干扰，此处添加一个“白底护盾”(fill=white)节点
+    \node[above, fill=white, inner sep=1.5pt] at (#1+0.5, #2) {\textbf{#3}};
+  }
+  
+  % 根据计票结果进行柱体绘制
+  % 柱体排位法则：网格上从 x=1 起跳，占据宽 1，隔离 1（即：1-2, 3-4, 5-6, 7-8, 9-10）
+  % 柱体高度换算：由于图表中 1 个 y单位代表 5本，所以真实高度坐标为：总数量 / 5
+  \drawbar{1}{5.8}{29}  % 故事书（29 / 5 = 5.8）
+  \drawbar{3}{7.0}{35}  % 文艺书（35 / 5 = 7.0）
+  \drawbar{5}{3.6}{18}  % 科普书（18 / 5 = 3.6）
+  \drawbar{7}{4.2}{21} % 学习辅导书（21 / 5 = 4.2）
+  \drawbar{9}{1.4}{7}  % 工具书（7 / 5 = 1.4）
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 中文字符宏复用：} 解析题干照片中的异常计票痕迹后，利用宏定义（如 \texttt{\textbackslash zhengIV} 等）映射残缺汉字笔画，直接在 LaTeX 源码级别实现卷面数据实况还原。\\
+\textbf{2. 开放式边框规避：} 答案中的统计表刻意去除了外边界线（移除包裹命令中的外侧竖向管道符 \texttt{|} ），仅保留内穿纵横分割线段，以精准对应原题干配图中无封口边框的视觉排印格式。\\
+\textbf{3. 离散坐标的暗格阵列化：} 表像上的 “5根独立矩形直方” 实际上构建在一个隐形的 $11 \times 8$ 网格式钢架中。由于需显式渲染出背景的辅助黑白像素网格，条形数据的排列必须与底层网格交点精确吻合，因而采用“空 1 列，填充 1 列宽度，再空 1 列”的硬位图绘制法则。不仅如此，针对“格列长宽比例 $97:45$”的视觉约束，设置坐标缩放域 \texttt{x=0.97cm, y=0.45cm}。在图块上方浮动的高亮数值区，通过封装 \texttt{fill=white} 半透明白色垫片，防止深色网格墨线切断字符影响数字识读。
+}
+
+
+%% ==============================
+%% 第80题（补充题）：分段统计与竖向条形统计图
+%% ==============================
+\newpage

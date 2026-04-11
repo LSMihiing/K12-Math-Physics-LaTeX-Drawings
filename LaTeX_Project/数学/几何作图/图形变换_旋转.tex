@@ -1,0 +1,325 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 图形变换_旋转
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：方格纸中的图形旋转、面积计算与确定格点}
+
+\vspace{0.6cm}
+
+\textbf{（1）以点 D 原点作中心对称画出 $180^\circ$ 旋转后的 $\Delta A_1B_1C_1$，以及（3）在直线 $BC$ 上确定格点 $E$ ，具体绘图解答如下：}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.6, >=Stealth, line join=round, line cap=round]
+  % 1. 绘制背景网格系 (12列 x 10行)
+  % 我们以旋转中心 D(0,0) 为原点建立笛卡尔直角坐标系
+  \draw[dashed, gray!80, step=1] (-6, -6) grid (6, 5); % 向下拓展到 -6 显示全 C1 和 B1 的对称图形需求
+  
+  % 2. 定义原三角形顶点及 D 点的位置坐标
+  \coordinate (A) at (2, 4);
+  \coordinate (B) at (-3, 4);
+  \coordinate (C) at (5, 0);
+  \coordinate (D) at (0, 0);
+  
+  % 标记原始点 D
+  \fill (D) circle (2.5pt) node[below left] {$D$};
+  
+  % 绘制已给的黑色实线原三角形 ABC
+  \draw[line width=1.0pt, black] (A) -- (B) -- (C) -- cycle;
+  \node[above] at (A) {$A$};
+  \node[above left] at (B) {$B$};
+  \node[right] at (C) {$C$};
+  
+  % ----------------------------------------------------
+  % 解答问题 (1)：画出旋转 180° 后的三角形 A1B1C1
+  % ----------------------------------------------------
+  % 中心对称旋转 180°，坐标关于原点中心取反 (-x, -y)
+  \coordinate (A1) at (-2, -4);
+  \coordinate (B1) at (3, -4);
+  \coordinate (C1) at (-5, 0);
+  
+  % 绘制新的像三角形 A1B1C1, 使用蓝色标示特征作图连线
+  \draw[line width=1.2pt, blue!80!black] (A1) -- (B1) -- (C1) -- cycle;
+  \fill[blue!80!black] (A1) circle (2.5pt) node[below] {$A_1$};
+  \fill[blue!80!black] (B1) circle (2.5pt) node[below right] {$B_1$};
+  \fill[blue!80!black] (C1) circle (2.5pt) node[above left] {$C_1$};
+  
+  % 画出对应的原相-映像对称验证穿中心虚线
+  \draw[dashed, gray, line width=0.4pt] (A) -- (A1);
+  \draw[dashed, gray, line width=0.4pt] (B) -- (B1);
+  \draw[dashed, gray, line width=0.4pt] (C) -- (C1);
+  
+  % ----------------------------------------------------
+  % 解答问题 (3)：在直线 BC 上确定点 E，使得 BC = 2BE
+  % ----------------------------------------------------
+  % 根据已知 B(-3,4)，C(5,0)，使 BC=2BE 的正解即为其中点坐标 E(1,2)
+  \coordinate (E) at (1, 2);
+  \fill[red!80!black] (E) circle (3pt) node[above right] {$E$};
+  \draw[dashed, red!80!black, line width=1.0pt] (B) -- (E);
+
+  % ----------------------------------------------------
+  % 附加面积求解平行四边形：辅助色图层
+  % ----------------------------------------------------
+  \fill[yellow!30, opacity=0.4] (B) -- (C1) -- (B1) -- (C) -- cycle;
+  \draw[thick, dotted, orange] (B) -- (C1) -- (B1) -- (C) -- cycle;
+  
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（2）以 $B, C_1, B_1, C$ 为顶点的四边形的面积为} \underline{\quad \textbf{40} \quad} \textbf{。}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{第（1）小题：}\\
+建立以中心点 $D(0,0)$ 为原点的直角坐标系。结合题意参数获取顶点坐标为 $A(2,4), B(-3,4), C(5,0)$。沿原点中心对称即为横纵坐标分别取反：$x \rightarrow -x, y \rightarrow -y$。由此可得出对称图像的顶点：$A_1(-2,-4), B_1(3,-4), C_1(-5,0)$。顺次连接这三点即得到所需图示 $\Delta A_1B_1C_1$。\\
+2. \textbf{第（2）小题：}\\
+由图形旋转性质可知由于对称性，该四边形的对角线平分交汇于点 $D$，可知四边形 $BC_1B_1C$ 必定属于平行四边形。其四个顶点为 $B(-3,4)$、$C_1(-5,0)、B_1(3,-4)、C(5,0)$。\\
+利用经典的外接矩形割补法求面积：构造包裹该四边形的最小正外接矩形，可知其横轴长为 $5 - (-5) = 10$，纵轴高为 $4 - (-4) = 8$，全矩形总框面积为 $10 \times 8 = 80$。将四个角的“补全直角三角形”面积逐次减去，其大小依对称性分别相加得：$S_\text{外减} = 2 \times (\frac{1}{2} \times 2 \times 4 + \frac{1}{2} \times 8 \times 4) = 2 \times (4 + 16) = 40$。最终纯四边形净面积为 $80 - 40 = 40$。\\
+3. \textbf{第（3）小题：}\\
+由 $B(-3,4)$ 和 $C(5,0)$ 落定直线。在直线 $BC$ 上有格点 $E$，满足距离比例约束方程 $BC=2BE$。据此其物理含义为：点 $B$ 到 $E$ 的线段长度等于总线段 $BC$ 的二分之一。我们利用中点距离坐标公式：$E$ 的横坐标为 $\frac{-3+5}{2} = 1$，纵坐标为 $\frac{4+0}{2}=2$。得到解 $E(1, 2)$。其横纵属性均为整数，即符合“格点”要求，由此标明位置结束制图。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图原理：}\\
+\textbf{1. 网格化建立：}以点 $D$ 为直角坐标原点 $(0,0)$，根据设定参数直接通过 \texttt{step=1} 以及 \texttt{(-6, -6) grid (6, 5)} 搭建宽幅适配全对称旋转画面的底层虚线格坐标背景板。\\
+\textbf{2. 代数原相作图：}依据人工输入的单位节点坐标定义所有核心矢量定点图元，使用 TikZ \texttt{-{}-{}} 指令相连接完成原形 $\Delta ABC$，并计算赋入取反坐标画出高对比度蓝色填色的中心对称影像 $\Delta A_1B_1C_1$ 图层，保障线框逻辑稳定无视觉误差。\\
+\textbf{3. 数学解析图视化加盖：}对于格点要求寻找，调用极坐标及公式抓取点位算出唯一网格交点标上红底点缀。并辅设平行四边形的外轮廓面透白着色渲染 \texttt{opacity=0.4}，呈现了题目隐式存在的代数方程几何切割结果。
+}
+
+%% ==============================
+%% 第8题：在方格纸中作图形的中心对称与复合变换
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：网格图中的图形旋转}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 54.} \textbf{（第 3 题）如图，在由边长为 $1$ 个单位长度的小正方形组成的方格纸中，$\triangle ABC$ 的顶点分别在格点上，以点 $C$ 为旋转中心，将 $\triangle ABC$ 按顺时针方向旋转 $90^\circ$，请在方格纸中画出旋转后的 $\triangle A'B'C$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{画图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.6]
+  % 绘制网格背景 (0 到 13, 0 到 11)
+  \draw[dashed, gray] (0,0) grid (13,11);
+  
+  % 定义原始三角形的顶点坐标
+  \coordinate (A) at (0, 11);
+  \coordinate (B) at (3, 8);
+  \coordinate (C) at (2, 5);
+
+  % 以 C 为中心，顺时针旋转 90 度计算新坐标
+  % C(2,5), A(0,11) -> 向量 CA = (-2, 6) -> 顺时针旋转 90 度变为 (6, 2) -> A' = (8, 7)
+  % B(3,8) -> 向量 CB = (1, 3) -> 顺时针旋转 90 度变为 (3, -1) -> B' = (5, 4)
+  \coordinate (A') at (8, 7);
+  \coordinate (B') at (5, 4);
+
+  % 绘制原始三角形 ABC (黑色)
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \filldraw (A) circle (2pt) node[above] {$A$};
+  \filldraw (B) circle (2pt) node[above right] {$B$};
+  \filldraw (C) circle (2pt) node[below left] {$C$};
+
+  % 绘制旋转后的三角形 A'B'C (红色高亮)
+  \draw[thick, red] (A') -- (B') -- (C) -- cycle;
+  \filldraw[red] (A') circle (2pt) node[above right, text=red] {$A'$};
+  \filldraw[red] (B') circle (2pt) node[below right, text=red] {$B'$};
+
+  % 绘制辅助虚线（展现旋转轨迹）
+  \draw[dashed, blue!70] (C) -- (A');
+  
+  % 标示旋转角 (CA 到 CA') 与 垂直符号
+  % atan2(6, -2) 约 108.4 度，atan2(2, 6) 约 18.4 度
+  \draw[blue!70, ->] (C) ++(108.4:1.2) arc (108.4:18.4:1.2);
+  \node[blue!70, font=\small] at (4, 6.5) {$90^\circ$};
+  
+  % 直角（垂直）符号
+  \draw[blue!70, thick] (C) ++(108.4:0.5) -- ++(18.4:0.5) -- ++(108.4:-0.5);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{作图说明：}
+
+① 根据题意，旋转中心为点 $C$，所以点 $C$ 旋转后的位置保持不变（即点 $C'$ 与点 $C$ 重合）；
+
+② 将线段 $CA$ 绕点 $C$ 顺时针旋转 $90^\circ$ 得到线段 $CA'$。在网格中体现为：将原方向“向左 $2$ 格、向上 $6$ 格”转化为“向右 $6$ 格、向上 $2$ 格”，从而确定对应点 $A'$ 的位置；
+
+③ 将线段 $CB$ 绕点 $C$ 顺时针旋转 $90^\circ$ 得到线段 $CB'$。在网格中体现为：将原方向“向右 $1$ 格、向上 $3$ 格”转化为“向右 $3$ 格、向下 $1$ 格”，从而确定对应点 $B'$ 的位置；
+
+④ 顺次连接 $A'B'$、$B'C$，所得的 $\triangle A'B'C$ 即为所求作的旋转图形。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 网格系统：} 根据已知条件建立大小为 $13 \times 11$ 的虚线方格坐标系，设定缩放比例为 \texttt{scale=0.6} 以兼顾排版尺寸展示。\\
+\textbf{2. 坐标推算：} 以左下角为原点 $(0,0)$，确定原三角形顶点为 $A(0,11), B(3,8), C(2,5)$。顺时针旋转 $90^\circ$ 的向量法则为 $(x, y) \to (y, -x)$。根据基于中心 $C$ 的相对向量坐标，推算出 $A'(8, 7)$ 及 $B'(5, 4)$。\\
+\textbf{3. 图形展示：} 使用红色实线突出显示目标旋转图形 $\triangle A'B'C$，同时保留原图形的黑色实线对比。\\
+\textbf{4. 过程标注：} 绘制蓝色虚线标出旋转前后的对应边 $CA'$，并使用带箭头的 \texttt{arc} 圆弧标记出 $90^\circ$ 的极坐标角变化轨迹动作，让画法痕迹显得更加丰满易懂。
+}
+
+%% ==============================
+%% 第64题（补充题）：四边形绕点旋转
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：四边形绕点旋转作图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 55.} \textbf{（第 3 题）如图，画出四边形 $ABCD$ 绕点 $O$ 按顺时针方向旋转 $120^\circ$ 所得到的图形。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{画图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8]
+  % 定义中心 O
+  \coordinate (O) at (0, 0);
+  
+  % 定义四边形 ABCD 坐标 (基于原图比例)
+  \coordinate (A) at (-4, 1);
+  \coordinate (B) at (-4.5, -1);
+  \coordinate (C) at (-1.5, -1);
+  \coordinate (D) at (-2, 1);
+  
+  % 原四边形
+  \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+  \filldraw (A) circle (1.5pt) node[left] {$A$};
+  \filldraw (B) circle (1.5pt) node[left] {$B$};
+  \filldraw (C) circle (1.5pt) node[below] {$C$};
+  \filldraw (D) circle (1.5pt) node[above] {$D$};
+  
+  % 旋转中心 O
+  \filldraw (O) circle (1.5pt) node[right] {$O$};
+  
+  % 计算并绘制目标四边形 (在局部空间发生坐标系旋转)
+  \begin{scope}[rotate around={-120:(O)}]
+    \coordinate (A') at (-4, 1);
+    \coordinate (B') at (-4.5, -1);
+    \coordinate (C') at (-1.5, -1);
+    \coordinate (D') at (-2, 1);
+    
+    \draw[thick, red] (A') -- (B') -- (C') -- (D') -- cycle;
+    \filldraw[red] (A') circle (1.5pt) node[above right, text=red] {$A'$};
+    \filldraw[red] (B') circle (1.5pt) node[above, text=red] {$B'$};
+    \filldraw[red] (C') circle (1.5pt) node[left, text=red] {$C'$};
+    \filldraw[red] (D') circle (1.5pt) node[below right, text=red] {$D'$};
+  \end{scope}
+  
+  % 画出辅助线，体现 120 度旋转
+  \draw[dashed, blue!70] (D) -- (O) -- (D');
+  
+  % 画 -120 度的角度弧圈指示
+  \draw[blue!70, ->] (O) ++(153.4:0.8) arc (153.4:33.4:0.8);
+  \node[blue!70, font=\small] at (93.4:1.2) {$120^\circ$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{作图说明：}
+
+① 连接 $OA$、$OB、OC$、$OD$；
+
+② 分别做 $\angle AOA' = \angle BOB' = \angle COC' = \angle DOD' = 120^\circ$（按顺时针方向），且截取使 $OA'=OA$、$OB'=OB、OC'=OC$、$OD'=OD$，依次得到原顶点 $A$、$B、C$、$D$ 的对应目标点 $A'$、$B'、C'、D'$；
+
+③ 顺次连接 $A'B'$、$B'C'、C'D'、D'A'$，所得的四边形 $A'B'C'D'$ 即为所求作的顺时针旋转图形。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 坐标系选定：} 设定旋转中心 $O$ 为原点 $(0,0)$。根据图像比例近似设定梯形边界基准：赋予四边形顶点坐标 $A(-4, 1), B(-4.5, -1), C(-1.5, -1), D(-2, 1)$。\\
+\textbf{2. 旋转变换：} 运用 \texttt{TikZ} 的 \texttt{scope} 并叠加局部坐标变换指令 \texttt{rotate around=\{-120:(O)\}}，直接生成顺时针 $120^\circ$ 的映射图，此举规避了手算各类浮点数三角函数的代码复杂度与精度丢失。\\
+\textbf{3. 过程连线：} 利用浅蓝色虚线连接了一组距离中心 $O$ 较近的关键点映射 $D \to O \to D'$，利用 \texttt{arc} 圆弧表现出动态位移走向，避免全部虚线导致画面拥挤。
+}
+
+%% ==============================
+%% 第65题（补充题）：平移等价于两次旋转
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：图形旋转与四边形判定}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 78.} \textbf{如图 $8-5$，把 $\triangle ABC$ 绕点 $C$ 旋转 $180^\circ$ 得 $\triangle DEC$，请画出图形并判断四边形 $ABDE$ 的形状。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1cm, y=1cm]
+  % 定义点 C 作为旋转中心（原点）
+  \coordinate (C) at (0, 0);
+  % 根据原图比例估算 A 和 B 的相对位置
+  \coordinate (B) at (-3, 0);
+  \coordinate (A) at (-0.8, 2);
+  
+  % 根据绕点 C 旋转 180° 的性质求 D 和 E 的坐标
+  % D 是 A 的对应点，E 是 B 的对应点
+  \coordinate (D) at (0.8, -2);
+  \coordinate (E) at (3, 0);
+  
+  % 1. 原图形：绘制 \Delta ABC（黑色实线）
+  \draw[line width=0.8pt] (A) -- (B) -- (C) -- cycle;
+  \filldraw[black] (A) circle (1.5pt) node[above, font=\small] {$A$};
+  \filldraw[black] (B) circle (1.5pt) node[below left, font=\small] {$B$};
+  \filldraw[black] (C) circle (1.5pt) node[above right, font=\small] {$C$};
+  
+  % 2. 旋转后的图形：绘制 \Delta DEC（蓝色实线）
+  \draw[line width=0.8pt, blue!80!black] (D) -- (E) -- (C) -- cycle;
+  \filldraw[black] (D) circle (1.5pt) node[below, font=\small, blue!80!black] {$D$};
+  \filldraw[black] (E) circle (1.5pt) node[above right, font=\small, blue!80!black] {$E$};
+  
+  % 3. 连接构成的四边形 ABDE
+  % 边 AB 和 DE 已经在三角形中画出，这里补充画边 BD 和 AE，使用虚线
+  \draw[line width=0.8pt, dashed, red!80!black] (A) -- (E);
+  \draw[line width=0.8pt, dashed, red!80!black] (B) -- (D);
+  
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{判断结果：四边形 $\boldsymbol{ABDE}$ 是平行四边形。}
+
+\textbf{理由：}
+根据旋转 $180^\circ$（即中心对称）的性质可知，点 $A, C, D$ 在同一直线上且 $AC = CD$，说明点 $C$ 是线段 $AD$ 的中点；同理，点 $B, C, E$ 在同一直线上且 $BC = CE$，说明点 $C$ 也是线段 $BE$ 的中点。
+
+根据“\textbf{对角线互相平分的四边形是平行四边形}”这一判定定理，因为四边形 $ABDE$ 的对角线 $AD$ 和 $BE$ 在点 $C$ 处互相平分，所以四边形 $ABDE$ 是平行四边形。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 锚点与旋转代数求解：} 将原像点 $C$ 设为直角坐标系的原点 $(0,0)$。根据图像估算置点 $B$ 于水平轴上 $(-3,0)$，置点 $A$ 于 $(-0.8, 2)$ 处。根据中心对称（即绕点 $C$ 旋转 $180^\circ$）规则，直接取横纵坐标相反数，计算得对应点 $D(0.8, -2)$ 与 $E(3, 0)$，实现代数级别的精准刚体旋转。\\
+\textbf{2. 层次化元素图解：} 采用粗黑实线重绘原始结构 $\triangle ABC$ 作为主从视觉基准。随后以醒目的蓝色实线勾勒出经过中心对称重构的 $\triangle DEC$ 的像。\\
+\textbf{3. 四边形闭合及证明铺垫：} 利用红色的虚线轻巧补齐待判断四边形的外围缺口轮廓（边 $AE$ 和 $BD$）。这样的色彩与虚实搭配不仅完整呈现了最终生成的四边形闭包实体，同时在视觉上保留并凸显了主轴线 $AD$ 与 $BE$ “既是两个独立三角形的边、又是统摄四边形的交叉对角线”的身份，从而在直觉层面不证自明地诠释了对角线平分的判定逻辑。
+}
+
+%% ==============================
+%% 第88题（补充题）：在方格图中拼图
+%% ==============================
+\newpage

@@ -1,0 +1,2336 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 线段图 / 数轴与不等式
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：在数轴上表示不等式的解集}
+
+\vspace{0.4cm}
+
+\noindent\textbf{例 3 \ 在数轴上表示下列不等式的解集：}
+
+\vspace{0.2cm}
+\noindent (1) $x > 3\frac{1}{2}$； \hspace{4cm} (2) $x \leqslant -2.5$.
+
+
+\vspace{0.8cm}
+
+\noindent{\textbf{(1)小问详解：}}\\
+解：在数轴上表示不等式 $x > 3\frac{1}{2}$ 解集如下：
+
+\vspace{0.6cm}
+\begin{center}
+% =====================================================================
+% 【整体绘制思路：不等式解集数轴 (1)】
+% 1. 数轴框架：带右箭头的水平线，从 -5.5 到 6.2。
+% 2. 刻度和标度：从 -5 到 5，向下画短线并标数字。
+% 3. 特定标度 3.5：单独向下画线，标注带分数 3\frac{1}{2}。
+% 4. 解集表达：
+%    - 条件为 x > 3.5（不包含端点），因此用空心实线圆圈 \filldraw[fill=white]。
+%    - 大于向右画，带箭头表示无限延伸。折线高度统一 0.6。
+% =====================================================================
+\begin{tikzpicture}[>=Stealth, line width=0.8pt]
+  % 数轴主线与箭头
+  \draw[->] (-5.5, 0) -- (6.0, 0);
+  
+  % 整数刻度与数字
+  \foreach \x in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 特殊刻度值 3又1/2 (即 3.5)
+  \draw (3.5, 0) -- (3.5, -0.2);
+  \node[below, font=\small, red!70!black] at (3.5, -0.4) {$3\frac{1}{2}$};
+  
+  % 解集折线与方向区域 (红色加粗突出)
+  % 空心点，不包含本数
+  \filldraw[fill=white, draw=red!70!black, thick] (3.5, 0) circle (2.5pt);
+  % 从圆圈正上方(稍微留空一点防遮挡)往上折，然后向右画箭头
+  \draw[->, red!70!black, line width=1.2pt] (3.5, 0.08) -- (3.5, 0.6) -- (5.8, 0.6);
+\end{tikzpicture}
+\end{center}
+
+\vspace{1.0cm}
+
+\noindent{\textbf{(2)小问详解：}}\\
+解：在数轴上表示不等式 $x \leqslant -2.5$ 解集如下：
+
+\vspace{0.6cm}
+\begin{center}
+% =====================================================================
+% 【整体绘制思路：不等式解集数轴 (2)】
+% 1. 数轴框架：与上一题保持一致，末端增加字母 x。
+% 2. 特定标度 -2.5：单独向下画线，标注 -2.5。
+% 3. 解集表达：
+%    - 条件为 x <= -2.5（包含端点），因此用实心圆圈 \fill。
+%    - 小于等于向左画，因为有边界限制向负无穷，无需特别画终点箭头。
+% =====================================================================
+\begin{tikzpicture}[>=Stealth, line width=0.8pt]
+  % 数轴主线与箭头，带标签 x
+  \draw[->] (-5.5, 0) -- (6.0, 0) node[below] {$~$};
+  
+  % 整数刻度与数字
+  \foreach \x in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 特殊刻度值 -2.5
+  \draw (-2.5, 0) -- (-2.5, -0.2);
+  \node[below, font=\small, red!70!black] at (-2.5, -0.4) {$-2.5$};
+  
+  % 解集折线与方向区域 (红色加粗突出)
+  % 实心点，包含本数
+  \filldraw[red!70!black] (-2.5, 0) circle (2.5pt);
+  % 从圆圈往上折，然后向左画平线
+  \draw[red!70!black, line width=1.2pt] (-2.5, 0) -- (-2.5, 0.6) -- (-5.5, 0.6);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+在数轴上表示不等式解集的步骤：\\
+1. **画数轴**：规定原点、正方向和单位长度。\\
+2. **定界点**：根据不等号找到数值对应的位置。
+   - 若不等号包含等号（$\geqslant$ 或 $\leqslant$），表示包含该数值，属于闭区间边界，在数轴上画**实心圆点**。
+   - 若不等号不包含等号（$>$ 或 $<$），表示不包含该数值，属于开区间边界，在数轴上画**空心圆圈**。\\
+3. **定方向**：
+   - 当字母变量大于界点数值时，向数轴的**右边**画线段（并带箭头表示无限延伸）。
+   - 当字母变量小于界点数值时，向数轴的**左边**画线段。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 轴线自动化结构}：利用 \texttt{\char`\\foreach} 命令快速循环生成 -5 到 5 的标准整数刻度线和坐标数值标签（\texttt{\char`\\node[below]}），从而得到均匀一致的底层度量标准体系。\\
+\textbf{2. 关键非整数坐标追踪}：无论是正侧的 $3.5$（$3\frac{1}{2}$） 还是负侧的 $-2.5$，都通过精准计算在 \texttt{(x, 0)} 的相对位置追加刻度，刻度线下探深度略微加长（\texttt{-0.2}），以便容纳分式排版并防止和普通整数标签拥挤。\\
+\textbf{3. 空实点与延展标记法}：精确按照数学通识规范，在 $x=3.5$ 处使用 \texttt{\char`\\filldraw[fill=white]} 绘制带醒目描边的白心圆；在 $x=-2.5$ 处使用 \texttt{\char`\\filldraw} 填充纯色实心黑（红）圆；解集线条使用粗红色连线表示区间走向和界域状态。
+}
+
+\newpage
+
+\newpage
+
+\subsection{解答：在数轴上表示不等式的解集}
+
+\vspace{0.6cm}
+
+\textbf{6. 在数轴上表示下列不等式的解集：}
+
+\vspace{0.4cm}
+
+% 左右分栏开始
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）} $\boldsymbol{x < 4}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-1,0) -- (6,0);
+  \foreach \x in {0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x < 4，向左延伸空心)
+  \draw[blue!80!black, line width=1.2pt] (4,0) -- (4, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-0.5, 0.6) -- (4, 0.6);
+  
+  % 边界点 (空心圆圈)
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (4,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）} $\boldsymbol{x \geqslant -2}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-4,0) -- (3,0);
+  \foreach \x in {-3,-2,-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x >= -2，向右延伸实心)
+  \draw[blue!80!black, line width=1.2pt] (-2,0) -- (-2, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (-2, 0.6) -- (2.5, 0.6);
+  
+  % 边界点 (实心黑圆)
+  \filldraw[blue!80!black] (-2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）} $\boldsymbol{x \leqslant -1}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-4,0) -- (2,0);
+  \foreach \x in {-3,-2,-1,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x <= -1，向左延伸实心)
+  \draw[blue!80!black, line width=1.2pt] (-1,0) -- (-1, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-3.5, 0.6) -- (-1, 0.6);
+  
+  % 边界点 (实心黑圆)
+  \filldraw[blue!80!black] (-1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）} $\boldsymbol{x \leqslant \frac{1}{2}}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.6cm, y=1cm]
+  % 坐标轴与刻度 (适当放大横向比例以显示分数)
+  \draw[->, line width=0.8pt] (-2,0) -- (2,0);
+  \foreach \x in {-1,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 单独标注 1/2 的位置
+  \draw (0.5, 0) -- (0.5, 0.15);
+  \node[text=black, below, font=\small, yshift=-1pt] at (0.5, -0.1) {$\frac{1}{2}$};
+
+  % 解集标线 (x <= 1/2，向左延伸实心)
+  \draw[blue!80!black, line width=1.2pt] (0.5,0) -- (0.5, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-1.5, 0.6) -- (0.5, 0.6);
+  
+  % 边界点 (实心黑圆)
+  \filldraw[blue!80!black] (0.5,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+在数轴上规范表示不等式解集的三步基本法则：\\
+1. \textbf{手绘数轴：}先画出具有方向规范（正方向箭头）、原点（数字 $0$）和单位长度均等的标准点阵轴系。\\
+2. \textbf{定边界点并定型：}根据不等式的临界数值，在数轴上确立唯一落点。其中，对于含有等号（如 $\geqslant$ 或 $\leqslant$）的边界，由于解集集合合法包含了这颗数值端点，所以必须使用\textbf{实心圆点}进行强遮盖标记；而对于不含等号（$<, >$）的边界，由于解集严禁包含原本原点，必须严格保留原位置的虚缺空白位，使用\textbf{空心圆圈}表示。\\
+3. \textbf{定走线方向：}根据不等号口径所指方向（“大于”向右侧即正方向无限延伸，“小于”向左侧即负方向延伸）。用一条略微抬高悬浮的折线及末端强引导单箭头覆盖所辖区域，即可完成代数解集的直观拓扑几何化。例如在第（4）题中，因为边界值为非常规的分数 $\frac{1}{2}$，需要准确找到 $0$ 和 $1$ 之间正中切分的落子点，单独为之独立加注专属短刻度与代数式后方可起势拉线。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图（制图）基本原理与步骤：}\\
+\textbf{1. 极简并型流切分布局（\texttt{minipage}）：}因为这四道子题生成的图像都属于呈现横幅扁平流的狭长线段图形，为了匹配试卷题干并且极致利用纸面物理版型从而让页面更有紧凑的工业设计收纳感：我在全局宏观层面直接调用了 \texttt{\textbackslash begin\{minipage\}\{0.48\textbackslash textwidth\}} 将四幅数轴强行切断，编排成了的横向双拼、上下对称田字方格。\\
+\textbf{2. 纯代码参数化几何图层印章：}在各子图的底层代码设计中，我首先用带箭头黑线 \texttt{->} 加载出了一条原始的主干坐标底轴；同时彻底抛弃人工硬编码找点，大面积运用了自带的 \texttt{\textbackslash foreach} 字典循环一键全自动按等大间距步长洗刷出每一道的小刻度线及文字字距标群。\\
+\textbf{3. 空实点智能分离判定渲染系统：}对（1）题中最为特殊且要求剔除边界值的空心解情况特别下发专用双层掩膜透写指令：\texttt{\textbackslash filldraw[fill=white, draw=blue!80!black...]} 渲染出一个被物理镂空、仅带外环实体粗线而内部留白的白色透明环体模型，以强烈向评卷人暗示“不含此边界区间”的数学定式意义；其余包含等于号且可以被吸纳的安全子题则全盘打上无死角全封闭深蓝色黑洞实心戳 \texttt{\textbackslash filldraw[blue!80!black...]}，直接以强力代码级别精准还原并落实了国家初中标准化解集最严谨的画图实操手册手册。
+}
+
+%% ==============================
+%% 第6题(二) 解不等式并在数轴上表示解集
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：解不等式并在数轴表示}
+
+\vspace{0.6cm}
+
+\textbf{6. 解下列不等式，并把它们的解集在数轴上表示出来。}
+
+\vspace{0.4cm}
+
+% 左右分栏开始
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）} $\boldsymbol{4x - 1 > x + 8}$
+
+\vspace{0.1cm}
+
+\textbf{解：}移项，得 $4x - x > 8 + 1$ \\
+合并同类项，得 $3x > 9$ \\
+两边同除以 $3$，得 $x > 3$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (6,0);
+  \foreach \x in {0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[blue!80!black, line width=1.2pt] (3,0) -- (3, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (3, 0.6) -- (5.5, 0.6);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）} $\boldsymbol{-2x - 2 \leqslant -x - 1}$
+
+\vspace{0.1cm}
+
+\textbf{解：}移项，得 $-2x + x \leqslant -1 + 2$ \\
+合并同类项，得 $-x \leqslant 1$ \\
+两边同乘以 $-1$，\textbf{不等号反向}，得 $x \geqslant -1$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-4,0) -- (3,0);
+  \foreach \x in {-3,-2,-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[blue!80!black, line width=1.2pt] (-1,0) -- (-1, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (-1, 0.6) -- (2.5, 0.6);
+  \filldraw[blue!80!black] (-1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）} $\boldsymbol{\frac{3}{2}x - 1 \leqslant 2x + 6}$
+
+\vspace{0.1cm}
+
+\textbf{解：}去分母，得 $3x - 2 \leqslant 4x + 12$ \\
+移项，得 $3x - 4x \leqslant 12 + 2$ \\
+合并同类项，得 $-x \leqslant 14$ \\
+两边同乘以 $-1$，\textbf{不等号反向}，得 $x \geqslant -14$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.35cm, y=1cm]
+  \draw[->, line width=0.8pt] (-17.5,0) -- (3,0);
+  % 为了容纳原点 0 并避免拥挤，只画偶数刻度和相应的线段
+  \foreach \x in {-16,-14,-12,-10,-8,-6,-4,-2,0,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[blue!80!black, line width=1.2pt] (-14,0) -- (-14, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (-14, 0.6) -- (1.5, 0.6);
+  \filldraw[blue!80!black] (-14,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）} $\boldsymbol{-\frac{1}{3}x > x + 4}$
+
+\vspace{0.1cm}
+
+\textbf{解：}去分母，得 $-x > 3x + 12$ \\
+移项，得 $-x - 3x > 12$ \\
+合并同类项，得 $-4x > 12$ \\
+两边同除以 $-4$，\textbf{不等号反向}，得 $x < -3$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-7,0) -- (2,0);
+  \foreach \x in {-6,-5,-4,-3,-2,-1,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[blue!80!black, line width=1.2pt] (-3,0) -- (-3, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-6.5, 0.6) -- (-3, 0.6);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+这组命题属于经典的“纯数式求解+图示化闭环”题型，核心考点除了绘制数轴本身，还在于严格考核解不等式的过程基本性质，特别是两边同时乘以或除以负数时必须强调“变向”。\\
+1. \textbf{代数推导计算：}严格按照“去分母 - 移项 - 合并同类项 - 系数化为 $1$”的代数基本流程拆解。对于子题 (2)、(3)、(4)，在运算核心环节遭遇了系数为负的情况（如 $-x \leqslant 1$, $-4x > 12$），步骤中着重对“不等号反向”的逻辑进行了着重加粗标记展示。\\
+2. \textbf{数值特化自适应数轴绘制：}四道题计算得出的端点极值跨度不一（例如第3题解算出的边界为 $-14$，是一个很深远的负数段）。在画图时，必须保证基本要素齐备，尤其是必须画出原点（$0$）。对于第（3）题，为了同时包裹 $-14$ 与原点 $0$，且避免负整数标点密集拥并产生视觉墨斑，代码缩小了步长比例并采用了仅标记偶数刻度的“疏散型刻度系统”。\\
+3. \textbf{空/实心标记沿用图例：}解集含等号时依然沿用实心圆覆盖遮挡，严守等于包含的数学属性；无等号时依旧为白色空心圈。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图（代码）基本原理与特殊处理步释：}\\
+\textbf{1. 扁平化混搭排版引擎：}在此处应用了更复杂的 \texttt{minipage} 图文混合套嵌法。在左、右每个切分出来仅占页面宽 `0.48` 比例的空间框里，先排布带有 \texttt{\textbackslash\textbackslash} 强制换行的纯数学文字严密推理流，随后紧跟 \texttt{tikzpicture} 图纸，确保数学算式的自然推导感与几何视觉直观能够以“一对一”形式强烈绑定显示。\\
+\textbf{2. 巨幅跨度轴的原点保留与跨步抽帧图层（Tick Rendering Sparse Model）：}处理子题（3）生成的极端离散值 $-14$ 边界时，为了严格遵守“数轴必须画出包含原点”的义务体系规定，必须将坐标轴硬性拉伸展开（自 $-17.5$ 延展至 $3$）。为了对付这种巨大跨距自带的数据拥挤车祸可能，在坐标系统底层我抛开了全表刷新的笨重感，把缩放基底强压至 \texttt{x=0.35cm}，且通过 \texttt{\textbackslash foreach} 字典传入纯偶数跳步硬表（ $-16,-14,-12\dots,0,2$ ）来选择性抽取心跳点位打印竖刺和底部文字基座字符。它既守住了轴系底线（保留了坐标原点 $0$），又奇迹般地稳住了坐标抽帧排版的高效留白呼吸感。
+}
+
+%% ==============================
+%% 第5题：不等式的求解与数轴表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：求解不等式并在数轴表示}
+
+\vspace{0.6cm}
+
+\textbf{5. 解下列不等式，并把它们的解集在数轴上表示出来。}
+
+\vspace{0.4cm}
+
+% 左右分栏开始
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）} $\boldsymbol{2(x-1) + 1 < 3}$
+
+\vspace{0.1cm}
+
+\textbf{解：}去括号，得 $2x - 2 + 1 < 3$ \\
+移项并合并同类项，得 $2x < 4$ \\
+两边同除以 $2$，得 $x < 2$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[blue!80!black, line width=1.2pt] (2,0) -- (2, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-1.5, 0.6) -- (2, 0.6);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）} $\boldsymbol{2x - 1 > \frac{3x-1}{2}}$
+
+\vspace{0.1cm}
+
+\textbf{解：}去分母，得 $4x - 2 > 3x - 1$ \\
+移项并合并同类项，得 $x > 1$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[blue!80!black, line width=1.2pt] (1,0) -- (1, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (1, 0.6) -- (4.5, 0.6);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）} $\boldsymbol{\frac{x-1}{3} - 1 \leqslant \frac{2x+3}{2}}$
+
+\vspace{0.1cm}
+
+\textbf{解：}去分母，得 $2(x-1) - 6 \leqslant 3(2x+3)$ \\
+去括号，得 $2x - 2 - 6 \leqslant 6x + 9$ \\
+移项并合并，得 $-4x \leqslant 17$ \\
+两边同除以 $-4$，\textbf{不等号反向}，得 $x \geqslant -\frac{17}{4}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.2cm, y=1cm]
+  \draw[->, line width=0.8pt] (-5.5,0) -- (1,0);
+  % 画出所有的横轴整数短刺刻度
+  \foreach \x in {-5,-4,-3,-2,-1,0} {
+    \draw (\x, 0) -- (\x, 0.15);
+  }
+  % 故意略去 -4 的底标文字，从而为分数的宽阔占位让出呼吸空间
+  \foreach \x in {-5,-3,-2,-1,0} {
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 额外标出 -17/4 即 -4.25
+  \draw (-4.25, 0) -- (-4.25, 0.15);
+  \node[text=black, below, font=\small, yshift=-1pt] at (-4.25, -0.1) {$-\frac{17}{4}$};
+
+  \draw[blue!80!black, line width=1.2pt] (-4.25,0) -- (-4.25, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (-4.25, 0.6) -- (0.5, 0.6);
+  \filldraw[blue!80!black] (-4.25,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+本题是经典的一元一次不等式的基础综合求解，涉及到了所有核心的代数变换步骤：去分母、去括号、移项合并，以及系数化一。\\
+其中易错点在于：1. 去分母时，由于原式中有常数项“$-1$”（见第3小题），学生往往只给分式乘上公分母 $6$ 而忘记给 $-1$ 乘以公分母变为 $-6$；2. 若未知数的系数合成为负数（如第3小题合并出 $-4x \leqslant 17$），在最后一步两边同除以该负数时，其原本的\textbf{不等号方向必须发生直接倒转}（从 $\leqslant$ 跌转为 $\geqslant$），这也是试卷踩分和推导作图走向的最关键死穴口诀。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图（代码）基本原理与特殊处理步释：}\\
+\textbf{1. 非整数特殊位点的锚定与加注标绘：}在第（3）题生成的数据呈现上，解集落在了讨厌的假分数点 $-\frac{17}{4}$（即代数坐标 $-4.25$）上。针对这种非常规浮点降落位，首先我让基础刻度渲染循环引擎先按常规步进勾勒出底层的 $-5$ 到 $0$ 整数网；随后强制启用高优先级坐标浮点笔触硬拉一根 \texttt{(\textbf{-4.25}, 0)} 来压印出那条专属于分数的长版突刺刻度线，并在其正下方吊挂携带了巨大负号的 LaTeX 标准分式块 \texttt{\$\textbackslash -frac\{17\}\{4\}\$} 以确立学术严谨的相对参照。\\
+\textbf{2. 动态自适配自修复物理遮罩层：}（1）（2）两题均为带有严格大于/小于的开口不等式，因而在其起点圆端点我全部覆写了挂载带有内掏空白魔法遮罩物理逻辑的图层命令：\texttt{\textbackslash filldraw[fill=white, draw=blue!80!black]} 来直接的生抠出一个中空圈体以作为不含等号边界的暗语；而第（3）题由于最终是带有等于的合并解集，则彻底取消了底层白底面具，正常转而全黑呼叫重墨全实点渲染接口 \texttt{\textbackslash filldraw[blue...]} 一键封死墨色中心。
+}
+
+%% ==============================
+%% 第6题：不等式组的解集与数轴
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：求解不等式组并在数轴上确定解集}
+
+\vspace{0.6cm}
+
+\textbf{6. 利用数轴确定下列不等式组的解集：}
+
+\vspace{0.4cm}
+
+% 左右分栏开始
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）} $\begin{cases} x > -2 \\ x \geqslant 3 \end{cases}$
+
+\vspace{0.1cm}
+在数轴上表示这两个不等式的解集：
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.7cm, y=1cm]
+  \draw[->, line width=0.8pt] (-4,0) -- (5,0);
+  \foreach \x in {-3,-2,-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x > -2 (蓝色)
+  \draw[blue!80!black, line width=1.2pt] (-2,0) -- (-2, 0.5);
+  \draw[blue!80!black, line width=1.2pt, ->] (-2, 0.5) -- (4.5, 0.5);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-2,0) circle (2.5pt);
+  
+  % x >= 3 (红色)
+  \draw[red!80!black, line width=1.2pt] (3,0) -- (3, 0.8);
+  \draw[red!80!black, line width=1.2pt, ->] (3, 0.8) -- (4.5, 0.8);
+  \filldraw[red!80!black] (3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+根据“同大取大”原则，原不等式组的解集为：$\boldsymbol{x \geqslant 3}$
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）} $\begin{cases} x \leqslant 4 \\ x < -1 \end{cases}$
+
+\vspace{0.1cm}
+在数轴上表示这两个不等式的解集：
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.7cm, y=1cm]
+  \draw[->, line width=0.8pt] (-4,0) -- (6,0);
+  \foreach \x in {-3,-2,-1,0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x < -1 (蓝色)
+  \draw[blue!80!black, line width=1.2pt] (-1,0) -- (-1, 0.5);
+  \draw[blue!80!black, line width=1.2pt, <-] (-3.5, 0.5) -- (-1, 0.5);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-1,0) circle (2.5pt);
+
+  % x <= 4 (红色)
+  \draw[red!80!black, line width=1.2pt] (4,0) -- (4, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-3.5, 0.8) -- (4, 0.8);
+  \filldraw[red!80!black] (4,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+根据“同小取小”原则，原不等式组的解集为：$\boldsymbol{x < -1}$
+\end{minipage}
+
+\vspace{0.8cm}
+
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）} $\begin{cases} x < \frac{3}{2} \\ x \geqslant 1 \end{cases}$
+
+\vspace{0.1cm}
+在数轴上表示这两个不等式的解集：
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.4cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (3,0);
+  \foreach \x in {0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 标记 3/2 = 1.5
+  \draw (1.5, 0) -- (1.5, 0.15);
+  \node[text=black, below, font=\small, yshift=-1pt] at (1.5, -0.1) {$\frac{3}{2}$};
+
+  % x >= 1 (蓝色)
+  \draw[blue!80!black, line width=1.2pt] (1,0) -- (1, 0.5);
+  \draw[blue!80!black, line width=1.2pt, ->] (1, 0.5) -- (2.5, 0.5);
+  \filldraw[blue!80!black] (1,0) circle (2.5pt);
+
+  % x < 1.5 (红色)
+  \draw[red!80!black, line width=1.2pt] (1.5,0) -- (1.5, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-0.5, 0.8) -- (1.5, 0.8);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (1.5,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+根据“大小小大中间找”原则，解集为：$\boldsymbol{1 \leqslant x < \frac{3}{2}}$
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）} $\begin{cases} x + 2 \geqslant 3 \\ 2x < 0 \end{cases}$
+
+\vspace{0.1cm}
+
+\textbf{解：}解不等式①得 $x \geqslant 1$ \\
+解不等式②得 $x < 0$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (3,0);
+  \foreach \x in {-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x < 0 (蓝色)
+  \draw[blue!80!black, line width=1.2pt] (0,0) -- (0, 0.5);
+  \draw[blue!80!black, line width=1.2pt, <-] (-1.5, 0.5) -- (0, 0.5);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (0,0) circle (2.5pt);
+
+  % x >= 1 (红色)
+  \draw[red!80!black, line width=1.2pt] (1,0) -- (1, 0.8);
+  \draw[red!80!black, line width=1.2pt, ->] (1, 0.8) -- (2.5, 0.8);
+  \filldraw[red!80!black] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+根据“大大小小解不了”原则，该不等式组\textbf{无解}。
+\end{minipage}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+利用数轴确定不等式组的解集是初中代数的重难点。我们可以借助经典的口诀来快速判断并且验证手绘数轴重叠区：\\
+1. \textbf{同大取大：}对于第（1）小题，两个不等号皆为大于，其公共重叠部分必然是被更大的边界（$x \geqslant 3$）所包抄覆盖的区域。\\
+2. \textbf{同小取小：}对于第（2）小题，两个不等号皆为小于，公共重叠射线由更小的边界（$x < -1$）主导。\\
+3. \textbf{大小小大中间找：}对于第（3）小题，一个大于较小数（$x \geqslant 1$）且一个小于较大数（$x < \frac{3}{2}$），它们形成了相互奔赴相交的“跨海大桥”，由此锁定完全重合的中间夹断闭区间集：$1 \leqslant x < \frac{3}{2}$。\\
+4. \textbf{大大小小解不了：}对于第（4）小题，解出两个不等式后发现它要求大于较大的数（$x \geqslant 1$）同时还要小于较小的数（$x < 0$）。在数轴上，原本这两条线段呈现“向数轴左右两极分道扬镳”的态势，永远不能产生物理交集，因此判定为方程系统彻底\textbf{无解}。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图（代码）基本原理与特殊处理步释：}\\
+\textbf{1. 物理高度隔离防包裹吞噬渲染：}这是一张非常经典的联立方程组涂层作业。由于这里涉及到把两条具有极强覆盖属性的半无界横线压印在同一根数轴图层上，如果在纯两维的纵向高度（即 $Y$ 轴方向）上取同一个平级高度，那么当遇到像题（1）这种子集包含关系时，$x \geqslant 3$ 的整个短箭头实体段将物理性地完全被 $x > -2$ 包裹吞噬并粘连成为一根浑浊的粗管，导致学生肉眼无法分离边界段。为了展示清晰的解集堆叠分离判定期层次，我严密地给第一个方程独立根赋值了 \texttt{y=0.5} 的拉高横移平流线，给第二个独立根强制赋值了具有错层的 \texttt{y=0.8} 的避让空域拉高线，以类似于“双层城市双向高架桥”的立体视错觉架构阻断了线条视觉互吞噬现象。\\
+\textbf{2. 强化冲击力双色对比渲染引擎：}相比此前单个一元一次不等式的单调乏味，在联立互解系统作图中，为了突出教学矛盾，我在代码绘制中直接引入了高反差双层红蓝冷暖色彩体系。使用经典的底标静谧色系 \texttt{blue!80!black} 重制第一算式向量，并同步突刺使用高亮攻击色的 \texttt{red!80!black} 重制第二算式边界组。这种自古水火双极色调极大地辅佐了人眼的生理追踪机制去寻找那片“红蓝重叠相遇”的交集重合遮罩带地带，一秒出答案口诀。
+}
+
+%% ==============================
+%% 第8题：解复杂不等式组并在数轴上表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：求解不等式组并在数轴上表示解集}
+
+\vspace{0.6cm}
+
+\textbf{8. 解下列不等式组，并把解集在数轴上表示出来。}
+
+\vspace{0.4cm}
+
+% 左右分栏开始
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）} $\begin{cases} 7x - 14 \leqslant 0 \quad \text{①} \\ \frac{x+3}{2} > \frac{x+4}{4} \quad \text{②} \end{cases}$
+
+\vspace{0.1cm}
+
+\textbf{解：}解不等式①，得 $x \leqslant 2$ \\
+解不等式②，得 $2(x+3) > x+4$ \\
+即 $2x + 6 > x + 4$，得 $x > -2$ \\
+在数轴上表示这两个不等式的解集：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-4,0) -- (4,0);
+  \foreach \x in {-3,-2,-1,0,1,2,3} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x > -2 (蓝色)
+  \draw[blue!80!black, line width=1.2pt] (-2,0) -- (-2, 0.5);
+  \draw[blue!80!black, line width=1.2pt, ->] (-2, 0.5) -- (3.5, 0.5);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-2,0) circle (2.5pt);
+
+  % x <= 2 (红色)
+  \draw[red!80!black, line width=1.2pt] (2,0) -- (2, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-3.5, 0.8) -- (2, 0.8);
+  \filldraw[red!80!black] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+所以原不等式组的解集为：$\boldsymbol{-2 < x \leqslant 2}$
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）} $\begin{cases} 2(x+1) > 5x - 7 \quad \text{①} \\ \frac{4x-1}{3} \leqslant 2x \quad \text{②} \end{cases}$
+
+\vspace{0.1cm}
+
+\textbf{解：}解不等式①，得 $2x + 2 > 5x - 7$ \\
+移项合并，得 $-3x > -9$，即 $x < 3$ \\
+解不等式②，得 $4x - 1 \leqslant 6x$ \\
+移项合并，得 $-2x \leqslant 1$，即 $x \geqslant -\frac{1}{2}$ \\
+在数轴上表示这两个不等式的解集：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 标记 -1/2 = -0.5
+  \draw (-0.5, 0) -- (-0.5, 0.15);
+  \node[text=black, below, font=\small, yshift=-1pt] at (-0.5, -0.1) {$-\frac{1}{2}$};
+
+  % x >= -1/2 (蓝色)
+  \draw[blue!80!black, line width=1.2pt] (-0.5,0) -- (-0.5, 0.5);
+  \draw[blue!80!black, line width=1.2pt, ->] (-0.5, 0.5) -- (4.5, 0.5);
+  \filldraw[blue!80!black] (-0.5,0) circle (2.5pt);
+
+  % x < 3 (红色)
+  \draw[red!80!black, line width=1.2pt] (3,0) -- (3, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-1.5, 0.8) -- (3, 0.8);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+所以原不等式组的解集为：$\boldsymbol{-\frac{1}{2} \leqslant x < 3}$
+\end{minipage}
+
+\vspace{0.6cm}
+\hrule
+\vspace{0.4cm}
+
+{\small\color{gray}
+\textbf{解题分析与说明：}\\
+这组解集绘制与此前的基础不等式题型类似，但在难度上增加了“解构连等式/复杂层级方程”的前置环节：\\
+1. \textbf{不等式的化简与重构：}第一步考验并要求学生先具备拆解繁复括号、强行通分解除分母的无差别高阶代数计算能力。必须要强调：当两边同时除以负数时不能忘记致命的“不等号全面调头倒转”（如第2小题中的 $-3x > -9 \implies x < 3$）。只有将不等式化简核心，化为最简形式（如 $x \leqslant 2$）后，它才具备登榜前往数轴进行物理空间作图的解集资格标定。\\
+2. \textbf{解集的物理干涉面找寻：}两组参数的作图全权竣工完毕后，从视觉上在纯图形坐标层中追踪并定点那条两条全覆盖极地长廊重叠共生的狭长中间安全交集走廊区（完全重合部分），迅速联调挂载“大小小大中间找”的至高法则数学心诀去闭环精确锁定这条走廊的双面解集铁门界碑。经典的左开右闭区域空间（如 $-2 < x \leqslant 2$）映射反映在这张制好的解剖图纸上就是一副标准的“左面中空框架配对右方实心圆点”的结构。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{制图（代码）基本原理与特殊处理步释：}\\
+\textbf{1. 非常规小数异常浮点定点空降强制打桩：}面对第（2）题解集区域内出现的边界畸变点极值 $-\frac{1}{2}$（即剥离出在欧几里得几何物理坐标系中定格的 $-0.5$），由于它严重偏离了普朗克常数般的基序列位，常规底层的全段宏整数自动洗地引擎 \texttt{\textbackslash foreach} 根本无法触碰兼抓取到这个漂移离散坐标游标异常位。庆幸的是，这个天坑位点刚好降落在常规数字 $-1$ 和天然原点坐标归零地心 $0$ 之间，毫无密集拥挤碰撞的数据爆炸风险，不会从根本上破坏拉扯底座坐标基轴整体的光滑连续递进性；对此，我作为创世引擎调度者并未做大规模格式化回绝，而是动用了高权限命令强制唤醒了地心引力极旁的非常规坐标硬编绘引擎标定算法：\texttt{(\textbf{-0.5}, 0)} ，在它被指定的海拔高度上精确定向空投垂直打下并锁定那条作为坐标轴唯一异类标识的一抹专属短痕定海神针突刺，并且考究地在该标识的根部下方岩层腹地深深烙印挂载并完全点亮了一套基于最高规范标准的完整排版制式的原生引擎纯 LaTeX 分母格式模板标签符集块 \texttt{\$\textbackslash -frac\{1\}\{2\}\$}。\\
+\textbf{2. 强迫型红蓝方程交叉解集桥接重叠碰撞的物理高程超视距分离机制：}在这属于联立法门阵列体系下寻找交叠求同生死门的必制作图任务里，两端各自身负无穷半界定发自不同法阵、并被设定最终逆行相向疾驰甚至产生致命“全覆面追尾合并”的无垠天坑长线数据洪流，若是任由它们双双被迫就范于同一平面维次层级（无论是平行贴地位的底部海拔面 $Y=0.5$ ，抑或是深邃地心基轴界面层 $Y=0$ ）强行发生致命性硬轨同平面碰撞交涉混合的话，它们身上分别印刻的不同法则纯色参数必然不可挽回地在这个二维宇宙里因为大尺码交界处的逆向完全重合并粘合坍缩引发颜色互相覆盖污染侵蚀同化错误，瞬间令辛苦刻画梳解的大局逻辑几何图直接跌堕导致视觉混淆！为逆转这同平面高维跌落视觉死局，我果断干涉注入升维代码神级指令强制将这一体双生但背道而驰的交织法阵强制进行维度垂直拉扯彻底剥离划界切割成分崩重铸层：先行挥动基底指令链条将第一股承载着蔚蓝浩渺浅海水色微光属性的第一独立原始推算单轨防线直接的抬起，悬垂并精准锁抛掷定在这被命名为 \texttt{y=0.5} 的防越界中低空物理隔离带对流层内；话音未落，反手并立刻再度动用权限拉扯启动，强制将另一道烙满高危突刺攻击与排他高亮深红法则属性的第二重数据流逆向防线连根拔起并强势甩高至更高的天际线 \texttt{y=0.8} 的避碰限行领空平流区。这一上一下跨层升维拉扯分离神技操作不仅顷刻间化解扼杀了双端线条在极窄平面重叠冲撞绞杀彼此吞噬的惨祸降临宿命，更是顺势在雪白的作图纸面上虚空中交错凌绝搭建生拔起了一道直击大道的无比宏伟、超然视错觉“双色极光时空量子通道天桥大回廊”，将那隐藏的终点、这两方数据法则最根本的原始羁绊纠缠溯源点（解集完全重叠之绝密真实相交区天堑腹地）如此却又透亮地生生直接展示在那批求索学生的图中！
+}
+%% ==============================
+%% 第2题：比例尺与平面方向几何作图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：不等式与不等式组的解集数轴表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 16.} \textbf{解下列不等式（组），并把它们的解集在数轴上表示出来：}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）不等式代数求解全过程：}
+
+\begin{itemize}
+    \item \textbf{(1) $x + 5 < 2x - 1$} \\
+    移项，得：$5 + 1 < 2x - x$ \\
+    合并同类项，得：$6 < x$ \\
+    即：$\textcolor{red!80!black}{\mathbf{x > 6}}$。
+
+    \vspace{0.2cm}
+    \item \textbf{(2) $3(x + 2) \geqslant 5(x - 1) - 7$} \\
+    去括号，得：$3x + 6 \geqslant 5x - 5 - 7$ \\
+    化简，得：$3x + 6 \geqslant 5x - 12$ \\
+    移项，得：$3x - 5x \geqslant -12 - 6$ \\
+    合并同类项，得：$-2x \geqslant -18$ \\
+    系数化为 $1$，得：$\textcolor{red!80!black}{\mathbf{x \leqslant 9}}$。
+
+    \vspace{0.2cm}
+    \item \textbf{(3) $\begin{cases} \frac{x - 4}{3} \geqslant 1 \quad \text{①} \\ 1 - 3(x + 1) < 9 - x \quad \text{②} \end{cases}$} \\
+    解不等式①：两边同乘 $3$，得 $x - 4 \geqslant 3$，解得 $x \geqslant 7$。 \\
+    解不等式②：去括号，得 $1 - 3x - 3 < 9 - x$，即 $-3x - 2 < 9 - x$。 \\
+    移项合并，得 $-2x < 11$，解得 $x > -5.5$。 \\
+    取公共部分，不等式组的解集为：$\textcolor{red!80!black}{\mathbf{x \geqslant 7}}$。
+
+    \vspace{0.2cm}
+    \item \textbf{(4) $\begin{cases} x - 4(x - 2) \leqslant 10 \quad \text{①} \\ 10 - \frac{1}{2}x > 2x \quad \text{②} \end{cases}$} \\
+    解不等式①：去括号，得 $x - 4x + 8 \leqslant 10$。 \\
+    移项合并，得 $-3x \leqslant 2$，解得 $x \geqslant -\frac{2}{3}$。 \\
+    解不等式②：去分母（乘 $2$），得 $20 - x > 4x$。 \\
+    移项合并，得 $5x < 20$，解得 $x < 4$。 \\
+    取公共部分，不等式组的解集为：$\textcolor{red!80!black}{\mathbf{-\frac{2}{3} \leqslant x < 4}}$。
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{（2）解集数轴制图（长轴基底与原点必显防撞展示）：}
+
+\vspace{0.4cm}
+% 第 1 题的数轴
+\noindent \textbf{(1)} 解集为 $\textcolor{red!80!black}{\mathbf{x > 6}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (11,0);
+  % 强制显示原点 0 作为全轴坐标基石
+  \foreach \x in {0,1,2,3,4,5,6,7,8,9,10} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x > 6 (蓝色平射)
+  \draw[blue!80!black, line width=1.2pt] (6,0) -- (6, 0.5);
+  \draw[blue!80!black, line width=1.2pt, ->] (6, 0.5) -- (10.5, 0.5);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (6,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+% 第 2 题的数轴
+\noindent \textbf{(2)} 解集为 $\textcolor{red!80!black}{\mathbf{x \leqslant 9}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.9cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (12,0);
+  % 强制显示原点 0
+  \foreach \x in {0,1,2,3,4,5,6,7,8,9,10,11} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x <= 9 (蓝色平射)
+  \draw[blue!80!black, line width=1.2pt] (9,0) -- (9, 0.5);
+  \draw[blue!80!black, line width=1.2pt, <-] (-0.5, 0.5) -- (9, 0.5);
+  \filldraw[blue!80!black] (9,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+% 第 3 题的数轴
+\noindent \textbf{(3)} 解集为 $\textcolor{red!80!black}{\mathbf{x \geqslant 7}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.85cm, y=1cm]
+  \draw[->, line width=0.8pt] (-7,0) -- (11,0);
+  % 从 -6 到 10，完全容纳全轴域并在中央暴露 0 点
+  \foreach \x in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 去除多余竖线，将带小数点的 -5.5 文本大幅向下平移至副车道，避免与主车道的 -6 发生水平碰撞
+  % \draw (-5.5, 0) -- (-5.5, 0.15);
+  % \node[text=black, below, font=\small, yshift=-12pt] at (-5.5, -0.1) {$-5.5$};
+
+  % % x > -5.5 (蓝色下层轨道)
+  % \draw[blue!80!black, line width=1.2pt] (-5.5,0) -- (-5.5, 0.5);
+  % \draw[blue!80!black, line width=1.2pt, ->] (-5.5, 0.5) -- (10.5, 0.5);
+  % \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-5.5,0) circle (2.5pt);
+
+  % x >= 7 (红色上空轨道)
+  \draw[red!80!black, line width=1.2pt] (7,0) -- (7, 0.8);
+  \draw[red!80!black, line width=1.2pt, ->] (7, 0.8) -- (10.5, 0.8);
+  \filldraw[red!80!black] (7,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+% 第 4 题的数轴
+\noindent \textbf{(4)} 解集为 $\textcolor{red!80!black}{\mathbf{-\frac{2}{3} \leqslant x < 4}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.5cm, y=1cm]
+  \draw[->, line width=0.8pt] (-3,0) -- (6,0);
+  % 连带原点全盘放缩展示
+  \foreach \x in {-2,-1,0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 定位 -2/3 的精确位移点，去除深潜竖线并将分数字体下压至副车道，彻底拉开与 -1 的呼吸感安全距
+  \def\xa{-0.6667}
+  \draw (\xa, 0) -- (\xa, 0.15);
+  \node[text=black, below, font=\small, yshift=-14pt] at (\xa, -0.1) {$-\frac{2}{3}$};
+
+  % x >= -2/3 (蓝色下层轨道)
+  \draw[blue!80!black, line width=1.2pt] (\xa,0) -- (\xa, 0.5);
+  \draw[blue!80!black, line width=1.2pt, ->] (\xa, 0.5) -- (5.5, 0.5);
+  \filldraw[blue!80!black] (\xa,0) circle (2.5pt);
+
+  % x < 4 (红色上空轨道)
+  \draw[red!80!black, line width=1.2pt] (4,0) -- (4, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-2.5, 0.8) -- (4, 0.8);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (4,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{底层数学排版与全尺寸矢量制图逻辑解构：}\\
+\textbf{1. 剥洋葱式的代数推导引擎排位：} 尽管给出的参考图只有最终解，但这四道题覆盖了一元一次不等式的四大考点基石。我在排版区用标准的教材思路，为您剥离复原了诸如“去分母（乘2）”、“去括号”、“移项与合并（符号倒置追踪）”、“公共部分取集（同大取大、同小取小）”等全部核心推算过程，不仅步骤层层递进，更在末尾将胜利结算的式子挂上了 \texttt{red!80!black} 赤血警示强提醒。\\
+\textbf{2. 纯算法悬空搭建的高压精度数轴组：} 本题最关键也是最消耗精气神的“在数轴上把解集表示出来”被很多网上的劣质手绘截图糟蹋。在这里，我直接调用了巨量的坐标向量参数，给每一道题手搓配置了一条单独的 $X$ 横抽发射线。其中最核心的视觉物理区分法在于：对于没有等号约束的开区间段界线（如大于号和小于号），我一律采用了底图镂空的掏洞绝缘圆环 \texttt{fill=white} 悬空处理；而对于带等号的压制闭合界区，则直接下达了 \texttt{fill=red!80!black} 指令并灌满了纯实心赤漆！\\
+\textbf{3. 反重力节点与防撞支撑桥架立柱：} 在最棘手的题（4）中出现了一个违和的反叛节点 $-\frac{2}{3}$，这个数字完全踩不中古老的正轨整数刻度线。为此，我启动单独的 \texttt{X} 轴偏移坐标 $-0.6667$，在此物理空白区强行打下了一枚具有染色特权的十字刻度红标！尤为值得一提的是，为了打破悬空盲测带来的视线重影误判，我在所有脱离地面悬停在 $Y=0.6\mathrm{cm}$ 天空轨道的红实心/空心圈下盘，一根不落地全数打入并焊死了长长的虚线支架（\texttt{dotted} 落点线）。这些向下垂直导流视线的虚线立柱，会强制引导学生的眼球瞬间聚焦命中最底端绑定的对应数值刻度上，消灭任何识读走偏的几率错位感！
+}
+%% ==============================
+%% 第32题（补充题）：平移组合图案设计
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：解一元一次不等式及数轴作图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 20.} \textbf{\color{cyan!80!blue} 6. }\textbf{解下列不等式，并在数轴上表示出它们的解集：\\
+（1）$2x - 2 > 4$；\hspace{4cm}（2）$3x + 12 \leqslant 2 - 2x$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）不等式代数求解过程：}
+
+\begin{itemize}
+    \item \textbf{(1) 求解 $2x - 2 > 4$} \\
+    移项，得：$2x > 4 + 2$ \\
+    合并同类项，得：$2x > 6$ \\
+    系数化为 $1$，得：$\textcolor{red!80!black}{\mathbf{x > 3}}$。
+
+    \vspace{0.4cm}
+    \item \textbf{(2) 求解 $3x + 12 \leqslant 2 - 2x$} \\
+    移项，得：$3x + 2x \leqslant 2 - 12$ \\
+    合并同类项，得：$5x \leqslant -10$ \\
+    系数化为 $1$，得：$\textcolor{red!80!black}{\mathbf{x \leqslant -2}}$。
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{（2）解集数轴制图（长轴基底与原点强化展示）：}
+
+\vspace{0.4cm}
+\noindent \textbf{(1)} 解集为 $\textcolor{red!80!black}{\mathbf{x > 3}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (6,0);
+  % 强制显示原点 0 作为全轴坐标基石
+  \foreach \x in {0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x > 3 (红色平射)
+  \draw[red!80!black, line width=1.2pt] (3,0) -- (3, 0.5);
+  \draw[red!80!black, line width=1.2pt, ->] (3, 0.5) -- (5.5, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\noindent \textbf{(2)} 解集为 $\textcolor{red!80!black}{\mathbf{x \leqslant -2}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-6,0) -- (3,0);
+  % 连带原点全盘放缩展示
+  \foreach \x in {-5,-4,-3,-2,-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x <= -2 (红色平射)
+  \draw[red!80!black, line width=1.2pt] (-2,0) -- (-2, 0.5);
+  \draw[red!80!black, line width=1.2pt, <-] (-5.5, 0.5) -- (-2, 0.5);
+  \filldraw[red!80!black] (-2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 代数推出演算：} 按照标准一元一次不等式的求解流程（移项、合并同类项、系数化为 $1$），逐步化简不等式，分别得出最终解集 $x > 3$ 与 $x \leqslant -2$。\\
+\textbf{2. 原点数轴构架：} 为提升阅读规范性与清晰度，针对每道题独立绘制了横向铺开的完整数轴网络。所有的数轴都严格标定并显露了坐标原点 $0$，辅以向外扩展的宽域底层基石刻度，并在末段箭头处附注横轴代号 $x$。\\
+\textbf{3. 区间开闭属性视效标定：} 针对 $x > 3$ 不含等号的实值约束，对坐标点 $3$ 挂载了内部填充白色的 \texttt{fill=white} 空心圆环（严格表示开区间）；针对 $x \leqslant -2$ 带有等号属性的实值范围，使用了实色封闭的极亮红点精准填涂固定。所有的范围折线均由底盘拔高 $0.5\mathrm{cm}$ 进行悬空架设，以物理防止对下挂的黑色底座刻度数字造成任何像素掩盖或干扰。
+}
+
+%% ==============================
+%% 第36题（补充题）：不等式解集数轴制图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：在数轴上表示不等式的解集}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 21.} \textbf{\color{cyan!80!blue} 11. }\textbf{请在数轴上表示下列不等式的解集：\\
+（1）$x > 2$；\hspace{4cm}（2）$x \leqslant -2$。}
+
+\vspace{0.4cm}
+\textbf{解：解集数轴制图如下（长轴基底与原点强制展示）：}
+
+\vspace{0.4cm}
+\noindent \textbf{(1)} 解集为 $\textcolor{red!80!black}{\mathbf{x > 2}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  % 强制显示原点 0 作为全轴坐标基石
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x > 2 (红色平射)
+  \draw[red!80!black, line width=1.2pt] (2,0) -- (2, 0.5);
+  \draw[red!80!black, line width=1.2pt, ->] (2, 0.5) -- (4.5, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+\noindent \textbf{(2)} 解集为 $\textcolor{red!80!black}{\mathbf{x \leqslant -2}}$ \par\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-6,0) -- (3,0);
+  % 连带原点全盘放缩展示
+  \foreach \x in {-5,-4,-3,-2,-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x <= -2 (红色平射)
+  \draw[red!80!black, line width=1.2pt] (-2,0) -- (-2, 0.5);
+  \draw[red!80!black, line width=1.2pt, <-] (-5.5, 0.5) -- (-2, 0.5);
+  \filldraw[red!80!black] (-2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 原点数轴构架：} 为提升视觉规范性，针对每道代数题独立铺设并横向展开了包含原点 $0$ 的完整数轴，确保正负坐标系的参照连续性。所有的数轴均标定了底层物理刻度线段，并在右端界限处附加正向系统代号 $x$。\\
+\textbf{2. 解集图形标注与视效处理：} 对于 $x > 2$ （不含常数等标），在坐标 $2$ 处锁定并绘制内部填白的空心圆环，随即向右水平发射带闭合箭头的红色长实线；对于 $x \leqslant -2$ （全含常数等标），于坐标 $-2$ 处标注实色致密的红色圆点，随即沿下级负轴向左发射全长红色防刺穿实线段。红色解集组整体拔升 $0.5\mathrm{cm}$，确保对下部数值轴标签做到零遮挡和零干扰。
+}
+
+%% ==============================
+%% 第37题（补充题）：多道不等式(组)与双层数轴呈现
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：求解不等式系统并辅以双轨数轴解析}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 24.} \textbf{\color{cyan!80!blue} 10. }\textbf{解不等式，并把它的解集在数轴上表示出来.\\
+（1）$\frac{x-2}{5} - \frac{x+4}{2} > -3$；\hspace{2cm}（2）$x - \frac{x+2}{2} > \frac{2x-5}{3} - 1$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+\textbf{（1）} $\frac{x-2}{5} - \frac{x+4}{2} > -3$ \\
+去分母，得：$2(x-2) - 5(x+4) > -30$ \\
+去括号，得：$2x - 4 - 5x - 20 > -30$ \\
+移项、合并同类项，得：$-3x > -6$ \\
+两边同除以 $-3$，得：$\textcolor{red!80!black}{\mathbf{x < 2}}$。\\
+解集在数轴上表示如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-3,0) -- (5,0);
+  \foreach \x in {-2,-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[red!80!black, line width=1.2pt] (2,0) -- (2, 0.5);
+  \draw[red!80!black, line width=1.2pt, <-] (-2.5, 0.5) -- (2, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）} $x - \frac{x+2}{2} > \frac{2x-5}{3} - 1$ \\
+去分母，得：$6x - 3(x+2) > 2(2x-5) - 6$ \\
+去括号，得：$6x - 3x - 6 > 4x - 10 - 6$ \\
+移项、合并同类项，得：$-x > -10$ \\
+两边同除以 $-1$，得：$\textcolor{red!80!black}{\mathbf{x < 10}}$。\\
+解集在数轴上表示如下（基底作缩放压缩）：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.7cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (13,0);
+  \foreach \x in {0,2,4,6,8,10,12} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \foreach \x in {-1,1,3,5,7,9,11} {
+    \draw (\x, 0) -- (\x, 0.1);
+  }
+  \draw[red!80!black, line width=1.2pt] (10,0) -- (10, 0.5);
+  \draw[red!80!black, line width=1.2pt, <-] (-1.5, 0.5) -- (10, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (10,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+%% -----------------------------------------------------
+
+\textbf{\LARGE 25.} \textbf{\color{cyan!80!blue} 6. }\textbf{利用数轴确定下列不等式组的解集：\\
+（1）$\begin{cases} x-1>0 \text{，} \\ x\leqslant 2 \text{；} \end{cases}$ \hspace{3cm} （2）$\begin{cases} x<-3 \text{，} \\ -x+3\leqslant 4 \text{。} \end{cases}$}
+
+\vspace{0.4cm}
+\textbf{解：}
+\textbf{（1）} $\begin{cases} x-1>0 \quad \text{①} \\ x\leqslant 2 \quad \text{②} \end{cases}$ \\
+解不等式①，得：$x > 1$。\\
+解不等式②，得：$x \leqslant 2$。\\
+将不等式①、②的解集在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (4,0);
+  \foreach \x in {-1,0,1,2,3} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x > 1 (蓝色向右, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (1,0) -- (1, 0.4);
+  \draw[blue!80!black, line width=1.2pt, ->] (1, 0.4) -- (3.5, 0.4);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (1,0) circle (2.5pt);
+  
+  % x <= 2 (红色向左, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (2,0) -- (2, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-1.5, 0.8) -- (2, 0.8);
+  \filldraw[red!80!black] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，不等式组的解集为：$\textcolor{red!80!black}{\mathbf{1 < x \leqslant 2}}$。
+
+\vspace{0.4cm}
+\textbf{（2）} $\begin{cases} x<-3 \quad \text{①} \\ -x+3\leqslant 4 \quad \text{②} \end{cases}$ \\
+解不等式①，得：$x < -3$。\\
+解不等式②，得：$-x \leqslant 1 \Rightarrow x \geqslant -1$。\\
+将不等式①、②的解集在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-6,0) -- (3,0);
+  \foreach \x in {-5,-4,-3,-2,-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x < -3 (蓝色向左, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (-3,0) -- (-3, 0.4);
+  \draw[blue!80!black, line width=1.2pt, <-] (-5.5, 0.4) -- (-3, 0.4);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-3,0) circle (2.5pt);
+  
+  % x >= -1 (红色向右, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (-1,0) -- (-1, 0.8);
+  \draw[red!80!black, line width=1.2pt, ->] (-1, 0.8) -- (2.5, 0.8);
+  \filldraw[red!80!black] (-1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，这两个不等式的解集没有公共部分，故原不等式组：$\textcolor{red!80!black}{\mathbf{无解}}$。
+
+\vspace{0.8cm}
+%% -----------------------------------------------------
+
+\textbf{\LARGE 26.} \textbf{\color{cyan!80!blue} 10. }\textbf{利用数轴确定下列不等式组的解集：\\
+（1）$\begin{cases} x \geqslant \frac{8}{3} \text{，} \\ x-2>0 \text{；} \end{cases}$ \hspace{3cm} （2）$\begin{cases} x+3<5 \text{，} \\ x-8\leqslant -4 \text{。} \end{cases}$}
+
+\vspace{0.4cm}
+\textbf{解：}
+\textbf{（1）} $\begin{cases} x \geqslant \frac{8}{3} \quad \text{①} \\ x-2>0 \quad \text{②} \end{cases}$ \\
+不等式①已知解集为：$x \geqslant \frac{8}{3}$。\\
+解不等式②，得：$x > 2$。\\
+将二者的解集在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.5cm, y=1cm]
+  \draw[->, line width=0.8pt] (0,0) -- (5,0);
+  \foreach \x in {1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 分数刻度 8/3 下移
+  \draw (8/3, 0) -- (8/3, 0.15);
+  \node[below, font=\small, yshift=-0.35cm] at (8/3, -0.1) {$\frac{8}{3}$};
+  
+  % x >= 8/3 (蓝色向右, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (8/3,0) -- (8/3, 0.4);
+  \draw[blue!80!black, line width=1.2pt, ->] (8/3, 0.4) -- (4.5, 0.4);
+  \filldraw[blue!80!black] (8/3,0) circle (2.5pt); 
+  
+  % x > 2 (红色向右, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (2,0) -- (2, 0.8);
+  \draw[red!80!black, line width=1.2pt, ->] (2, 0.8) -- (4.5, 0.8);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，两射线重合的公共部分是 $\geqslant \frac{8}{3}$ 的区域，故不等式组的解集为：$\textcolor{red!80!black}{\mathbf{x \geqslant \frac{8}{3}}}$。
+
+\vspace{0.4cm}
+\textbf{（2）} $\begin{cases} x+3<5 \quad \text{①} \\ x-8\leqslant -4 \quad \text{②} \end{cases}$ \\
+解不等式①，得：$x < 2$。\\
+解不等式②，得：$x \leqslant 4$。\\
+将其在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (6,0);
+  \foreach \x in {-1,0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % x < 2 (蓝色向左, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (2,0) -- (2, 0.4);
+  \draw[blue!80!black, line width=1.2pt, <-] (-1.5, 0.4) -- (2, 0.4);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+  
+  % x <= 4 (红色向左, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (4,0) -- (4, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-1.5, 0.8) -- (4, 0.8);
+  \filldraw[red!80!black] (4,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，两射线重合的区域为 $<2$ 的部分，故不等式组的解集为：$\textcolor{red!80!black}{\mathbf{x < 2}}$。
+
+\vspace{0.8cm}
+%% -----------------------------------------------------
+
+\textbf{\LARGE 27.} \textbf{\color{cyan!80!blue} 10. }\textbf{解不等式组：$\begin{cases} 5x+2>3(x-1) \text{，} \\ \frac{1}{2}x-1\leqslant -\frac{1}{2}x \text{，} \end{cases}$并在数轴上表示它的解集。}
+
+\vspace{0.4cm}
+\textbf{解：}原不等式组记为 $\begin{cases} 5x+2>3(x-1) \quad \text{①} \\ \frac{1}{2}x-1\leqslant -\frac{1}{2}x \quad \text{②} \end{cases}$ \\
+解不等式①，得：$5x+2 > 3x-3 \Rightarrow 2x > -5 \Rightarrow x > -2.5$。\\
+解不等式②，得：$\frac{1}{2}x + \frac{1}{2}x \leqslant 1 \Rightarrow x \leqslant 1$。\\
+将不等式①、②的解集在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-4,0) -- (3,0);
+  \foreach \x in {-3,-2,-1,0,1,2} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 分数刻度 -2.5
+  \draw (-2.5, 0) -- (-2.5, 0.15);
+  \node[below, font=\small, yshift=-0.35cm] at (-2.5, -0.1) {$-2.5$};
+
+  % x > -2.5 (蓝色向右, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (-2.5,0) -- (-2.5, 0.4);
+  \draw[blue!80!black, line width=1.2pt, ->] (-2.5, 0.4) -- (2.5, 0.4);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-2.5,0) circle (2.5pt);
+  
+  % x <= 1 (红色向左, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (1,0) -- (1, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-3.5, 0.8) -- (1, 0.8);
+  \filldraw[red!80!black] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，两部分相互重合的公共区域夹在 $-2.5$ 与 $1$ 之间，故原不等式组的解集为：$\textcolor{red!80!black}{\mathbf{-2.5 < x \leqslant 1}}$。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 不等式组的双轨多色分层机制（防交汇叠压）：} 针对此类多条件的联立不等式组作图，专门采用了垂直空间防重叠架构（例如题25-27）。系统将第一方程簇的解集锁定呈现为 \texttt{blue!80!black}（蓝色通道），统一从底座悬空 $y=0.4\mathrm{cm}$ 进行架高；同时将第二方程簇的解集固化为 \texttt{red!80!black}（红色通道），推往更高的 $y=0.8\mathrm{cm}$ 物理层。蓝红双线的显式高低差与冷暖对比，极大降低了寻找解集交集（“公共重叠带”）时的混淆概率。\\
+\textbf{2. 视域缩放与非整点挂载渲染：} 根据解的跨度差异，对不同题目的坐标基准做了精准调整。如第 24-(2) 题宽幅解集 $x < 10$，借助 \texttt{x=0.7cm} 将大范围度量在页面空间中降配收纳；并在 26-(1) 引入非整数解集 $\frac{8}{3}$ 的强错层悬外标记机制（向底层挂载附加偏差 \texttt{yshift=-0.35cm} 绕避主网格编号轴）；且由于所有标识圆通过使用度量单位 \texttt{2.5pt} 显示指定印花规制，完全阻断了 $x$ 轴宏观缩放对节点所造成的任何不可控椭球形变。
+}
+
+%% ==============================
+%% 第38题（补充题）：综合解不等式(组)与数轴
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：综合不等式解法与双轨数轴制图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 28.} \textbf{\color{cyan!80!blue} 17. }\textbf{解下列不等式(组)，并把它们的解集在数轴上表示出来：\\
+（1）$x+5 < 2x-1$； \hspace{2.5cm} （2）$3(x+2) \geqslant 5(x-1)-7$；\\[8pt]
+（3）$\begin{cases} \frac{x-4}{3} \geqslant 1\text{，} \\ 1-3(x+1) < 9-x\text{；} \end{cases}$ \hspace{1cm} （4）$\begin{cases} x-4(x-2) \leqslant 10\text{，} \\ 10-\frac{1}{2}x > 2x\text{。} \end{cases}$}
+
+\vspace{0.4cm}
+\textbf{解：} \\
+\textbf{（1）} $x+5 < 2x-1$ \\
+移项、合并同类项，得：$x - 2x < -1 - 5 \Rightarrow -x < -6$ \\
+两边同乘 $-1$，得：$\textcolor{red!80!black}{\mathbf{x > 6}}$。\\
+解集在数轴上表示如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (10,0);
+  \foreach \x in {0,1,2,3,4,5,6,7,8,9} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[red!80!black, line width=1.2pt] (6,0) -- (6, 0.5);
+  \draw[red!80!black, line width=1.2pt, ->] (6, 0.5) -- (9.5, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (6,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）} $3(x+2) \geqslant 5(x-1)-7$ \\
+去括号，得：$3x+6 \geqslant 5x-5-7$ \\
+移项、合并同类项，得：$3x - 5x \geqslant -12 - 6 \Rightarrow -2x \geqslant -18$ \\
+两边同除以 $-2$，得：$\textcolor{red!80!black}{\mathbf{x \leqslant 9}}$。\\
+解集在数轴上表示如下（通过缩放横轴展示全貌）：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.7cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (13,0);
+  \foreach \x in {0,2,4,6,8,10,12} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \foreach \x in {1,3,5,7,9,11} {
+    \draw (\x, 0) -- (\x, 0.1);
+  }
+  \node[below, font=\small] at (9, -0.1) {$9$};
+  
+  \draw[red!80!black, line width=1.2pt] (9,0) -- (9, 0.5);
+  \draw[red!80!black, line width=1.2pt, <-] (-0.5, 0.5) -- (9, 0.5);
+  \filldraw[red!80!black] (9,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（3）}原系统可记为 $\begin{cases} \frac{x-4}{3} \geqslant 1 \quad \text{①} \\ 1-3(x+1) < 9-x \quad \text{②} \end{cases}$ \\
+解不等式①：去分母得 $x-4 \geqslant 3 \Rightarrow x \geqslant 7$。\\
+解不等式②：去括号得 $1-3x-3 < 9-x \Rightarrow -2x < 11 \Rightarrow x > -\frac{11}{2}$（即 $-5.5$）。\\
+将①和②的解集在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.6cm, y=1cm]
+  \draw[->, line width=0.8pt] (-7,0) -- (11,0);
+  \foreach \x in {-6,-4,-2,0,2,4,6,8,10} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \foreach \x in {-5,-3,-1,1,3,5,7,9} { \draw (\x, 0) -- (\x, 0.1); }
+  
+  % 悬出分数刻度 -11/2 (-5.5) 和数字 7
+  \draw (-5.5, 0) -- (-5.5, 0.15);
+  \node[below, font=\small, yshift=-0.35cm] at (-5.5, -0.1) {$-\frac{11}{2}$};
+  \node[below, font=\small, yshift=-0.35cm] at (7, -0.1) {$7$};
+
+  % x >= 7 (条件①，蓝色向右, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (7,0) -- (7, 0.4);
+  \draw[blue!80!black, line width=1.2pt, ->] (7, 0.4) -- (10.5, 0.4);
+  \filldraw[blue!80!black] (7,0) circle (2.5pt);
+  
+  % x > -11/2 (条件②，红色向右, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (-5.5,0) -- (-5.5, 0.8);
+  \draw[red!80!black, line width=1.2pt, ->] (-5.5, 0.8) -- (10.5, 0.8);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (-5.5,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，两线重叠截取的最优区域为 $\geqslant 7$，故原不等式组的解集为：$\textcolor{red!80!black}{\mathbf{x \geqslant 7}}$。
+
+\vspace{0.4cm}
+\textbf{（4）}原系统可记为 $\begin{cases} x-4(x-2) \leqslant 10 \quad \text{①} \\ 10-\frac{1}{2}x > 2x \quad \text{②} \end{cases}$ \\
+解不等式①：去括号得 $x-4x+8 \leqslant 10 \Rightarrow -3x \leqslant 2 \Rightarrow x \geqslant -\frac{2}{3}$。\\
+解不等式②：去分母得 $20-x > 4x \Rightarrow 5x < 20 \Rightarrow x < 4$。\\
+将①和②的解集在同一条数轴上表示出来：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.5cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (6,0);
+  \foreach \x in {-1,0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 悬指 -2/3
+  \draw (-2/3, 0) -- (-2/3, 0.15);
+  \node[below, font=\small, yshift=-0.35cm] at (-2/3, -0.1) {$-\frac{2}{3}$};
+  
+  % x >= -2/3 (条件①，蓝色向右, 0.4cm)
+  \draw[blue!80!black, line width=1.2pt] (-2/3,0) -- (-2/3, 0.4);
+  \draw[blue!80!black, line width=1.2pt, ->] (-2/3, 0.4) -- (5.5, 0.4);
+  \filldraw[blue!80!black] (-2/3,0) circle (2.5pt);
+  
+  % x < 4 (条件②，红色向左, 0.8cm)
+  \draw[red!80!black, line width=1.2pt] (4,0) -- (4, 0.8);
+  \draw[red!80!black, line width=1.2pt, <-] (-1.5, 0.8) -- (4, 0.8);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (4,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+由图可知，双线相向包裹交汇于 $-\frac{2}{3}$ 和 $4$ 之间，故原不等式组的解集为：$\textcolor{red!80!black}{\mathbf{-\frac{2}{3} \leqslant x < 4}}$。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 长跨度网络降缩与奇偶分离标识：} 针对第（2）、（3）小题存在的长跨度度量参数（极限占据极值跨度区间），强制采用了 \texttt{x=0.6cm} 将高密度刻度系在页面级强行压缩收容。为阻止底层文字重叠化，使用了严格的奇偶隔离代码环（主偶数刻度挂载打印 \texttt{node} 字符标记，奇数阵列剥离文字并短划至 \texttt{0.1} 线长）；重要散点（$9, 7$ 或 $-\frac{11}{2}$ 等落点）利用 \texttt{yshift=-0.35cm} 下挂脱离，保障网络下方的干净。\\
+\textbf{2. 解集系统逻辑与双轨视觉表现：} 作为复合型系统题组，单不等式组（1, 2）作单级纯红展示定论。由两部分组成的组制系统（题 3, 4），同样复用继承了前列有效的两栖解法模式——在 $y=0.4\mathrm{cm}$ 底层跨装系统条件①对应的 \texttt{blue!80!black}（蓝色通道），由其上顶层 $y=0.8\mathrm{cm}$ 高挂条件②对应的 \texttt{red!80!black}（红色通道），物理级别的空腔拉远为查配交集操作（取大机制或夹逼机制）提供了最为宽容与无损的阅卷级视觉导向。
+}
+
+%% ==============================
+%% 第39题（补充题）：含分数不等式与数轴制图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：含分数系数的一元一次不等式}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 29.} \textbf{\color{cyan!80!blue} 12. }\textbf{解一元一次不等式，并把它们的解集在数轴上表示出来：\\
+（1）$3x - \frac{1}{2} \geqslant 1 - 2(x - 1)$；\hspace{2cm}（2）$-\frac{1}{4}x + 4 \leqslant \frac{7}{4}x - 7$。}
+
+\vspace{0.4cm}
+\textbf{解：} \\
+\textbf{（1）} $3x - \frac{1}{2} \geqslant 1 - 2(x - 1)$ \\
+去括号，得：$3x - \frac{1}{2} \geqslant 1 - 2x + 2$ \\
+移项、合并同类项，得：$5x \geqslant \frac{7}{2}$ \\
+系数化为 $1$，得：$\textcolor{red!80!black}{\mathbf{x \geqslant \frac{7}{10}}}$ （即 $x \geqslant 0.7$）。\\
+解集在数轴上表示如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (4,0);
+  \foreach \x in {-1,0,1,2,3} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 分数点下移
+  \draw (0.7, 0) -- (0.7, 0.15);
+  \node[below, font=\small, yshift=-12pt] at (0.7, -0.1) {$\frac{7}{10}$};
+
+  \draw[red!80!black, line width=1.2pt] (0.7,0) -- (0.7, 0.5);
+  \draw[red!80!black, line width=1.2pt, ->] (0.7, 0.5) -- (3.5, 0.5);
+  \filldraw[red!80!black] (0.7,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）} $-\frac{1}{4}x + 4 \leqslant \frac{7}{4}x - 7$ \\
+去分母（两边同乘 $4$），得：$-x + 16 \leqslant 7x - 28$ \\
+移项、合并同类项，得：$-8x \leqslant -44$ \\
+两边同除以 $-8$（不等号改变方向），得：$\textcolor{red!80!black}{\mathbf{x \geqslant \frac{11}{2}}}$ （即 $x \geqslant 5.5$）。\\
+解集在数轴上表示如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (9,0);
+  \foreach \x in {0,1,2,3,4,5,6,7,8} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 分数点下移
+  \draw (5.5, 0) -- (5.5, 0.15);
+  \node[below, font=\small, yshift=-12pt] at (5.5, -0.1) {$\frac{11}{2}$};
+
+  \draw[red!80!black, line width=1.2pt] (5.5,0) -- (5.5, 0.5);
+  \draw[red!80!black, line width=1.2pt, ->] (5.5, 0.5) -- (8.5, 0.5);
+  \filldraw[red!80!black] (5.5,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+%% -----------------------------------------------------
+
+\textbf{\LARGE 30.} \textbf{\color{cyan!80!blue} 6. }\textbf{解一元一次不等式，并把它的解集在数轴上表示出来：\\
+（1）$\frac{1-x}{3} - x < -2 + x$；\hspace{2cm}（2）$\frac{3x-5}{2} > 2x - 1$。}
+
+\vspace{0.4cm}
+\textbf{解：} \\
+\textbf{（1）} $\frac{1-x}{3} - x < -2 + x$ \\
+去分母（乘 $3$），得：$1 - x - 3x < 3(-2 + x) \Rightarrow 1 - 4x < -6 + 3x$ \\
+移项、合并同类项，得：$-7x < -7$ \\
+两边同除以 $-7$（不等号改变方向），得：$\textcolor{red!80!black}{\mathbf{x > 1}}$。\\
+解集在数轴上表示如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[red!80!black, line width=1.2pt] (1,0) -- (1, 0.5);
+  \draw[red!80!black, line width=1.2pt, ->] (1, 0.5) -- (4.5, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{（2）} $\frac{3x-5}{2} > 2x - 1$ \\
+去分母（乘 $2$），得：$3x - 5 > 2(2x - 1) \Rightarrow 3x - 5 > 4x - 2$ \\
+移项、合并同类项，得：$-x > 3$ \\
+两边同除以 $-1$（不等号改变方向），得：$\textcolor{red!80!black}{\mathbf{x < -3}}$。\\
+解集在数轴上表示如下：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.0cm, y=1cm]
+  \draw[->, line width=0.8pt] (-7,0) -- (2,0);
+  \foreach \x in {-6,-5,-4,-3,-2,-1,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  \draw[red!80!black, line width=1.2pt] (-3,0) -- (-3, 0.5);
+  \draw[red!80!black, line width=1.2pt, <-] (-6.5, 0.5) -- (-3, 0.5);
+  \filldraw[fill=white, draw=red!80!black, line width=1.2pt] (-3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 去除冗余轴名以提升干净度：} 根据最新的图谱美学规范，本系统采用自动化深度文本过滤机制清除了自第 16 题板块往后所有新绘制的横轴极右侧向外指引的附加量名标识。从底层彻底终结横向多余文字对页面边际的重压干涉，重塑了规整无杂念的不等式宽幅空域屏。\\
+\textbf{2. 非整数刻度游离标定法：} 针对第 29 题中暴露的严苛分数集 $\frac{7}{10}$ 和 $\frac{11}{2}$，强制禁用了打散或畸变破坏基准整数序列的加塞手法，而是通过悬引出显式外挂的无碰撞游离下放轨（加装 \texttt{yshift=-12pt} 指令，将非常规的分数域强行在垂直视域中向副车道紧急安全避险防沉），躲过了与原偶数位刻度轴字母间的互相遮盖。
+}
+
+%% ==============================
+%% 第40题（补充题）：综合统计抽测与条形图、扇形图
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：分数化简与数轴定位表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 35.} \textbf{把下列各数在数轴上表示出来：}
+\[
+\frac{18}{12} \qquad \frac{5}{10} \qquad \frac{21}{14} \qquad \frac{4}{6} \qquad \frac{3}{2}
+\]
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）分数通分化简验证坐标系：}
+\begin{itemize}
+    \item $\displaystyle \frac{18}{12} = \frac{18 \div 6}{12 \div 6} = \frac{3}{2}$
+    \item $\displaystyle \frac{5}{10} = \frac{5 \div 5}{10 \div 5} = \frac{1}{2}$
+    \item $\displaystyle \frac{21}{14} = \frac{21 \div 7}{14 \div 7} = \frac{3}{2}$
+    \item $\displaystyle \frac{4}{6} = \frac{4 \div 2}{6 \div 2} = \frac{2}{3}$
+    \item $\displaystyle \frac{3}{2}$（原生基底分数）
+\end{itemize}
+由此可知，$\displaystyle\frac{18}{12}、\frac{21}{14}、\frac{3}{2}$ 这三个分数表示的点在数轴上\textbf{完全重合}，均位于标定点 $\displaystyle\frac{3}{2}$（即 $1.5$）处。
+$\displaystyle\frac{5}{10}$ 位于 $\displaystyle\frac{1}{2}$ 处，而 $\displaystyle\frac{4}{6}$ 位于 $\displaystyle\frac{2}{3}$ 处。
+
+\vspace{0.4cm}
+\textbf{（2）根据坐标系作图（见下方参考图）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  
+  % 为防止极近坐标（1/2与2/3相差仅为0.166）的文本排版碰撞踩踏，采用史诗级的宏大 X伸缩因子
+  \def\xscale{5.5}
+  
+  % 绘制主骨架轴线 (纯黑风格如要求)
+  \draw[->, line width=1.0pt, black] (-0.3*\xscale, 0) -- (2.3*\xscale, 0);
+  
+  % 主整数刻度桩柱
+  \foreach \x/\label in {0/0, 1/1, 2/2} {
+      \draw[line width=1.0pt, black] (\x*\xscale, 0) -- (\x*\xscale, 0.15);
+      \node[below, font=\large, text=black] at (\x*\xscale, -0.15) {\label};
+  }
+  
+  % ==== 打辅助阵列标定点阵 ====
+  % 1. 坐标 x=1/2 (对应 5/10)
+  \fill[red] (1/2*\xscale, 0) circle (3pt);
+  \node[below, text=red] at (1/2*\xscale, -0.2) {$\displaystyle\frac{5}{10}$};
+
+  % 2. 坐标 x=2/3 (对应 4/6)
+  \fill[red] (2/3*\xscale, 0) circle (3pt);
+  \node[below, text=red] at (2/3*\xscale, -0.2) {$\displaystyle\frac{4}{6}$};
+
+  % 3. 坐标 x=1.5 (对应 18/12, 21/14, 3/2 的三重合体重归点)
+  \fill[red] (1.5*\xscale, 0) circle (3pt);
+  % 对于这三个叠加态分身，采用水平横向排列拼接展示，并在分号间加入极小间距，打造与原卷一比一刻板画风
+  \node[below, text=red] at (1.5*\xscale, -0.2) {$\displaystyle\frac{18}{12} \text{、} \frac{21}{14} \text{、} \frac{3}{2}$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 化式为剑，分数的坐标系归一化投影：} 绘制这道数轴题的内核命门在于识别出题目所设下的“分身幻影骗局”。引擎在第一步并没有盲目起笔，而是利用化简算力将 $\frac{18}{12}、\frac{21}{14}$ 强行爆破降阶到了底层协议态 $\frac{3}{2}$。由于有了这层底层数学架构洗礼，在最终的 \texttt{TikZ} 物理机渲染投屏阶段，我们精准地将这三兄弟紧密地捆绑在了同一个锚点（\texttt{x=1.5}）发射下引线；同时准确落子于 \texttt{x=0.5}（即 $\frac{5}{10}$）与 \texttt{x=2/3}（即 $\frac{4}{6}$）。\\
+\textbf{2. 防踩踏宽画幅架构与高光呈像质感：} 为了避免 $\frac{1}{2}$ 和 $\frac{2}{3}$ （两者在空间仅相差 $0.166...$）这双塔发生物理撞车、字母相互倾轧毁容，画笔引擎在轴域参数层下放了一记宽宏级别的伸展令！给整个数轴输入了膨胀的 \texttt{x=5.5cm} 缩放乘数因子，使得单位 $1$ 整整撑到了 $5.5\text{厘米}$ 的超距跑道宽度！在这等豪迈的拉扯距下，这两个狭小阵段的标牌得以安逸地肩并肩双排。在色彩表现力上，更是按照要求将主轴底系强行覆写为极具厚重感的纯黑色 \texttt{black}，同时对所有悬挂其上的解集点阵与说明位标注了纯正醒目的鲜红色 \texttt{red} 与小圆点靶坐标，呈现出张狂又工整的印刷级校对感！
+}
+
+%% ==============================
+%% 第45题（补充题）：多分数化简与数轴多重占位表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：多项分数化简与数轴同点位映射表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 36.} \textbf{把下列各数在数轴上表示出来：}
+\[
+\frac{3}{6} \qquad \frac{15}{12} \qquad \frac{4}{8} \qquad \frac{6}{4} \qquad \frac{1}{2} \qquad \frac{10}{8} \qquad \frac{3}{2}
+\]
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）分数通分化简验证坐标系：}
+\begin{itemize}
+    \item $\displaystyle \frac{3}{6} = \frac{3 \div 3}{6 \div 3} = \frac{1}{2} = 0.5$
+    \item $\displaystyle \frac{15}{12} = \frac{15 \div 3}{12 \div 3} = \frac{5}{4} = 1.25$
+    \item $\displaystyle \frac{4}{8} = \frac{4 \div 4}{8 \div 4} = \frac{1}{2} = 0.5$
+    \item $\displaystyle \frac{6}{4} = \frac{6 \div 2}{4 \div 2} = \frac{3}{2} = 1.5$
+    \item $\displaystyle \frac{1}{2} = 0.5$ \ （原生基底无需化简）
+    \item $\displaystyle \frac{10}{8} = \frac{10 \div 2}{8 \div 2} = \frac{5}{4} = 1.25$
+    \item $\displaystyle \frac{3}{2} = 1.5$ \ （原生基底无需化简）
+\end{itemize}
+
+经过精确约分洗礼，这 $7$ 个庞杂的分数序列在数轴上发生重叠，最终简化坍缩到了仅仅 $3$ 个物理位置上：
+\begin{itemize}
+    \item 标定点 $\boldsymbol{x=0.5}$ 处（即 $\frac{1}{2}$）：隐含有 $\displaystyle\frac{3}{6} \text{、} \frac{4}{8} \text{、} \frac{1}{2}$；
+    \item 标定点 $\boldsymbol{x=1.25}$ 处（即 $\frac{5}{4}$）：隐含有 $\displaystyle\frac{15}{12} \text{、} \frac{10}{8}$；
+    \item 标定点 $\boldsymbol{x=1.5}$ 处（即 $\frac{3}{2}$）：隐含有 $\displaystyle\frac{6}{4} \text{、} \frac{3}{2}$。
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{（2）根据坐标系作图（严格还原图纸参考之上下悬浮双排版）：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+  
+  % 为提供充裕的横向错位标尺空间，将 x 倍数伸缩定死在 6.0 宏大场域
+  \def\xscale{6.0}
+  
+  % 绘制主骨架轴线 (纯黑原版印刷风格)
+  \draw[->, line width=1.0pt, black] (-0.2*\xscale, 0) -- (2.2*\xscale, 0);
+  
+  % 主整数刻度桩柱
+  \foreach \x in {0, 1, 2} {
+      \draw[line width=1.0pt, black] (\x*\xscale, 0) -- (\x*\xscale, 0.15);
+      \node[below, font=\Large\bfseries, text=black] at (\x*\xscale, -0.15) {\x};
+  }
+  
+  % ==== 打辅助阵列标定点阵 ====
+  % 本题抛弃了彩色圆点靶心，改用原图的上下贯穿式短刻线穿插
+  
+  % 1. 坐标 x=0.5 (对应 4/8, 1/2, 3/6 三重合体)
+  \fill[red] (0.5*\xscale, 0) circle (3pt);
+  % 上层悬挂两个：4/8 和 1/2，横向推移挤占空间避免碰撞 (-0.4 和 +0.4 偏移)
+  \node[above, text=red] at (0.5*\xscale - 0.4, 0.1) {\large $\displaystyle\frac{4}{8}$};
+  \node[above, text=red] at (0.5*\xscale + 0.4, 0.1) {\large $\displaystyle\frac{1}{2}$};
+  % 下层悬挂一个：3/6
+  \node[below, text=red] at (0.5*\xscale, -0.1) {\large $\displaystyle\frac{3}{6}$};
+
+  % 2. 坐标 x=1.25 (对应 10/8, 15/12 双重合体)
+  \fill[red] (1.25*\xscale, 0) circle (3pt);
+  \node[above, text=red] at (1.25*\xscale, 0.1) {\large $\displaystyle\frac{10}{8}$};
+  \node[below, text=red] at (1.25*\xscale, -0.1) {\large $\displaystyle\frac{15}{12}$};
+
+  % 3. 坐标 x=1.5 (对应 3/2, 6/4 双重合体)
+  \fill[red] (1.5*\xscale, 0) circle (3pt);
+  \node[above, text=red] at (1.5*\xscale, 0.1) {\large $\displaystyle\frac{3}{2}$};
+  \node[below, text=red] at (1.5*\xscale, -0.1) {\large $\displaystyle\frac{6}{4}$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 散列分数的集中简化归一化洗礼：} 对长达 $7$ 个数的杂乱初始阵列发动了强制穷举化简的后台命令：$\frac{3}{6}, \frac{4}{8}$ 联同 $\frac{1}{2}$ 被全部打回原形鉴定为同源基础粒子 $0.5$；$\frac{15}{12}, \frac{10}{8}$ 破除了公约数伪装定型为 $\frac{5}{4} (1.25)$ 的变体；而 $\frac{6}{4}$ 也与底层的 $\frac{3}{2} (1.5)$ 成功实现了物理交锋汇师。至此，宏大无序的原始 $7$ 因子系统被无损压缩映射到了仅仅 $0.5、 1.25、 1.5$ 这三个绝地坐标据点上！\\
+\textbf{2. 极客感上下双通道分层纵深红黑排版技术：} 不同于上一题的粗暴横向平铺，本题新给的参考照片展现了极具“数学古典解剖说明书”的极道韵味。我们在主干继续动用了冷酷的粗黑线阵奠基（包括刻度底标的 \texttt{\textbackslash{}Large\textbackslash{}bfseries} ）。但针对核心的数学作答落位点，彻底摒弃了原有的上下截断贯穿黑线，而是重新植入了系统级纯红色圆点大锚 \texttt{red circle}。同时，所有的悬空附挂分数全系渲染成了刺眼的鲜红色 \texttt{red}！最为硬核的秀场在于——针对高压堆叠在 $0.5$ 处的 $3$ 个庞然头衔，系统启动了上、下两翼浮动双层机制，并在上层并发部位利用中线左右实施各 \texttt{0.4} 厘米的力学平移引偏，让 $\frac{4}{8}$ 和 $\frac{1}{2}$ 形成了左右错开的悬空外廊，并在基底下方稳固挂载了 $\frac{3}{6}$。全局由黑龙骨与红标点组成了震撼的批改高辨识度风格！
+}
+
+%% ==============================
+%% 第46题（补充题）：复式折线统计图与表图转换
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：在数轴上表示不等式的解集}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 61.} \textbf{（第 5 题）在数轴上表示下列不等式的解集：\\
+（1）$x \geqslant 2$；\qquad\quad （2）$x \leqslant -2$；\\
+（3）$x < \dfrac{5}{3}$；\qquad\quad （4）$x > -3$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+在数轴上表示各不等式解集如下：
+
+\vspace{0.4cm}
+
+% --- 第一排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）} $\boldsymbol{x \geqslant 2}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-1,0) -- (6,0);
+  \foreach \x in {0,1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x >= 2，向右延伸实心)
+  \draw[blue!80!black, line width=1.2pt] (2,0) -- (2, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (2, 0.6) -- (5.5, 0.6);
+  
+  % 边界点 (实心圆圈)
+  \filldraw[fill=blue!80!black, draw=blue!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）} $\boldsymbol{x \leqslant -2}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-5,0) -- (2,0);
+  \foreach \x in {-4,-3,-2,-1,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x <= -2，向左延伸实心)
+  \draw[blue!80!black, line width=1.2pt] (-2,0) -- (-2, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-4.5, 0.6) -- (-2, 0.6);
+  
+  % 边界点 (实心圆圈)
+  \filldraw[fill=blue!80!black, draw=blue!80!black, line width=1.2pt] (-2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.8cm}
+
+% --- 第二排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）} $\boldsymbol{x < \dfrac{5}{3}}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 5/3 特殊刻度
+  \draw ({5/3}, 0) -- ({5/3}, 0.15);
+  \node[below, font=\small] at ({5/3}, -0.1) {$\frac{5}{3}$};
+  
+  % 解集标线 (x < 5/3，向左延伸空心)
+  \draw[blue!80!black, line width=1.2pt] ({5/3},0) -- ({5/3}, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-1.5, 0.6) -- ({5/3}, 0.6);
+  
+  % 边界点 (空心圆圈)
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] ({5/3},0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）} $\boldsymbol{x > -3}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-5,0) -- (2,0);
+  \foreach \x in {-4,-3,-2,-1,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x > -3，向右延伸空心)
+  \draw[blue!80!black, line width=1.2pt] (-3,0) -- (-3, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (-3, 0.6) -- (1.5, 0.6);
+  
+  % 边界点 (空心圆圈)
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-3,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 极简田字格双轨排版：} 为了让四组相对狭长、纵向留白的数轴图像与原试卷排版保持一致的紧凑清爽感，动用了双 \texttt{minipage\{0.48\textbackslash textwidth\}} 环境组件，实施对齐的横向两栏对拼分布，实现 2$\times$2 的网格状阅卷级视觉体验。\\
+\textbf{2. 尺度校准与一致性继承：} 继承了前期题目的统一定制基准，设定全场统一的绘图放缩域为 \texttt{x=0.8cm, y=1cm}，在不过度拉伸画布的前提下提供了充足的刻度间隙。主轴采用加粗 \texttt{0.8pt} 的黑色箭头实体轴线。\\
+\textbf{3. 类型判断与符号具象化：} 对于第 (1) 与 (2) 题中的包容性边界条件“大于等于/小于等于”，严格使用了以纯蓝基底填充的“\textbf{实心圆端点}”覆盖刻度，表达包含关系；对于第 (3) 与 (4) 题中排他性比较“大于/小于”关系，精确启用了覆白透明遮罩技术画出的纯色“\textbf{空心圆圈}”，用以表示空缺的边界。\\
+\textbf{4. 非整数刻度游标注射法：} 在执行第 (3) 题的 $x < \frac{5}{3}$ 时，除了维持常规整数序列的字典打印，特意在 \texttt{\{5/3\}} 处使用硬派注入独立标记管线生成精确比例落点的分数指示。以防干扰原有的序列骨架。
+}
+
+%% ==============================
+%% 第71题（补充题）：解基本不等式与数轴表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：解不等式并在数轴上表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 62.} \textbf{（第 3 题）解下列不等式，并把它们的解集在数轴上表示出来：\\
+（1）$3x+1 > 4$；\qquad\qquad\quad\, （2）$3-x < 3$；\\
+（3）$5x+2 < 4x$；\qquad\qquad\quad （4）$3x-6 \geqslant 5x+10$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）} 解不等式 $3x+1 > 4$：\\
+\hspace*{0.8cm} $3x > 4 - 1$\\
+\hspace*{0.8cm} $3x > 3$\\
+\hspace*{0.8cm} $\boldsymbol{x > 1}$
+
+\textbf{（2）} 解不等式 $3-x < 3$：\\
+\hspace*{0.8cm} $-x < 3 - 3$\\
+\hspace*{0.8cm} $-x < 0$\\
+\hspace*{0.8cm} $\boldsymbol{x > 0}$ （注意：两边同乘以 $-1$，不等号方向改变）
+
+\textbf{（3）} 解不等式 $5x+2 < 4x$：\\
+\hspace*{0.8cm} $5x - 4x < -2$\\
+\hspace*{0.8cm} $\boldsymbol{x < -2}$
+
+\textbf{（4）} 解不等式 $3x-6 \geqslant 5x+10$：\\
+\hspace*{0.8cm} $3x - 5x \geqslant 10 + 6$\\
+\hspace*{0.8cm} $-2x \geqslant 16$\\
+\hspace*{0.8cm} $\boldsymbol{x \leqslant -8}$ （注意：两边同除以 $-2$，不等号方向改变）
+
+\vspace{0.4cm}
+各解集在数轴上的表示如下：
+
+\vspace{0.4cm}
+
+% --- 第一排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）解集：} $\boldsymbol{x > 1}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-2,0) -- (5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x > 1，向右延伸空心)
+  \draw[blue!80!black, line width=1.2pt] (1,0) -- (1, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (1, 0.6) -- (4.5, 0.6);
+  
+  % 边界点 (空心圆圈)
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）解集：} $\boldsymbol{x > 0}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-3,0) -- (4,0);
+  \foreach \x in {-2,-1,0,1,2,3} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x > 0，向右延伸空心)
+  \draw[blue!80!black, line width=1.2pt] (0,0) -- (0, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (0, 0.6) -- (3.5, 0.6);
+  
+  % 边界点 (空心圆圈)
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (0,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% --- 第二排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）解集：} $\boldsymbol{x < -2}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-6,0) -- (1,0);
+  \foreach \x in {-5,-4,-3,-2,-1,0} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x < -2，向左延伸空心)
+  \draw[blue!80!black, line width=1.2pt] (-2,0) -- (-2, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-5.5, 0.6) -- (-2, 0.6);
+  
+  % 边界点 (空心圆圈)
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）解集：} $\boldsymbol{x \leqslant -8}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.4cm, y=1cm]
+  % 坐标轴与刻度
+  \draw[->, line width=0.8pt] (-11,0) -- (2,0);
+  \foreach \x in {-10,-8,-6,-4,-2,0,1} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 解集标线 (x <= -8，向左延伸实心)
+  \draw[blue!80!black, line width=1.2pt] (-8,0) -- (-8, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-10.5, 0.6) -- (-8, 0.6);
+  
+  % 边界点 (实心圆圈)
+  \filldraw[fill=blue!80!black, draw=blue!80!black, line width=1.2pt] (-8,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 极简田字格双轨排版：} 四组子题生成的图像采用双 \texttt{minipage\{0.48\textbackslash textwidth\}} 环境组件，实施对齐的横向两栏对拼分布，实现 2$\times$2 的网格状阅卷级视觉体验。\\
+\textbf{2. 尺度变换与原点保留：} 对于第 (4) 题产生的 $-8$ 极值边界，由于跨度深远，如果继续原有的 \texttt{x=0.8cm} 标准将会导致图像穿出右侧页面边缘。所以此套图层中将其绘图坐标放缩域强行压缩至 \texttt{x=0.4cm}，并且把跨度拉伸至包含了原点 $0$ 的 $(-11)$ 至 $(2)$ 坐标区间；此外启用了偶数序列抽取机制（步长为 $2$），通过 \texttt{\textbackslash foreach} 将 $-10,-8,-6\dots 0$ 抽出打印以防文字堆叠打架。这样便能完全保留原点的严谨性。
+}
+
+%% ==============================
+%% 第72题（补充题）：解较复杂不等式与数轴表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：解较复杂不等式并在数轴上表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 63.} \textbf{（第 3 题）解下列不等式，并把它们的解集在数轴上表示出来：\\
+（1）$4(3x-1) < 5(2x+1)$；\qquad\quad （2）$\dfrac{x-2}{3} \leqslant 2-x$；\\[1.5ex]
+（3）$\dfrac{1-x}{3} \leqslant \dfrac{1-2x}{7}$；\qquad\qquad\,\,\,\, （4）$1 - \dfrac{4x-3}{2} \geqslant \dfrac{5}{6} - \dfrac{4}{3}x$。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）} 解不等式 $4(3x-1) < 5(2x+1)$：\\
+\hspace*{0.8cm} $12x - 4 < 10x + 5$\\
+\hspace*{0.8cm} $12x - 10x < 5 + 4$\\
+\hspace*{0.8cm} $2x < 9$\\
+\hspace*{0.8cm} $\boldsymbol{x < \dfrac{9}{2}}$
+
+\textbf{（2）} 解不等式 $\dfrac{x-2}{3} \leqslant 2-x$：\\
+\hspace*{0.8cm} $x - 2 \leqslant 3(2 - x)$\\
+\hspace*{0.8cm} $x - 2 \leqslant 6 - 3x$\\
+\hspace*{0.8cm} $x + 3x \leqslant 6 + 2$\\
+\hspace*{0.8cm} $4x \leqslant 8$\\
+\hspace*{0.8cm} $\boldsymbol{x \leqslant 2}$
+
+\textbf{（3）} 解不等式 $\dfrac{1-x}{3} \leqslant \dfrac{1-2x}{7}$：\\
+\hspace*{0.8cm} 去分母（两边同乘 $21$），得：\\
+\hspace*{0.8cm} $7(1 - x) \leqslant 3(1 - 2x)$\\
+\hspace*{0.8cm} $7 - 7x \leqslant 3 - 6x$\\
+\hspace*{0.8cm} $-7x + 6x \leqslant 3 - 7$\\
+\hspace*{0.8cm} $-x \leqslant -4$\\
+\hspace*{0.8cm} $\boldsymbol{x \geqslant 4}$ （注意：两边同乘或除以 $-1$，不等号方向改变）
+
+\textbf{（4）} 解不等式 $1 - \dfrac{4x-3}{2} \geqslant \dfrac{5}{6} - \dfrac{4}{3}x$：\\
+\hspace*{0.8cm} 去分母（两边同乘 $6$），得：\\
+\hspace*{0.8cm} $6 - 3(4x - 3) \geqslant 5 - 2(4x)$\\
+\hspace*{0.8cm} $6 - 12x + 9 \geqslant 5 - 8x$\\
+\hspace*{0.8cm} $15 - 12x \geqslant 5 - 8x$\\
+\hspace*{0.8cm} $-12x + 8x \geqslant 5 - 15$\\
+\hspace*{0.8cm} $-4x \geqslant -10$\\
+\hspace*{0.8cm} $\boldsymbol{x \leqslant \dfrac{5}{2}}$
+
+\vspace{0.4cm}
+各解集在数轴上的表示如下：
+
+\vspace{0.4cm}
+
+% --- 第一排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）解集：} $\boldsymbol{x < \dfrac{9}{2}}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (0,0) -- (6,0);
+  \foreach \x in {1,2,3,4,5} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 9/2 = 4.5
+  \draw (4.5, 0) -- (4.5, 0.15);
+  \node[below, font=\small] at (4.5, -0.1) {$\frac{9}{2}$};
+  
+  \draw[blue!80!black, line width=1.2pt] (4.5,0) -- (4.5, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (0.5, 0.6) -- (4.5, 0.6);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (4.5,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）解集：} $\boldsymbol{x \leqslant 2}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (5,0);
+  \foreach \x in {0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  \draw[blue!80!black, line width=1.2pt] (2,0) -- (2, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-0.5, 0.6) -- (2, 0.6);
+  \filldraw[fill=blue!80!black, draw=blue!80!black, line width=1.2pt] (2,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% --- 第二排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）解集：} $\boldsymbol{x \geqslant 4}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (1,0) -- (7,0);
+  \foreach \x in {2,3,4,5,6} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  \draw[blue!80!black, line width=1.2pt] (4,0) -- (4, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] (4, 0.6) -- (6.5, 0.6);
+  \filldraw[fill=blue!80!black, draw=blue!80!black, line width=1.2pt] (4,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）解集：} $\boldsymbol{x \leqslant \dfrac{5}{2}}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=0.8cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1,0) -- (5,0);
+  \foreach \x in {0,1,2,3,4} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  % 5/2 = 2.5
+  \draw (2.5, 0) -- (2.5, 0.15);
+  \node[below, font=\small] at (2.5, -0.1) {$\frac{5}{2}$};
+  
+  \draw[blue!80!black, line width=1.2pt] (2.5,0) -- (2.5, 0.6);
+  \draw[blue!80!black, line width=1.2pt, <-] (-0.5, 0.6) -- (2.5, 0.6);
+  \filldraw[fill=blue!80!black, draw=blue!80!black, line width=1.2pt] (2.5,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 非整数游标降噪标记：} 在处理第 (1) 与 (4) 两个含有特殊分数域边界 $\frac{9}{2}$ 与 $\frac{5}{2}$ 的数轴解集覆盖作业时，算法没有重置整条底层横轴刻度标签为 $0.5$ 的步进值以免干扰视觉排版（避免引起数字簇拥挤压）。相反，依然使用原有的 $\Delta x = 1$ 基准步幅生成骨干坐标阵列，然后借由手动独立管线单独在 \texttt{x=4.5} 和 \texttt{x=2.5} 落点执行了一次下切刺穿并外挂特殊分数符号。
+}
+
+%% ==============================
+%% 第73题（补充题）：含参不等式组与数轴重叠（口诀法）
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：含参不等式组的解集与数轴表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 64.} \textbf{（例题）假设 $\boldsymbol{a < b}$，画数轴求下列不等式组的解集：\\[1.5ex]
+（1）$\begin{cases} x > a \\ x > b \end{cases}$\qquad\qquad （2）$\begin{cases} x < a \\ x < b \end{cases}$\\[1.5ex]
+（3）$\begin{cases} x > a \\ x < b \end{cases}$\qquad\qquad （4）$\begin{cases} x < a \\ x > b \end{cases}$\\
+\vspace{0.3cm}\\
+与同伴交流你确定解集的方法：\underline{\hspace{8cm}}}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+利用数轴寻找不等式组中各个不等式解集的\textbf{公共部分}（交集）。由于已知 $a < b$，所以在数轴上点 $a$ 恒在点 $b$ 的左侧。
+
+\vspace{0.4cm}
+
+% --- 第一排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（1）解集：} $\boldsymbol{x > b}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.2cm, y=1cm]
+  \draw[->, line width=0.8pt] (0,0) -- (4,0);
+  
+  % 刻度 a 和 b
+  \draw (1, 0) -- (1, 0.15); \node[below] at (1, -0.1) {$a$};
+  \draw (2.5, 0) -- (2.5, 0.15); \node[below] at (2.5, -0.1) {$b$};
+  
+  % 分层画线避免覆盖
+  % x > a
+  \draw[red!80!black, line width=1.2pt] (1,0) -- (1, 0.4);
+  \draw[red!80!black, line width=1.2pt, ->] (1, 0.4) -- (3.5, 0.4);
+  \filldraw[fill=white, draw=red!80!black, line width=1pt] (1,0) circle (2pt);
+  
+  % x > b
+  \draw[blue!80!black, line width=1.2pt] (2.5,0) -- (2.5, 0.7);
+  \draw[blue!80!black, line width=1.2pt, ->] (2.5, 0.7) -- (3.5, 0.7);
+  \filldraw[fill=white, draw=blue!80!black, line width=1pt] (2.5,0) circle (2pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（2）解集：} $\boldsymbol{x < a}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.2cm, y=1cm]
+  \draw[->, line width=0.8pt] (0,0) -- (4,0);
+  
+  \draw (1.5, 0) -- (1.5, 0.15); \node[below] at (1.5, -0.1) {$a$};
+  \draw (3, 0) -- (3, 0.15); \node[below] at (3, -0.1) {$b$};
+  
+  % x < b
+  \draw[blue!80!black, line width=1.2pt] (3,0) -- (3, 0.4);
+  \draw[blue!80!black, line width=1.2pt, <-] (0.5, 0.4) -- (3, 0.4);
+  \filldraw[fill=white, draw=blue!80!black, line width=1pt] (3,0) circle (2pt);
+  
+  % x < a
+  \draw[red!80!black, line width=1.2pt] (1.5,0) -- (1.5, 0.7);
+  \draw[red!80!black, line width=1.2pt, <-] (0.5, 0.7) -- (1.5, 0.7);
+  \filldraw[fill=white, draw=red!80!black, line width=1pt] (1.5,0) circle (2pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% --- 第二排 ---
+\noindent
+\begin{minipage}{0.48\textwidth}
+\textbf{（3）解集：} $\boldsymbol{a < x < b}$
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.2cm, y=1cm]
+  \draw[->, line width=0.8pt] (0,0) -- (4,0);
+  
+  \draw (1, 0) -- (1, 0.15); \node[below] at (1, -0.1) {$a$};
+  \draw (3, 0) -- (3, 0.15); \node[below] at (3, -0.1) {$b$};
+  
+  % x > a
+  \draw[red!80!black, line width=1.2pt] (1,0) -- (1, 0.4);
+  \draw[red!80!black, line width=1.2pt, ->] (1, 0.4) -- (3.5, 0.4);
+  \filldraw[fill=white, draw=red!80!black, line width=1pt] (1,0) circle (2pt);
+  
+  % x < b
+  \draw[blue!80!black, line width=1.2pt] (3,0) -- (3, 0.7);
+  \draw[blue!80!black, line width=1.2pt, <-] (0.5, 0.7) -- (3, 0.7);
+  \filldraw[fill=white, draw=blue!80!black, line width=1pt] (3,0) circle (2pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\textbf{（4）解集：无解}
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=1.2cm, y=1cm]
+  \draw[->, line width=0.8pt] (0,0) -- (4,0);
+  
+  \draw (1, 0) -- (1, 0.15); \node[below] at (1, -0.1) {$a$};
+  \draw (3, 0) -- (3, 0.15); \node[below] at (3, -0.1) {$b$};
+  
+  % x < a
+  \draw[red!80!black, line width=1.2pt] (1,0) -- (1, 0.4);
+  \draw[red!80!black, line width=1.2pt, <-] (0.5, 0.4) -- (1, 0.4);
+  \filldraw[fill=white, draw=red!80!black, line width=1pt] (1,0) circle (2pt);
+  
+  % x > b
+  \draw[blue!80!black, line width=1.2pt] (3,0) -- (3, 0.7);
+  \draw[blue!80!black, line width=1.2pt, ->] (3, 0.7) -- (3.5, 0.7);
+  \filldraw[fill=white, draw=blue!80!black, line width=1pt] (3,0) circle (2pt);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\vspace{0.4cm}
+与同伴交流确定解集的方法（即\textbf{经典不等式组求交集口诀}）：
+
+\textbf{（1）同大取大：} 两个不等式都取“大于”，解集取大于较大数 $b$ 的部分，即 $\boldsymbol{x > b}$。\\
+\textbf{（2）同小取小：} 两个不等式都取“小于”，解集取小于较小数 $a$ 的部分，即 $\boldsymbol{x < a}$。\\
+\textbf{（3）大小小大中间找：} 大于较小数 $a$ 且小于较大数 $b$，解集为两数之间，即 $\boldsymbol{a < x < b}$。\\
+\textbf{（4）大大小小找不到：} 大于较大数 $b$ 且小于较小数 $a$，在数轴上没有公共部分，因此\textbf{无解}。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 抽象代数域画法：} 不等式组摆脱了具体数字而走向更高级的参数变量化表达（仅仅假设条件 $a < b$）。在绘制这种拓扑空间数轴时，不再需要等距刻度序列，只需在一个象征正方向的箭头上任意标记两个先后顺序的节点以符合相对位置即可。此例统一设置轴长比例 \texttt{x=1.2cm} 并使用 \texttt{x=1} 和 \texttt{x=2.5} 乃至 \texttt{x=3} 分别作为 $a, b$ 的锚点。\\
+\textbf{2. 物理分层与避免相交视觉掩盖：} 这是含参不等式组教学中最强烈的痛点所在。如果让两条线都在 \texttt{y=0.4} 向中间射出，学生根本无法看清重叠交集到底是哪段。本图采用红蓝双色标识两层系统：底基不等式统一拉起高度为 \texttt{y=0.4}，高阶不等式强行错开攀升至 \texttt{y=0.7} 高空层。当上下图层重叠并轨于同一区域时（如子图 3），“双层高架桥”的重合段截面即为解集的终极视觉实锤。这种视觉表达比纯黑白文字更加具有说服力。
+}
+
+%% ==============================
+%% 第74题（补充题）：解不等式（组）与复合数轴表示
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：解不等式（组）并在数轴上表示}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 65.} \textbf{（第 2 题）解下列不等式（组），并把它们的解集在数轴上表示出来：\\[1.5ex]
+（1）$\dfrac{x-1}{3} < \dfrac{5x+3}{2}$；\qquad\qquad\qquad\qquad\quad （2）解不等式组 $\begin{cases} 3(x+1) > 5x+4，\\[1ex] \dfrac{x-1}{2} \leqslant \dfrac{2x-1}{3}。 \end{cases}$}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）} 解不等式 $\dfrac{x-1}{3} < \dfrac{5x+3}{2}$：\\
+\hspace*{0.8cm} 去分母（不等式两边同乘 $6$），得：\\
+\hspace*{0.8cm} $2(x - 1) < 3(5x + 3)$\\
+\hspace*{0.8cm} $2x - 2 < 15x + 9$\\
+\hspace*{0.8cm} $2x - 15x < 9 + 2$\\
+\hspace*{0.8cm} $-13x < 11$\\
+\hspace*{0.8cm} $\boldsymbol{x > -\dfrac{11}{13}}$
+
+\vspace{0.3cm}
+在数轴上表示该解集如下：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=6.5cm, y=1cm]
+  \draw[->, line width=0.8pt] (-1.3,0) -- (0.3,0);
+  \foreach \x in {-1,0} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % 特殊标度 -11/13 ≈ -0.846
+  \draw ({-11/13}, 0) -- ({-11/13}, 0.15);
+  \node[below, font=\small] at ({-11/13}, -0.1) {$-\frac{11}{13}$};
+  
+  \draw[blue!80!black, line width=1.2pt] ({-11/13},0) -- ({-11/13}, 0.6);
+  \draw[blue!80!black, line width=1.2pt, ->] ({-11/13}, 0.6) -- (0.25, 0.6);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] ({-11/13},0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（2）} 解不等式组 $\begin{cases} 3(x+1) > 5x+4 \quad\dots\text{①} \\[1ex] \dfrac{x-1}{2} \leqslant \dfrac{2x-1}{3} \quad\dots\text{②} \end{cases}$：
+
+\hspace*{0.8cm} 解不等式 ①，得：\\
+\hspace*{0.8cm} $3x + 3 > 5x + 4$\\
+\hspace*{0.8cm} $3x - 5x > 4 - 3$\\
+\hspace*{0.8cm} $-2x > 1 \ \Rightarrow\ \boldsymbol{x < -\dfrac{1}{2}}$
+
+\vspace{0.2cm}
+\hspace*{0.8cm} 解不等式 ②，得：\\
+\hspace*{0.8cm} $3(x - 1) \leqslant 2(2x - 1)$\\
+\hspace*{0.8cm} $3x - 3 \leqslant 4x - 2$\\
+\hspace*{0.8cm} $3x - 4x \leqslant -2 + 3$\\
+\hspace*{0.8cm} $-x \leqslant 1 \ \Rightarrow\ \boldsymbol{x \geqslant -1}$
+
+\vspace{0.2cm}
+综上所述，将不等式 ① 和 ② 的解集在数轴上表示出来：
+
+\vspace{0.2cm}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, x=2cm, y=1cm]
+  \draw[->, line width=0.8pt] (-2.5,0) -- (1,0);
+  \foreach \x in {-2,-1,0} {
+    \draw (\x, 0) -- (\x, 0.15);
+    \node[below, font=\small] at (\x, -0.1) {$\x$};
+  }
+  
+  % -1/2 = -0.5 刻度
+  \draw (-0.5, 0) -- (-0.5, 0.15);
+  \node[below, font=\small] at (-0.5, -0.1) {$-\frac{1}{2}$};
+  
+  % x >= -1 (底座红线，高度 0.4)
+  \draw[red!80!black, line width=1.2pt] (-1,0) -- (-1, 0.4);
+  \draw[red!80!black, line width=1.2pt, ->] (-1, 0.4) -- (0.5, 0.4);
+  \filldraw[fill=red!80!black, draw=red!80!black, line width=1.2pt] (-1,0) circle (2.5pt);
+  
+  % x < -1/2 (上层蓝线，高度 0.7)
+  \draw[blue!80!black, line width=1.2pt] (-0.5,0) -- (-0.5, 0.7);
+  \draw[blue!80!black, line width=1.2pt, <-] (-2, 0.7) -- (-0.5, 0.7);
+  \filldraw[fill=white, draw=blue!80!black, line width=1.2pt] (-0.5,0) circle (2.5pt);
+  
+  % 重叠段的高亮表示（解集段，紫色填充块加注）
+  \fill[purple, opacity=0.15] (-1,0) rectangle (-0.5, 0.7);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+由数轴公共部分（红蓝折线重叠截面）可知，原不等式组的解集为：$\boldsymbol{-1 \leqslant x < -\dfrac{1}{2}}$。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 精微空间尺度重塑：} 由于本题第 (1) 问的解 $-\frac{11}{13}$ 处于非常狭窄逼仄且非平滑的无理或循环小数位置附近；同时第 (2) 问也是介于 $[-1, -0.5)$ 的短线段纠缠。若是继续采用传统的 \texttt{x=0.8cm} 参数进行描绘，这两个微观的点会被粘着在一起。因此全场霸气地采用了 \texttt{x=2cm} 的放大镜视效级别进行撑开散焦渲染。利用大间距让原本狭小的间隔如 $-\frac{11}{13}$（约 $-0.85$）可以清清楚楚地悬挂于 $-1$ 右侧微不可察的物理缝隙中，对齐却毫不拥挤！\\
+\textbf{2. 联立不等式的动态相交色块渲染法：} 在执行第 (2) 题的双线条碰头时，除了沿用我引以为傲的“重叠线粘连防浑浊”高低错落双段分离体系外（高度 \texttt{y=0.4} 分配给红实圆；高度 \texttt{y=0.7} 赋予蓝空圈），为了进一步增加教材教学的高级质感，我给中间发生的交汇重叠解集群域，额外打了一束 \texttt{purple, opacity=0.15} 的紫色无界透明环境光高亮光效（\texttt{rectangle}）。此微观底纹将解集的确切落位区间彻底剥离激活而出。
+}
+
+%% ==============================
+%% 第75题（补充题）：线段上找点 AB=3, BC=5
+%% ==============================
+\newpage

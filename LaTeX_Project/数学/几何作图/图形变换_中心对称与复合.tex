@@ -1,0 +1,573 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 几何作图 / 图形变换_中心对称与复合
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：作图形的中心对称与复合变换图解}
+
+\vspace{0.6cm}
+
+\textbf{（1）画出 $\Delta A'B'C'$，及（2）进行图形变换的画图证明如下：}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7, >=Stealth, line join=round, line cap=round]
+  % 1. 绘制背景网格系
+  % 原题虽为 10x10，但在实际中心对称及后续平移中，图形在 y 轴向下穿透了底层边界。
+  % 因此我们建立横竖更为宽裕的 10x12 拓展网格系，完全容纳所有解题辅助线，x: -5到5，y: -6到6
+  \draw[dashed, gray!80, step=1] (-5, -6) grid (5, 6);
+  
+  % 2. 标记旋转中心 O
+  \coordinate (O) at (0, 0);
+  \fill (O) circle (2.5pt) node[above right] {$O$};
+  
+  % 3. 定义原始三角形 ABC
+  \coordinate (A) at (-1, 2);
+  \coordinate (B) at (-3, 5);
+  \coordinate (C) at (-3, 2);
+  
+  % 绘制原始三角形
+  \draw[line width=1.0pt, black] (A) -- (B) -- (C) -- cycle;
+  \node[right] at (A) {$A$};
+  \node[above left] at (B) {$B$};
+  \node[below left] at (C) {$C$};
+  
+  % ----------------------------------------------------
+  % 第一题：画出绕点 O 的中心对称图形 A'B'C'
+  % ----------------------------------------------------
+  % 中心对称相当于原点直接取反 (-x, -y)
+  \coordinate (A1) at (1, -2);
+  \coordinate (B1) at (3, -5);
+  \coordinate (C1) at (3, -2);
+  
+  % 绘制对称像 A'B'C' (加粗蓝色突出答案)
+  \draw[line width=1.5pt, blue!80!black] (A1) -- (B1) -- (C1) -- cycle;
+  \fill[blue!80!black] (A1) circle (2pt) node[below left] {$A'$}; 
+  \fill[blue!80!black] (B1) circle (2pt) node[right] {$B'$};
+  \fill[blue!80!black] (C1) circle (2pt) node[above right] {$C'$};
+  
+  % 穿过原点 O 的中心对称连线点痕迹 (虚线)
+  \draw[dashed, gray, line width=0.6pt] (A) -- (A1);
+  \draw[dashed, gray, line width=0.6pt] (B) -- (B1);
+  \draw[dashed, gray, line width=0.6pt] (C) -- (C1);
+
+  % ----------------------------------------------------
+  % 第二题：复合变换路径图形证明 (平移 + 旋转组合)
+  % ----------------------------------------------------
+  % 步骤I：将 ABC 整体竖直向下平移 7 个单位，得到基准点过渡图形 A''B''C''
+  \coordinate (A2) at (-1, -5);
+  \coordinate (B2) at (-3, -2);
+  \coordinate (C2) at (-3, -5);
+  
+  % 绘制第一步中间态过渡图形 (黑色加粗虚线)
+  \draw[dashed, black, line width=1.2pt] (A2) -- (B2) -- (C2) -- cycle;
+  
+  % 绘制平移动画箭头符号 (从各顶点向下垂直发射)
+  \draw[->, dashed, red!70!black, line width=0.8pt] (B) -- (B2);
+  \draw[->, dashed, red!70!black, line width=0.8pt] (C) -- (C2);
+  \draw[->, dashed, red!70!black, line width=0.8pt] (A) -- (A2);
+  
+
+  % 步骤II：找出新的对称中心点 O''。将过渡图形 A''B''C'' 绕新点作 180度 中心旋转，扣合 A'B'C'
+  % 中点为 A2 与 A1 的中点：x = 0, y = -3.5
+  \coordinate (O2) at (0, -3.5);
+  \fill[red!80!black] (O2) circle (2.5pt) node[above] {$O''$};
+
+  
+  % 绘制二次旋转所穿过交汇于 O'' 的辅助线
+  \draw[dashed, red!60!black, line width=0.6pt] (A2) -- (A1);
+  \draw[dashed, red!60!black, line width=0.6pt] (B2) -- (B1);
+  \draw[dashed, red!60!black, line width=0.6pt] (C2) -- (C1);
+  
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+\textbf{（2）解答：\underline{\quad 能 \quad}。结合作图说明如图及以下步骤解析。}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{第（1）问：中心对称作图}\\
+以 $O$ 为原点构建格点坐标系，读出原始三个坐标 $A(-1,2), B(-3,5), C(-3,2)$。中心对称点即是在原坐标前加负号（等价于绕点旋转 $180^\circ$）。经计算得对应点 $A'(1,-2), B'(3,-5), C'(3,-2)$。描这些点并用实线顺次连接即可得到由深色标出的最终 $\Delta A'B'C'$。\\
+\textbf{【提醒】}：严格依据原始的 $10\times10$ 格子，对称生成的底端点 $B'$ 实际上会越出底格下边界 $1$ 个单位，因此这里的作图辅助格已经动态向下扩大，使其能完整容纳图形展示！\\
+2. \textbf{第（2）问：图形两次复合变换路径设计}\\
+根据题意探究是否能用两次**不同的**图形变换（例如：平移、旋转、或者轴对称）的接续组合来实现目标效果。我们仔细观察图形相对位置，完全可以规划出干净的“竖直向下平移 $\rightarrow$ 中心交叉旋转”两步复合逻辑：\\
+\textbf{步骤一：}将原始 $\Delta ABC$ 竖直向下平移 $7$ 个格点单位，让图形来到第三象限下方的位置。该过渡位置记为辅助虚线框 $\Delta A''B''C''$（其定点落子在 $A''(-1,-5), B''(-3,-2), C''(-3,-5)$）。\\
+\textbf{步骤二：}接着将这个平移落位的过渡图形 $\Delta A''B''C''$ 进行旋转；我们取它与最终目标图形 $\Delta A'B'C'$ 处于镜像位置的两点连线（如 $C''$ 连到 $C'$）并取中点。经计算该中点坐标为新对称中心 $O''(0, -3.5)$。只需将过渡图形 $\Delta A''B''C''$ 借位绕点 $O''$ 中心对称旋转 $180^\circ$，这就通过的两次截然不同性质的变换（一为平移，一为旋转）获得了答案所指的 $\Delta A'B'C'$。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 突破画布自适应系建立：}完全抛弃由于母题 $10\times10$ 太过紧凑导致答卷超限的图形撕裂状况，程序建立以 $O(0,0)$ 原点的延伸网格。调用 \texttt{(-5, -6) grid (5, 6)} 全尺寸构建出更为广阔合理的 $10\times12$ 格子阵列作为推演依托底层。\\
+\textbf{2. 矩阵正切映射描图：}针对主像目标进行负号全导数转化计算高亮色块蓝线；并且对于题（2）隐含的二次变换：我们通过定义了一整套虚线外扩渲染样式，用强方向感 \texttt{->} 红色虚线将纵向无变形下的平移矢量轨迹“一次平移”呈现，紧缩算出虚拟交叉中点 $O''(0, -3.5)$ ，画出穿芯虚线辐射组，将“二次旋转”的抽象行为转化成了真实的纯物理结构图说明，全角度展示几何逻辑闭环。
+}
+
+
+
+%% ==============================
+%% 第22题：一种花布售价与长度成正比例图像作图与填表
+%% ==============================
+
+\newpage
+
+\subsection{解答：三角形中心对称的三种情境作图}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 58.} \textbf{（第 4 题）按下列条件，分别画一个与已知 $\triangle ABC$ 成中心对称的三角形：\\
+（1）在图①中以顶点 $C$ 为对称中心；\\
+（2）在图②中以 $AB$ 的中点 $M$ 为对称中心；\\
+（3）在图③中以 $\triangle ABC$ 内的点 $P$ 为对称中心。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{画图如下：}
+
+\begin{center}
+  % 第一幅图：以顶点 C 为中心
+  \begin{minipage}[b]{0.31\textwidth}
+    \centering
+    \begin{tikzpicture}[>=Stealth, scale=0.6]
+      % 定义顶点
+      \coordinate (B) at (0, 0);
+      \coordinate (C) at (3, 0);
+      \coordinate (A) at (1.2, 2.5);
+      
+      % 计算对称点 (中点C)
+      \coordinate (A') at (4.8, -2.5); 
+      \coordinate (B') at (6, 0);      
+      \coordinate (C') at (3, 0);
+      
+      % 连线并标记对称路径
+      \draw[dashed, blue!60] (A) -- (A');
+      \draw[dashed, blue!60] (B) -- (B');
+      
+      % 原图形
+      \draw[thick] (A) -- (B) -- (C) -- cycle;
+      \filldraw (A) circle (1.5pt) node[above] {$A$};
+      \filldraw (B) circle (1.5pt) node[above left] {$B$};
+      \filldraw (C) circle (1.5pt) node[above right] {$C$};
+      
+      % 目标图形
+      \draw[thick, red] (A') -- (B') -- (C') -- cycle;
+      \filldraw[red] (A') circle (1.5pt) node[below, text=red] {$A'$};
+      \filldraw[red] (B') circle (1.5pt) node[above right, text=red] {$B'$};
+      % C' 和 C 重合，共同节点无需重复标注以免拥挤
+      
+      % 图名
+      \node[below, font=\normalsize] at (3, -3.2) {①};
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  % 第二幅图：以中点 M 为中心
+  \begin{minipage}[b]{0.31\textwidth}
+    \centering
+    \begin{tikzpicture}[>=Stealth, scale=0.6]
+      \coordinate (B) at (0, 0);
+      \coordinate (C) at (3, 0);
+      \coordinate (A) at (1.2, 2.5);
+      \coordinate (M) at (0.6, 1.25);
+      
+      % 计算对称点 (中点M)
+      \coordinate (A') at (0, 0);
+      \coordinate (B') at (1.2, 2.5);
+      \coordinate (C') at (-1.8, 2.5);
+      
+      % 连线并标记对称路径
+      \draw[dashed, blue!60] (C) -- (C');
+      % A和B的路径重合在边AB上，为了图面干净不补充虚线
+      
+      % 原图形
+      \draw[thick] (A) -- (B) -- (C) -- cycle;
+      \filldraw (A) circle (1.5pt) node[above right] {$A$};
+      \filldraw (B) circle (1.5pt) node[below right] {$B$};
+      \filldraw (C) circle (1.5pt) node[right] {$C$};
+      \filldraw (M) circle (1.5pt) node[above left] {$M$};
+      
+      % 目标图形
+      \draw[thick, red] (A') -- (B') -- (C') -- cycle;
+      \filldraw[red] (C') circle (1.5pt) node[left, text=red] {$C'$};
+      \node[left, text=red] at (A') {$A'$};
+      \node[above left, text=red] at (B') {$B'$};
+      
+      % 图名
+      \node[below, font=\normalsize] at (0.6, -0.7) {②};
+    \end{tikzpicture}
+  \end{minipage}
+  \hfill
+  % 第三幅图：以内部点 P 为中心
+  \begin{minipage}[b]{0.31\textwidth}
+    \centering
+    \begin{tikzpicture}[>=Stealth, scale=0.6]
+      \coordinate (B) at (0, 0);
+      \coordinate (C) at (3, 0);
+      \coordinate (A) at (1.2, 2.5);
+      \coordinate (P) at (1.5, 1.0);
+      
+      % 计算对称点 (中点P)
+      \coordinate (A') at (1.8, -0.5);
+      \coordinate (B') at (3, 2.0);
+      \coordinate (C') at (0, 2.0);
+      
+      % 连线并标记对称路径
+      \draw[dashed, blue!60] (A) -- (A');
+      \draw[dashed, blue!60] (B) -- (B');
+      \draw[dashed, blue!60] (C) -- (C');
+      
+      % 原图形
+      \draw[thick] (A) -- (B) -- (C) -- cycle;
+      \filldraw (A) circle (1.5pt) node[above] {$A$};
+      \filldraw (B) circle (1.5pt) node[below left] {$B$};
+      \filldraw (C) circle (1.5pt) node[below right] {$C$};
+      \filldraw (P) circle (1.5pt) node[below right] {$P$};
+      
+      % 目标图形
+      \draw[thick, red] (A') -- (B') -- (C') -- cycle;
+      \filldraw[red] (A') circle (1.5pt) node[below right, text=red] {$A'$};
+      \filldraw[red] (B') circle (1.5pt) node[right, text=red] {$B'$};
+      \filldraw[red] (C') circle (1.5pt) node[left, text=red] {$C'$};
+      
+      % 图名
+      \node[below, font=\normalsize] at (1.5, -1.2) {③};
+    \end{tikzpicture}
+  \end{minipage}
+\end{center}
+
+\vspace{0.4cm}
+\textbf{作图说明：}
+
+对于所有的中心对称作图，均遵循“\textbf{两点确定一线段，反向延长取等长}”的几何原则：
+① 找出原图形的全部关键折点（即顶点 $A$、$B$、$C$）；
+② 将每个顶点分别连接各自给定的对称中心（$C$点、$M$点或$P$点）；
+③ 将该连线沿着中心点反向延长相等的长度，即可描出原顶点对应的中心对称点位置（即点 $A'$、$B'、C'$）；
+④ 顺次使用直尺连接找出的所有对应对称点，即得到所求的中心对称图形 $\triangle A'B'C'$。
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 结构统筹：} 考量到空间利用度，使用了 \texttt{minipage} 环境配合 \texttt{\textbackslash{}hfill} 均分出三个独立但等宽并列的 $0.31\backslash{}textwidth$ 画布区域；由于对称位置导致纵坐标大幅度偏移，巧妙利用了 \texttt{[b]} 底部对齐参数，分别单独抽离调校图编号①②③横向节点处于画面底端的特定相对 $y$ 坐标处（$-3.2、-0.7、-1.2$），从而令三张高低错落的解答图表在水平版面上实现物理“贴地基准线”对齐。\\
+\textbf{2. 坐标同源定义：} 为了呈现直观的对比参照性，三幅子图均使用了一模一样原始姿态的 $\triangle ABC$：选定参数为 $B(0,0)$、$C(3,0)、A(1.2, 2.5)$。\\
+\textbf{3. 中点射线拓展：} 遵循“点关于原点中心对称”等价于“两点中点公式倍积”的硬逻辑 $X'=2 \cdot O-X$。依次按子题要求将标靶参考点 $O$ 置为 $C(3,0)$、$M(0.6, 1.25)、P(1.5, 1.0)$，并利用脚本运算得到所有红色的全映射点。顺带一提，在图②中，按数学定义推算出的 $A'$ 与 $B'$ 十分类似于在边上原地互换。\\
+\textbf{4. 反差显隐：} 加粗的黑色墨水线构筑母体，对比强烈的红色彩线构筑对碰的本体，最后辅助串通原与象点的长跨度蓝紫色虚参考线，以最高程度保留了辅助理解思考的画法痕迹。
+}
+
+%% ==============================
+%% 第68题（补充题）：网格中的平移与旋转/中心对称综合
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：网格图中的平移、旋转与中心对称}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 59.} \textbf{（第 7 题）如图，在方格纸中，$\triangle A_1B_1C_1$ 和 $\triangle A_2B_2C_2$ 是两个形状、大小都一样的三角形。\\
+（1）$\triangle A_1B_1C_1$ 经过怎样的平移、旋转变换后，可以与 $\triangle A_2B_2C_2$ 重合？\\
+（2）$\triangle A_1B_1C_1$ 经过怎样的变换后，可以与 $\triangle A_2B_2C_2$ 成中心对称？画出变换后的三角形，并标出对称中心。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+\textbf{（1）}答案不唯一，参考变幻路径如下：\\
+将 $\triangle A_1B_1C_1$ 先\textbf{向上}平移 $4$ 个单位长度，再\textbf{向右}平移 $3$ 个单位长度；再绕平移后点 $C_1$ 的对应点 $C_1'$ 按\textbf{顺时针}方向旋转 $90^\circ$ 即可重合于 $\triangle A_2B_2C_2$。（\textit{注：原参考答案笔误为“逆时针”，从网格坐标可严格计算向量推演应为顺时针旋转。}）
+
+\vspace{0.3cm}
+\textbf{（2）}答案不唯一，参考变换路径如下：\\
+将 $\triangle A_1B_1C_1$ 绕点 $C_1$ 按\textbf{逆时针}方向旋转 $90^\circ$ 即可得到变换后的目标三角形 $\triangle A_3B_3C_3$。此时的 $\triangle A_3B_3C_3$ 与 $\triangle A_2B_2C_2$ 成中心对称关系。对称中心 $O$ 即为线段 $C_3C_2$ 的中点。
+
+\textbf{画图如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8]
+  % 绘制网格背景 (0 到 13, 0 到 9)
+  \draw[dashed, gray] (0,0) grid (13,9);
+  
+  % 定义坐标
+  \coordinate (A1) at (4, 5);
+  \coordinate (B1) at (3, 2);
+  \coordinate (C1) at (5, 2);
+  
+  % 修正 A2 为 11 以确保形状大小完全一致
+  \coordinate (A2) at (11, 7);
+  \coordinate (B2) at (8, 8);
+  \coordinate (C2) at (8, 6);
+  
+  % 第(1)问变换中间状态 A1'B1'C1' (上移4，右移3)
+  \coordinate (A1p) at (7, 9);
+  \coordinate (B1p) at (6, 6);
+  \coordinate (C1p) at (8, 6);
+
+  % 第(2)问变换后的三角形 A3B3C3 (A1B1C1 绕 C1 逆时针单中心旋转 90度)
+  \coordinate (A3) at (2, 1);
+  \coordinate (B3) at (5, 0);
+  \coordinate (C3) at (5, 2); % 与 C1 重合
+  
+  % 对称中心 O，为 C3(5,2) 和 C2(8,6) 的中点 -> (6.5, 4)
+  \coordinate (O) at (6.5, 4);
+
+  % 1. 画中间状态 A1'B1'C1' (灰色虚线)
+  \draw[dashed, gray, thick] (A1p) -- (B1p) -- (C1p) -- cycle;
+  \node[above, text=gray] at (A1p) {$A_1'$};
+  \node[left, text=gray] at (B1p) {$B_1'$};
+  \node[above left, text=gray] at (C1p) {$C_1'$};
+  
+  % 画平移箭头指示
+  \draw[->, dotted, thick, gray] (A1) -- ++(0,4) node[midway, left, font=\scriptsize] {上移 4} -- (A1p) node[midway, above, font=\scriptsize] {右移 3};
+  
+  % 画第一问的顺时针旋转指示
+  % C1p(8,6), A1p(7,9) -> angle = 108.4度
+  % C2(8,6), A2(11,7) -> angle = 18.4度
+  \draw[->, orange, thick] (C1p) ++(108.4:1.2) arc (108.4:18.4:1.2);
+  \node[orange, font=\small] at (8.7, 7.5) {$90^\circ$顺转};
+
+  % 2. 绘制原三角形 A1B1C1
+  \draw[thick] (A1) -- (B1) -- (C1) -- cycle;
+  \filldraw[black] (A1) circle (1.5pt) node[above right] {$A_1$};
+  \filldraw[black] (B1) circle (1.5pt) node[below left] {$B_1$};
+  % C1 统一在下面标记
+
+  % 3. 绘制目标三角形 A2B2C2
+  \draw[thick] (A2) -- (B2) -- (C2) -- cycle;
+  \filldraw[black] (A2) circle (1.5pt) node[right] {$A_2$};
+  \filldraw[black] (B2) circle (1.5pt) node[above left] {$B_2$};
+  % C2 统一在下面标记
+
+  % 4. 绘制第(2)问的三角形 A3B3C3 (红色实线)
+  \draw[thick, red] (A3) -- (B3) -- (C3) -- cycle;
+  \filldraw[red] (A3) circle (1.5pt) node[left, text=red] {$A_3$};
+  \filldraw[red] (B3) circle (1.5pt) node[below, text=red] {$B_3$};
+  
+  % C1/C3 重合节点统一标记
+  \filldraw[black] (C1) circle (1.5pt);
+  \node[below right] at (C1) {$C_1(C_3)$};
+  
+  % C1p/C2 重合节点统一标记
+  \filldraw[black] (C2) circle (1.5pt);
+  \node[below right] at (C2) {$C_2$};
+
+  % 5. 绘制中心对称辅助线与中心 O
+  \draw[dashed, blue!50] (A3) -- (A2);
+  \draw[dashed, blue!50] (B3) -- (B2);
+  \draw[dashed, blue!50] (C3) -- (C2);
+  
+  \filldraw[blue] (O) circle (1.5pt) node[above=2pt, text=blue] {$O$};
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 纠错溯源法（第一问）：} 建立 $13 \times 9$ 规格方格纸系统。依据图像比例“两个形状大小都一样”，将输入的坐标修正为 $A_1(4,5)$、$B_1(3,2)、C_1(5,2)$ 以及 $A_2(\mathbf{11},7)$、$B_2(8,8)、C_2(8,6)$，纠正了原题干文本错漏的 $x=14$ 以保障全等。严谨推算两原图形态：平移至过渡点并形成灰色 $\triangle A_1'B_1'C_1'$ 后，由于内部矢量方向从水平向右的 $(2,0)$ 被映射为了竖直向下的 $(0,-2)$，此显然为典型的“\textbf{顺时针 $\mathbf{90^\circ}$ 旋转}”，通过橙色弧线指示并在题解中直接纠正了原参考答案的笔误。\\
+\textbf{2. 方位倒推（第二问）：} 因为 $\triangle A_2B_2C_2$ 是原图顺时针转了 $90^\circ$；要得到能与之发生中心对称（即倒置 $180^\circ$ 差异）的新三角形，反向推导只需将原图绕 $C_1$ \textbf{逆时针转 $\mathbf{90^\circ}$} 即可恰好满足角度咬合关联。以此确算出全图三点的各自新落点 $A_3(2,1)$、$B_3(5,0)、C_3(5,2)$，并标红显示。\\
+\textbf{3. 中点定核：} 取 $C_3(5,2)$ 与 $C_2(8,6)$ 的线段计算出严格数学中点 $O(6.5,4)$。随后施加跨图形的极坐标对角蓝紫虚线，匹配每一对相关联红色端点与黑色端点均穿过该共点 $O$，以强有力的视觉效果成功验证并突写了中心对称性质规律！
+}
+
+%% ==============================
+%% 第69题（补充题）：全等三角形的图形变换
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：全等三角形的图形变换}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 60.} \textbf{（例 2）如图 9-23，方格纸中有两个形状、大小都相同的三角形，通过怎样的图形变换可以使其中一个三角形与另一个三角形重合？请描述图形变换的过程。}
+
+\vspace{0.4cm}
+\textbf{解：}
+
+两个三角形均为直角三角形，直角边分别为 $2$ 和 $3$（斜边 $= \sqrt{13}$），形状大小完全相同。
+
+\textbf{图形如下：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1]
+  % 绘制网格背景 (0 到 8, 0 到 6)
+  \draw[dashed, gray] (0,0) grid (8,6);
+  
+  %% ===== 左侧三角形（直角在 B） =====
+  \coordinate (A) at (1, 2);
+  \coordinate (B) at (3, 2);
+  \coordinate (C) at (3, 5);
+  
+  % 绘制三角形
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \filldraw (A) circle (1.2pt) node[below left] {$A$};
+  \filldraw (B) circle (1.2pt) node[below right] {$B$};
+  \filldraw (C) circle (1.2pt) node[above] {$C$};
+  
+  % % 直角标记 (B 处)
+  % \draw[thin] (2.75, 2) -- (2.75, 2.25) -- (3, 2.25);
+  
+  %% ===== 右侧三角形（直角在 E, 非格点坐标 76/13, 49/13） =====
+  \coordinate (D) at (4, 3);
+  \coordinate (E) at ({76/13}, {49/13});
+  \coordinate (F) at (7, 1);
+  
+  % 绘制三角形
+  \draw[thick] (D) -- (E) -- (F) -- cycle;
+  \filldraw (D) circle (1.2pt) node[above left] {$D$};
+  \filldraw (E) circle (1.2pt) node[above right] {$E$};
+  \filldraw (F) circle (1.2pt) node[below right] {$F$};
+  
+  % % 直角标记 (E 处)
+  % % ED 单位向量 (-12/13, -5/13), EF 单位向量 (5/13, -12/13)
+  % \coordinate (Eq1) at ($(E) + ({-12/13*0.25}, {-5/13*0.25})$);
+  % \coordinate (Eq2) at ($(E) + ({(-12+5)/13*0.25}, {(-5-12)/13*0.25})$);
+  % \coordinate (Eq3) at ($(E) + ({5/13*0.25}, {-12/13*0.25})$);
+  % \draw[thin] (Eq1) -- (Eq2) -- (Eq3);
+
+  %% ===== 变换过程可视化 =====
+  
+  % 步骤①：平移后的中间三角形 A'B'C'（灰色虚线）
+  \coordinate (Ap) at (4, 3);   % A→A'=D
+  \coordinate (Bp) at (6, 3);
+  \coordinate (Cp) at (6, 6);
+  \draw[dashed, blue!70, thick] (Ap) -- (Bp) -- (Cp) -- cycle;
+  \node[below, text=blue!60, font=\small] at (Bp) {$B'$};
+  \node[above, text=blue!60, font=\small] at (Cp) {$C'$};
+  
+  % 平移箭头 A→D (dotted)
+  \draw[->, dotted, thick, blue!60] (A) -- (D);
+  \node[above left, text=blue!60, font=\scriptsize] at (2.6, 1.9) {平移};
+
+  % 步骤②：反射对称轴（过 D，斜率 1/5 的绿色虚线）
+  % 直线方程 y - 3 = (1/5)(x - 4)，即 x=0→y=2.2, x=8→y=3.8
+  \draw[densely dashdotted, green!60!black, thick] (0, {3-4/5}) -- (8, {3+4/5});
+  \node[above, text=green!60!black, font=\scriptsize] at (0.8, {3-4/5+0.1}) {对称轴};
+
+  % 反射辅助线 B'→E 和 C'→F（蓝色虚线）
+  \draw[dashed, green!60!black] (Bp) -- (E);
+  \draw[dashed, green!60!black] (Cp) -- (F);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\textbf{变换过程描述：}
+
+答案不唯一，以下为一种参考变换过程：
+
+\textbf{①} 先将左侧 $\triangle ABC$ \textbf{向右平移 $\mathbf{3}$ 个单位}、\textbf{向上平移 $\mathbf{1}$ 个单位}，使顶点 $A(1,2)$ 与右侧三角形的顶点 $D(4,3)$ 重合；
+
+\textbf{②} 再将平移后的三角形关于过点 $D$ 的一条对称轴（该轴斜率为 $\dfrac{1}{5}$）作\textbf{轴对称变换}，即可与 $\triangle DEF$ 完全重合。
+
+\vspace{0.2cm}
+{\small
+\textbf{验证：} 平移后三角形顶点为 $A'(4,3)$, $B'(6,3)$, $C'(6,6)$。将 $B'(6,3)$ 关于直线 $x - 5y + 11 = 0$ 作对称得 $(76/13, 49/13) = E$ $\checkmark$；将 $C'(6,6)$ 作对称得 $(7, 1) = F$ $\checkmark$。
+}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{绘图原理与步骤：}\\
+\textbf{1. 网格系统：} 建立 $8 \times 6$ 规格方格纸，$x \in [0,8]$，$y \in [0,6]$。\\
+\textbf{2. 坐标设定：} 左侧三角形 $A(1,2)$、$B(3,2)、C(3,5)$，直角在 $B$。右侧三角形 $D(4,3)$、$F(7,1)$ 为格点；第三顶点 $E$ 为非格点，由 $|DE|=2、|EF|=3$、$DE \perp EF$ 联立方程组解得精确坐标 $E = (76/13,\; 49/13) \approx (5.85,\, 3.77)$。\\
+\textbf{3. 全等验证：} 两三角形直角边均为 $2$ 和 $3$，斜边均为 $\sqrt{13}$，满足 SSS 全等。\\
+\textbf{4. 变换分解：} 平移向量 $(3,1)$ 使 $A \to D$。平移后 $B' \to (6,3)$、$C' \to (6,6)$，需映射至 $E$、$F$。变换矩阵 $M = \bigl[\frac{12}{13},\, \frac{5}{13};\; \frac{5}{13},\, {-}\frac{12}{13}\bigr]$，$\det M = -1$，为关于过 $D$ 斜率 $\frac{1}{5}$ 直线的轴对称。\\
+\textbf{5. 直角标记：} $B$ 处沿坐标轴方向绘制。$E$ 处沿 $ED$、$EF$ 单位方向各取 $0.25$ 步长构成倾斜直角方块。
+}
+
+%% ==============================
+%% 第70题（补充题）：不等式的数轴表示
+%% ==============================
+
+\newpage
+
+\subsection{解答：网格图的图形变换（平移、旋转与轴对称）}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. (1) 把三角形向左平移 5 格。}\\
+\noindent\textbf{   (2) 把长方形绕点 $O$ 逆时针旋转 $90^{\circ}$。}\\
+\noindent\textbf{   (3) 把右边的图形补全,使它成为轴对称图形。}
+
+\vspace{1.2cm}
+
+\begin{center}
+% =====================================================================
+% 【整体绘制思路：网格图变换综合应用】
+% 1. 基础网格：为了保证比例一致性，绘制一个 31x8 的虚线网格系统。外围用粗灰线包围。
+% 2. 坐标映射原图(纯黑色)：
+%    - 长方形：左下角点 O 在 (6,2)，右上角 (9,6)。
+%    - 三角形：三个顶点分别为 左下(16,3)，上(18,6)，右下(19,2)。
+%    - 轴对称基础图形(半个飞镖)：(26,6) - (25,4) - (22,3) - (25,2) - (26,0)。
+%    - 对称轴：位于 x=26 的点划线。
+% 3. 绘制变化后的答案图形(加粗红色 red!70!black)：
+%    - 三角形平移：所有横坐标 -5 -> (11,3), (13,6), (14,2)。
+%    - 长方形旋转：绕(6,2)逆时针旋转 90 度 -> 生成一个向左倒的新长方形 (2,2) 到 (6,5)。
+%    - 轴对称补全：原图向右沿 x=26 进行镜像映射 -> (26,6) - (27,4) - (30,3) - (27,2) - (26,0)。
+% =====================================================================
+\begin{tikzpicture}[>=Stealth, scale=0.45]
+  % 1. 绘制网格线
+  % 内部虚线
+  \draw[help lines, dashed, step=1] (0, 0) grid (31, 8);
+  % 外部实线边框
+  \draw[thick, gray!80!black] (0, 0) rectangle (31, 8);
+  
+  % 2. 绘制已知原始条件 (黑色线条)
+  % 长方形及点O标记
+  \draw[thick, black] (6, 2) rectangle (9, 6);
+  \node[anchor=north east, inner sep=2pt, font=\small] at (6, 2) {$O$};
+  
+  % 三角形
+  \draw[thick, black] (15, 5) -- (18, 8) -- (19, 4) -- cycle;
+  
+  % 右侧半个轴对称图形 (左翼)
+  \draw[thick, black] (26, 6) -- (25, 4) -- (22, 3) -- (25, 2) -- (26, 0);
+  % 对称轴
+  \draw[dash dot, thick, black] (26, -0.3) -- (26, 8.3);
+  
+  % 3. 绘制题目要求的作答结果 (深红色加粗突出显示)
+  % (1) 三角形向左平移 5 格 (x坐标全部减 5)
+  \draw[thick, red!70!black, line width=1.2pt] (10, 5) -- (13, 8) -- (14, 4) -- cycle;
+  
+  % (2) 长方形绕点 O 逆时针旋转 90 度
+  % 原始宽度 3, 高度 4。绕左下角旋转90度后，变为宽度4，高度3，且位于该点左侧。
+  \draw[thick, red!70!black, line width=1.2pt] (2, 2) rectangle (6, 5);
+  
+  % (3) 补全成轴对称图形 (基于 x=26 对称)
+  % 对应点坐标 x' = 26 + (26 - x) => x' = 52 - x
+  % (25,4)->(27,4), (22,3)->(30,3), (25,2)->(27,2)
+  \draw[thick, red!70!black, line width=1.2pt] (26, 6) -- (27, 4) -- (30, 3) -- (27, 2) -- (26, 0);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.8cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+1. \textbf{平移}：确定平移方向（向左）和距离（5格）。找出原图形的几个关键顶点，分别把这些点向左平移5格后，依次连接起来即可。\\
+2. \textbf{旋转}：确定旋转中心点（点 $O$），旋转方向（逆时针），旋转角度（$90^{\circ}$）。原长方形位于 $O$ 点右上方，底边长3格，竖边长4格。绕点 $O$ 逆时针旋转 $90^{\circ}$ 后，原先水平向右的底边变成竖直向上（长3格），原先竖向的边变成水平向左（长4格），形成一个位于点 $O$ 左上方、长为4、宽为3的新长方形。\\
+3. \textbf{轴对称}：找准对折的“脊梁”（中心的点划线作为对称轴）。找出左边半个图案的三个拐点，依据“对称点到对称轴的距离相等”这一特点，在虚线右侧找出对应的三个落脚点，用线段顺次连接。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 网格化与坐标系建立}：在 TikZ 中利用 \texttt{grid} 命令生成一个宽 31 单位、高 8 单位的虚线网格骨架（底角设定为坐标原点 \texttt{(0,0)}），方便后续所有几何图形全部依据整数网络点吸附作图。\\
+\textbf{2. 坐标域数学变换法则}：所有结果图形均由严格坐标运算得出：
+   \begin{itemize}
+       \item \textbf{平移映射}：将原三角形节点集 $\{(15,5), (18,8), (19,4)\}$ 按向量 $(-5, 0)$ 叠加，生成平移多边形。
+       \item \textbf{旋转方程}：原矩阵矩形宽 3 高 4 的向量簇绕基点 $O=(6,2)$ 逆时针旋转 $90^{\circ}$，精确生成左置排布的新矩形域坐标。
+       \item \textbf{镜像反射}：基于对称轴 $x=26$ 进行轴对称算子变换（公式 $x' = 2 \times 26 - x$），精密计算出对应极值点 $(27,4), (30,3), (27,2)$ 完成右侧飞镖图补全。
+   \end{itemize}
+\textbf{3. 作答视觉区分}：已知题干条件维持 \texttt{black} 常规粗线，变化产生的结果则采用辅导教材专属高亮答案红（\texttt{red!70!black}，搭配 \texttt{1.2pt} 线宽）进行叠加式渲染图层设计。
+}
+
+
+\newpage

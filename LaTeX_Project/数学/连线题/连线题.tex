@@ -1,0 +1,292 @@
+﻿%!TEX root = ../../main.tex
+% ============================================================
+% 连线题 / 连线题
+% 本文件由 main.tex 通过 \input 引入，请勿单独编译
+% 重构日期: 2026-04-11
+% ============================================================
+
+\subsection{解答：连线题——“5”表示什么}
+
+\vspace{0.4cm}
+
+\noindent\textbf{2. 下面各数中的“5”表示什么？连一连。}
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0] % 整体思路：先把上排数字和下排“5表示的意义”分别放成两行节点，再利用节点锚点 south$、$north 画对应连线，形成清晰的匹配图
+  % 顶部数字节 (T1 到 T5)
+  \node (T1) at (0, 2) {\large $0.405$}; % 建立名为 T1 的节点；at (0,2) 指定位置；\large 放大字号；内容是数字 0.405
+  \node (T2) at (3, 2) {\large $50.03$}; % 顶排第二个数字节点，横向右移到 x=3
+  \node (T3) at (6, 2) {\large $12.85$}; % 顶排第三个数字节点，保持同一高度 y=2
+  \node (T4) at (10, 2) {\large $0.577$}; % 顶排第四个数字节点，x=10 使间距更舒展
+  \node (T5) at (14, 2) {\large $105.3$}; % 顶排第五个数字节点，放在最右侧
+
+  % 底部文字节点 (B1 到 B5)
+  \node (B1) at (0, 0) {\large 5个十}; % 建立底排第一个含义节点；名称 B1 便于后面连线调用
+  \node (B2) at (3, 0) {\large 5个一}; % 底排第二个含义节点
+  \node (B3) at (6, 0) {\large 5个十分之一}; % 底排第三个含义节点
+  \node (B4) at (10, 0) {\large 5个百分之一}; % 底排第四个含义节点
+  \node (B5) at (14, 0) {\large 5个千分之一}; % 底排第五个含义节点
+
+  % 连线 (红色实线，从南到北)
+  % 0.405 中 5 在千分位 -> 5个千分之一 (T1 -> B5)
+  \draw[red!70!black, line width=1.5pt] (T1.south) -- (B5.north); % 从上方节点 T1 的下锚点 south 连到底部节点 B5 的上锚点 north；用红色粗线突出配对关系
+  
+  % 50.03 中 5 在十位 -> 5个十 (T2 -> B1)
+  \draw[red!70!black, line width=1.5pt] (T2.south) -- (B1.north); % 从 T2 向 B1 画匹配线，表示 50.03 里的 5 代表 5个十
+
+  % 12.85 中 5 在百分位 -> 5个百分之一 (T3 -> B4)
+  \draw[red!70!black, line width=1.5pt] (T3.south) -- (B4.north); % 从 T3 连到 B4，说明 12.85 中的 5 在百分位
+
+  % 0.577 中 5 在十分位 -> 5个十分之一 (T4 -> B3)
+  \draw[red!70!black, line width=1.5pt] (T4.south) -- (B3.north); % 从 T4 连到 B3，表示 0.577 中的 5 在十分位
+
+  % 105.3 中 5 在个位 -> 5个一 (T5 -> B2)
+  \draw[red!70!black, line width=1.5pt] (T5.south) -- (B2.north); % 从 T5 连到 B2，表示 105.3 中的 5 在个位
+
+\end{tikzpicture} % 结束“数位意义连线图”
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解析：}\\
+$0.405$ 的“$5$”在千分位，表示 $5$ 个千分之一；\\
+$50.03$ 的“$5$”在十位，表示 $5$ 个十；\\
+$12.85$ 的“$5$”在百分位，表示 $5$ 个百分之一；\\
+$0.577$ 的“$5$”在十分位，表示 $5$ 个十分之一；\\
+$105.3$ 的“$5$”在个位，表示 $5$ 个一。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 节点对称布局}：在 $y=2$ 和 $y=0$ 两条平行线上分别摆放上排数字节点（T1--T5）和下排含义节点（B1--B5），形成匹配布局。\\
+\textbf{2. 锚点连线}：利用 \texttt{T.south} 和 \texttt{B.north} 调用南北锚点连线，交叉自然穿梭不因锚点偏移而错位。\\
+\textbf{3. 视觉配对强调}：使用红色粗线 \texttt{red!70!black, line width=1.5pt} 统一突出匹配连线。
+}
+
+%% ==============================
+%% 画图解题：相向而行与相背而行
+%% ==============================
+\newpage
+
+\newpage
+
+\subsection{解答：找出等式与方程并准确连线}
+
+\vspace{0.6cm}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round, line cap=round, scale=1.0]
+  
+  % 定点坐标参数 (四行题目，采用相等的纵向间距 1.5)
+  \def\yA{4.5}
+  \def\yB{3.0}
+  \def\yC{1.5}
+  \def\yD{0.0}
+
+  % 定义全图共用的关键图元样式
+  \tikzset{
+    expr/.style={font=\Large, text=black},
+    box/.style={draw=black, rectangle, minimum width=2.0cm, minimum height=1.0cm, font=\Large\bfseries, text=black, line width=0.8pt},
+    conn/.style={draw=red, line width=1.4pt} % 还原参考答案阅卷风格的醒目红色加粗连线
+  }
+
+  % ===================================
+  % 一、 结构排版布局：三列式设计
+  % ===================================
+
+  % 1. 左侧表达式列 (利用 anchor=east 使其右侧端点严格对其到 x=0 标线上)
+  \node[expr, anchor=east] (L1) at (0, \yA) {$90 - x = 30$};
+  \node[expr, anchor=east] (L2) at (0, \yB) {$80 \div 4 = 20$};
+  \node[expr, anchor=east] (L3) at (0, \yC) {$x - 15$};
+  \node[expr, anchor=east] (L4) at (0, \yD) {$7y = 63$};
+
+  % 2. 居中分类框列 (等式框居于 1, 2 行中间，方程框居于 3, 4 行中间，匀称)
+  \node[box] (M1) at (3.5, 3.75) {等式};
+  \node[box] (M2) at (3.5, 0.75) {方程};
+
+  % 3. 右侧表达式列 (利用 anchor=west 使其左侧端点严格对其到 x=7 标线上)
+  \node[expr, anchor=west] (R1) at (7, \yA) {$20 + 30 = 50$};
+  \node[expr, anchor=west] (R2) at (7, \yB) {$y + 17 = 38$};
+  \node[expr, anchor=west] (R3) at (7, \yC) {$36 + x < 40$};
+  \node[expr, anchor=west] (R4) at (7, \yD) {$54 \div x = 9$};
+
+  % ===================================
+  % 二、 逻辑自动连线
+  % (利用直接指向节点名的方式，借助 TikZ 原生算法自动在方框轮廓线生成分散连接点)
+  % ===================================
+
+  % --- 【“等式”的连线群】 ---
+  % 本质要求：只要含有等号“=”的式子统统属于等式
+  % 从左侧连向等式：
+  \draw[conn] (L1.east) -- (M1);
+  \draw[conn] (L2.east) -- (M1);
+  \draw[conn] (L4.east) -- (M1);
+  % 从右侧连向等式：
+  \draw[conn] (R1.west) -- (M1);
+  \draw[conn] (R2.west) -- (M1);
+  \draw[conn] (R4.west) -- (M1);
+
+  % --- 【“方程”的连线群】 ---
+  % 本质要求：在等式的基础上，含有未知数的式子才是方程
+  % 从左侧连向方程：
+  \draw[conn] (L1.east) -- (M2);
+  \draw[conn] (L4.east) -- (M2);
+  % 从右侧连向方程：
+  \draw[conn] (R2.west) -- (M2);
+  \draw[conn] (R4.west) -- (M2);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.6cm}
+
+{\small\color{gray}
+\textbf{解题说明：}\\
+1. \textbf{概念辨析：}表示相等关系的式子叫做\textbf{等式}，所有的等式中都必须含有等号（$=$）。含有未知数的等式叫做\textbf{方程}。因此，所有的方程一定是等式，但等式不一定是方程。\\
+2. \textbf{左侧判断：}\\
+\quad $90-x=30$：含有未知数 $x$ 且是等式，故既连“等式”也连“方程”；\\
+\quad $80\div4=20$：是等式但不含未知数，只连“等式”；\\
+\quad $x-15$：不含等号，既不是等式也不是方程；\\
+\quad $7y=63$：含有未知数 $y$ 且是等式，既连“等式”也连“方程”。\\
+3. \textbf{右侧判断：}\\
+\quad $20+30=50$：是等式但不含未知数，只连“等式”；\\
+\quad $y+17=38$：含未知数且是等式，既连“等式”也连“方程”；\\
+\quad $36+x<40$：含有未知数但属于不等式（含 $<$），二者皆不可连；\\
+\quad $54\div x=9$：含有未知数且是等式，既连“等式”也连“方程”。
+}
+
+\vspace{0.6cm}
+
+{\small\color{blue!70!black}
+\textbf{绘图基本原理与步骤：}\\
+\textbf{1. 网格化布局节点：}通过精确定义常数如 \texttt{\textbackslash def\textbackslash yA\{4.5\}} 规范四行的统一高度。左侧各题目节点赋予 \texttt{anchor=east} 属性锁定同一右侧端边界，右侧题目节点相应赋予 \texttt{anchor=west} 锁定同一左侧边。以此使整体横跨三竖排的结构极端工整齐平，还原经典教辅印刷品的空间视觉秩序感。\\
+\textbf{2. 智能离散连线：}在 TikZ 算法中如果指定直接向节点框体中心点相连连线（即仅使用 \texttt{-- (M1)} 而不是精准定位锚点 \texttt{-- (M1.west)}），底层原生渲染器就会自动计算出每一条带有角度跨向中心的射线与方框边界线条的物理相交点，截断并锁止在那。这一代码小幅规避了所有线段死板地交汇同一点的生硬状态，呈现出仿佛手工在不同下笔位自然向中心聚拢划线的动态视觉效果。\\
+\textbf{3. 醒目的红勾墨迹模拟：}利用预定义常量 \texttt{conn/.style=\{draw=red, line width=1.4pt\}} 为线系批量刷上大红粗线效果，跳出题目原有静止黑白色图层，打造最高效的查漏阅卷视角。
+}
+
+\newpage
+
+\subsection{解答：代数式因式分解连线题}
+
+\vspace{0.6cm}
+
+\textbf{\LARGE 9.} \textbf{把左右两边相等的代数式用线连起来：}
+
+\vspace{0.6cm}
+\textbf{解：}
+
+\textbf{（1）代数式因式分解恒等查验分析：}
+\begin{itemize}
+    \item $2a^2 - 2a$ 提取公因式 $2a$，恒等变形得到 $2a(a - 1)$；
+    \item $a^2 + 6a + 9$ 是标准完全平方式，根据完全平方公式得到 $(a + 3)^2$；
+    \item $4 - a^2$ 即 $2^2 - a^2$，根据平方差公式展开得到 $(2 - a)(2 + a)$；
+    \item $3a^2 + 12a$ 提取公因式 $3a$，恒等变形得到 $3a(a + 4)$。
+\end{itemize}
+
+\textbf{（2）匹配连线制图：}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line join=round]
+
+  % 定义左右两大正圆形的外框保护罩
+  \draw[line width=0.8pt] (0,0) circle (2.2cm);
+  \draw[line width=0.8pt] (8,0) circle (2.2cm);
+
+  % 定义左侧代数式节点 (坐标以椭圆中心为基准，向左偏移排布，全量左对齐)
+  \begin{scope}[every node/.style={anchor=west, inner sep=4pt}]
+      \node (L1) at (-1.4, 1.2) {$2a^2 - 2a$};
+      \node (L2) at (-1.4, 0.4) {$a^2 + 6a + 9$};
+      \node (L3) at (-1.4, -0.4) {$4 - a^2$};
+      \node (L4) at (-1.4, -1.2) {$3a^2 + 12a$};
+
+      \node (R1) at (6.6, 1.2) {$(2 - a)(2 + a)$};
+      \node (R2) at (6.6, 0.4) {$2a(a - 1)$};
+      \node (R3) at (6.6, -0.4) {$(a + 3)^2$};
+      \node (R4) at (6.6, -1.2) {$3a(a + 4)$};
+  \end{scope}
+
+  % 绘制穿透式等效连线 (解答区特供红色)
+  \begin{scope}[draw=red!80!black, line width=1.2pt]
+      \draw (L1.east) -- (R2.west);
+      \draw (L2.east) -- (R3.west);
+      \draw (L3.east) -- (R1.west);
+      \draw (L4.east) -- (R4.west);
+  \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.4cm}
+{\small\color{blue!70!black}
+\textbf{画图及逻辑控制思路解构：}\\
+\textbf{1. 极速恒等数学推演：} 连线题的本质是多项式的因式分解死锁验证。系统在连线前于后台发起了四道极速拦截逆运算：分别命中“单项提取公因式”（$2a^2 - 2a \rightarrow 2a(a - 1)$ 和 $3a^2 + 12a \rightarrow 3a(a + 4)$）、“完全平方压铸阵”（$a^2 + 6a + 9 \rightarrow (a+3)^2$）以及直观的“硬式平方差暴解”（$4 - a^2 \rightarrow (2-a)(2+a)$）。确保左右每一个文本节点的神经突触实现了 $100\%$ 不可篡改的数学锁死交互，摧毁任何连错的可能。\\
+\textbf{2. 坐标网格化与对称破甲布局：} 物理机层面的绘制阶段全部放弃了纯手工的游标微调；直接下令切入了横跨度达到 $8\mathrm{cm}$ 的双极制图引擎。围绕着点 $(0,0)$ 和 $(8,0)$ 打下了两根半径为 $2.2\mathrm{cm}$ 的浑圆桩柱围墙，匹配了教辅原书的圆形圈地画风。左右的各组参数公式全部强制挂靠 \texttt{anchor=west} 左对齐吸附矩阵，以此还原卷面中那种“左侧工整，右侧锯齿错落”的文字排列真身属性。\\
+\textbf{3. 穿刺连线边界锚点捕捉识别技术：} 对于这种带两边集合的交叉线网，如果直接给节点下死线，线段会直接野蛮穿断字母文本体内，这是排版大忌！为此代码启动了边框自检触雷感应，强行指令左测出线的端点绑定在 \texttt{L.east}（节点的正东方皮肤位），而降落的突击端点绑定在 \texttt{R.west}（目标节点的正西方前胸），并且挂置了 \texttt{inner sep=4pt} 的弹开保护层。随后给出了 \texttt{red!80!black} 重工级粗血线执行弹射连接：可以看到四根致命的红色射线在没有任何压字重影的情况下，直接穿透了圈地圆弧墙体，犹如激光制导般精准咬合挂载在了目标算式的身侧面上，呈现出极高净度的版面洁癖美感。
+}
+%% ==============================
+%% 第25题（补充题）：整式运算运算法则表
+%% ==============================
+\newpage
+
+\newpage
+
+\newpage
+
+\begin{center}
+  {\large\bfseries 解答：估一估，连一连}
+\end{center}
+
+\vspace{1cm}
+
+\noindent
+\begin{center}
+\begin{tikzpicture}[scale=1.2, >=Stealth]
+  % 定义颜色
+  \definecolor{matchline}{RGB}{255,100,0}
+
+  % 第一部分：算式 (Top row)
+  \node (e1) at (0, 3) {$78 \times 40$};
+  \node (e2) at (3.5, 3) {$29 \times 58$};
+  \node (e3) at (7, 3) {$31 \times 49$};
+  \node (e4) at (10.5, 3) {$21 \times 83$};
+
+  % 第一排圆点
+  \node[circle, fill, inner sep=1.5pt] (p1) at (0, 2.3) {};
+  \node[circle, fill, inner sep=1.5pt] (p2) at (3.5, 2.3) {};
+  \node[circle, fill, inner sep=1.5pt] (p3) at (7, 2.3) {};
+  \node[circle, fill, inner sep=1.5pt] (p4) at (10.5, 2.3) {};
+
+  % 第二排圆点
+  \node[circle, fill, inner sep=1.5pt] (q1) at (0, 0.7) {};
+  \node[circle, fill, inner sep=1.5pt] (q2) at (3.5, 0.7) {};
+  \node[circle, fill, inner sep=1.5pt] (q3) at (7, 0.7) {};
+  \node[circle, fill, inner sep=1.5pt] (q4) at (10.5, 0.7) {};
+
+  % 第二部分：估算结果 (Bottom row)
+  \node (r1) at (0, 0) {$1800$};
+  \node (r2) at (3.5, 0) {$3200$};
+  \node (r3) at (7, 0) {$1600$};
+  \node (r4) at (10.5, 0) {$1500$};
+
+  % 连线 (Matching)
+  \draw[line width=1.5pt, matchline] (p1) -- (q2); % 78*40 -> 3200
+  \draw[line width=1.5pt, matchline] (p2) -- (q1); % 29*58 -> 1800
+  \draw[line width=1.5pt, matchline] (p3) -- (q4); % 31*49 -> 1500
+  \draw[line width=1.5pt, matchline] (p4) -- (q3); % 21*83 -> 1600
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{1.2cm}
+\hrule
+\vspace{0.4cm}
+
+
+%% ==============================
+%% 行程问题：家、超市与学校
+%% ==============================
