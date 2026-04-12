@@ -2,9 +2,9 @@
 
 ## 项目概述
 
-本项目使用 LaTeX TikZ 绘制 K12 教辅（数学、物理）题目的配图与答案，涵盖小学三年级至初中八年级。所有绘图按 **绘图类型** 进行功能性分类，便于检索与维护，定位类似一本 *K12 数理习题答案绘制手册*。
+本项目使用 LaTeX TikZ 绘制 K12 教辅（数学、物理）题目的配图与答案，涵盖小学三年级至初中八年级。所有绘图按 **绘图类型** 进行功能性分类，便于检索与维护，定位类似一本 *K12 数理习题答案绘制手册*。另外，本项目在附录中全量整合了来自 jamesfang8499 的外部教材库，引入了高达 **1155 个** 高质量参阅资料绘图，形成了丰沛的 LaTeX 绘图大全体系。
 
-**统计：** 47 个子文件，共 **315 个 tikzpicture** 环境、**81 个 tabular** 表格，编译后约 399 页。
+**统计：** 基础教辅部分包含 47 个子文件，共 **315 个 tikzpicture** 环境、**81 个 tabular** 表格；附录参考绘图库新增 **1155 个** 独立图形素材文件。
 
 ---
 
@@ -28,7 +28,9 @@
 │   ├── 物理/                     # 物理部分（2 个分类目录，5 个子文件）
 │   │   ├── 力学作图/             # 4 个子文件
 │   │   └── 坐标图像/             # 1 个子文件
-│   ├── 原始文件/                 # 原始未拆分的源文件（存档）
+│   ├── 附录_参考绘图/            # 从外部教材库提取集的宏大绘图集（按学科/教材分册整理）
+│   ├── 参考资料/                 # 外部引用或需要阅读的参考书籍与 PDF 文档
+│   ├── 原始文件/                 # 原始未拆分的教辅源文件（存档）
 │   └── _backup_before_restructure/  # 重构前按年级分类的备份
 │
 ├── Scripts_Env/                  # Python 脚本与工具
@@ -38,7 +40,10 @@
 │   ├── inventory_result.json     # 统计结果（所有绘图的完整清单）
 │   ├── restructure.py            # 自动化重构脚本
 │   ├── implementation_plan.md    # 重构实施计划
-│   └── ...
+│   ├── extract_tikz.py           # 从大段 tex 中抽取 TikZ环境生成独立子文件脚本
+│   ├── fix_tikz_errors.py        # 批量预处理、修正抽出图片的常见语法错误的工具
+│   ├── generate_index_table.py   # 生成用于查看和对照所有 1155 张外部绘图的长表格脚本
+│   └── add_tex_root.py           # 批量补充魔法注释工具
 │
 └── Temp_Work/                    # 临时 LaTeX 工作区
     └── temp_answer.tex           # 独立可编译的草稿/测试文件
@@ -168,7 +173,10 @@ Python 环境使用 `uv` 管理，虚拟环境位于 `Scripts_Env/.venv`。
 | `inventory_tikz.py` | 遍历所有 .tex 文件，统计 tikzpicture / tabular 数量，按标题分组输出 |
 | `inventory_result.json` | 统计结果的 JSON 格式存档，记录每个小节的绘图/表格数量与位置 |
 | `restructure.py` | 自动化重构脚本：将按年级组织的 .tex 文件拆分为按绘图类型组织的新文件 |
-| `implementation_plan.md` | 重构实施计划，包含每个小节的归属映射 |
+| `extract_tikz.py` | 针对外部项目设计的抽取器，自动截取包含 `tikzpicture`/`circuitikz` 的环境内容并存储至独立文件 |
+| `fix_tikz_errors.py` | 一键扫描附录文件夹，自动修正和过滤外部提取途中带来的错误符号、缺失包、路径依赖 |
+| `generate_index_table.py` | 根据解析到的 1155 个文件字典，自动生成附录用于导引和快速检索查阅的长索引表代码 |
+| `implementation_plan.md` | 重构实施计划与工作状态跟踪 |
 | `extract_principles.py` | 提取绘图原理说明文本 |
 | `sanitize.js` | 文本清洗工具 |
 
@@ -204,14 +212,18 @@ python restructure.py          # 正式执行
 
 ## TikZ 依赖库
 
-| 库名 | 用途 |
+| 库名或宏包名 | 用途 |
 |------|------|
-| `angles` | 画角与直角标记 |
-| `quotes` | 给角附文字标签 |
-| `arrows.meta` | Stealth 箭头 |
-| `calc` | 坐标计算 |
-| `decorations.pathreplacing` | 大括号装饰 |
-| `patterns` | 阴影填充图案 |
+| `angles`, `quotes` | 画角、直角标记与附着文字标签 |
+| `arrows.meta` | Stealth 箭头等定制端点 |
+| `calc` | 坐标数学计算扩展 |
+| `decorations.pathreplacing` | 大括号等替换式装饰 |
+| `decorations.markings` | 允许在线段特定处补充标记（附录作图依赖） |
+| `decorations.pathmorphing` | 呈现波浪、弹簧状的不规则曲面路径变换（附录依赖） |
+| `patterns`, `positioning` | 阴影网格纹填充图案、节点之间相对方位指令 |
+| `tkz-euclide` | 提供了更高层高度封装的欧几里得几何计算命令集 |
+| `circuitikz` | 标准的物理电路回路和元件作图专用包 |
+| `wasysym`, `marvosym` | 绘制 \Sun 等非标准的天体或特殊字体符号大全 |
 
 ## 全局自定义样式
 
