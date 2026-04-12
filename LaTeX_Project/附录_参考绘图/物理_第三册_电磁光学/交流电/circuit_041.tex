@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1681-1697
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+	\draw (0,0) to [american inductors, L] (0,2);
+	\draw (0,0) to [american inductors, L] (-1.5,-1)node[left]{$C$};	
+	\draw (0,0) to [american inductors, L] (1.5,-1)node[below]{$B$};	
+	
+	\node at (0,.1) [left]{$O$};
+	
+	\draw (0,2)node[left]{$A$}--(5,2);\draw (0,0)--(5,0);
+	\draw (1.5,-1)--(5,-1);\draw (-1.5,-1)--(-1.5,-1.5)--(5,-1.5);
+	\draw[<->] (3,0)--node [fill=white]{$U_{\text{相}}$}(3,2);
+		\draw[<->] (4,-1)--node [fill=white]{$U_{\text{线}}$}(4,2);
+	\draw [fill=black](0,0) circle(1.5pt);
+	\foreach \x in {0,2,-1,-1.5}
+	{
+		\draw[fill=white] (5,\x) circle({1.5pt});
+	}
+\end{circuitikz}%%\caption{电源的星形连接}

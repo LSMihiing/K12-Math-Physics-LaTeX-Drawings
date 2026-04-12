@@ -1,0 +1,12 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相交流电
+% 原始文件：3.tex，行 1582-1587
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,0)--(6,0) to [european, R=$1$] (6,2)--node[above]{$I_A$}(0,2)node[left]{$A$} to [american inductor] (0,0)node[left]{$X$};
+\draw (-3+1,-2)node[left]{$C$} to [american inductor](0,-.25)node[left]{$Z$}--(6,-.25)--(6,-.5) to  [european, R=$3$] (3, -2)--(3,-3)--node[below]{$I_C$}(-3+1,-3)--(-3+1,-2);
+\draw (.25,-.4)--(4.5*1.5-.5,-.4) to [european, R=2] (6.5*1.5-1, -2)--(6.5*1.5-1, -2.2)--node[below]{$I_B$}(1.5*1.5,-2.2)node[below]{$B$}to [american inductor] (.25,-.4)node[below]{$Y$};
+\node at (-1+.5,-2-.5){发电机};\node at (6,-1.5){负载};
+\end{circuitikz}

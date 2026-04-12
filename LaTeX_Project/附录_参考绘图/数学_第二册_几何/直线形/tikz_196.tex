@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 7640-7650
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+    \tkzDefPoints{0/0/B, 2/0/C, 4/0/D, 2.2/3.5/A}
+    \tkzDrawPolygon(A,B,C)
+    \tkzDefMidPoint(A,C)  \tkzGetPoint{E}
+    \tkzInterLL(D,E)(B,A)  \tkzGetPoint{F}
+    \tkzLabelPoints[right](E)
+    \tkzLabelPoints[left](A,F)
+    \tkzLabelPoints[below](B,C,D)   
+    \tkzDrawSegments(C,D D,F)
+    
+    \end{tikzpicture}

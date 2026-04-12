@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 轨迹
+% 原始文件：5.tex，行 254-277
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.2]
+\tkzDefPoints{0/0/O, 2.5/0/O', 5/0/P}
+\draw[dashed] (P)--(-2,0)node[left]{$E'$};
+\draw (0,0) circle (2);
+\draw[dashed] (O') circle (2.5);
+\tkzDefTangent[from with R=P](O, 2)
+\tkzGetPoints{A}{B}
+\tkzDrawSegments[add=0 and .2](P,A  P,B)
+\node at (-.25,-.25){$O$};\node at (.25+2.5,.25){$O'$};
+\node at (2.2,0)[above]{$E$};
+\tkzDrawPoints(O',O)
+\tkzDefShiftPoint[O'](150:2.5){M}
+\tkzDefShiftPoint[O'](-142:2.5){N}
+\tkzDefShiftPoint[O'](-155:2.5){X}
+\tkzAutoLabelPoints[center=O'](M,N,X,A,B,P)
+\tkzInterLC(P,M)(O,A) \tkzGetPoints{C'}{C}
+\tkzInterLC(P,X)(O,A)\tkzGetPoints{D}{D'}
+\tkzInterLC(P,N)(O,A)\tkzGetPoints{F}{F'}
+\tkzAutoLabelPoints[center=O](D,F,C,C',D',F')
+\draw(C')--(P)--(F');
+\draw(D')--(P);
+\draw[dashed](M)--(O)--(X);
+\draw[dashed](A)--(O);
+\end{tikzpicture}

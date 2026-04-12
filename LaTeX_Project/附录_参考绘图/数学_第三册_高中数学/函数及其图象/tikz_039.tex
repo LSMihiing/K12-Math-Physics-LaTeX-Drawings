@@ -1,0 +1,28 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：函数及其图象 / 一次函数（线性函数）
+% 原始文件：4.tex，行 2671-2692
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-1,0) --(6,0)node[right]{$x$(克)};
+    \draw[->] (0,-1)--(0,6)node[right]{$y$(分)};
+    \foreach \x in {20,40,...,100}
+    {
+        \draw (\x/20,0)node[below]{$\x$}--(\x/20,.1);
+    }
+    \foreach \y in {8,16,...,40}
+    {
+        \draw (0,\y/8)node[left]{$\y$}--(.1,\y/8);
+    }
+    \node at (-0.25,-0.25){$O$};
+\draw[very thick]  (0,1)--(1,1);
+\draw[very thick]  (1,2)--(2,2);
+\draw[very thick]  (2,3)--(3,3);
+\draw[very thick]  (3,4)--(4,4);
+\draw[very thick]  (4,5)--(5,5);
+\foreach \x in {1,2,3,4}
+{
+    \draw (\x, \x+1) [fill=white] circle (1.5pt);
+}
+\end{tikzpicture}

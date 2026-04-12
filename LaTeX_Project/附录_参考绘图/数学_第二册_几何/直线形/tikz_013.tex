@@ -1,0 +1,15 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 377-385
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+    \tkzDefPoints{-1.5/0/A, 1.5/0/B, 0/3/C, 0/1.5/O}  
+    \tkzDefMidPoint(A,C)\tkzGetPoint{D}
+    \tkzDefMidPoint(B,C)\tkzGetPoint{E}    
+    \tkzDrawPolygon(A,B,C)
+    \draw(B)--(D)node[left]{$D$};
+    \draw (A)--(E)node[right]{$E$};
+    \tkzAutoLabelPoints[center=O](A,B,C)
+    \end{tikzpicture}

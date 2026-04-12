@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：三角比与角边关系 / 任意三角形中的边角关系
+% 原始文件：6.tex，行 2014-2025
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/A, 3/0/B, 1/2/C}
+\tkzLabelPoints[below](A,B)
+\tkzLabelPoints[above](C)
+\tkzDrawPolygon(A,B,C)
+\node at (1.5,0)[below]{$c$};
+\node at (2,1)[right]{$a>b$};
+\node at (.5,1)[left]{$b$};
+\tkzDefPointBy[rotation= center C angle -100](B)
+\tkzGetPoint{C'}
+\tkzDrawArc[delta=10](C,C')(B)
+    \end{tikzpicture}

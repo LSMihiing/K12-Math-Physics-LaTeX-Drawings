@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 电势差跟电场强度的关系
+% 原始文件：6.tex，行 1105-1120
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex]
+\draw (0,0)--(6,0)node [right]{$B$};
+\draw (0,3)--(6,3)node [right]{$A$};        
+
+\foreach \x in {.5,1.5,...,5.5}
+{
+	\node at (\x, 0.25){$+$};
+	\node at (\x, 2.75){$-$};
+}
+
+\fill (2,2.7) circle (2pt);
+\fill (5,.3) circle (2pt);
+\node at (2,2+.4){$P_1$};
+\node at (5,1-.4){$P_2$};
+
+    \end{tikzpicture}

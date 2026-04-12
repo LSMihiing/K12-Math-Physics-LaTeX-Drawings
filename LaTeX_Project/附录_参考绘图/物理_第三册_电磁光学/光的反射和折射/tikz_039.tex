@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 透镜成像公式
+% 原始文件：5.tex，行 1736-1752
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+  \draw[dash dot](-3,0)--(6,0);
+\draw [->, very thick](-2.5,0)--(-2.5,2)node[above]{蜡烛};
+\draw [dashed](-2.5,0)--(-2.5, -2);
+\draw [dashed](0,1.5)--(0, -.75);
+\draw [dashed](3.5,0)--(3.5, -1.5);
+\draw [dashed](5.5,0)--(5.5, -2);
+\draw [very thick](5.5,0)--(5.5, 3)node[right]{屏};
+\draw [<->](-2.5,.75)--node[fill=white]{$u_1$}(0,.75);
+\draw [<->](5.5,.75)--node[fill=white]{$v_1$}(0,.75);
+\draw [<->](3.5,-.5)--node[fill=white]{$d$}(0,-.5);
+\draw [<->](-2.5,-1)--node[fill=white]{$u_2$}(3.5,-1);
+    \draw [<->](5.5,-1)--node[fill=white]{$v_2$}(3.5,-1);
+\draw [<->](-2.5,-1.5)--node[fill=white]{$L$}(5.5,-1.5);
+\fill (0,0) circle (1.5pt);  \fill (3.5,0) circle (1.5pt)node[above]{$B$};
+\node at (.2,0)[above]{$A$};
+\end{tikzpicture}

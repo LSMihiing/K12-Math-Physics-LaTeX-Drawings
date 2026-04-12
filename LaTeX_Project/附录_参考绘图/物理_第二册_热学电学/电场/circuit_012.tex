@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 电容器~~电容
+% 原始文件：6.tex，行 1475-1488
+% 类型：circuit
+% ---
+	\begin{circuitikz}[>=latex, ]
+\draw (0,3) to [C]  (0,1);
+\draw (1.5,3) [eC] to (1.5,1);
+\draw (3,1) [C] to (3,3);
+\draw [->, thick](2.5,1.5)--(3.5,2.5);
+\draw (4.5,1) [C] to (4.5,3);
+\draw [-|, thick](4,1.5)--(5,2.5);
+
+\node at (0,0.5){甲};
+\node at (1.5,0.5){乙};
+\node at (3,0.5){丙};
+\node at (4.5,0.5){丁};
+
+	\end{circuitikz}

@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 电路的分析和计算
+% 原始文件：7.tex，行 661-674
+% 类型：circuit
+% ---
+        \begin{circuitikz}[european,>=latex]
+    \draw (0,0) to [R=$r$] (3,0)--(8,0) to [lamp] (8,3)--(3,3) to [R=$r$] (0,3);
+    
+    \foreach \x in {5, 3.5}
+    {
+        \draw (\x,0) to [lamp, *-*] (\x, 3);
+    }
+    \draw [dashed] (6.5,0) to [lamp, *-*] (6.5, 3);
+    
+    
+    \draw [fill=white](0,0) circle (2pt);
+    \draw [fill=white](0,3) circle (2pt);
+    \draw [<->](0,0+.1)--node [fill=white] {220V} (0,3-.1);
+        \end{circuitikz}

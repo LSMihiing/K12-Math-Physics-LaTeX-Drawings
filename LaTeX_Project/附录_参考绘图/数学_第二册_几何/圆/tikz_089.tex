@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 3819-3834
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-2/0/A,0/0/B}
+\tkzDefPoint(180-57:2){C}
+\tkzDrawPolygon[thick](A,B,C)
+\tkzDefTriangleCenter[circum](A,B,C)\tkzGetPoint{O}
+\tkzDrawCircle[thick](O,A)
+\tkzAutoLabelPoints[center=O](A,B,C)
+\tkzDefTangent[at =A](O) \tkzGetPoint{T1}
+\tkzDefTangent[at =B](O) \tkzGetPoint{T2}
+\tkzDefTangent[at =C](O) \tkzGetPoint{T3}
+\tkzInterLL(A,T1)(B,T2)\tkzGetPoint{C'}
+\tkzInterLL(A,T1)(C,T3)\tkzGetPoint{B'}
+\tkzInterLL(B,T2)(C,T3)\tkzGetPoint{A'}
+\tkzDrawPolygon[thick](A',B',C')
+\tkzAutoLabelPoints[center=O](A',B',C')
+  \end{tikzpicture}

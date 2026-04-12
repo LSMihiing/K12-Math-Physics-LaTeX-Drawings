@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 7224-7246
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\tkzDefPoint(0,0){S'}
+\tkzDefPoint(-150:1){A'}
+\tkzDefPoint(-35:1.1){B'}
+\tkzDefPoint(60:1.5){C'}
+\tkzDefPoint(100:.8){D'}
+\tkzDefPoint(135:1.6){E'}
+\tkzDefPointWith[linear, K=3.5](S',A') \tkzGetPoint{A}
+\tkzDefPointWith[linear, K=3.5](S',B') \tkzGetPoint{B}
+\tkzDefPointWith[linear, K=3.5](S',C') \tkzGetPoint{C}
+\tkzDefPointWith[linear, K=3.5](S',D') \tkzGetPoint{D}
+\tkzDefPointWith[linear, K=3.5](S',E') \tkzGetPoint{E}
+
+\tkzDrawPolygon(A,B,C,D,E)
+\tkzDrawPolygon(A',B',C',D',E')
+\tkzDrawSegments[dashed](S',A S',B S',C S',D S',E)
+\tkzLabelPoints[above](C,D,E,C',D',E')
+\tkzLabelPoints[below](A,B,A',B')
+\tkzLabelPoints[right](S')
+
+\draw[thick](-2.3,-1.2) rectangle (1.8,2);
+
+\end{tikzpicture}

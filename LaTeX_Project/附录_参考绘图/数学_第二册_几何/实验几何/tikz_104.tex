@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 3747-3758
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=1.3]
+\tkzDefPoints{-2/0/A', -1.5/0/A, 1.5/0/B, 0/0/P, 2/0/B', 0/2.5/Q}
+\draw(A) arc (180:0:1.5);
+\tkzLabelPoints[below](A,B)
+\tkzDrawLines(P,Q)
+\tkzLabelPoints[below right](P)
+\tkzLabelPoints[right](Q)
+\tkzLabelPoint[right](B'){$\ell$}
+\tkzCompass[color=black](A,Q)
+\tkzCompass[color=black](B,Q)
+\tkzDrawSegments(A',B')
+	\end{tikzpicture}

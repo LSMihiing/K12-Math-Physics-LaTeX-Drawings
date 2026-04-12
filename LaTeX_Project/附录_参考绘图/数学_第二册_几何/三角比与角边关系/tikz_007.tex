@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：三角比与角边关系 / 锐角三角比
+% 原始文件：6.tex，行 225-236
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex,scale=1.5]
+\draw[->](-1.5,0)--(1.5,0)node[right]{$x$};
+\draw[->](0,-1.5)--(0,2)node[right]{$y$};    
+
+\draw(0,0)node[below left]{$O$} circle (1);
+\draw(1,0)node[above right]{$A$}--(1,2)node[above]{$A'$};
+\draw[very thick](0,0)--(60:1)node[below left]{$P$}--(60:2)node[right]{$Q$};
+\draw[very thick](60:1)--(0.5,0)node[below]{$M$};
+\draw[very thick](0,1)node[above left]{$B$}--(1,1)node[right]{$B'$}--(1,0)node[below right]{1};
+\node at (.5,1)[above]{$T$};
+\draw (.25,0) arc (0:60:.25)node[right]{$\alpha$};
+\end{tikzpicture}

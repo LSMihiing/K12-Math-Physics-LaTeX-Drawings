@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 1048-1057
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=.7]
+    \foreach \x in {-20,-10,...,20}
+	{
+		\draw(0,0)--(\x:5);
+	}
+	\draw[->](0,0)node[left]{$A$}--(30:5);
+	\draw[->](0,0)--(-30:5);
+\node at (30:3)[above]{$C$};
+\node at (-30:3)[below]{$B$};
+    \end{tikzpicture}

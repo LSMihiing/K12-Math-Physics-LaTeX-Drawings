@@ -1,0 +1,43 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：一元二次方程 / 平方与平方根
+% 原始文件：3.tex，行 769-805
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[yscale=.6, >=latex]
+    \node at (0,2)[right]{1.  4 \; 1\;  4……};
+\node at (0,1)[right]{2.00'00'00};  
+\node at (0,0)[right]{1};    
+\node (A) at (0,-1)[right]{1\;00};     
+\node at (.1,1)[left]{\LARGE $\sqrt{}$};
+\node at (0,-2)[right]{\;\; 96};  
+\node (B) at (0,-3)[right]{\quad\; 4\;00};
+\node at (0,-4)[right]{\quad\; 2\;81};
+\node (C) at (0,-5)[right]{\quad\; 1\;19\;00};
+\node at (0,-6)[right]{\quad\; 1\;12\;96};
+\node at (0,-7)[right]{\qquad\quad 6\;04};
+\node at (0,-7.6)[right]{\qquad\qquad $\vdots $};
+\draw(0,1.5)--(3,1.5);
+
+\foreach \x in {-2.5,-4.5,-6.5}
+{
+    \draw (-0.5-\x*.15,\x)--(3,\x);
+    \draw (-0.5-\x*.15,\x)--(-0.5-\x*.15,\x+2);
+}
+
+\node at (-.5,0) {$-)$};
+
+\draw (-.5,-.5)--(3,-.5);
+ 
+\foreach \x/\xtext in {-1/2\x10+4=24 , -3/2\x 140+1=281 , -4/1 , -5/2\x 1410+4=2824 , -6/4 , -2/4 }
+{
+   \node at (-.5-\x*0.15, \x)[left]{$\xtext$};
+}
+
+\node (D) at (5,-2){每次增补两位0} ;
+\node (D1) at (5,-3){但平方根只增一位} ;
+
+\draw [<-](A)--(D);
+\draw [<-](B)--(D);
+\draw [<-](C)--(D1);
+\end{tikzpicture}

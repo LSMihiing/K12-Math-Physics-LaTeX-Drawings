@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 相似和相似比
+% 原始文件：1.tex，行 3350-3359
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.8]
+\tkzDefPoints{0/0/C, 3/0/B, 3/4/A}
+\tkzDefPointBy[projection= onto A--C](B) \tkzGetPoint{D}
+\tkzDrawPolygon(A,C,B)
+\tkzDrawSegments(B,D)
+\tkzMarkRightAngles[size=.2](A,B,C B,D,C)
+\tkzLabelPoints[above](A)
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[left](D)
+    \end{tikzpicture}

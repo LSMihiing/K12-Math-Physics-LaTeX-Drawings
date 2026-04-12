@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：三角比与角边关系 / 任意三角形中的边角关系
+% 原始文件：6.tex，行 2558-2573
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoints{0/0/B, 3/0/C, 2.4/2/A}
+\tkzDrawPolygon[very thick](A,B,C)
+\tkzDefTriangleCenter[in](A,B,C) \tkzGetPoint{I}
+\tkzDefTriangleCenter[ex](A,B,C) \tkzGetPoint{I_b}
+\tkzDefTriangleCenter[ex](B,C,A) \tkzGetPoint{I_c}
+\tkzDefTriangleCenter[ex](C,A,B) \tkzGetPoint{I_a}
+\tkzDrawLines(I_a,I_b I_a,I_c I_b,I_c)  
+\tkzDrawLines[add = .5 and .5](A,B A,C B,C)
+\tkzDrawLines[add = 0 and .1](A,I_a B,I_b C,I_c)
+\tkzLabelPoints[above left](B)
+\tkzLabelPoints[below right](C,I_b,I_a)
+\tkzLabelPoints[above](A, I_c,I)
+\tkzInterLL(B,I_b)(A,C) \tkzGetPoint{X}
+\tkzDrawCircle(I_b,X)
+\end{tikzpicture}

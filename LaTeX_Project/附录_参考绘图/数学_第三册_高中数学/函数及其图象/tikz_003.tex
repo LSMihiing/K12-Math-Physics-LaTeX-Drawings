@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：函数及其图象 / 函数及其图象
+% 原始文件：4.tex，行 217-236
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\draw (0,0) rectangle (4,4);
+\draw[pattern=north east lines] (0,0) rectangle (.75,.75);    
+\draw[pattern=north east lines] (3.25,0) rectangle (4,.75);  
+\draw[pattern=north east lines] (0,3.25) rectangle (.75,4);  
+\draw[pattern=north east lines] (3.25,3.25) rectangle (4,4);  
+\draw[dashed] (0.75,0.75) rectangle (3.25,3.25);  
+\foreach \x in {0,4}
+{
+    \draw (\x,4)--(\x,4.8);
+}
+\draw [<->](0,4.4)--node[fill=white]{30}(4,4.4);
+\foreach \x in {0,.75,3.25,4}
+{
+    \draw (\x,0)--(\x,-.8);
+}
+\draw [<->](0.75,-.4)--node[fill=white]{$30-2x$}(3.25,-.4);
+\draw [<->](0.75,-.4)--node[below]{$x$}(0,-.4);
+\draw [<->](4,-.4)--node[below]{$x$}(3.25,-.4);
+\end{tikzpicture}

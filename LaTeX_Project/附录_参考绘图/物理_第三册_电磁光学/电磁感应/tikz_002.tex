@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁感应 / 电磁感应现象
+% 原始文件：2.tex，行 102-111
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.8]
+\foreach \x in {-3,-2,...,2}
+\foreach \y in {-2,...,2}
+{
+    \node at (\x,\y){$\times$};
+}
+\draw [dashed](-.5,-2.5)node[below]{$O'$}--(-.5,3)node[above]{$O$};
+\draw[very thick] (-1.5,-1.5) rectangle (.5,1.5);
+\draw[->] (-.5+.25, 2.5) arc [start angle=10, end angle=360, x radius=.25,y radius=.125];
+\end{tikzpicture}

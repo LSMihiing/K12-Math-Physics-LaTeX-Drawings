@@ -33,8 +33,27 @@
   arrows.meta,              % Stealth 等箭头样式
   calc,                     % 坐标计算
   decorations.pathreplacing,% 大括号装饰
-  patterns                  % 阴影填充图案
+  decorations.markings,     % 线段标记装饰（附录参考绘图）
+  decorations.pathmorphing, % 波浪线等路径变形（附录参考绘图）
+  patterns,                 % 阴影填充图案
+  positioning,              % 节点相对定位（附录参考绘图）
+  snakes                    % 弹簧、波浪装饰（附录参考绘图，兼容旧版）
 }
+
+% ------ 附录参考绘图所需额外宏包 ------
+\usepackage{tkz-euclide}          % 欧几里得几何作图（jamesfang8499 数学教材）
+\usepackage{circuitikz}           % 电路图绘制（jamesfang8499 物理教材）
+\usepackage{graphicx}             % 图片引用
+\usepackage{longtable}            % 跨页跨列表格
+\usepackage{multirow}             % 多列表格支持
+\usepackage{wasysym}              % 为其它特殊符号提供支持
+\usepackage{marvosym}             % 提供 \Sun 等符号支持
+\usepackage[normalem]{ulem}       % 为 \uwave 波浪下划线提供支持
+
+% ------ 原教材缺失的自定义宏 ------
+\newcommand{\x}{\times}
+\newcommand{\ms}{\mathrm{m/s}}
+\newcommand{\msq}{\mathrm{m/s}^2}
 
 % ------ 正字计数法自定义符号 ------
 \newcommand{\zhengI}{\tikz[baseline=0.1em, x=1em, y=1em]{\draw[line width=1pt, line cap=round] (0.15, 0.8) -- (0.85, 0.8);}}

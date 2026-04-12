@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：磁场 / 带电粒子在磁场中的运动
+% 原始文件：1.tex，行 754-765
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=stealth, scale=1]
+	\foreach \x in {1,...,6}
+	\foreach \y in {1,...,5}
+	{
+		\node at (\x,\y){$\times$};
+	}
+\draw (3.5,3) circle (1.8);
+
+\draw [->, very thick](3.5,3+1.8)node[above]{$+q$}--(2.5,3+1.8)node [left]{$v$};
+\draw [->, very thick](3.5,3+1.8) -- (3.5,3+.8)node[below]{$f$};
+\draw [->](3.5,3)--+(140:1.8);
+    \end{tikzpicture}

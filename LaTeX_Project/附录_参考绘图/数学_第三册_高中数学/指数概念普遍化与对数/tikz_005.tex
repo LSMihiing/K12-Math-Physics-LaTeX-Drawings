@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：指数概念普遍化与对数 / 对数和常用对数
+% 原始文件：1.tex，行 2801-2817
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1.7]
+    \draw[dashdotted] (-5,0)--(1.2,0);
+    \draw (-4.5,.5) rectangle (-2.5,-.5);
+    \draw (0,0) circle (.75);
+    \node at (-.75,0)[left]{$K_0$};
+    \node at (.75,0)[right]{$K_1$};
+\draw [fill=gray!20](-3.5,.5) rectangle (-3.6,-.5);
+\draw[very thick] (0,0)node[below]{$O$}--node[above]{$r$}(90+45:.75)node[above]{$K$}--node[above]{$\ell$}(-3.5,0)node[below]{$M$};
+\draw [dashed](-4.3,.5)node[below]{$M_0$}--(-4.3,-.5);
+\draw [dashed](-2.7,.5)node[below]{$M_1$}--(-2.7,-.5);
+\draw (-.35,0) arc (180:180-45:.35)node[left=2pt]{$\phi$};
+\draw[dashed] (90+45:.75)--(-.75/1.414,0);
+\draw[|<->|] (-4.3,-.7)--node[fill=white]{$x$}(-3.5,-.7);
+
+\draw (-2,0) arc (0:10:1.5);
+\node at (-2,.2)[right]{$\alpha$};
+\end{tikzpicture}

@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 3746-3769
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\tkzDefPoints{0/0/A, 3/0/B, 3/2/C}
+\tkzDefPointsBy[translation = from B to C](A){D}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments(A,C D,B)
+\tkzMarkRightAngle[size=.2](A,B,C)
+\node at (1.5,-.5){矩形};
+\end{scope}
+\begin{scope}[xshift=4cm, yshift=1cm]
+    \tkzDefPoints{0/0/A, 1.5/-1/B, 3/0/C, 1.5/1/D}
+    \tkzDrawPolygon(A,B,C,D)
+    \tkzDrawSegments(A,C D,B)
+    \node at (1.5,-1.5){菱形};
+\end{scope}
+\begin{scope}[xshift=8cm]
+    \tkzDefPoints{0/0/A, 2/0/B, 2/2/C}
+\tkzDefPointsBy[translation = from B to C](A){D}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments(A,C D,B)
+\tkzMarkRightAngle[size=.2](A,B,C)
+\node at (1,-.5){正方形};
+\end{scope}
+\end{tikzpicture}

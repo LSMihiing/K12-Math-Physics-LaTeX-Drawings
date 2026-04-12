@@ -1,0 +1,14 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 点、直线和平面
+% 原始文件：1.tex，行 455-462
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[scale=.7]
+\tkzDefPoints{0/0/B, 6/0/C, 5/3/D, 2/3/A}
+\tkzDrawPolygon(A,B,C,D)
+\tkzLabelPoints[left](A,B)
+\tkzLabelPoints[right](C,D)
+\draw(B)--(D);\node at (3.2,1.8)[below]{$O$};
+\draw(A)--(C);		
+	\end{tikzpicture}

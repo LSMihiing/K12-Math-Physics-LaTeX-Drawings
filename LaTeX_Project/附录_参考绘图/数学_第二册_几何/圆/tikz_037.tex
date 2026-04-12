@@ -1,0 +1,24 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 1511-1528
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.8]
+\tkzDefPoints{0/0/O, 5/0/P, 1.5/0/a}
+\tkzDefMidPoint(O,P)\tkzGetPoint{C}
+\tkzDrawCircle[thick](O,a)
+\tkzDrawCircle[dashed](C,O)
+\tkzInterCC(O,a)(C,O)  \tkzGetPoints{A}{B}
+\tkzDrawLines[very thick](A,P B,P)
+\tkzLabelPoints[above](A)
+\tkzLabelPoints[above right](P)
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[left](O)
+\tkzDrawSegments[dashed](O,P A,C A,O)
+\tkzLabelAngle[pos=1.5](C,A,P){1}
+\tkzLabelAngle[pos=1.5](A,P,C){2}
+\tkzLabelAngle[pos=.5](O,A,C){3}
+\tkzLabelAngle[pos=.5](C,O,A){4}
+
+\end{tikzpicture}

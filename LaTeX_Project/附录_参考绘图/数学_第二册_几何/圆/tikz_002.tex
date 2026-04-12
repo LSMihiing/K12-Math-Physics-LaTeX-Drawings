@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 35-45
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=.8]
+        \draw  (0,0) circle (2);
+\draw[very thick] (60:2)--node[below]{弦}(135:2);
+\draw[very thick] (-10:2)--node[below]{直径}(170:2);
+\draw (-135:2) [fill=black]circle(1.5pt)node[left]{$E$};
+\draw (-45:2) [fill=black]circle(1.5pt)node[right]{$F$};
+\draw[very thick]  (-135:2) arc (-135:-45:2);
+\node at (0,-2) [below=2pt]{弧};
+
+
+    \end{tikzpicture}

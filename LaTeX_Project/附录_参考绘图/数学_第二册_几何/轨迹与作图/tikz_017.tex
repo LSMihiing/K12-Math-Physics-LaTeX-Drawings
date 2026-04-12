@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 作图
+% 原始文件：5.tex，行 993-1016
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\draw (0,0) circle (2.5);
+\tkzDefPoint(0,0){O}
+\foreach \x/\xtext in {0/D,1/E,2/F,3/G,4/H,5/I,6/J,7/A,8/B,9/C}
+{
+    \tkzDefPoint(\x*36:2.5){\xtext}
+    \tkzDrawPoint(\xtext)
+    \tkzAutoLabelPoints[center=O](\xtext)
+}
+\tkzDrawPolygon(A,B,C,D,E,F,G,H,I,J)
+\draw(O)--(A);
+\tkzDefPoint(-108:1.545){C'}  
+\tkzLabelPoints[left](O, C') \tkzDrawPoints(O, C')
+\tkzCompass[delta=10](A,B)
+\tkzCompass[delta=10](B,C)
+\tkzCompass[delta=10](C,D)
+\tkzCompass[delta=10](D,E)
+\tkzCompass[delta=10](E,F)
+\tkzCompass[delta=10](F,G)
+\tkzCompass[delta=10](G,H)
+\tkzCompass[delta=10](H,I)
+\tkzCompass[delta=10](I,J)
+\tkzCompass[delta=10](J,A)
+    \end{tikzpicture}

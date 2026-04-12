@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 1244-1264
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.9]
+\tkzDefPoints{-1/0/S, 2/0/a, 3/0/O, 5/0/b, 7/0/O'}
+\tkzDrawCircles[thick](O,a O',b)
+\tkzDrawLines[add=0 and .3](S,O')
+\tkzDefPoint(20:1){c}
+\tkzDefPoint(8:1){d}
+\tkzDefPoint(-20:1){e}
+\tkzInterLC(S,c)(O,a)  \tkzGetPoints{A}{B}
+\tkzInterLC(S,c)(O',b)  \tkzGetPoints{P}{Q}
+\tkzInterLC(S,d)(O,a)  \tkzGetPoints{C}{D}
+\tkzInterLC(S,d)(O',b)  \tkzGetPoints{R}{S'}
+\tkzInterLC(S,e)(O,a)  \tkzGetPoints{F}{E}
+\tkzInterLC(S,e)(O',b)  \tkzGetPoints{H}{G}
+\tkzAutoLabelPoints[center=O](C,D)
+\tkzAutoLabelPoints[center=O'](R,S')
+\tkzLabelPoints[below](O,O',E,F,G,H)
+\tkzLabelPoints[left](S)
+\tkzDrawSegments(S,Q S,S' S,H)
+\tkzLabelPoints[above](A,B,P,Q)
+\tkzDrawPoints(O,O')
+\end{tikzpicture}

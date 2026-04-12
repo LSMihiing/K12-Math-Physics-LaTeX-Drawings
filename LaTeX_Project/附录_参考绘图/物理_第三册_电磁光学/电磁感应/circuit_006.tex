@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁感应 / 楞次定律的应用
+% 原始文件：2.tex，行 263-281
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, yscale=.8]
+\draw (0,0)--(5,0) to [rmeter, t=G] (5,4)--(0,4) to [rmeter, t=G] (0,0);
+
+\foreach \x in {.5,1.5,...,4.5}
+\foreach \y in {.5,1.5,2.5,3.5}
+{
+   \node at  (\x,\y) {$\times$};
+}
+
+\node at (0,-.5){$E$};
+\node at (2.7,-.5){$A$};
+\node at (5,-.5){$D$};
+\node at (0,4.5){$F$};
+\node at (2.7,4.5){$B$};
+\node at (5,4.5){$C$};
+\draw [fill=white](2.7,4.25) rectangle (2.9,-.25);
+\draw [->](2.9, 2)--(3.8,2)node[right]{$v$};
+
+\end{circuitikz}

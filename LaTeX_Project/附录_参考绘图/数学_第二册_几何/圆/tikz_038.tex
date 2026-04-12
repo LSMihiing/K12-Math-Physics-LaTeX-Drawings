@@ -1,0 +1,75 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 1605-1673
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[scale=.8]
+    \begin{scope}
+  \tkzDefPoints{0/0/O,1.5/0/a}
+  \tkzDefPoint(80:1.5){b}
+  \tkzDefPoint(170:1.5){c}
+  \tkzDefPoint(-90:1.5){d}
+  \tkzDrawCircle[thick](O,a)
+  \tkzLabelPoints[below](O)
+  \tkzDrawPoints(O)
+  \tkzDefTangent[at=a](O) \tkzGetPoint{a'}
+  \tkzDefTangent[at=b](O) \tkzGetPoint{b'}
+  \tkzDefTangent[at=c](O) \tkzGetPoint{c'}
+  \tkzDefTangent[at=d](O) \tkzGetPoint{d'}
+  \tkzInterLL(a,a')(b,b')\tkzGetPoint{C}
+  \tkzInterLL(c,c')(b,b')\tkzGetPoint{D}
+  \tkzInterLL(c,c')(d,d')\tkzGetPoint{A}
+  \tkzInterLL(a,a')(d,d')\tkzGetPoint{B}
+  \tkzDrawPolygon[thick](A,B,C,D)
+  \tkzAutoLabelPoints[center=O](A,B,C,D)
+    \end{scope}
+    \begin{scope}[xshift=5cm]
+    \tkzDefPoints{0/0/P}
+  \tkzDefPoint(0:1.5){a}
+  \tkzDefPoint(70:1.5){b}
+  \tkzDefPoint(150:1.5){c}
+  \tkzDefPoint(-145:1.5){d}
+  \tkzDefPoint(-80:1.5){e}
+  \tkzDrawCircle[thick](P,a)
+  \tkzLabelPoints[below](P)
+  \tkzDrawPoints(P)
+  \tkzDefTangent[at=a](P) \tkzGetPoint{a'}
+  \tkzDefTangent[at=b](P) \tkzGetPoint{b'}
+  \tkzDefTangent[at=c](P) \tkzGetPoint{c'}
+  \tkzDefTangent[at=d](P) \tkzGetPoint{d'}
+  \tkzDefTangent[at=e](P) \tkzGetPoint{e'}
+  \tkzInterLL(a,a')(b,b')\tkzGetPoint{C}
+  \tkzInterLL(c,c')(b,b')\tkzGetPoint{D}
+  \tkzInterLL(c,c')(d,d')\tkzGetPoint{E}
+  \tkzInterLL(e,e')(d,d')\tkzGetPoint{A}
+  \tkzInterLL(a,a')(e,e')\tkzGetPoint{B}
+  \tkzDrawPolygon[thick](A,B,C,D,E)
+  \tkzAutoLabelPoints[center=P](A,B,C,D,E)
+    \end{scope}
+    \begin{scope}[xshift=10cm]
+    \tkzDefPoints{0/0/Q,1.5/0/a}
+  \tkzDefPoint(58:1.5){b}
+  \tkzDefPoint(125:1.5){c}
+  \tkzDefPoint(170:1.5){d}
+  \tkzDefPoint(-125:1.5){e}
+  \tkzDefPoint(-68:1.5){f}
+  \tkzDrawCircle[thick](Q,a)
+  \tkzLabelPoints[below](Q)
+  \tkzDrawPoints(Q)
+  \tkzDefTangent[at=a](Q) \tkzGetPoint{a'}
+  \tkzDefTangent[at=b](Q) \tkzGetPoint{b'}
+  \tkzDefTangent[at=c](Q) \tkzGetPoint{c'}
+  \tkzDefTangent[at=d](Q) \tkzGetPoint{d'}
+  \tkzDefTangent[at=e](Q) \tkzGetPoint{e'}
+  \tkzDefTangent[at=f](Q) \tkzGetPoint{f'}
+  \tkzInterLL(a,a')(b,b')\tkzGetPoint{C}
+  \tkzInterLL(c,c')(b,b')\tkzGetPoint{D}
+  \tkzInterLL(c,c')(d,d')\tkzGetPoint{E}
+  \tkzInterLL(e,e')(d,d')\tkzGetPoint{F}
+  \tkzInterLL(e,e')(f,f')\tkzGetPoint{A}
+  \tkzInterLL(a,a')(f,f')\tkzGetPoint{B}
+  \tkzDrawPolygon[thick](A,B,C,D,E,F)
+  \tkzAutoLabelPoints[center=Q](A,B,C,D,E,F)
+    \end{scope}
+  \end{tikzpicture}

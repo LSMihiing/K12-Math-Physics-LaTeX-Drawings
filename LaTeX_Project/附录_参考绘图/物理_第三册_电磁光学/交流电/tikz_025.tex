@@ -1,0 +1,39 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的整流
+% 原始文件：3.tex，行 1207-1239
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, xscale=.5]
+\foreach \x in {0,-3,-6}
+{
+    \draw [<->](0, \x+2)--(0,\x)--(14,\x)node[right]{$t$};
+    \node at (-.25,\x-.25){$O$};
+}
+
+\foreach \y in {1,2,3,4}
+{
+    \draw [dashed] (3.1416*\y, 0)--(3.1416*\y, -6);
+}
+
+\draw [ultra thick] plot[domain=0:4*3.1416, samples=1000, variable=\x] (\x, {1.2*sin(\x r)}) ;
+\draw [ultra thick] plot[domain=0:3.1416, samples=1000, variable=\x] (\x, {1.2*sin(\x r)-3}) ;
+\draw [ultra thick] plot[domain=2*3.1416:3*3.1416, samples=1000, variable=\x] (\x, {1.2*sin(\x r)-3}) ;
+\draw [ultra thick] plot[domain=0:3.1416, samples=1000, variable=\x] (\x, {0.8*sin(\x r)-6}) ;
+\draw [ultra thick] plot[domain=2*3.1416:3*3.1416, samples=1000, variable=\x] (\x, {0.8*sin(\x r)-6}) ;
+
+\node at (-.25, 2){$u$};
+\node at (-.45, 2-3){$u_R$};
+\node at (-.45, 2-6){$i_R$};
+
+\node at (3.1416-.25, -.5){$\dfrac{T}{2}$};
+\node at (2*3.1416+.25, -.25){$T$};
+\node at (3*3.1416-.25, -.5){$\dfrac{3T}{2}$};
+\node at (4*3.1416+.25, -.25){$2T$};
+
+\node at (-1, 1.5){甲};
+\node at (-1, 1.5-3){乙};
+\node at (-1, 1.5-6){丙};
+
+
+\end{tikzpicture}

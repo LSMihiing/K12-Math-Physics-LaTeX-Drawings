@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 全等和叠合
+% 原始文件：1.tex，行 2820-2843
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.8]
+\begin{scope}
+\tkzDefPoints{0/0/S, 5.2/3/T, 5.73/0/V}
+\tkzLabelPoints[below](S,V)
+\tkzLabelPoints[above](T)
+\tkzLabelSegment[left](S,T){12cm}
+\tkzMarkAngles[size=.8, mark=none](V,S,T)
+\tkzMarkAngles[size=.4, mark=none](S,T,V)
+\tkzLabelAngle[pos=1.2](V,S,T){$30^{\circ}$}
+\tkzLabelAngle[pos=.7](S,T,V){$70^{\circ}$}
+\tkzDrawPolygon(S,T,V)
+\end{scope}
+\begin{scope}[xshift=7cm]
+	\tkzDefPoints{0/0/Q, 4.96/2.865/P, 6/0/R}
+\tkzLabelPoints[below](Q,R)
+\tkzLabelPoints[above](P)
+\tkzLabelSegment[below](Q,R){12cm}
+\tkzMarkAngles[size=.8, mark=none](R,Q,P)
+\tkzMarkAngles[size=.4, mark=none](P,R,Q)
+\tkzLabelAngle[pos=1.2](R,Q,P){$30^{\circ}$}
+\tkzLabelAngle[pos=.7](P,R,Q){$70^{\circ}$}
+\tkzDrawPolygon(P,R,Q)
+\end{scope}
+\end{tikzpicture}

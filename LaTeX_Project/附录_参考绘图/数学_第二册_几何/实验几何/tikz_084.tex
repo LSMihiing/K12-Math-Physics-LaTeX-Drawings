@@ -1,0 +1,32 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 全等和叠合
+% 原始文件：1.tex，行 2908-2933
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\tkzDefPoints{-1.5/0/B, 1.5/0/C, -.8/2/A, .8/2/D}
+\tkzDrawPolygon(A,B,C,D)
+\tkzInterLL(A,C)(B,D)  \tkzGetPoint{O}
+\tkzLabelPoints[below](B,C,O)
+\tkzLabelPoints[above](A,D)
+\tkzDrawSegments(A,C B,D)
+\end{scope}
+\begin{scope}[xshift=4cm]
+	\tkzDefPoints{-1.5/0/F, 1.5/0/G, -1.5/2/E, 1.5/2/H}
+\tkzDrawPolygon(E,F,G,H)
+\tkzInterLL(E,G)(F,H)  \tkzGetPoint{P}
+\tkzLabelPoints[below](F,G,P)
+\tkzLabelPoints[above](E,H)
+\tkzDrawSegments(E,G F,H)
+\end{scope}
+\begin{scope}[xshift=8cm]
+	\tkzDefPoints{-1.5/0/N, 1.5/0/R, 2.5/2/S, -.5/2/M}
+\tkzDrawPolygon(M,N,R,S)
+\tkzInterLL(M,R)(N,S)  \tkzGetPoint{Q}
+\tkzLabelPoints[below](N,R,Q)
+\tkzLabelPoints[above](M,S)
+\tkzDrawSegments(M,R N,S)
+\end{scope}
+\end{tikzpicture}

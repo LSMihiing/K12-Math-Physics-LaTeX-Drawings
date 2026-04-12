@@ -1,0 +1,14 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁振荡和电磁波 / 电磁振荡
+% 原始文件：4.tex，行 63-70
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, xscale=.6]
+    \draw[->](0,0)node[left]{$O$}--(13,0);
+    \draw[->](0,-1)--(0,1)node[right]{$i$};
+    \draw [very thick] plot[domain=0:3.1416*4, samples=1000, variable=\x] (\x, {.5*exp(-0.2*\x)*cos(4.5*\x r)}) ;
+    \node at (6.5, -1.5){乙：阻尼振荡};
+
+
+\end{tikzpicture}

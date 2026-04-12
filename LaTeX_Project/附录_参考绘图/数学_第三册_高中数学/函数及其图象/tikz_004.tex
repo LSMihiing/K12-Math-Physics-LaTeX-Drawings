@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：函数及其图象 / 函数及其图象
+% 原始文件：4.tex，行 283-292
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\draw[->] (-4,0)--(4,0)node[right]{$x$};
+\foreach \x in {-3,0,3}
+{
+    \draw (\x,0)node[below]{$\x$}--(\x,.1);
+}
+\draw (-3,0)--(-3,1)--(4,1);
+\draw (3,0)--(3,.5)--(-4,.5);
+\draw[pattern=north east lines] (-3,.5) rectangle (3,0);
+\end{tikzpicture}

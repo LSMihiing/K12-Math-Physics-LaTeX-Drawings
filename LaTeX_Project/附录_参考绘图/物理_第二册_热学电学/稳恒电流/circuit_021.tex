@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 电路的分析和计算
+% 原始文件：7.tex，行 807-817
+% 类型：circuit
+% ---
+        \begin{circuitikz}[european, >=latex]
+    \draw (0,0)--node [below]{$r$} (3,0)--node[below]{$r$}(5,0) to [R=$R_2$] (5,3)
+    --node[above]{$r$}(3,3) --node[above]{$r$}(0,3);
+            \draw (3,0) to [R=$R_1$, *-*] (3,3);
+    
+    
+    \draw [<->](0,0.1)--node [fill=white]{220V} (0,3-.1);
+    \draw [fill=white](0,0) circle (2pt);
+    \draw [fill=white](0,3) circle (2pt);
+    
+        \end{circuitikz}

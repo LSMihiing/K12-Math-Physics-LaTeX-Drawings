@@ -1,0 +1,14 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电阻电路
+% 原始文件：3.tex，行 387-394
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, xscale=.7]
+        \draw [->](-.5,0)--(8,0)node[right]{$\omega t$};
+        \draw [->](0,-1.5)--(0,1.5)node[right]{$i, u$};
+        \draw [ultra thick] plot[domain=0:3.1416*2, samples=1000, variable=\x] (\x, {sin(\x r)});
+        \draw [very thick] plot[domain=0:3.1416*2, samples=1000, variable=\x] (\x, {.6*sin(\x r)});
+\node at (1.7,1.2){$u$};
+\node at (4.9,-.4){$i$};
+\end{tikzpicture}

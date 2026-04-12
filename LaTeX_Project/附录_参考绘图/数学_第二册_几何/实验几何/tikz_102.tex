@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 3644-3667
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\begin{scope}
+	\tkzDefPoints{0/0/B, 2/0/C, 1.5/2/X, 3.5/2/Y}
+\tkzDrawSegments[->](B,X C,Y)
+\tkzDrawSegments(B,C)
+\tkzLabelSegment[below](B,C){$a$}
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[above](X,Y)
+\tkzMarkAngles[mark=none,size=.4](C,B,X Y,C,B)
+\tkzLabelAngle[pos=.6](C,B,X){$\alpha$}
+\tkzLabelAngle[pos=.6](Y,C,B){$\beta$}
+\end{scope}
+\begin{scope}[xshift=6cm]
+	\tkzDefPoints{0/0/B, 2/0/C, -1/2/X, 3/2/Y}
+	\tkzDrawSegments[->](B,X C,Y)
+	\tkzDrawSegments(B,C)
+	\tkzLabelSegment[below](B,C){$a$}
+	\tkzLabelPoints[below](B,C)
+	\tkzLabelPoints[above](X,Y)
+	\tkzMarkAngles[mark=none,size=.3](C,B,X Y,C,B)
+	\tkzLabelAngle[pos=.5](C,B,X){$\alpha$}
+	\tkzLabelAngle[pos=.5](Y,C,B){$\beta$}
+\end{scope}
+\end{tikzpicture}

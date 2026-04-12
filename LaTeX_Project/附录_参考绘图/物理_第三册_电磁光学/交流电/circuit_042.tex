@@ -1,0 +1,31 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1709-1733
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european,scale=.6,>=latex]
+    
+\draw (0,0) to [R=$2$, *-*] (2,-3) ;
+\draw (0,0) to [R=$3$, *-*] (-2, -3);
+\draw (0,0) to [R=$1$] (0,4);
+\draw (0,4)--(-4-2,4);
+\draw (-2,-3)--(-4-2,-3);
+\draw (-4-2,-4)--(2,-4)--(2,-3);
+\draw (0,0)--(-4-2,0);
+\draw (0,4)--(-4-2,4);
+\foreach \x in {0,-4,-3,4}
+{
+    \draw [fill=white] (-4-2,\x) circle (3pt);
+}
+
+\node at (-4.8-2,0){$O$};
+\node at (-4.8-2,-4){$B$};
+\node at (-4.8-2,-3){$C$};
+\node at (-4.8-2,4){$A$};
+\node at (.5,0){$O'$};
+\draw [<->] (-3-2,0)--node[fill=white]{$U_{\text{相}}$}(-3-2,4);
+\draw [->](-5,4)--(-4,4) node [above]{$I_{\text{线}}$};
+\draw [->](0,4)--(0,3) node [right]{$I_{\text{相}}$};
+
+    \end{circuitikz}

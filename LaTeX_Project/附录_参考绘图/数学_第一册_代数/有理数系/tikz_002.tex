@@ -1,0 +1,24 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：有理数系 / 有理数的意义
+% 原始文件：1.tex，行 1196-1213
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex]
+	\node (A) at (0,0) {有理数};
+	\node (B1) at (2,1.5) {整数};
+	\node (B2) at (2,-1.5) {分数};
+	\node (B11) at (4,2.5)[right] {正整数（自然数）};
+	\node (B12) at (4,1.5)[right] {零};
+	\node (B13) at (4,.5)[right] {负整数};
+	\node (B21) at (4,-.5)[right] {正分数};
+	\node (B22) at (4,-2.5)[right] {负分数};
+	\draw [->](A)--(B1);
+	\draw [->](A)--(B2);
+	\draw [->](B1)--(B11);
+	\draw [->](B1)--(B12);
+	\draw [->](B1)--(B13);
+	\draw [->](B2)--(B21);
+	\draw [->](B2)--(B22);
+	
+	\end{tikzpicture}

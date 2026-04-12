@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：运动定律 / 超重和失重
+% 原始文件：3.tex，行 895-909
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.8, >=stealth]
+
+   \draw  (0,0) rectangle (1.5, 2);
+\node at (0.75,-2){甲};
+   \draw  (3,0) rectangle (4.5, 2);
+\node at (3.75,-2){乙};
+
+\draw [fill=black] (0.75,1)  circle [radius=.1];
+\draw [fill=black] (3.75,1)  circle [radius=.1];
+\draw[<->, very thick] (.75, 4)node [right]{$T$}--(.75, -1)node [right]{$G$};
+\draw[<->, very thick] (3.75, 2.5)node [right]{$T$}--(3.75, -1)node [right]{$G$};
+\draw [<-](1.8, 1)node [above]{$a$}--(1.8, .5);
+\draw [->](4.8, 1)--(4.8, .5)node [below]{$a$};
+
+\end{tikzpicture}

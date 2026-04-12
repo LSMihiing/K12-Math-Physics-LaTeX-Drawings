@@ -1,0 +1,31 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 2116-2140
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=.8]
+\tkzDefPoints{0/0/O, 4/0/O', 1/0/a, 2/0/b, 5/0/c}
+\tkzDefMidPoint(O,O')\tkzGetPoint{O''}
+\tkzDrawCircles(O,a O,b O',c)
+\tkzDefPoint(75.52:1){E}
+\tkzDefPoint(75.52:2){A}
+\tkzDefPoint(-75.52:1){F}
+\tkzDefPoint(-75.52:2){C}
+\tkzDefPointsBy[translation = from O to O'](A,C){A',C'}
+\tkzDefTangent[at=A](O)  \tkzGetPoint{A''}
+\tkzDefTangent[at=C](O)  \tkzGetPoint{C''}
+\tkzInterLL(A,A'')(O',A') \tkzGetPoint{B}
+\tkzInterLL(C,C'')(O',C')\tkzGetPoint{D}
+\tkzLabelPoints[above](A,B)
+\tkzLabelPoints[below](C,D)
+\tkzLabelPoints[left](O)
+\tkzLabelPoints[above left](E)
+\tkzLabelPoints[below left](F)
+\tkzLabelPoints[right](O')
+\tkzDrawSegments(A,O C,O B,O' D,O' O,O')
+\tkzDrawSegments[dashed](E,O' F,O')
+\tkzDrawCircles[dashed](O'',O)
+\tkzDrawLines[thick](A,B C,D)
+
+  \end{tikzpicture}

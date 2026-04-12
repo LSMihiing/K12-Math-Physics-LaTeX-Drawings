@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 全等和叠合
+% 原始文件：1.tex，行 2846-2856
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.8]
+	\tkzDefPoints{0/0/X, 0.53/3/Z, 5.73/0/Y}
+\tkzLabelPoints[below](X,Y)
+\tkzLabelPoints[above](Z)
+\tkzLabelSegment[right](Y,Z){12cm}
+\tkzMarkAngles[size=.8, mark=none](Z,Y,X)
+\tkzMarkAngles[size=.4, mark=none](Y,X,Z)
+\tkzLabelAngle[pos=1.2](Z,Y,X){$30^{\circ}$}
+\tkzLabelAngle[pos=.7](Y,X,Z){$70^{\circ}$}
+\tkzDrawPolygon(Z,Y,X)
+\end{tikzpicture}

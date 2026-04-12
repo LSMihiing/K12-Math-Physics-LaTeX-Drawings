@@ -1,0 +1,32 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：磁场 / 磁场对运动电荷的作用力
+% 原始文件：1.tex，行 705-730
+% 类型：tikz
+% ---
+        \begin{tikzpicture}[>=stealth, scale=.5]
+        \foreach \x in {1,...,4}
+        \foreach \y in {1,...,4}
+        {
+            \fill (\x,\y) circle (3pt);
+        }
+        \draw [->] (-.5,2.5)node [left]{$+q$}--node [below]{$v$}(0.5,2.5);
+        \draw (-.5,2.5)[fill=white] circle (3pt);
+        \node at (2.5,-1){乙};
+        \end{tikzpicture} \quad   \begin{tikzpicture}[>=stealth, scale=.5]
+        \foreach \x in {1,...,4}
+        {
+            \draw [->](\x,0.5)--(\x,4);
+        }
+        \draw [->] (-.5,2.5)node [left]{$+q$}--node [below]{$v$}(0.5,2.5);
+        \draw (-.5,2.5)[fill=white] circle (3pt);
+        \node at (2.5,-1){丙};
+        \end{tikzpicture} \quad   \begin{tikzpicture}[>=stealth, scale=.5]
+        \foreach \x in {1,...,4}
+        {
+                \draw [<-](\x,0.5)--(\x,4);
+        }
+        \draw [->] (-.5,2.5)node [left]{$+q$}--node [below]{$v$}(0.5,2.5);
+        \draw (-.5,2.5)[fill=white] circle (3pt);
+        \node at (2.5,-1){丁};
+        \end{tikzpicture}

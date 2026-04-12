@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 4266-4276
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1.4]
+\tkzDefPoints{0/0/B, 2/0/C, 2/2/D, 0/2/A}
+\tkzDefPointWith[linear, K=1.4](B,C)  \tkzGetPoint{E}
+\tkzDefPointWith[linear, K=.4](C,D) \tkzGetPoint{F}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments[dashed](C,E)
+\tkzDrawSegments(B,F D,E)
+\tkzLabelPoints[right](F)
+\tkzLabelPoints[above](A,D)
+\tkzLabelPoints[below](B,C,E)
+    \end{tikzpicture}

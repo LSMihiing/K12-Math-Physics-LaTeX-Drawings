@@ -1,0 +1,15 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：学生实验 / 练习使用示波器
+% 原始文件：APP1.tex，行 329-337
+% 类型：circuit
+% ---
+    \begin{circuitikz}[>=latex]
+\draw(0,0) to [cute open switch] (2,0) to [battery2](3,0) --(4,0)--(4,4);
+\draw(0,0)--(0,3) to [european, R] (3,3)--(3,0);
+\draw[<-]  (1.5,3.2)--(1.5,4)--(3.5,4);   
+\draw (4,4)[fill=white] circle (1.5pt)node[right]{地};
+\draw (3.5,4)[fill=white] circle (1.5pt)node[above]{Y输入};
+\draw (3.7,5.5) circle (.3);
+\draw (3,3.5) rectangle (4.5, 6);
+    \end{circuitikz}

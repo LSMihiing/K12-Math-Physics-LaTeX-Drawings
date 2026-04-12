@@ -1,0 +1,39 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 3806-3838
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.8]
+\begin{scope}
+\tkzDefPoints{0/0/A, 3/0/B, 3/2/C}
+\tkzDefPointsBy[translation = from B to C](A){D}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDefMidPoint(A,B) \tkzGetPoint{A'}
+\tkzDefMidPoint(C,B) \tkzGetPoint{B'}
+\tkzDefMidPoint(C,D) \tkzGetPoint{C'}
+\tkzDefMidPoint(A,D) \tkzGetPoint{D'}
+
+\tkzDrawLines(A',C' D',B')
+
+\end{scope}
+\begin{scope}[xshift=5cm, yshift=1cm]
+    \tkzDefPoints{0/0/A, 1.5/-1/B, 3/0/C, 1.5/1/D}
+    \tkzDrawPolygon(A,B,C,D)
+    \tkzDrawLines(A,C D,B)
+
+\end{scope}
+\begin{scope}[xshift=10cm]
+    \tkzDefPoints{0/0/A, 2/0/B, 2/2/C}
+\tkzDefPointsBy[translation = from B to C](A){D}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawLines(A,C D,B)
+\tkzDefMidPoint(A,B) \tkzGetPoint{A'}
+\tkzDefMidPoint(C,B) \tkzGetPoint{B'}
+\tkzDefMidPoint(C,D) \tkzGetPoint{C'}
+\tkzDefMidPoint(A,D) \tkzGetPoint{D'}
+
+\tkzDrawLines(A',C' D',B')
+
+\end{scope}
+\end{tikzpicture}

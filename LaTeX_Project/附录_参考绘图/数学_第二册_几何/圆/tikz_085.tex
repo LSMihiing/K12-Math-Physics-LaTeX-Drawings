@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 3662-3682
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoints{0/0/B, 5/0/C, 2.3/3.5/A}
+\tkzDrawPolygon(A,B,C)
+\tkzDefPointBy[projection= onto A--B](C)\tkzGetPoint{F}
+\tkzDefPointBy[projection= onto C--B](A)\tkzGetPoint{D}
+\tkzDefPointBy[projection= onto A--C](B)\tkzGetPoint{E}
+\tkzDrawSegments[thick](A,D C,F B,E)
+\tkzInterLL(A,D)(C,F)\tkzGetPoint{H}
+\tkzLabelPoints[below](B,C,D)
+\tkzLabelPoints[above](A)
+\tkzLabelPoints[above right](H)
+\tkzLabelPoints[left](F)
+\tkzLabelPoints[right](E)
+\tkzDrawPolygon[dashed](E,F,D)
+\tkzLabelAngle[pos=.8](A,D,F){1}
+\tkzLabelAngle[pos=.8](E,D,A){2}
+\tkzLabelAngle[pos=.8](E,B,A){3}
+\tkzLabelAngle[pos=.8](A,C,F){4}
+
+
+\end{tikzpicture}

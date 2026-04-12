@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 等势面
+% 原始文件：6.tex，行 797-813
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=.6]
+		\foreach \x in {1,2,3}
+		{
+			\draw (0,\x)--(7,\x);
+		}
+		\foreach \x in {0,4}
+		{
+			\draw[ultra thick] (0,\x)--(7,\x);
+		}
+		\node at (7.5,0){$-$};
+		\node at (7.5,4){$+$};
+		
+		\foreach \y in {1,2,...,6}
+		{
+			\draw[->,dashed] (\y, 4)--(\y,0);
+		}
+			\end{tikzpicture}

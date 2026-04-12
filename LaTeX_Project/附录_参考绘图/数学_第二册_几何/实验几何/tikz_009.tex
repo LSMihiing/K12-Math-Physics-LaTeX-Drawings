@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 点、直线和平面
+% 原始文件：1.tex，行 328-346
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\begin{scope}
+\draw(0.5,0)node[left]{$g$}--(4.5,0);
+\draw (1,1)node[above]{$A$}--(2,0)node[below]{$D$}--(4,2)node[right]{$E$};
+\draw[dashed] (1,1)--(1,-1)node[below]{$A'$}--(2,0);
+\node at (2.5,-2){(1)};
+\draw[very thick](3,2.7)node[left]{$B$}--(3,1.2)node[left]{$C$};
+\draw[->](1,1)--(1.5,.5); \draw[->](2,0)--(3.5,1.5);
+\end{scope}
+
+\begin{scope}[xshift=6cm]
+	\draw(0.5,0)node[left]{$g$}--(4.5,0);
+	\draw (1,1)node[above]{$A$}--(2,0)node[below]{$D$}--(4,2)node[right]{$E$};
+	\draw[dashed] (1,1)--(1,-1)node[below]{$A'$}--(2,0);
+	\node at (2.5,-2){(2)};
+	\draw[very thick](3,2)node[left]{$B$}--(3,.5)node[right]{$C$};
+	\draw[->](1,1)--(1.5,.5); \draw[->](2,0)--(2.5,.5);
+	\end{scope}
+\end{tikzpicture}

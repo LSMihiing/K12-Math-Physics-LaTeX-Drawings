@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 面积与勾股定理
+% 原始文件：3.tex，行 5357-5373
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=2]
+\tkzDefPoints{-1/0/B_1, 0/0/A, -1/1/B_2}
+\tkzDefPoint(180-80.26:1.732){B_3}
+\tkzDefPoint(180-110.26:2){B_4}
+\tkzDefPoint(180-136.82:2.236){B_5}
+\tkzDrawSegments(A,B_1 A,B_2 A,B_3 A,B_4 A,B_5)
+
+\tkzLabelPoints[above](B_3,B_4,B_5)
+\tkzLabelPoints[left](B_1,B_2)
+\tkzLabelPoints[right](A)
+
+\draw(B_1)--node[left]{1}(B_2);
+\draw(B_2)--node[above]{1}(B_3);
+\draw(B_3)--node[above]{1}(B_4);
+\draw(B_4)--node[above]{1}(B_5);
+
+\end{tikzpicture}    

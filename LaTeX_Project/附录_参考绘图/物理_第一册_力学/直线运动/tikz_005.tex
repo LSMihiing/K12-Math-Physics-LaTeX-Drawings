@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：直线运动 / 匀速直线运动的图象
+% 原始文件：2.tex，行 385-405
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=stealth,  thick, scale=.8]
+    
+    \draw [<->] (0,6) node[right]{$s$}--(0,0)--(8,0)node[below]{$t$};
+    
+    \node at (-.2,-.2){$O$};
+    
+    
+    \draw[dashed] (0,5*5/8)node [left]{$s_1$}--(5,5*5/8)node [above]{$P_1$}--(5,0)node [below]{$t_1$};
+    \draw[dashed] (0,7*5/8)node [left]{$s_2$}--(7,7*5/8)node [above]{$P_2$}--(7,0)node [below]{$t_2$};
+    \draw[dashed] (5,5*5/8)--(7,5*5/8);
+    
+    \draw[<->] (5,5*5/8-.5)--node [below]{$\Delta t$}(7,5*5/8-.5);
+    \draw[<->] (7.25, 5*5/8)--node [right]{$\Delta s$}(7.25,7*5/8);
+    \draw (7, 5*5/8)--(7.5, 5*5/8); \draw (7, 7*5/8)--(7.5, 7*5/8);
+    
+    \node at (7+.3, 5*5/8-.3) {$Q$};
+    
+    \draw [ultra thick](0,0)--(8,5) node [above]{$P$};
+    
+    
+    \end{tikzpicture}

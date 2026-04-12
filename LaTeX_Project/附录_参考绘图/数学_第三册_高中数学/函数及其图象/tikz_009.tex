@@ -1,0 +1,39 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：函数及其图象 / 函数及其图象
+% 原始文件：4.tex，行 622-654
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.7]
+    \draw[->](-5,0)--(5,0)node[right]{$x$};
+      \draw[->] (0,-1)--(0,9.5)node[right]{$y$};
+  \node at (-.35,-.35){$O$};
+
+\foreach \x in {1,2,3,4}
+{
+    \draw (\x,0)--(\x,.1);
+    \draw (-\x,0)--(-\x,.1);
+    \draw (0,\x)--(-.1,\x);
+    \draw (0,\x+4)--(-.1,\x+4);
+}
+
+\foreach \x in {2,4}
+{
+    \node at (\x,0)[below]{$\x$};
+    \node at (-\x,0)[below]{$-\x$};
+}
+
+\foreach \x in {2,4,6,8}
+{
+    \node at (-.1,\x)[left]{$\x$};
+}
+
+\draw [domain=-4.2:4.2, samples=100, very thick] plot(\x,{0.5*\x*\x});
+
+\foreach \y in {-4,-3,...,4}
+{
+    \draw (\y, {0.5*\y*\y})[fill=black] circle (2pt);
+}
+
+\node at (5,6){$y=\frac{1}{2}x^2$};
+\end{tikzpicture}

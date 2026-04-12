@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 作图
+% 原始文件：5.tex，行 903-915
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.8]
+    \draw(0,0)node[left]{$A$}--(0.618*4,0)node[below]{$G$}--(4,0)node[right]{$B$};
+    \tkzDrawPoint(0,0)
+    \tkzDrawPoint(0.618*4,0)
+    \tkzDrawPoint(4,0)
+\tkzDefPoints{4/2/D, 4/0/B, 0/0/A, 2.472/0/G}
+\tkzDefPoint(26.57: 2.472){E}
+\tkzDrawArc[delta=10](D,E)(B)
+\tkzDrawArc[delta=10](A,G)(E)
+\tkzDrawSegments(A,D D,B)
+\tkzLabelPoints[above](D,E)
+
+    \end{tikzpicture}

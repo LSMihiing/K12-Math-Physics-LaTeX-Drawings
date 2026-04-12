@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 4185-4195
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=1]
+		\tkzDefPoints{-2/0/A, 0/0/O, 2/0/B}
+\tkzDefPoint(70:2.5){C}
+\tkzDefLine[bisector](C,O,B)  \tkzGetPoint{E'}
+\tkzDrawLine(O,E')
+\tkzDefLine[bisector](A,O,C)  \tkzGetPoint{D'}
+\tkzDrawLine(O,D')
+\tkzDefPointWith[linear, K=1.56](O,E')  \tkzGetPoint{E}\tkzDefPointWith[linear, K=2](O,D')  \tkzGetPoint{D}
+\tkzLabelPoints[below](A,B,O)
+\tkzLabelPoints[right](C,E)
+\tkzLabelPoints[left](D)
+\tkzDrawSegments(A,B D,O C,O E,O)
+	\end{tikzpicture}

@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1835-1849
+% 类型：circuit
+% ---
+\begin{circuitikz}
+	\draw (0,0) to [american inductors, L] (-1.5, -2);
+	\draw (0,0) to [american inductors, L] (1.5, -2);	
+		\draw (1.5, -2) to [american inductors, L] (-1.5, -2);
+	\draw (0,0)-- (4,0)node [right]{$A$};
+	\draw (1.5, -2)-- (4,-2)node [right]{$B$};	
+	\draw (-1.5, -2)--(-1.5, -3)-- (4,-3)node [right]{$C$};	
+	\foreach \x in {-2,-3,0}
+	{
+		\draw[fill=white] (4,\x) circle({1.5pt});
+	}
+	\draw [fill=black](0,0) circle(1.5pt);
+	\draw [fill=black](1.5, -2) circle(1.5pt);
+	\draw [fill=black](-1.5, -2) circle(1.5pt);
+\end{circuitikz}

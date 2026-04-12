@@ -1,0 +1,24 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 串联电路
+% 原始文件：7.tex，行 230-247
+% 类型：circuit
+% ---
+    \begin{circuitikz}[>=latex, european]
+\draw (0,0) to [R=$R_1$] (3,0)to [R=$R_2$] (5,0)to [R=$R_3$] (8,0);
+\draw [fill=white](0,0) circle (2pt);\draw [fill=white](8,0) circle (2pt);
+\draw [<->](0,-.2)--(0,-5)--(8,-5);
+\draw [very thick] (0,-.8)node[left]{$U$}--(1,-.8)--(2,-1.5)--(3.5,-1.5)--(4.5, -3)--(6,-3)--(7,-5);
+
+\foreach \x in {1,2,3.5,4.5,6,7}
+{
+    \draw [dashed](\x, -.25)--(\x, -5);
+}
+
+\draw [<->|](1,-.8)--node [left]{$U_1$}(1,-1.5);
+\draw [<->|](3.5,-1.5)--node [fill=white]{$U_2$}(3.5,-3);
+\draw [<->|](6,-3)--node [fill=white]{$U_3$}(6,-5);
+\draw [dashed](1, -1.5)--(2, -1.5);
+\draw [dashed](3.5, -3)--(4.5, -3);
+
+    \end{circuitikz}

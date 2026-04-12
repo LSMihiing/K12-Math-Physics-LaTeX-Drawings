@@ -1,0 +1,24 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6640-6657
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}[scale=.7]
+\tkzDefPoints{0/0/B', 4/0/C', 3/0/D', 3/3/A'}
+\tkzDrawPolygon(A',B',C')
+\tkzDrawSegments(A',D')
+\tkzMarkRightAngles[size=.15](A',D',B')
+\tkzLabelPoints[below](C',D',B')
+\tkzLabelPoints[above](A')
+\end{scope}    
+\begin{scope}[xshift=4cm]
+    \tkzDefPoints{0/0/B, 4/0/C, 3/0/D, 3/3/A}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegments(A,D)
+\tkzMarkRightAngles[size=.15](A,D,B)
+\tkzLabelPoints[below](C,D,B)
+\tkzLabelPoints[above](A)
+\end{scope} 
+\end{tikzpicture}

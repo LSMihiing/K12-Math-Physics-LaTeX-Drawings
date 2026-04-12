@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：磁场 / 荷质比的测定~~质谱仪
+% 原始文件：1.tex，行 878-896
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=stealth, scale=1]
+	\foreach \x in {1,...,6}
+	\foreach \y in {1,...,4}
+	{
+		\node at (\x,\y){$\times$};
+	}
+
+\draw [ultra thick] (2.5,0.5)--(2.5,4.5)	;
+\draw [ultra thick] (4.5,0.5)--(4.5,4.5)	;
+\draw  [ultra thick](2.5,2.5)--(0.5,2.5)node [left]{$-$};
+\draw  [ultra thick](4.5,2.5)--(6.5,2.5)node [right]{$+$};
+
+\draw [ultra thick] (2,4.75)--(3.4,4.75);  \draw  [ultra thick](3.6,4.75)--(5,4.75);
+\draw  [ultra thick](2,.25)--(3.4,.25);  \draw  [ultra thick](3.6,.25)--(5,.25);
+\draw [->](3.5, 5.5)--(3.5, 4.5) node [below]{$v$};
+\node at (3.5,5){$S_2$};\node at (3.5,0){$S_3$};
+\node at (2,3.5){$D_1$};\node at (5,3.5){$D_2$};
+
+	\end{tikzpicture}

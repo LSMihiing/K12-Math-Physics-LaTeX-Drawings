@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：函数及其图象 / 函数及其图象
+% 原始文件：4.tex，行 77-92
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\draw[->](-1,0)--(7.5,0)node[right]{$t$小时};
+\draw[->](0,-2.5)--(0,2.5)node[right]{$T^{\circ}{\rm C}$};     
+\draw [domain=.1:7, samples=1000, ultra thick] plot(\x, {-1.2*sin(\x r)});
+
+\foreach \x in {-6,-4,...,6}
+{
+    \draw (0,\x*.3)node[left]{$\x$}--(.1,\x*.3);
+}
+\foreach \x in {2,4,...,24}
+{
+    \draw (\x*.28,0)node[below]{$\x$}--(\x*.28,0.1);
+}
+
+
+\end{tikzpicture}

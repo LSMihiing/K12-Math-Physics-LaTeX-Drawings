@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 分压和分流在伏特表和安培表中的应用
+% 原始文件：7.tex，行 560-571
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european,>=latex]
+        \draw (-4,0)--(-2,0) to [rmeter, t=G] (0,0) to [R=$R$] (3,0)--(4,0);
+        \node at (-4,0) [below]{$+$};
+        \node at (4,0) [below]{$-$};
+
+        \draw [->] (-4,0)--(-3,0) node [below]{$I_g$};
+\draw [dashed](-2,-1) rectangle (2.5,1);
+        \node at (-.25,.3){$R_g$};
+
+        \draw [fill=white](-4,0) circle (2pt);
+        \draw [fill=white](4,0) circle (2pt);
+    \end{circuitikz}

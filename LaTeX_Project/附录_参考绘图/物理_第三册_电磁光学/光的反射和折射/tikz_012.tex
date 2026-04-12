@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 球面镜
+% 原始文件：5.tex，行 549-564
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1.5]
+    \fill [pattern=north east lines] (2,-1)--(2.2,-1) to [bend left=30] (2.2,1) --(2,1) to [bend left=-30]
+    (2,-1);
+\draw [thick](2,1) to [bend left=-30] (2,-1);
+\draw [dashed] (-3,0)--(4,0);
+\node at (3,0) [above]{$F$};
+\draw (3,0) [fill=black] circle (1.5pt);
+
+\draw (-2.5,0) rectangle (-2, .5);
+\draw (-2.25, .5) to [bend left=30] (-2.25,1) to [bend left=30]  (-2.25, .5);
+
+\draw [dashed](2.5,0) rectangle (2.75, .25);
+\draw [dashed](2.625, .25) to [bend left=30] (2.625, .5) to [bend left=30]  (2.625, .25);
+
+
+\end{tikzpicture}

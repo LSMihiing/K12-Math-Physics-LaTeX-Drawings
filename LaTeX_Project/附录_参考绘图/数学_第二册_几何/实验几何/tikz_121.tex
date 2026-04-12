@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 4349-4358
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/3.5/A, -1.5/0/D, 1.5/0/E}
+\tkzDefPointWith[linear, K=.6](A,D)\tkzGetPoint{B}
+\tkzDefPointWith[linear, K=.6](A,E)\tkzGetPoint{C}
+\tkzLabelPoints[left](B,D)
+\tkzLabelPoints[right](C,E)
+\tkzLabelPoints[above](A)
+\tkzDrawPolygon(A,D,C)
+\tkzDrawPolygon(A,B,E)
+	\end{tikzpicture}

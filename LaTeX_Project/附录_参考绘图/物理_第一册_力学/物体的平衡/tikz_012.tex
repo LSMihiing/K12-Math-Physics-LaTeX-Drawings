@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：物体的平衡 / 稳度
+% 原始文件：6.tex，行 486-505
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1.1]
+    \fill [pattern=north east lines](-2.2,-2) rectangle (-2,2);
+\draw (-2,2)--(-2,-2);
+
+\draw (-2,-0.1)rectangle (1,0);
+\draw (1,0) node[right]{$O$}--(-2,1.732);
+\draw[->, thick](1,0)--(-.5, 1.732/2)node[above]{$T$};
+\draw (1,0)--(1,-1.5);
+\draw[->, thick] (1,0)--(1,-1.1) node [right]{$F$};
+
+\draw [fill=gray](1-.2,-1.5-.4) rectangle (1+.2, -1.5);
+
+\draw[<->] (-2,-.8) -- node[fill=white]{$\ell$} (1,-.8);
+\draw [->] (-.5, -.1)--(-.5,-.5)node[right]{$G$};
+
+\node at (-2.1,1.732) [left]{$A$};
+\node at (-2.1,0) [left]{$B$};
+\draw (.75,0) arc (180:150:.25)node[left]{$\theta = 30^{\circ}$};
+
+\end{tikzpicture}

@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：学生实验 / 游标卡尺的使用
+% 原始文件：app1.tex，行 112-135
+% 类型：tikz
+% ---
+    \begin{tikzpicture}
+    \draw(0,0)--(9.5,0);
+\foreach \x in {0.5,1,...,8.5}
+{
+    \draw(\x, 0)--(\x, 0.2);
+}
+
+\foreach \y in {3.35,3.8,...,7.85}
+{
+    \draw(\y, 0)--(\y, -0.2);
+}
+\draw (3.35,0)--(3.35,-.4)node [below]{0};
+\draw (7.85,0)--(7.85,-.4)node [below]{10};
+\draw (3.35+.45*5,0)--(3.35+.45*5,-.3) node [below]{游标};
+
+
+\draw (1.5,.4)node [above]{2}--(1.5,0);
+\draw (6.5,0)--(6.5,.4)node [above]{3};
+\draw (4,0)--(4,.3)node [above]{主尺};
+
+
+\node at (9,.5){厘米};
+
+    \end{tikzpicture}

@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 相似和相似比
+% 原始文件：1.tex，行 2950-2963
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[scale=.7]
+\begin{scope}
+	\tkzDefPoints{0/0/B, 3/0/C, 0/3/A, 3/3/D}
+	\tkzLabelPoints[below](B,C)
+	\tkzLabelPoints[above](A,D)
+	\tkzDrawPolygon(A,B,C,D)
+\end{scope}
+\begin{scope}[xshift=7cm]
+	\tkzDefPoints{0/0/B', 2/0/C', 0/2/A', 2/2/D'}
+	\tkzLabelPoints[below](B',C')
+	\tkzLabelPoints[above](A',D')
+	\tkzDrawPolygon(A',B',C',D')
+\end{scope}		
+	\end{tikzpicture}

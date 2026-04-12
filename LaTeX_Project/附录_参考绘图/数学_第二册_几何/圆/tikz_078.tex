@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 3327-3347
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.3]
+\begin{scope}
+    \draw(0,0)--node[above]{$b$}(1.5,0);
+    \draw(0,1)--node[above]{$a$}(1,1);
+
+\end{scope}
+\begin{scope}[xshift=3cm]
+\tkzDefPoints{0/0/A, 1.5/0/P, 2.5/0/B, 1.5/1.5/P'}
+\tkzDefMidPoint(A,B)\tkzGetPoint{O}
+\tkzInterLC(P,P')(O,A)\tkzGetPoints{C}{T}
+\tkzDrawArc[thick, color=black](O,B)(A)
+\tkzDrawSegments[thick](A,B C,P)
+\tkzLabelPoints[below](A,B,P,O)
+\tkzDrawPoints(O)
+\tkzLabelPoints[above](C)
+\tkzMarkRightAngles[size=.15](C,P,B)
+\tkzLabelSegment[below](A,P){$a$}
+\tkzLabelSegment[below](B,P){$b$}
+
+\end{scope}
+\end{tikzpicture}

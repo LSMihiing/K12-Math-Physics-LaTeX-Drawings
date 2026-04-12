@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：直线运动 / 匀速直线运动的图象
+% 原始文件：2.tex，行 467-489
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=stealth,  thick, scale=.8]
+    \draw [<->](0,5)node[right]{$v$（$\ms$）}--(0,0)--(7,0)node[below]{$t$（秒）};
+    
+    \draw (5,3)--(5,0);
+    
+    \foreach \x in {1,2,3,...,6}
+    {
+        \draw(\x, 0) node[below]{$\x$} --(\x, .2);
+    }
+    
+    \draw (0,3)--(6.5,3);
+    \node at (.2,3.2){$B$};  \node at (5.2,0.2){$A$};  
+    
+    \foreach \y in {1,2,3,4}
+    {
+        \draw(0,\y)node[left]{$\y$}--(.2, \y);
+    }
+    \node at (-.2,-.2){$O$};
+    
+    \fill [pattern = north east lines] (0,0) rectangle (5,3);
+    
+    
+    \end{tikzpicture}

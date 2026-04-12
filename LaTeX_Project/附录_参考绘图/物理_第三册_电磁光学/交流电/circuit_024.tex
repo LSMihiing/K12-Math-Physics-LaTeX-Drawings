@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的整流
+% 原始文件：3.tex，行 1180-1199
+% 类型：circuit
+% ---
+    \begin{circuitikz}[>=latex,european]
+
+
+\draw (0,1.3)--(0,0)--(.7,0);
+\draw (.7,3) to [american inductor] (.7,0);
+\draw (.7,3)--(0,3)--(0,1.7) ;
+\draw (1.5,0)--(5,0) to [R=$R$] (5,3) --(1.5,3) node[above]{$a$};
+\draw (1.50,0)node[below]{$b$} to  [american inductor] (1.5,3);
+
+\ctikzset{diodes/scale=0.6}\draw (1.5,3) to[full diode](5,3);
+ \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+\draw [ultra thick](1.1,1)--(1.1,2);   \node at (3.125,3.5){$D$};
+\node at (1.1,2.5){$B$};
+\draw [<->](2.25,0)--node [fill=white]{$u$} (2.25,3);
+\draw [<->](4,0)--node [fill=white]{$u_R$} (4,3);
+%\draw [ultra thick] (3.75,3.25)--(3.75,2.75);
+\node at (5.25, .8){$-$}; \node at (5.25, 2.2){$+$};
+\end{circuitikz}

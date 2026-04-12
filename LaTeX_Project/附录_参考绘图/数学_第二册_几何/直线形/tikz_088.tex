@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 3048-3059
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.2]
+\tkzDefPoints{0/0/A, 1.5/0/C, 4/0/B}
+\tkzDefEquilateral(C,B)  \tkzGetPoint{E}
+\tkzDefEquilateral(A,C)  \tkzGetPoint{D}
+\tkzDrawPolygon(A,C,D)
+\tkzDrawPolygon(B,C,E)
+\tkzInterLL(C,D)(A,E)\tkzGetPoint{F}
+\tkzInterLL(B,D)(C,E)\tkzGetPoint{G}
+\tkzDrawSegments(A,E C,E B,D F,G)
+\tkzLabelPoints[below](A,B,C,F,G)
+\tkzLabelPoints[above](D,E)
+\end{tikzpicture}

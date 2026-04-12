@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 简易逻辑
+% 原始文件：2.tex，行 1219-1230
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-1/-2/A, 3/-2/B, 1/1/C, -.5/-2.5/D, 2.5/-2.5/E}
+\tkzDrawLines[add =0 and 0](C,D C,E  A,B)
+\tkzInterLL(A,B)(C,D) \tkzGetPoint{F}
+\tkzInterLL(A,B)(C,E) \tkzGetPoint{G}
+\tkzMarkAngles[mark=none, size=.4](A,F,D E,G,B B,F,C C,G,A)
+\tkzLabelAngle[pos=.5](A,F,D){3}
+\tkzLabelAngle[pos=.5](E,G,B){4}
+\tkzLabelAngle[pos=.5](B,F,C){1}
+\tkzLabelAngle[pos=.5](C,G,A){2}
+
+    \end{tikzpicture}

@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 2272-2282
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/a, 3/0/b, 0/2/a', 3/2/b', 1.5/3.5/m, 1.5/-1.5/n}
+\tkzInterLL(m,n)(a,b)  \tkzGetPoint{A}
+\tkzInterLL(m,n)(a',b')  \tkzGetPoint{A'}
+\tkzDrawSegments(a,b a',b' m,n)
+\tkzLabelPoints[below left](A,A')
+\tkzMarkRightAngles[size=.2](m,A',b' m,A,b)
+\tkzLabelPoint[left](a){$\ell$}
+\tkzLabelPoint[left](a'){$\ell'$}
+\tkzLabelPoints[above](m)
+    \end{tikzpicture}

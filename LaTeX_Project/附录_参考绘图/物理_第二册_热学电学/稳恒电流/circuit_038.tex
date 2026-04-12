@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 惠斯通电桥
+% 原始文件：7.tex，行 1252-1266
+% 类型：circuit
+% ---
+	\begin{circuitikz}[european, scale=1.5, >=stealth]
+\draw (-1.5,0)node[left]{$A$} to[R=$R_3$, *-*](0,1.5)node[above]{$B$};
+\draw (-1.5,0) to[R=$R_1$, *-*](0,-1.5)node[below]{$D$};
+\draw (0,-1.5) to[R=$R_2$, *-*](1.5,0);
+\draw (1.5,0)node[right]{$C$} to[R=$R_x$, *-*](0,1.5);
+\draw (0,1.5) to [rmeter, t=G] (0,-1.5);
+\draw (-1.5,0)--(-1.5,-2.5)to [battery2](1.5,-2.5)--(1.5,0);
+\draw[->](-.4,1.1)node[above]{$I_3$}--(-.1,1.5-.1);
+\draw[->](0,1.5)--(.3,1.2)node[above]{$I_4$};
+
+\draw[->](-.4,-1.1)node[below]{$I_1$}--(-.1,-1.5+.1);
+\draw[->](0,-1.5)--(.3,-1.2)node[below]{$I_2$};
+\draw[->](0,1.4)--(0,.7)node[right]{$I_g$};
+
+	\end{circuitikz}	

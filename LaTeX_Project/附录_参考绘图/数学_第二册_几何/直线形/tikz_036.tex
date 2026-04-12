@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 1191-1202
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+    \tkzDefPoints{0/1.5/A, -1.5/-1/B, -.25/-1/D, 1.5/-1/C, 2.5/-1/E}
+\tkzDrawPolygon(A,C,B)
+    \draw(D)node[below]{$D$}--(A)node[above]{$A$}--(E)node[below]{$E$};
+\draw[dashed](C)--(3.5,-1);
+\node at (B)[below]{$B$};
+\node at (C)[below]{$C$};
+\tkzMarkAngles[mark=none, size=.3](D,B,A  A,D,B  A,C,B)
+\tkzLabelAngle[pos=.5](D,B,A){1}
+\tkzLabelAngle[pos=.5](A,D,B){3}
+\tkzLabelAngle[pos=.5](A,C,B){2}
+    \end{tikzpicture}

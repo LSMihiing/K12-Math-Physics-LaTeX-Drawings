@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 5666-5689
+% 类型：tikz
+% ---
+    \begin{tikzpicture}
+\begin{scope}
+    \tkzDefPoints{0/0/A,6/0/B, 4/4/C}
+    \tkzDrawPolygon(A,B,C)
+
+\tkzDefPointWith[linear, K=.333](A,B)  \tkzGetPoint{B'}
+\tkzDefPointWith[linear, K=.333](A,C)  \tkzGetPoint{C'}
+\tkzDefPointWith[linear, K=.333](B,C)  \tkzGetPoint{A'}
+\tkzDefPointWith[linear, K=.667](A,B)  \tkzGetPoint{B''}
+\tkzDefPointWith[linear, K=.667](A,C)  \tkzGetPoint{C''}
+\tkzDefPointWith[linear, K=.667](B,C)  \tkzGetPoint{A''}
+\tkzDrawSegments[dashed](C',A' B',A'' C'',B'' B'',A' C'',A'')
+\tkzDrawSegments(C',B')
+    \tkzLabelPoints[below](B',B)
+    \tkzLabelPoints[above](C',C)
+\tkzLabelPoint[below](A){$A(A')$}
+\end{scope}
+\begin{scope}[xshift=7cm, scale=.333]
+    \tkzDefPoints{0/0/A',6/0/B', 4/4/C'}
+    \tkzDrawPolygon(A',B',C')
+    \tkzLabelPoints[below](A',B')
+    \tkzLabelPoints[above](C')
+\end{scope}        
+    \end{tikzpicture}

@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 作图
+% 原始文件：5.tex，行 454-464
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.8, rotate=-15]
+\tkzDefPoints{0/0/B, 3/0/C, -.5/1.94/A,-.5/-1.94/A'}
+\draw(A)--(B)--(C)--(A);
+\draw(B)--(A')--(C);
+\tkzDrawArc[delta=10](C,A)(A')
+\tkzCompass(B,A)
+\tkzCompass(B,A')
+\tkzLabelPoints[above](A,C)
+\tkzLabelPoints[left](A',B)
+
+    \end{tikzpicture}

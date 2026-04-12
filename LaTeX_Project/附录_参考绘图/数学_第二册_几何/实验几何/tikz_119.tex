@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 4298-4314
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-1/1/G, 3/1/H, -1/2.5/E, 3/2.5/F, -.5/0/N, 2/4/M}
+\tkzDrawSegments(E,F G,H M,N)
+\tkzInterLL(E,F)(M,N)  \tkzGetPoint{A}
+\tkzInterLL(G,H)(M,N)  \tkzGetPoint{B}
+\tkzLabelPoints[left](E,G)
+\tkzLabelPoints[right](F,H)
+\tkzLabelPoints[above left](A,B)
+\tkzLabelPoints[above](M)
+\tkzLabelPoints[below](N)
+\tkzDefLine[bisector, normed](M,A,F) \tkzGetPoint{C'}
+\tkzDefLine[bisector, normed](M,B,H) \tkzGetPoint{D'}
+\tkzDefPointWith[linear,K=2](A,C')\tkzGetPoint{C}
+\tkzDefPointWith[linear,K=2](B,D')\tkzGetPoint{D}
+\tkzDrawSegments(A,C B,D)
+\tkzLabelPoints[right](C,D)
+	\end{tikzpicture}

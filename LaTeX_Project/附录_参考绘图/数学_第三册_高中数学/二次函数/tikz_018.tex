@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：二次函数 / 和二次函数有关的课题
+% 原始文件：5.tex，行 1355-1368
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.9]
+\draw (0,0)--(8,0)node[right]{$A$};
+\draw[->, very thick] (0,0)--(0,-2)node[below]{$D$};
+\draw[->, very thick] (8,0)--(3,0)node[above]{$B$};
+\draw (0,-2)--(3,0);
+\draw (3,0)--(3,-1); \draw (8,0)--(8,-1); 
+\draw[<->] (3,-.5)--node[fill=white]{$40t$}(8,-.5);
+\draw (-1,0)--(0,0); \draw (-1,-2)--(0,-2);
+\draw[<->]  (-.5,0)--node[fill=white]{$16t$}(-.5,-2);
+\node at (-.25,.25) {$C$};
+\draw(0,0)--(0,1.2); \draw (8,0)--(8,1.2);
+\draw[<->] (0,1) --node[fill=white]{$145$公里}  (8,1) ;
+
+\end{tikzpicture}

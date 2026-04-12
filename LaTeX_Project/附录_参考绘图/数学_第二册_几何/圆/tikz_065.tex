@@ -1,0 +1,38 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 2879-2910
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+  \begin{scope}
+  \tkzDefPoints{0/0/O, 1.5/0/A}
+  \tkzDefPoint(60:1.5){B}
+  \tkzDrawSegments[thick](O,A O,B)
+  \tkzMarkAngle[mark=none, size=.4](A,O,B)
+  \tkzLabelAngle[pos=.6](A,O,B){$\alpha$}
+  \end{scope}
+  \begin{scope}[xshift=4cm]
+    \tkzDefPoints{0/0/O, 0/.5/E}
+  \tkzDefPoint(-30:1.5){B}
+  \tkzDefPoint(-150:1.5){A}
+  \tkzDrawArc[thick, color=black](O,B)(A)
+  \tkzDrawArc[dashed, color=black](O,A)(B)
+  \tkzDefMidPoint(A,B)\tkzGetPoint{D}
+  \tkzDefPointWith[linear, K=1.4](A,O)
+  \tkzGetPoint{F}
+  \tkzAutoLabelPoints[center=O](A,B,E)
+  \tkzDrawSegments[thick](A,B)
+  \tkzLabelPoints[below right](O)
+  \tkzDrawSegments[dashed](A,F D,E)
+  \tkzLabelPoints[right](F)
+  \tkzLabelPoints[below](D)
+  \tkzDrawPoints(O)
+  \tkzDefTangent[at=A](O)
+    \tkzGetPoint{C}
+  \tkzDrawSegments[dashed](A,C)
+  \tkzLabelPoints[below](C)
+  \tkzMarkAngle[mark=none, size=.3](C,A,B)
+  \tkzLabelPoint[above](0,1.5){$m$}
+  \end{scope}
+    \end{tikzpicture}

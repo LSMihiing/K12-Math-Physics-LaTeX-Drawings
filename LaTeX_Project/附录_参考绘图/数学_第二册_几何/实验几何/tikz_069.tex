@@ -1,0 +1,12 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 2355-2360
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/A, 2/1.5/B, -.1/1.8/C}
+\tkzDefPointBy[projection = onto A--B](C) \tkzGetPoint{D}
+\tkzDefPointWith[linear, K=2](C,D) \tkzGetPoint{E}
+\tkzDrawSegments(A,B C,E)
+    \end{tikzpicture}

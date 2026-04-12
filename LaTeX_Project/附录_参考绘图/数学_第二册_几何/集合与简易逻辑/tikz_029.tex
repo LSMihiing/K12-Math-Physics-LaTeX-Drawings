@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 简易逻辑
+% 原始文件：2.tex，行 1301-1314
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+		\tkzDefPoint(0:0){O}
+		\tkzDefPoint(0:2.5){D}
+		\tkzDefPoint(30:2.5){C}
+		\tkzDefPoint(90:2.5){B}
+		\tkzDefPoint(120:2.5){A}
+\tkzAutoLabelPoints[center=O](A,B,C,D)
+\tkzDrawSegments(O,A O,B O,C O,D)
+\tkzMarkRightAngles(B,O,D A,O,C)
+\tkzMarkAngles[mark=none, size=.7](D,O,C B,O,A)
+\tkzLabelAngles[pos=.8](D,O,C){2}
+\tkzLabelAngles[pos=.8](B,O,A){1}
+\node at (-.2,-.2){$O$};
+    \end{tikzpicture}

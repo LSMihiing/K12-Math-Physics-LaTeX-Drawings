@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 轨迹
+% 原始文件：5.tex，行 212-222
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.6]
+\draw[very thick] (0,0) circle (1.414)  ;  
+\draw[very thick, dotted] (0,0) circle (1)  ;  
+\draw (-45:1.414)node[right]{$B$}--(-45-90:1.414)node[left]{$A$};
+\draw[dashed] (80:1.414)--(0,0)--node[left]{$r$}(-45-90:1.414);
+\draw [thick] (0,0)--node[right]{$r'$}(0,-1)node[below]{$M$};
+\draw (80:1.414)node[above]{$C$}--(-10:1.414)node[below]{$D$};
+\draw [thick] (0,0)--(35:1)node[right]{$P$};
+
+\draw[|-|](-4,1)--node[above]{$a$}(-2,1);
+\end{tikzpicture}

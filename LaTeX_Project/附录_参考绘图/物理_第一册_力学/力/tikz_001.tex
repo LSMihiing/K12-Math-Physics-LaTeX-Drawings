@@ -1,0 +1,32 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：力 / 力
+% 原始文件：1.tex，行 55-80
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=stealth, thick]
+
+\draw (0,0)--(2,0)--(2,1)--(0,1)--(0,0);
+
+\fill [pattern = north east lines] (-1,-.75) rectangle (3,-.5);
+\draw(-1,-.5)--(3,-.5);
+\draw (.5,-.25) circle (.225);
+\draw (1.5,-.25) circle (.225);
+\draw (.5,-.25) circle (.1);
+\draw (1.5,-.25) circle (.1);
+
+\draw[->, dashed](3,0.5)--(-2,0.5);
+\draw[very thick](0,.5)--(-2,0.5);
+\foreach \i in {-.4,-.8,-1.2,-1.6,-2}
+{
+    \draw (\i,0.6)--(\i,.5);
+}
+
+\draw (-1,1)--(-1,1.1);
+\draw (-0.6,1)--(-0.6,1.1);
+
+\draw[-] (-1,1)--(-0.6,1);
+\node at (-0.8,1.35){\small 20牛顿};
+
+
+\end{tikzpicture}

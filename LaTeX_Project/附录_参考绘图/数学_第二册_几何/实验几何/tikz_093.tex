@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 相似和相似比
+% 原始文件：1.tex，行 3238-3260
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}[rotate=-20]
+\tkzDefPoints{0/0/B, 3/0/C}
+\tkzDefPoint(80:3.48){A}
+\tkzDrawPolygon(A,B,C)
+\tkzMarkAngles[mark=none, size=.4](C,B,A B,A,C)
+\tkzLabelAngle[pos=.7](C,B,A){$80^{\circ}$}
+\tkzLabelAngle[pos=.7](B,A,C){$45^{\circ}$}
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[above](A)
+
+\end{scope}
+\begin{scope}[xshift=5cm, scale=.7, rotate=-20]
+	\tkzDefPoints{0/0/B', 3/0/C'}
+\tkzDefPoint(80:3.48){A'}
+\tkzDrawPolygon(A',B',C')
+\tkzMarkAngles[mark=none, size=.7](A',C',B' B',A',C')
+\tkzLabelAngle[pos=1](A',C',B'){$55^{\circ}$}
+\tkzLabelAngle[pos=1](B',A',C'){$45^{\circ}$}
+\tkzLabelPoints[below](B',C')
+\tkzLabelPoints[above](A')
+\end{scope}
+\end{tikzpicture}

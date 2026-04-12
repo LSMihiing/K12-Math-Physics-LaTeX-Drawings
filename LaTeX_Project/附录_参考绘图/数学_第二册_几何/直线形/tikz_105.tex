@@ -1,0 +1,40 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 3851-3884
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoints{0/0/B, 3/0/C, 3/2/D, 0/2/A}
+\tkzDrawPolygon[thick](A,B,C,D)
+\tkzDrawLines[add=0 and .5, dashed](B,A A,D D,C C,B)
+\tkzDefPointWith[linear, K=1.5](B,A)  \tkzGetPoint{A'}
+\tkzDefPointWith[linear, K=1.5](A,D)  \tkzGetPoint{D'}
+\tkzDefPointWith[linear, K=1.5](D,C)  \tkzGetPoint{C'}
+\tkzDefPointWith[linear, K=1.5](C,B)  \tkzGetPoint{B'}
+
+\tkzDefLine[bisector](D,A,A') \tkzGetPoint{A''}
+\tkzDefLine[bisector](C,D,D') \tkzGetPoint{D''}
+\tkzDefLine[bisector](B,C,C') \tkzGetPoint{C''}
+\tkzDefLine[bisector](A,B,B') \tkzGetPoint{B''}
+\tkzInterLL(A,A'')(D,D'')  \tkzGetPoint{H}
+\tkzInterLL(D,D'')(C,C'')  \tkzGetPoint{G}
+\tkzInterLL(B,B'')(C,C'')  \tkzGetPoint{F}
+\tkzInterLL(A,A'')(B,B'')  \tkzGetPoint{E}
+\tkzDrawPolygon[thick](E,F,G,H)
+\tkzInterLL(A,E)(C,B)  \tkzGetPoint{P}
+\tkzDrawSegments[dashed](E,P P,B)
+
+\tkzLabelPoints[above](H,D)
+\tkzLabelPoints[below](P,F,B)
+\tkzLabelPoints[left](E,A)
+\tkzLabelPoints[right](G,C)
+
+\tkzMarkAngles[mark=none, size=.4](E,A,B A,B,E D,A,H B,C,F F,B,C H,D,A B,P,E)
+\tkzLabelAngle[pos=.6](E,A,B){1}
+\tkzLabelAngle[pos=.6](A,B,E){2}
+\tkzLabelAngle[pos=.6](D,A,H){3}
+\tkzLabelAngle[pos=.6](B,C,F){4}
+\tkzLabelAngle[pos=.6](F,B,C){5}
+\tkzLabelAngle[pos=.6](H,D,A){6}
+\end{tikzpicture} 

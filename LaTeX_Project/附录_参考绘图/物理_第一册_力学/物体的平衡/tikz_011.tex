@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：物体的平衡 / 稳度
+% 原始文件：6.tex，行 467-481
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+    \fill [pattern=north east lines](-2.2,-2) rectangle (-2,2);
+    \draw (-2,2)--(-2,-2);
+    
+\draw (-2+0.8714*5, .5+.225*5)--(-2+0.8714*5, 1);
+\draw (-2+0.8714*5-.3, .7) arc (180:0:.3);
+\draw (-2+0.8714*5-.3, .7)--(-2+0.8714*5+.3, .7);
+\draw (-2+0.8714*5-.1, .7) arc (180:360:.1);
+\node at (-1.8,1.8){$A$};
+
+\pgfsetlinewidth{2pt}
+    \pgfsetinnerlinewidth{1pt}
+    \draw (-2,1.5)--(-2+0.8714*5, .5+.225*5)node[right]{$C$};
+    \draw (-2,-1.5)node[right]{$B$}--(-2+0.8714*5, .5+.225*5);
+\end{tikzpicture}

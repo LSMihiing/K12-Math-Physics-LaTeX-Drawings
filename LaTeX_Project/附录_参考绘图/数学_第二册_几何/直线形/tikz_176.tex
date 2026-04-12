@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6836-6859
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}[rotate=110]
+\tkzDefPoint(90:2){A}
+\tkzDefPoint(90-72:2){E}
+\tkzDefPoint(90+72:2){B}
+\tkzDefPoint(90-144:2){D}
+\tkzDefPoint(90+144:2){C}
+\tkzDrawPolygon(A,B,C,D,E)
+\tkzDrawSegments(A,D A,C)
+\tkzDefPoints{0/0/O}
+\tkzAutoLabelPoints[center=O](A,B,C,D,E)
+\end{scope}
+\begin{scope}[xshift=5cm, rotate=150]
+    \tkzDefPoint(90:1){A'}
+\tkzDefPoint(90-72:1){E'}
+\tkzDefPoint(90+72:1){B'}
+\tkzDefPoint(90-144:1){D'}
+\tkzDefPoint(90+144:1){C'}
+\tkzDrawPolygon(A',B',C',D',E')
+\tkzDrawSegments(A',D' A',C')
+\tkzDefPoints{0/0/O}
+\tkzAutoLabelPoints[center=O](A',B',C',D',E')
+\end{scope}
+\end{tikzpicture}

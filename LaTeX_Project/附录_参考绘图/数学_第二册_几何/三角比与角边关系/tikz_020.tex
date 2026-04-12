@@ -1,0 +1,15 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：三角比与角边关系 / 解直角三角形
+% 原始文件：6.tex，行 1302-1310
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/A, 4/0/B, 4/2/C, 2.7/2/D, 2/1/E, 1.3/2/F, 0/2/G}
+\tkzDrawPolygon(A,B,C,D,E,F,G)
+\draw[dashed](F)--node[above]{20}(D);
+\draw[<->](3.5,1)--node[fill=white]{19.2}(3.5,2);
+\draw(E)--(3.7,1);
+\tkzMarkAngle[mark=none, size=.3](D,E,F)
+\node at (E)[above=.2]{$\alpha$};
+    \end{tikzpicture}

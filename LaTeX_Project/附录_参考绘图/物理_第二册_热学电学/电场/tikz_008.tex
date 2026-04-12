@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 等势面
+% 原始文件：6.tex，行 891-906
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex]
+\foreach \x in {0,2}
+{
+    \draw[very thick] (0,\x) --(5,\x);
+}
+
+\node at (5.25,0){$B$};
+\node at (5.25,2){$A$};
+
+\foreach \x in {1, 2,3,4}
+{
+    \draw[->, dashed](\x,2)--(\x,0);
+}   
+\node at (2.5,1.5){$M$};    \node at (2.5,.5){$N$};
+\fill (2.2,1.5) circle (1.5pt);\fill (2.2,.5) circle (1.5pt);
+    \end{tikzpicture}

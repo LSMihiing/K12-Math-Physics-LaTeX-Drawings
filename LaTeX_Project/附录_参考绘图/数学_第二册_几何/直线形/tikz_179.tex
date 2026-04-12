@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6999-7011
+% 类型：tikz
+% ---
+\begin{tikzpicture}[rotate=10]
+    \tkzDefPoints{0/0/A, 2/0/B, 1.6/1.4/C, .6/1.4/D}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDefPoints{3/.5/O}
+\foreach \x in {A,B,C,D}
+{
+    \tkzDefPointWith[linear, K=3.2](\x,O) \tkzGetPoint{\x'}
+    \tkzDrawSegments(\x,\x')
+}
+\tkzDrawPolygon(A',B',C',D')
+\tkzLabelPoints[below](A,C',B,D',O)
+\tkzLabelPoints[above](C,A',D,B')
+\end{tikzpicture}

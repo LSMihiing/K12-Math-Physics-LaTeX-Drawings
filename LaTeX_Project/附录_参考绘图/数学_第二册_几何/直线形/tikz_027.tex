@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 778-793
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+    \draw(0,-.5)--(0,4)node[above]{$\ell$};
+    \node at (0,-1){(1)};
+
+\draw(-1.8,2)node[above]{$B$}--(-.4,3)node[above]{$A$}--(-1.4,0.5)node[below]{$C$}--(-1.8,2);
+\draw(1.8,2)node[above]{$B'$}--(.4,3)node[above]{$A'$}--(1.4,0.5)node[below]{$C'$}--(1.8,2);
+
+\end{scope}
+\begin{scope}[xshift=6.5cm]
+    \draw(0,-.5)--(0,4)node[above]{$\ell$};
+\draw(-2,0)node[below]{$B$}--(2,0)node[below]{$C$}--(0,3)node[right]{$A$}--(-2,0);
+\draw (0,0) rectangle (.2,.2);
+\node at (0,-1){(2)};
+\end{scope}
+\end{tikzpicture}

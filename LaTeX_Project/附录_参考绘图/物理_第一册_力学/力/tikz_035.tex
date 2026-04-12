@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：力 / 同一直线上的矢量的运算
+% 原始文件：1.tex，行 1804-1820
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=stealth,  thick ]
+
+\fill [pattern = north east lines] (-4,-.5) rectangle (-3.8,.5);
+\draw(-3.8,.5)--(-3.8,-.5);
+\fill [pattern = north east lines] (4,-.5) rectangle (3.8,.5);
+\draw(3.8,.5)--(3.8,-.5);
+
+\draw [dashed] (-3.8,0)  --node[above]{$D$} (3.8,0);
+\node at (-3.5,0) [below]{$A$};
+\node at (3.5,0) [below]{$B$};
+\draw [dashed] (0,0)  -- (0,-1.5)node[above]{$C$};
+\draw  (0,-1.5)  -- (0,-2.5);
+\draw (-3.8,0)--(0,-1.5)--(3.8,0);
+\draw [fill=black!30] (-.5,-2.5) rectangle (.5,-2.75-.6);
+
+
+\end{tikzpicture}

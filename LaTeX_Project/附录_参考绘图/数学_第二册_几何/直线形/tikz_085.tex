@@ -1,0 +1,35 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 2959-2987
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+    \tkzDefPoints{-2/0/B, 2/0/C, 0/2/A, .5/0/D, .5/.5/G}
+\tkzDrawPolygon(A,B,C)
+\tkzDefPointWith[linear, K=1.5](B,A) \tkzGetPoint{H}
+\tkzDrawSegments[dashed](A,H)
+\tkzInterLL(B,A)(D,G) \tkzGetPoint{E}
+\tkzInterLL(A,C)(D,E) \tkzGetPoint{F}
+\tkzLabelPoints[below](B,C,D)
+\tkzLabelPoints[above](A,E)
+\tkzLabelPoints[right](F)
+\tkzDrawSegments(D,E)
+\end{scope}
+\begin{scope}[xshift=5cm, scale=.6]
+    \tkzDefPoints{-2/0/B, 2/0/C, 0/2/A, 3/0/D, 3/.5/G}
+    \tkzDrawPolygon(A,B,C)
+    \tkzDefPointWith[linear, K=3](B,A)  \tkzGetPoint{H}
+    \tkzDefPointWith[linear, K=1.5](B,C)  \tkzGetPoint{I}
+    \tkzDefPointWith[linear, K=1.5](A,C)  \tkzGetPoint{J}
+    \tkzInterLL(B,A)(D,G) \tkzGetPoint{E}
+    \tkzInterLL(A,C)(D,E) \tkzGetPoint{F}
+    \tkzLabelPoints[below](B,C)
+    \tkzLabelPoints[above](A,E)
+    \tkzLabelPoints[right](F)
+    \tkzLabelPoints[above right](D)
+    \tkzDrawSegments[dashed](A,H C,J C,I)
+    \tkzDrawSegments(E,F)
+\end{scope}
+\end{tikzpicture}

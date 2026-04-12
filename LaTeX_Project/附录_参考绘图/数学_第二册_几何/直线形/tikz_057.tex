@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 1975-1984
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+ \tkzDefPoints{0/0/A, 4/.8/B, 1.5/-1/C, 4/-.5/D, 0/2.5/E, 1.5/2.5/F}
+ \tkzDrawSegments(A,B C,D A,E C,F)
+ \tkzInterLL(A,B)(C,F)  \tkzGetPoint{G}     
+ \tkzMarkAngles[mark=none, size=.3](B,A,E D,C,F B,G,F A,G,C)
+ \tkzLabelAngle[pos=.5](B,A,E){1}  \tkzLabelAngle[pos=.5](D,C,F){4}
+ \tkzLabelAngle[pos=.5](B,G,F){2} \tkzLabelAngle[pos=.5](A,G,C){3}
+ \tkzMarkAngles[mark=none, size=.25](C,G,B F,G,A)
+ \tkzLabelAngle[pos=.4](C,G,B){5}  \tkzLabelAngle[pos=.4](F,G,A){6}
+    \end{tikzpicture}

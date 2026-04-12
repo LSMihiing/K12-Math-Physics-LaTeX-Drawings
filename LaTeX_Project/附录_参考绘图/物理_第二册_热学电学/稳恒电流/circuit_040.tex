@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 惠斯通电桥
+% 原始文件：7.tex，行 1352-1367
+% 类型：circuit
+% ---
+            \begin{circuitikz}[european, scale=.7, >=stealth]
+        
+                \draw (0,0) --(4,0) to [R=$R$] (4,5)--(3,5); 
+            \draw(1,5)--(0,5)to [battery2] (0,0);
+        \draw (2,0) to [C=$C$, *-] (2,4);
+        \node at (2,-.5){$b$};
+        \draw [ultra thick ] (2,5.25)--(2,4);
+        \draw [->] (2,5.25) arc (90:60:1.5);
+        \draw [->] (2,5.25) arc (90:120:1.5);
+        
+        
+        \draw (2,4) [fill=white] circle (1.5pt)node[left]{$a$};
+        \draw (1,5) [fill=white] circle (1.5pt)node[above]{1};
+        \draw (3,5) [fill=white] circle (1.5pt)node[above]{2};\draw (2,5.25) [fill=white] circle (1.5pt);
+        
+                \end{circuitikz}

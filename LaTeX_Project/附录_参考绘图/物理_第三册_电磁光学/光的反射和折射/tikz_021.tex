@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 透镜
+% 原始文件：5.tex，行 1215-1227
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.6]
+    \draw [dashed](-3,0)--(7,0);
+    \draw (-1,0) circle (2);
+    \draw (3.6,0) circle(2);
+    \node at (-1,0)[above]{$C_1$};
+    \node at (3.6,0)[above]{$C_2$};
+    \node at (1.3,0)[below]{$O$};
+    \draw [fill=black] (-1,0) circle (1.5pt);
+    \draw [fill=black] (3.6,0) circle (1.5pt);
+    \draw [fill=black] (1.3,0) circle (1.5pt);
+    \draw [pattern=north east lines](.65,1.15) to [bend left=32] (.65,-1.15) --(1.95,-1.15) to [bend left=32](1.95,1.15)--(.65,1.15);
+
+\end{tikzpicture}

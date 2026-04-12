@@ -1,0 +1,23 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：代数运算的初步应用 / 求和公式
+% 原始文件：7.tex，行 21-37
+% 类型：tikz
+% ---
+ \begin{tikzpicture}[xscale=1.6]
+\foreach \x/\xtext in {0/a_1, 1/a_1+d, 2/a_1+2d, 3/\cdots, 4/a_1+99d}
+{
+    \node at (\x,0){$\xtext$，};
+}
+\node at (5,0){$\cdots$.};
+\foreach \x/\xtext in {0/首项，, 1/第二项，, 2/第三项，, 3/…，, 4/第100项，, 5/….}
+{
+    \node at (\x,-1){\xtext};
+    
+}
+
+\foreach \x in {0,1,2,4}
+{
+    \draw (\x,-.25)--(\x,-0.75);
+}
+ \end{tikzpicture}   

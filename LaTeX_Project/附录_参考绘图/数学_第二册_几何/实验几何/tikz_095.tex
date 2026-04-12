@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 相似和相似比
+% 原始文件：1.tex，行 3364-3374
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoint(50:3){D}
+\tkzDefPoint(140:2){A}
+\tkzDefPoint(-40:2.1){B}
+\tkzDefPoint(50+180:1.4){C}
+\tkzDefPoint(0,0){E}
+\tkzDrawPolygon(A,D,C,B)
+\tkzLabelPoints[left](A,C)
+\tkzLabelPoints[right](B,D,E)
+\tkzMarkAngles[size=.4, mark=none](A,D,E E,B,C)
+    \end{tikzpicture}

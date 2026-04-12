@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 1798-1820
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+  \tkzDefPoints{0/0/I}
+  \tkzDefPoint(0:1){E}
+  \tkzDefPoint(135:1){F}
+  \tkzDefPoint(-90:1){D}
+  \tkzLabelPoints[above](I)
+  \tkzDefTangent[at=E](I) \tkzGetPoint{a'}
+  \tkzDefTangent[at=F](I) \tkzGetPoint{b'}
+  \tkzDefTangent[at=D](I) \tkzGetPoint{c'}
+  \tkzInterLL(E,a')(F,b')\tkzGetPoint{A}
+  \tkzInterLL(D,c')(F,b')\tkzGetPoint{B}
+  \tkzInterLL(D,c')(E,a')\tkzGetPoint{C}
+  \tkzLabelPoints[below](B,C)
+  \tkzLabelPoints[above](A)
+  \tkzDrawPolygon[thick](A,B,C)
+  \tkzDrawCircle[thick](I,E)
+  \tkzDrawSegments[thick](I,E I,F I,D)
+  \tkzDrawSegments[dashed](A,I B,I C,I)
+  \tkzLabelSegment[above](I,E){$r$}
+  \tkzLabelSegment[below](I,F){$r$}
+  \tkzLabelSegment[right](I,D){$r$}
+  
+    \end{tikzpicture}

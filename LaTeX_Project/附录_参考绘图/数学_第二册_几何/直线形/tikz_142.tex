@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 面积与勾股定理
+% 原始文件：3.tex，行 5212-5225
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/B, 3/0/C, 4/2/D}
+\tkzDefPointsBy[translation = from C to D](B){A}
+\tkzDefPointBy[projection = onto B--C](A)  \tkzGetPoint{E}
+\tkzDefPointBy[projection = onto B--C](D)  \tkzGetPoint{F}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments[dashed](A,E D,F)
+\tkzDrawSegments(A,C B,D C,F)
+\tkzMarkRightAngles[size=.2](A,E,B D,F,C)
+\tkzMarkAngles[size=.3, mark=none](C,B,A F,C,D)
+
+\tkzLabelPoints[below](B,E,C,F)
+\tkzLabelPoints[above](A,D)
+    \end{tikzpicture}

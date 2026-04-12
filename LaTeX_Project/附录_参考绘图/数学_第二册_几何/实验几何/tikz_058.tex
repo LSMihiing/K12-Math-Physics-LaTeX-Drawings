@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 2013-2027
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/B, 2/0/C, 1.5/1.5/A}
+\tkzDrawPolygon(A,B,C)
+\tkzDefPointWith[linear, K=1.5](C,A) \tkzGetPoint{A'}
+\tkzDefPointWith[linear, K=1.5](B,C) \tkzGetPoint{C'}
+\tkzDefPointWith[linear, K=1.5](A,B) \tkzGetPoint{B'}
+\tkzDrawSegments[dashed](A,A' B,B' C,C')
+\tkzLabelPoints[left](B)
+\tkzLabelPoints[right](A)
+\tkzLabelPoints[below](C)
+\tkzMarkAngles[mark=none, size=.3](B',B,C C',C,A A',A,B)
+\tkzLabelAngle[pos=.5](B',B,C){1}
+\tkzLabelAngle[pos=.5](C',C,A){2}
+\tkzLabelAngle[pos=.5](A',A,B){3}
+    \end{tikzpicture}

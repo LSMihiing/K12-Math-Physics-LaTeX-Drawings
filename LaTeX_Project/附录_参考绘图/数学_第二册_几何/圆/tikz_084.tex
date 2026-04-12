@@ -1,0 +1,47 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 3594-3634
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.2]
+\begin{scope}
+\tkzDefPoints{0/0/B, 4/0/C, 1.8/3/A}
+\tkzDefPointWith[linear, K=.4](A,B) \tkzGetPoint{F}
+\tkzDefPointWith[linear, K=.4](A,C) \tkzGetPoint{E}
+\tkzDefPointWith[linear, K=.46](C,B) \tkzGetPoint{D}
+\tkzDefTriangleCenter[circum](A,E,F) \tkzGetPoint{O} 
+\tkzDefTriangleCenter[circum](B,D,F) \tkzGetPoint{O'} 
+\tkzDefTriangleCenter[circum](C,E,D) \tkzGetPoint{O''} 
+\tkzDrawCircles[thick](O,A O',B O'',C)
+\tkzDrawPolygon[thick](A,B,C)
+\tkzLabelPoints[below](B,C,D)
+\tkzLabelPoints[above left](F)
+\tkzLabelPoints[above right](E)
+\tkzInterCC(O,A)(O',B)  \tkzGetPoints{G}{T1}
+\tkzLabelPoints[above](A,G)
+\tkzDrawSegments[dashed](F,G E,G D,G)
+\node at (2,-1){(1)};
+\end{scope}
+\begin{scope}[xshift=5cm]
+  \tkzDefPoints{0/1.5/B, 4/1.5/C, 1.8/3/A}
+\tkzDefPointWith[linear, K=.6](A,B) \tkzGetPoint{F}
+\tkzDefPointWith[linear, K=.65](A,C) \tkzGetPoint{E}
+\tkzDefPointWith[linear, K=.55](C,B) \tkzGetPoint{D}
+\tkzDefTriangleCenter[circum](A,E,F) \tkzGetPoint{O} 
+\tkzDefTriangleCenter[circum](B,D,F) \tkzGetPoint{O'} 
+\tkzDefTriangleCenter[circum](C,E,D) \tkzGetPoint{O''} 
+\tkzDrawCircles[thick](O,A O',B O'',C)
+\tkzDrawPolygon[thick](A,B,C)
+\tkzLabelPoints[left](B)
+\tkzLabelPoints[above](D,A)
+\tkzLabelPoints[right](C)
+
+\tkzLabelPoints[above left](F)
+\tkzLabelPoints[above right](E)
+\tkzInterCC(O,A)(O',B)  \tkzGetPoints{G}{T1}
+\tkzLabelPoints[below left](G)
+%\tkzDrawSegments[dashed](F,G E,G D,G)
+\node at (2,-1){(2)};
+\end{scope}
+\end{tikzpicture}

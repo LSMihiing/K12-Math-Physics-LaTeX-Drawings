@@ -1,0 +1,15 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与正多边形
+% 原始文件：4.tex，行 4553-4561
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=1.2]
+\tkzDefPoints{0/0/O, 0/1.5/C}
+\tkzDefPoint(10:1.5){A}
+\tkzDefPoint(110:1.5){B}
+\tkzDrawCircle[thick](O,A)
+\tkzAutoLabelPoints[center=O](A,B)
+\tkzLabelPoints[below](O)
+\draw[pattern=north east lines](O)--(A) arc (10:110:1.5) --(O);
+  \end{tikzpicture}

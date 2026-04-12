@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 3763-3776
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-1.5/0/A', -1/0/A, 1/0/B, 0/1.5/P, 1.5/0/B', 0/-2/Q, .5/0/C}
+\tkzDrawSegments(A',B')
+\tkzLabelPoints[below](A,B)
+\tkzLabelPoints[above](C)
+\tkzLabelPoints[right](P)
+\tkzLabelPoints[below right](Q)
+\tkzLabelPoint[right](B'){$\ell$}
+\tkzDrawPoints(P,C)
+\tkzDrawArc[delta=10, black](P,A)(B)
+\tkzCompass[color=black](A,Q)
+\tkzCompass[color=black](B,Q)
+\tkzDrawLines(P,Q)
+	\end{tikzpicture}

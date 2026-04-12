@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：任意角的三角函数 / 三角函数的诱导公式
+% 原始文件：6.tex，行 1421-1431
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-2,0)--(2,0)node[right]{$x$};
+    \draw[->] (0,-2)--(0,2)node[right]{$y$};
+    \draw (0,0) circle (1.5);
+\draw [thick](0,0)--(30:1.5)node[right]{$P$}--(1.5*1.732/2,0)node[below]{$M$};
+\draw [thick](0,0)--(30+90:1.5)node[above]{$P'$}--(0,1.5*1.732/2)node[right]{$M'$};
+\node at (-.25,-.25){$O$};
+\draw[->] (1,0) arc (0:30:1)node[right]{$\alpha$};
+\draw[->] (.5,0) arc (0:30+90:.5);
+\node at (60:.7){$\alpha+\tfrac{\pi}{2}$};
+\end{tikzpicture}

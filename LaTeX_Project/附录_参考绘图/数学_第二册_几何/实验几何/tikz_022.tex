@@ -1,0 +1,12 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 点、直线和平面
+% 原始文件：1.tex，行 878-883
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+	\tkzDefPoints{0/0/B, .5/0/P_1,1.5/0/P_2,3/0/P_n, 4/0/C, 1.5/2/A}
+	\tkzLabelPoints[below](P_1,P_2,P_n,B,C)	
+	\tkzDrawSegments(A,B A,P_1 A,P_2 A,P_n A,C B,C)
+	\tkzLabelPoints[above](A)	
+\end{tikzpicture}

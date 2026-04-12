@@ -1,0 +1,13 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：机械振动和机械波 / 机械振动
+% 原始文件：9.tex，行 575-581
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=stealth, yscale=3, domain=0:3*pi, samples=500]
+\draw [->](0,0)node [left]{$O$}--(10,0) node [below]{$t$};
+\draw [->](0,-1.1)--(0,1.2) node [right]{$x$};
+        \draw [very thick]  plot (\x,{exp(-.2*\x)*sin(10*\x r)});
+        \draw [dashed]  plot (\x,{exp(-.2*\x)});
+        \draw [dashed]  plot (\x,{-exp(-.2*\x)});
+    \end{tikzpicture}

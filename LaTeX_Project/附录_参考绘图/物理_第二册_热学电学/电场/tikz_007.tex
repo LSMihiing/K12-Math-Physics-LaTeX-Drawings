@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 等势面
+% 原始文件：6.tex，行 818-827
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=.6]
+		\foreach \x in {1,2,3}
+		{
+			\draw (0,0) circle (\x);
+		}
+		\foreach \x in {0, 22.5, 45, ..., 337.5}
+		{
+			\draw[->, dashed](0,0)--(\x:4);
+		}   
+			\end{tikzpicture}	%%%%\caption{}

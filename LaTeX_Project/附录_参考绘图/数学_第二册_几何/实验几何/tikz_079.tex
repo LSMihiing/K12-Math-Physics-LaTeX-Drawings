@@ -1,0 +1,28 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 全等和叠合
+% 原始文件：1.tex，行 2757-2778
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}[rotate=50]
+\tkzDefPoints{0/0/B, 2.5/0/A}
+\tkzDefPoint(82.1:4){C}
+\tkzDrawPolygon(A,B,C)
+\tkzLabelPoints[above](A,C)
+\tkzLabelPoints[below](B)
+\tkzLabelSegment[above](A,C){10cm}
+\tkzLabelSegment[left](B,C){8cm}
+\tkzLabelSegment[right](A,B){5cm}
+\end{scope}
+\begin{scope}[xshift=5cm, yshift=3cm, rotate=-130]
+	\tkzDefPoints{0/0/E, 2.5/0/D}
+\tkzDefPoint(82.1:4){F}
+\tkzDrawPolygon(D,E,F)
+\tkzLabelPoints[above](E)
+\tkzLabelPoints[below](D,F)
+\tkzLabelSegment[below](D,F){10cm}
+\tkzLabelSegment[right](E,F){8cm}
+\tkzLabelSegment[left](D,E){5cm}
+\end{scope}
+\end{tikzpicture}

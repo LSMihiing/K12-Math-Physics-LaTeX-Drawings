@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：二次函数 / 和二次函数有关的课题
+% 原始文件：5.tex，行 1474-1496
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\begin{scope}
+    \draw (0,0)--(2,0)--(1,1.732)--(0,0);
+\draw[pattern=north east lines] (.5,0) rectangle (1.5,1.732/2);
+\node at (1,-1){第8题};
+\draw[|<->|](1-.25,1.732+.1)--node[fill=white]{$a$}(0-.25,0+.1);
+
+\end{scope}    
+\begin{scope}[xshift=5cm, yshift=1cm]
+\draw (0,0) circle (1.5);
+\draw (0,0)node[left]{$O$}--node[below]{20cm}(1.5,0)--(120:1.5)--(180:1.5)--(-60:1.5)--(1.5,0);
+\node at (0,-2){第9题};
+\end{scope}  
+\begin{scope}[xshift=8cm]
+    \draw (0,0)node[below]{$A$} rectangle(2.1,2.1)node[above]{$C$};
+\node at (2.1,0)[below]{$B$}; 
+\node at (0,2.1)[above]{$D$}; 
+
+\node at (1.05,-1){第10题};
+
+\draw (0.9,0)node[below]{$a$}--(2.1,.9)node[right]{$b$}--(1.2,2.1)node[above]{$c$}--(0,1.2)node[left]{$d$}--(.9,0); 
+\end{scope}  
+\end{tikzpicture} 

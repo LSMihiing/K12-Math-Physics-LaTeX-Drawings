@@ -1,0 +1,38 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：因式分解与余式定理 / 因式分解
+% 原始文件：5.tex，行 502-533
+% 类型：tikz
+% ---
+    \begin{tikzpicture}
+ \begin{scope}
+\node (A) at (-.6,1.2) {$1$};
+\node (B) at (.6,1.2) {$1$};
+\node (C) at (-.6,0) {$1$};
+\node (D) at (.6,0) {$6$};
+\draw[very thick] (A)--(D);
+\draw[very thick] (B)--(C);
+\node at (0,-.5){$1+6=7$};
+\node at (0,-1){（不合适）};
+ \end{scope}   
+ \begin{scope}[xshift=3cm]
+    \node (A) at (-.6,1.2) {$1$};
+    \node (B) at (.6,1.2) {$2$};
+    \node (C) at (-.6,0) {$1$};
+    \node (D) at (.6,0) {$3$};
+    \draw[very thick] (A)--(D);
+    \draw[very thick] (B)--(C);
+    \node at (0,-.5){$2+3=5$};
+    \node at (0,-1){（不合适）};
+     \end{scope} 
+     \begin{scope}[xshift=6cm]
+        \node (A) at (-.6,1.2) {$1$};
+        \node (B) at (.6,1.2) {$-2$};
+        \node (C) at (-.6,0) {$1$};
+        \node (D) at (.6,0) {$-3$};
+        \draw[very thick] (A)--(D);
+        \draw[very thick] (B)--(C);
+        \node at (0,-.5){$-2+(-3)=-5$};
+        \node at (0,-1){（合适）};
+         \end{scope} 
+\end{tikzpicture}

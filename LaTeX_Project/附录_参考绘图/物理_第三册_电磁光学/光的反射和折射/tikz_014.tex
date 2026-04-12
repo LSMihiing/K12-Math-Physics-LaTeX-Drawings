@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 光的折射
+% 原始文件：5.tex，行 610-622
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=.8]
+\fill [cyan!20] (-3,-3) rectangle (3,0);
+\draw (-3,0)--(3,0);
+\node at (2.5,.5){空气};
+\node at (2.5,-.5){玻璃};
+\draw (0,-2.5)node[right]{$N'$}--(0,2.5)node[right]{$N$};	
+\draw[very thick] (0,0)--(-45:3.5)node[right]{$B$}; \draw[->, very thick] (0,0)--(-45:1.5);
+\draw[>-, very thick](150:1.5)-- (0,0); \draw[very thick] (0,0)--(150:3.5)node[right]{$A$};
+
+\draw (0,.5) arc (90:150:.5)node[above]{$i$};	
+\draw (0,-.5) arc (-90:-45:.5)node[below]{$r$};		
+\node at (.25,.25){$O$};
+	\end{tikzpicture}

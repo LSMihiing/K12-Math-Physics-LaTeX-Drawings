@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 全反射
+% 原始文件：5.tex，行 899-910
+% 类型：tikz
+% ---
+        \begin{tikzpicture}[>=latex]
+    \draw [fill=cyan!20] (-2,0) arc (180:360:2);
+    
+    \draw[->, very thick] (0,0)--(20:1.5); \draw[very thick] (0,0)--(20:3)node[above]{折射光线};
+    \draw[->, very thick]  (0,0)--(-45:1.5); \draw[very thick]  (0,0)--(-45:3)node[below]{反射光线};
+        \draw[very thick] (0,0)--(225:3);	\draw [<-,very thick](225:1.5)--(225:3);	
+    \node at (-1,1){空气};
+        \draw (-2,0)--(2,0);
+    \draw[dashed] (0,-1)--(0,1);
+    \node at (225:3.25){\Sun};
+    \node at (225:3.5)[below]{光源};
+        \end{tikzpicture}

@@ -1,0 +1,12 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 电动势~~闭合电路的欧姆定律
+% 原始文件：7.tex，行 1017-1022
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european,>=latex, yscale=.8]
+    \draw (0,0)to [battery2] (6,0)--(6,2)to [rmeter, t=V, *-*] (0,2) to [rmeter, t=A] (0,0);
+    \draw (0,2)--(0,4)--(2,4) to [R] (4,4)--(4.5,4)to [cute open switch] (6,4)--(6,2);
+            \draw (1.5,4) to (1.5,4.7)--(3,4.7);
+            \draw [->](3,4.7)--(3,4.2);
+        \end{circuitikz}

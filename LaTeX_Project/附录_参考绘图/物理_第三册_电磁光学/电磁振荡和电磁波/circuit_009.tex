@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁振荡和电磁波 / 电磁波的接收（二）~~检波
+% 原始文件：4.tex，行 422-435
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,0) to [vC] (0,3)--(1.8,3) to [american inductor] (1.8,0)--(0,0);
+\draw (.9, 0) to(.9,-.5) node [ground]{} ;
+\node at (-.75,1.5){$C_1$};\node at (1.6,1.5){$L_1$}; \node at (2.8,1.5){$L_2$};
+\ctikzset{diodes/scale=0.6}  \draw (2.6,0) to  [american inductor] (2.6,3) to [full diode=$D$](5,3)--(6,3)to [mic=耳机](6,0) -- (0,0) ;
+\draw (5,0)to [C=$C_2$, *-*] (5,3);
+\draw (.9, 3) to(.9,3.9) node [bareantenna]{} ;
+
+\draw[dashed](2.2, 0)--(2.2,3.5);\draw[dashed](3.2, -.5)--(3.2,3.5);
+\draw (2.6,0) [fill=black] circle (1.5pt);
+\draw (1.8,0) [fill=black] circle (1.5pt);
+\draw (.9, 0) [fill=black] circle (1.5pt);
+\draw (.9, 3) [fill=black] circle (1.5pt);
+\end{circuitikz}

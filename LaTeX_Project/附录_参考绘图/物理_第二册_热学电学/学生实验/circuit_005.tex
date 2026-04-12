@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：学生实验 / 用惠斯通电桥测电阻
+% 原始文件：APP1.tex，行 245-254
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european, >=stealth]
+\draw (-3,0)node[left]{$A$} to [vR=$R_0$,*-*](0,3)node[above]{$B$}to [R=$R_x$,*-*](3,0)node[right]{$C$}--(-3,0);
+\draw (3,0)-- (3,-2) to [cute open switch] (1,-2)to [battery2] (-1,-2) to [R=$R$] (-3,-2)--(-3,0);
+\draw[->](-.5,-2) --(-.5,-1.5)--(-2,-1.5)--(-2,-2+.2);
+\draw (0,3) to [rmeter, t=G] (0,.5);
+\draw[->, thick] (0,.5)--(-.7,.5)--(-.7,0)node [below]{$D$};
+\node at (-1.85,0)[below]{$\ell_1$};
+\node at (1.15,0)[below]{$\ell_2$};
+\node at (2,-2)[above]{$K$};
+    \end{circuitikz}    

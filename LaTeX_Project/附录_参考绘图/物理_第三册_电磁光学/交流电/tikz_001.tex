@@ -1,0 +1,34 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的变化规律
+% 原始文件：3.tex，行 64-91
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1.5]
+    
+    \foreach \x in {.25,.75,-.25,-.75}
+    {
+        \draw[->] (-2,\x)--(2,\x);
+    }
+
+\draw[->] (150:1.5)--+(-120:.8) node [below]{$v$};
+\draw[->] (-30:1.5)--+(60:.8) node [above]{$v$};
+
+\draw (.75*1.732+.25, -0.75)arc (0:60:.25)node [right]{$\omega t$};
+
+ \node at (120:2.2) {$\omega t$};
+
+    \draw [dashed](0,-1.5)--(0,2.5)node [right]{中性面};
+    \draw [dashed] (0,0)--(-30:2.2); \draw [dashed] (0,0)--(150:2.2);
+
+    \draw[rotate=-30] (-1.5,-.07)node[below]{$d$} rectangle (1.5,.07)node[above]{$a$};
+    \draw[rotate=-30, fill=white] (-1.5,0) circle (2.5pt) node{\tiny$\cdot$};
+    \draw[rotate=-30, fill=white] (1.5,0) circle (2.5pt) node{\tiny$\times$};
+
+\node at (2.5,0){$B$};
+
+
+\draw [<->] (0,2) arc (90:150:2) ;
+
+
+    \end{tikzpicture}

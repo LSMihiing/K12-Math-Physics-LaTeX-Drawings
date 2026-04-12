@@ -1,0 +1,36 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 4109-4138
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.5]
+\tkzDefPoints{-2/1/A, 2/1/B, -2/2/A', 2/2/B', -2/3/A'', 2/3/B''}
+\tkzDrawLines(A,B A',B' A'',B'')
+\tkzDefPoints{-.5/4/m, 1/4/n, -2.5/0/M', 2/0/N'}
+
+\tkzDrawSegments(m,M' n,N')
+\tkzInterLL(m,M')(A'',B'')  \tkzGetPoint{A_1}
+\tkzInterLL(m,M')(A',B')  \tkzGetPoint{A_2}
+\tkzInterLL(m,M')(A,B)  \tkzGetPoint{A_3}
+\tkzInterLL(n,N')(A'',B'')  \tkzGetPoint{B_1}
+\tkzInterLL(n,N')(A',B')  \tkzGetPoint{B_2}
+\tkzInterLL(n,N')(A,B)  \tkzGetPoint{B_3}
+
+\tkzLabelPoints[above left](A_1,A_2,A_3)
+\tkzLabelPoints[above right](B_1,B_2,B_3)
+\tkzLabelPoints[above](m,n)
+\node at (3,1){$\ell_3$};
+\node at (3,2){$\ell_2$};
+\node at (3,3){$\ell_1$};
+
+\tkzDefPoints{-1.2/1/C_2}
+\tkzDefPointsBy[translation= from A_2 to A_1](C_2){C_1}
+\tkzLabelPoints[below](C_1,C_2)
+\tkzDrawSegments(A_1,C_1 A_2,C_2)
+\tkzMarkAngles[mark=none, size=.3](C_2,A_3,A_1 C_1,A_2,A_1 A_3,A_2,C_2  A_3,A_1,C_1)
+\tkzLabelAngle[pos=.4](C_2,A_3,A_1){4}
+\tkzLabelAngle[pos=.4](C_1,A_2,A_1){3}
+\tkzLabelAngle[pos=.4](A_3,A_2,C_2){2}
+\tkzLabelAngle[pos=.4](A_3,A_1,C_1){1}
+\end{tikzpicture}

@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 3515-3533
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\begin{scope}
+	\draw(0,0)--node[above]{$c$}(3,0);
+	\draw(0,1)--node[above]{$b$}(2.5,1);
+	\draw(0,2)--node[above]{$a$}(4,2);
+\end{scope}
+\begin{scope}[xshift=5cm]
+\tkzDefPoints{0/0/B, 4/0/C}
+\tkzDefPoint(38.62:3){A}
+\tkzDrawPolygon(A,B,C)
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[above](A)
+\tkzLabelSegment[left](A,B){$c$}
+\tkzLabelSegment[right](A,C){$b$}
+\tkzLabelSegment[below](C,B){$a$}
+\tkzCompass[color=black](B,A)
+\tkzCompass[color=black](C,A)
+\end{scope}
+\end{tikzpicture}

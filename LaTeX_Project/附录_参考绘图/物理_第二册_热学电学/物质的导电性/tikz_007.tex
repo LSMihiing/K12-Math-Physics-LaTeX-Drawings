@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：物质的导电性 / PN结~~晶体二极管
+% 原始文件：8.tex，行 587-601
+% 类型：tikz
+% ---
+        \begin{tikzpicture}[>=stealth, thick]
+    
+            \draw (-3,-1)to [battery] (3-3,0-1);
+            \draw (0-3,2-1)to [empty diode, fill=black](3-3,2-1)to [lamp] (3-3,0-1);
+            \draw (0-3,2-1)--(-3,-1);
+\foreach \x in {30,60,...,360}
+{
+    \draw (\x:.5)--(\x:.75);
+}
+\node at (-1.5,-2){甲};
+\node at (-1.5,1.75){D};
+
+\draw[->] (-2,-.5) arc (250:-60:.5);
+
+        \end{tikzpicture}\qquad\qquad  

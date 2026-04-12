@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 3014-3024
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+  \tkzDefPoints{0/0/O, 0/-1.5/A, 2/-1.5/B}
+  \tkzDefPoint(10:1.5){C}
+  \tkzDrawCircle[thick](O,A)
+  \tkzDrawSegments[thick](O,C A,C O,A A,B)
+  \tkzAutoLabelPoints[center=O](A,C)
+  \tkzLabelPoints[right](B)
+  \tkzLabelPoints[left](O)
+  \tkzMarkAngles[mark=none, size=.3](A,O,C)
+  
+    \end{tikzpicture}

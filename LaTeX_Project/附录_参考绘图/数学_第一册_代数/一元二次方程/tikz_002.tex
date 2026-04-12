@@ -1,0 +1,35 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：一元二次方程 / 平方与平方根
+% 原始文件：3.tex，行 91-119
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.6, >=latex]
+    \draw(0,0) rectangle (6,6);
+    \draw(0,2)--(6,2);    
+    \draw(4,0)--(4,6);
+    \fill [pattern=north west lines] (0,0) rectangle (6,2);
+    \fill [pattern=north east lines] (4,0) rectangle (6,6);    
+    \node at (2,1)[fill=white]{$ab$};
+\node at (5,4)[fill=white]{$ab$};
+\node at (5,1)[fill=white]{$b^2$};
+\node at (2,4)[fill=white]{$(a-b)^2$};
+
+\foreach \x/\xtext in {0/E,4/F,6/G}
+{
+    \node at (\x, 0) [below]{$\xtext$};
+}
+\foreach \x/\xtext in {0/A,4/D,6/M}
+{
+    \node at (\x, 6) [above]{$\xtext$};
+}
+\node at (0,2)[left]{$B$};
+\node at (6,2)[right]{$H$};
+\node at (3.3,2.4)[right]{$C$};
+
+\draw [|<->|] (-1,0)--node[fill=white]{$a$}(-1,6);
+\draw [|<->|] (0,7)--node[fill=white]{$a$}(6,7);
+\draw [|<->|] (4,-1)--node[fill=white]{$b$}(6,-1);
+\draw [|<->|] (7,0)--node[fill=white]{$b$}(7,2);
+
+\end{tikzpicture}

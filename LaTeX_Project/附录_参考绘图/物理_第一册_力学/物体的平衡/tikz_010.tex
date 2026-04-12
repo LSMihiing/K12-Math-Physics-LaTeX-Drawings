@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：物体的平衡 / 稳度
+% 原始文件：6.tex，行 423-437
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1.5]
+    \draw (-1,0)--(5,0);
+    \draw [ thick](0,0)node[below]{$A$}--(30: 4)node[right]{$O$};
+    \draw [ thick](30:4)--(2*1.732-2/1.732,0)node[below]{$B$};
+\draw [very thick, ->] (30:4)--(2*1.732, 2-.75)node[right]{$F$};
+\draw [very thick, ->] (30:4)--(2*1.732, 2+.75)node[above]{$F'$};
+\draw [very thick, ->] (30:4)--(30:4-.75)node[left]{$F_1$};
+\draw [dashed] (30:4-.75)--(2*1.732, 2+.75);
+\draw (.25,0) arc (0:30:.25) node[right]{$30^{\circ}$};
+\draw (2*1.732-2/1.732+.25,0) arc (0:60:.25) node[right]{$60^{\circ}$};
+\draw [very thick, ->] (30:4)--(2*1.732+0.375*1.732, 2+.75*1.5)node[right]{$F_2$};
+\draw [dashed] (2*1.732, 2+.75)--(2*1.732+0.375*1.732, 2+.75*1.5);
+\draw  (30:4)--(2*1.732, 2-1);
+\draw [shade] (2*1.732-.25, 1-.5) rectangle (2*1.732+.25, 1);
+\end{tikzpicture}

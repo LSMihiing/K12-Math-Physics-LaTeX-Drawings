@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 4333-4344
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-1/1/G, 3/1/H, -1/2.5/E, 3/2.5/F, -.5/0/N, 2/4/M}
+\tkzDrawSegments(E,F G,H M,N)
+\tkzInterLL(E,F)(M,N)  \tkzGetPoint{A}
+\tkzInterLL(G,H)(M,N)  \tkzGetPoint{B}
+\node at (F)[right]{$\ell$};
+\node at (H)[right]{$m$};
+\tkzMarkAngles[size=.3, mark=none](M,A,E M,B,G N,A,F)
+\tkzLabelAngle[pos=.6](M,A,E){3}
+\tkzLabelAngle[pos=.6](M,B,G){2}
+\tkzLabelAngle[pos=.6](N,A,F){1}
+	\end{tikzpicture}

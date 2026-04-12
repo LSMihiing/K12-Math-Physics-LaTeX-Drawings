@@ -1,0 +1,38 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：三角函数的图象和性质 / 余切函数的图象和性质
+% 原始文件：7.tex，行 1019-1050
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\draw[->](-1,0)--(6,0)node[right]{$x$};
+\draw[->](0,-4)--(0,4)node[right]{$y$};
+\draw [domain=0+.3:pi-.3, thick, samples=1000] plot (\x, {tan(pi*.5 r+\x r)});
+\draw [domain=0+.3:pi-.3, very thick, samples=1000] plot (\x, {-tan(\x r +pi*.5 r)});
+\draw [domain=.5*pi+.3: 1.5*pi-.3, samples=1000] plot (\x, {tan(\x r)});
+
+\foreach \x in {3,2,1,-1,-2,-3}
+{
+    \draw (0,\x)node[left]{$\x$}--(.1,\x);
+}
+
+\foreach \x/\xtext in {1/\tfrac{\pi}{2},2/\pi,3/\tfrac{3\pi}{2}}
+{
+    \draw [dashed] (\x*pi/2,-3.5)--(\x*pi/2,3.5);
+    \node at (\x*pi/2+.2,0)[below]{$\xtext$};
+}
+
+\node at (-.2,-.2){$O$};
+\foreach \x in {-1,-2,-3}
+{
+    \draw[dashed] (0,\x)--(pi,\x);
+}
+\foreach \x in {1,2,3}
+{
+    \draw[dashed] (0,\x)--(1.5*pi,\x);
+}
+\node at (3*pi/2-.35,3)[right]{$y=\tan x$};
+\node at (2*pi/2,3.5){$y=\tan \left(x+\frac{\pi}{2}\right)$};
+\node at (2*pi/2-.5,-3.5)[right]{$y=-\tan \left(x+\frac{\pi}{2}\right)=\cot x$};
+
+\end{tikzpicture}

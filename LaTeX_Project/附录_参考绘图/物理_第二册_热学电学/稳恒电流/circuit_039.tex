@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 惠斯通电桥
+% 原始文件：7.tex，行 1299-1308
+% 类型：circuit
+% ---
+	\begin{circuitikz}[european, scale=1.2, >=stealth]
+\draw (-3,0)node[left]{$A$}--(3,0)node[right]{$C$} to [R=$R_x$,*-*] (0,2)node[above]{$B$} to [R=$R$,*-*] (-3,0);
+\draw (-3,0)--(-3,-2) to [cute open switch] (-1,-2) to [battery] (1,-2)	to [R] (3,-2)--(3,0)	;
+\draw[->](1,-2)--(1,-1.3)--(2,-1.3)--(2,-1.8);
+\draw (1,-2) [fill=black] circle (1.2pt);
+\draw (0,2) to [rmeter, t=G] (0,0.4);
+\draw [->](0,0.4)--(-.5,.4)--(-.5,0)node[below]{$D$};
+\node at (-1.75,0) [below]{$\ell_1$};
+\node at (1.25,0) [below]{$\ell_2$};
+	\end{circuitikz}	

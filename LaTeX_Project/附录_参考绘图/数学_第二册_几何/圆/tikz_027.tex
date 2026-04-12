@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 1038-1050
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/O_1, 1/-1/O_2}
+\tkzDefPointWith[linear, K=.6](O_1,O_2)\tkzGetPoint{a}
+\tkzDefPointWith[linear, K=.2](O_1,O_2)\tkzGetPoint{b}
+\tkzDrawCircles[thick](O_1,a O_2,b)
+\tkzDrawLines[add=1 and 1, thick](O_1,O_2)
+\tkzDrawPoints(O_1,O_2)
+\tkzInterCC(O_1,a)(O_2,b) \tkzGetPoints{A}{B}
+\tkzLabelPoints[above](O_1,O_2)
+\tkzLabelPoints[above right](A)
+\tkzLabelPoints[below left](B)
+\tkzDrawSegments[thick](B,A)
+  \end{tikzpicture}

@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：物质的导电性 / PN结~~晶体二极管
+% 原始文件：8.tex，行 566-576
+% 类型：circuit
+% ---
+\begin{circuitikz}[european, >=stealth, thick]
+\draw (0,0) to [R] (5,0);
+\node at (2-.3,0)[above]{$+$};\node at (3+.3,0)[above]{$-$};
+\draw (2.5,-.18)--(2.5,.18);
+\node at (2.2,0){P};\node at (2.8,0){N};
+
+\draw (0,-1) to [empty diode, fill=black] (5,-1);   
+\node at (2,-1)[above]{$+$};\node at (3,-1)[above]{$-$};
+
+
+        \end{circuitikz}

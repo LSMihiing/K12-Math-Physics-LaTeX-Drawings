@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：二次函数 / 二次函数
+% 原始文件：5.tex，行 86-104
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.5]
+\draw[->](-5,0)--(5,0)node[right]{$x$};
+\draw[->](0,-9)--(0,9)node[right]{$y$};
+\foreach \x in {1,2,3,4}
+{
+    \draw (\x,0)node[below]{$\x$}--(\x, 0.1);
+}
+\foreach \x in {-2,-4}
+{
+    \draw (\x,0)node[above]{$\x$}--(\x, -0.1);
+}
+\foreach \x in {-8,-6,...,-2,2,4,...,8}
+{
+    \draw (0,\x)node[left]{$\x$}--(0.1,\x);
+}
+\node at (-.5,-.5){$O$};
+\draw[domain=-4:4, samples=100, very thick] plot(\x,{\x*\x*\x/8});
+
+\end{tikzpicture}

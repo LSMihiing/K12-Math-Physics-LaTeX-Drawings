@@ -1,0 +1,32 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 1932-1957
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoint(-90:1.5){E}
+\tkzDefPoint(0:1.5){F}
+\tkzDefPoint(60:1.5){G}
+\tkzDefPoint(150:1.5){H}
+\tkzDefPoint(0,0){I}
+\tkzDefTangent[at=E](I) \tkzGetPoint{a}
+\tkzDefTangent[at=F](I) \tkzGetPoint{b}
+\tkzDefTangent[at=G](I) \tkzGetPoint{c}
+\tkzDefTangent[at=H](I) \tkzGetPoint{d}
+\tkzInterLL(E,a)(F,b)\tkzGetPoint{B}
+\tkzInterLL(F,b)(G,c)\tkzGetPoint{C}
+\tkzInterLL(G,c)(H,d)\tkzGetPoint{D}
+\tkzInterLL(E,a)(H,d)\tkzGetPoint{A}
+\tkzDrawPolygon[thick](A,B,C,D)
+\tkzDrawCircle[thick](I,E)
+\tkzDrawSegments[dashed](I,E I,F I,G I,H I,D A,C B,I)
+\tkzAutoLabelPoints[center=I](E,F,G,H,A,B,C,D)
+\tkzInterLC(A,B)(B,C)  \tkzGetPoints{M}{M'}
+\tkzInterLC(A,D)(D,C)  \tkzGetPoints{N}{N'}
+\tkzDrawSegments[thick](M,N)
+\tkzLabelPoints[below](M)
+\tkzLabelPoints[left](N)
+\tkzLabelPoints[above right](I)
+\tkzDrawSegments[dashed](C,N C,M)
+\end{tikzpicture}

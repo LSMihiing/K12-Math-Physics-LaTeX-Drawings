@@ -1,0 +1,14 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与正多边形
+% 原始文件：4.tex，行 4154-4161
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/O, 0/1.5/C, 0/-1.5/D, -1.5/0/A, 1.5/0/B}
+\tkzAutoLabelPoints[center=O](A,B,C,D)
+\tkzDrawCircle[thick](O,A)
+\tkzDrawPolygon[thick](A,C,B,D)
+\tkzDrawSegments[thick](A,B C,D)
+\tkzLabelPoints[below left](O)
+  \end{tikzpicture}

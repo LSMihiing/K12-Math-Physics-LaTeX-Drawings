@@ -1,0 +1,14 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 集合
+% 原始文件：2.tex，行 258-265
+% 类型：tikz
+% ---
+		\begin{tikzpicture}[>=latex, scale=1]
+			\draw (0,0)node{$A$} circle(.75);
+			\draw (1.3,0)node{$B$} circle (1);
+			\draw[->](.5,-1.3)node[below]{$A\cap B$}--(.5,-.7);
+			\clip {(0,0) circle (.75)};
+			\fill[pattern=north east lines] {(1.3,0) circle (1)};
+			
+		\end{tikzpicture}

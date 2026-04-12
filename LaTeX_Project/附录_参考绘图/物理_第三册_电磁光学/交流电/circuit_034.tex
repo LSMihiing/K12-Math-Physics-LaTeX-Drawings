@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1503-1523
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european, scale=.9]
+\draw(0,0)--(2,0)--(5,0) to [R=$R$] (5,5)--(0,5);
+\ctikzset{diodes/scale=0.6} \draw (2,0) to [full diode, *-](2,2) to [full diode, -*](2,5) ;
+\ctikzset{diodes/scale=0.6} \draw (0,0)--(0,2) to [full diode](0,3.5) to [full diode](0,5) ;
+\node at (3-.25,1){$D_3$};
+\node at (3-.25,3.5){$D_2$};
+\node at (-.75,5.5/2){$D_4$};
+\node at (-.75,8.5/2){$D_1$};
+\draw [fill=black]  (0,3.5)circle(1.5pt);
+\draw [fill=black]  (2,2)circle (1.5pt);
+\draw  (-1.5,3.5)--(0,3.5);
+\draw  (-1.5,2)--(2,2);
+\draw [american](-1.5,2) to [L] (-1.5,3.5);
+
+\draw [american](-4,3)--(-4,4.5)--(-2.25,4.5) to [L] (-2.25,1)--(-4,1)--(-4,2.5);
+\draw [fill=white]  (-4,2.5)circle(1.5pt);
+\draw [fill=white]  (-4,3)circle(1.5pt);
+\node at (-4,5.5/2){$\sim$};
+\draw [ultra thick](-2+.15,2)node[below]{$b$}--(-2+.15,3.5)node[above]{$a$};
+
+\end{circuitikz}

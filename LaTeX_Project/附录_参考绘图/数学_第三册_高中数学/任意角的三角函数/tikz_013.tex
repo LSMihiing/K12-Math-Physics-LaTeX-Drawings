@@ -1,0 +1,41 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：任意角的三角函数 / 任意角的三角函数
+% 原始文件：6.tex，行 948-982
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\begin{scope}
+\draw[->] (-1.5,0)--(1.5,0)node[right]{$x$};
+\draw[->] (0,-1.5)--(0,1.5)node[right]{$y$};
+\node at (-.25,-.25){$O$};
+\draw (0,0) circle(1);
+\foreach \x/\xcorr in {+/{.5,.5}, -/{-.5,.5}, -/{-.5,-.5}, +/{.5,-.5}}
+{
+    \node at (\xcorr) {$\x$};
+}
+\node at (0,-2){$\cos\alpha$和$\sec\alpha$};
+\end{scope}
+\begin{scope}[xshift=4cm]
+    \draw[->] (-1.5,0)--(1.5,0)node[right]{$x$};
+    \draw[->] (0,-1.5)--(0,1.5)node[right]{$y$};
+    \node at (-.25,-.25){$O$};
+    \draw (0,0) circle(1);
+    \foreach \x/\xcorr in {+/{.5,.5}, +/{-.5,.5}, -/{-.5,-.5}, -/{.5,-.5}}
+    {
+        \node at (\xcorr) {$\x$};
+    }
+    \node at (0,-2){$\sin\alpha$和$\csc\alpha$};
+    \end{scope}
+    \begin{scope}[xshift=8cm]
+\draw[->] (-1.5,0)--(1.5,0)node[right]{$x$};
+\draw[->] (0,-1.5)--(0,1.5)node[right]{$y$};
+\node at (-.25,-.25){$O$};
+\draw (0,0) circle(1);
+\foreach \x/\xcorr in {+/{.5,.5}, -/{-.5,.5}, +/{-.5,-.5}, -/{.5,-.5}}
+{
+    \node at (\xcorr) {$\x$};
+}
+\node at (0,-2){$\tan\alpha$和$\cot\alpha$};
+\end{scope}
+\end{tikzpicture}

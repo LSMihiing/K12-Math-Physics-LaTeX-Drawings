@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6433-6453
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, yscale=.6]
+\tkzDefPoints{0/0/l6, 4/0/l3, 0/2/l5, 4/2/l2, 0/3.5/l4, 4/3.5/l1}
+\tkzDrawSegments(l6,l3 l5,l2 l4,l1)
+\foreach \x in {1,2,3}
+{
+    \node at (l\x) [right]{$\ell_\x$};
+}
+\tkzDefPoints{1/5/D', 2.5/-1/E', 3.5/5/A', 1.5/-1/B'}
+\tkzInterLL(D',E')(l1,l4) \tkzGetPoint{D}
+\tkzInterLL(D',E')(l2,l5) \tkzGetPoint{E}
+\tkzInterLL(D',E')(l3,l6) \tkzGetPoint{F}
+\tkzInterLL(A',B')(l1,l4) \tkzGetPoint{A}
+\tkzInterLL(A',B')(l2,l5) \tkzGetPoint{B}
+\tkzInterLL(A',B')(l3,l6) \tkzGetPoint{C}
+\tkzLabelPoints[above left](A,B,C,D,E)
+\tkzLabelPoints[above right](F)
+\tkzDrawSegments(D',E' A',B')
+\tkzLabelPoint[above](D'){$n$}
+\tkzLabelPoint[above](A'){$m$}
+
+    \end{tikzpicture}

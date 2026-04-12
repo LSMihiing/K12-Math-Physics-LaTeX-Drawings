@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6178-6198
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-3/1/C', 3/1/F', -3/2/B', 3/2/E', -3/3/A', 3/3/D'}
+\tkzDefPoints{-.5/4/L, -2/0/L'}
+\tkzDefPoints{.5/4/M, 2/0/M'}
+\tkzInterLL(L,L')(A',D')  \tkzGetPoint{A}
+\tkzInterLL(L,L')(B',E')  \tkzGetPoint{B}
+\tkzInterLL(L,L')(C',F')  \tkzGetPoint{C}
+\tkzInterLL(M,M')(A',D')  \tkzGetPoint{D}
+\tkzInterLL(M,M')(B',E')  \tkzGetPoint{E}
+\tkzInterLL(M,M')(C',F')  \tkzGetPoint{F}
+\tkzDrawLines[add=.3 and .3](A,D B,E C,F A,C D,F)
+\tkzLabelPoints[above left](A,B,C)
+\tkzLabelPoints[above right](D,E,F)
+\tkzDefPointsBy[translation = from A to D](B,C){G,H}
+\tkzLabelPoints[above left](G,H)
+\tkzDrawSegments[dashed](D,H)
+\tkzLabelPoint[left](L){$\ell$}
+\tkzLabelPoint(M){$m$}
+
+
+    \end{tikzpicture}

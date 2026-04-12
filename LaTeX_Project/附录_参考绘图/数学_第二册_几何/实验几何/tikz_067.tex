@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 2287-2309
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/A, 3.5/0/D, 2.5/0/B, .9/1.2/C, 1/.5/O}
+\tkzDefPointWith[linear, K=1.5](A,C)\tkzGetPoint{A'}      
+\tkzDefPointsBy[translation = from A to A'](B,C,D,O){B',C',D',O'}
+\draw(O) circle(.15);
+\draw(O') circle(.15);
+\tkzDrawSegments(A,D B,C A,C)
+\tkzDrawSegments(A',D' B',C' A',C')
+\tkzLabelPoint[right](D){$\ell$}
+\tkzLabelPoint[right](D'){$\ell'$}
+\tkzDrawLines[very thick](A,C')
+\tkzDefPoints{-.1/.1/a}
+\tkzDefPointsBy[translation = from A to a](C'){c}
+\tkzDrawLines[very thick](a,c)
+\tkzLabelSegment[below](A,B){$a$}
+\tkzLabelSegment[below](A',B'){$a$}
+\tkzLabelSegment[right](A,C){$b$}
+\tkzLabelSegment[right](A',C'){$b$}
+\tkzDefPoints{2/1.8/P}
+\tkzDrawPoints(P)
+\tkzLabelPoints[below](P)
+
+    \end{tikzpicture}

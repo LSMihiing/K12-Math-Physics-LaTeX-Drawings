@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：不等式和解不等式 / 解不等式
+% 原始文件：3.tex，行 1560-1574
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\draw[->] (-8,0)--(4,0)node[right]{$x$};
+\foreach \x/\xtext in {-6.5/-13,-6/-12,-5/-10,-4/-8,-3/-6,-2/-4,-1/-2,0/0,1/2,2/4,2.5/5}
+{
+    \draw (\x,0)node[below]{$\xtext$}--(\x,.1);
+}    
+\draw (-6.5,0)--(-6.5,.5)--(-8,.5);
+\fill [pattern=north east lines](-8,.5) rectangle (-6.5,0);
+\draw (2.5,0)--(2.5,.5)--(4,.5);
+\fill [pattern=north east lines](4,.5) rectangle (2.5,0);
+\foreach \x in {-6.5,2.5}
+{
+    \draw (\x,0) [fill=white] circle (2.5pt);
+}
+\end{tikzpicture}

@@ -1,0 +1,13 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 路端电压
+% 原始文件：7.tex，行 1072-1078
+% 类型：circuit
+% ---
+    \begin{circuitikz}[>=latex, european]
+\draw (0,0) to [battery2] (6,0)--(6,1) to [rmeter, t=V, *-*] (0,1)--(0,0);
+\draw (0,1)--(0,2) to [rmeter, t=A] (2,2) to[R] (6,2)--(6,1);
+\draw (6,2)--(6,3)--(4,3);
+\draw [->](4,3)--node [left]{$P$}(4,2.2);
+\fill [white] (6-.02,2.2) rectangle (4.58,1.8);
+    \end{circuitikz}

@@ -1,0 +1,28 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 电路的分析和计算
+% 原始文件：7.tex，行 829-850
+% 类型：circuit
+% ---
+        \begin{circuitikz}[european,>=latex]
+    
+     \draw (0,0) to [R] (5,0) to [cute open switch] (6,0)--(7,0) ;      
+     \draw (0,0)--(0,-2);
+     \draw (7,0)--(7,-2);
+    
+     \draw [fill=white](0,-2) circle (2pt);
+     \draw [fill=white](7,-2) circle (2pt);
+     \draw [fill=black](0,0) circle (2pt);
+    
+    \draw (0,0) -- (0,1) to [R=$R$] (2.5,1); 
+    \draw [->](2.5,1)--node [right]{$P$} (2.5,.2);
+    \node at (2-.1,-.4){$A$};
+    \node at (3+.1,-.4){$B$};
+    \node at (5.5,-.4){$K$};
+    
+    
+    
+    \draw [<->](0+.1,-2)--node [fill=white]{$U$} (7-.1,-2);
+    
+    
+       \end{circuitikz}

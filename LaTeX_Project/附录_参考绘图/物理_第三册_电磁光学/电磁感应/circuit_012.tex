@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁感应 / 自感
+% 原始文件：2.tex，行 580-589
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, yscale=.7]
+\draw (4,3) -- (5,3) -- (5,0) to [cute open switch] (2.5,0) to [battery] (0,0)--(0,3)--(1,3);
+\node at (7.5/2,.5){$K$};
+\draw (1,3)--(1,3.75) to [lamp] (4,3.75)--(4,3);
+\draw (1,3)--(1,2.25) to [L] (4,2.25)--(4,3);
+\node at (2.5,1.6){$L$};
+\node at (2.5,4.8){$A$};
+\draw [<-](2,3.75)--(1.5,3.75)node [above]{$I$};
+\draw [->](2,2.25)--(1.5,2.25);
+\end{circuitikz}

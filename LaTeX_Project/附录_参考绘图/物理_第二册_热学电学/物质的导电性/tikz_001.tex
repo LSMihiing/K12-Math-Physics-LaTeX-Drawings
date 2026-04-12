@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：物质的导电性 / 金属的导电性
+% 原始文件：8.tex，行 15-38
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+
+\draw(0,.6)--(5,.6);
+\draw(0,-.6)--(5,-.6);
+\draw (5,0) ellipse[x radius=.3, y radius=.6]; 
+\foreach \x in {0,1.5,3.5}
+{
+	\draw[dashed](\x,0)ellipse[x radius=.3, y radius=.6]; 
+	\draw(\x,.6) arc [start angle = 90, end angle=270, x radius=.3, y radius=.6];
+}
+\node at (3.5,0){$S$};
+\draw(1.5,.7)--(1.5,1.5);
+\draw(3.5,.7)--(3.5,1.5);
+\draw[<->](3.5,1.2)--node[fill=white]{$vt$}(1.5,1.2);
+
+	\tkzDefPoints{1.5/0/A, 2.5/0/B, 1.7/-.4/C, 2.7/-.4/D, 1.7/.4/E, 2.7/.4/F}
+\foreach \x in {A,B,C,D,E,F}
+{
+	\draw[->](\x)--+(.5,0);
+	\draw[fill=white](\x)node{\tiny $-$}circle (3.5pt);
+}
+
+
+\end{tikzpicture}	

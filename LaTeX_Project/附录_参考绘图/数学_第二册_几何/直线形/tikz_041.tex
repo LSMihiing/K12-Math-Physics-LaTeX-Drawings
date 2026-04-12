@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 1404-1415
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-1.5/0/B, 1.5/0/C, -.5/2/D, .5/2/E, 0/3/A}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegments(B,E C,D)
+\tkzInterLL(C,D)(B,E)  \tkzGetPoint{O}
+\tkzLabelPoints[left](B,D)
+\tkzLabelPoints[right](C,E)
+\tkzLabelPoints[above](A)
+\tkzLabelPoints[below](O)
+
+
+    \end{tikzpicture}

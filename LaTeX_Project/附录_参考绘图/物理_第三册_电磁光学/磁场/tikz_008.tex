@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：磁场 / 磁场对电流的作用力
+% 原始文件：1.tex，行 447-467
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.8]
+		\foreach \x in {1,2,3,4}
+		{
+			\draw[->] (0,\x)--(4,\x);
+		}
+		\draw[->](2,2.5)--(2,3.5)node[right]{$F$};
+		\node at (4.5,2.5){$B$};
+		\draw [fill=white](2,2.5) circle (5pt);
+		
+		\draw[->](6.5,2.5)node[left]{$I$}--(7.5,2.5)node[above]{$F$};
+		\draw [fill=white](6.5,2.5) circle (5pt);
+		\node at (6.5,2.5){$\times$};
+		
+	\foreach \y in {1,2,3,4}
+	{
+		\draw[->] (9.5,\y)--(13.5,\y);
+	}	
+\draw [fill=white](11.5,2.5) circle (5pt);
+\node at (11.5,2.5){$\times$};
+		\node at (14,2.5){$B$};\node at (11.1,2.5){$I$};
+	\end{tikzpicture}

@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与正多边形
+% 原始文件：4.tex，行 4666-4675
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[scale=.25, >=latex]
+\tkzDefPoints{-8/0/A, 8/0/B, -5/-9.5/C, 5/-9.5/D, 0/5.9/E}
+\tkzDrawPolygon(E,A,C,D,B)
+\draw[<->](A)--node[fill=white]{8寸}(0,0);
+\draw[<->](B)--node[fill=white]{8寸}(0,0);
+\draw(C)--node[above]{5寸}(0,-9.5);
+\draw(D)--node[above]{5寸}(0,-9.5);
+\draw[<->](E)--node[fill=white]{5.9寸}(0,0);
+\draw[<->](0,-9.5)--node[fill=white]{9.5寸}(0,0);
+    \end{tikzpicture}

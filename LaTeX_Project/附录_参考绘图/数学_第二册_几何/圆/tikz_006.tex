@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 171-181
+% 类型：tikz
+% ---
+		\begin{tikzpicture}[>=latex, scale=1]
+\draw (0,.9) circle (1);
+\draw (0,-.9) circle (1);
+\draw (1.95,0) circle (1.5);
+\foreach \x/\y in{0/.9, 0/-.9, 1.95/0}
+{
+    \draw (\x,\y)[fill=black]circle(1.5pt);
+}
+\node at (1.95-1.5,0)[right]{$A$};
+
+		\end{tikzpicture}

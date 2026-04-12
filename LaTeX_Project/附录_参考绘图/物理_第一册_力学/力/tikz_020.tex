@@ -1,0 +1,35 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：力 / 力的合成
+% 原始文件：1.tex，行 1047-1075
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=stealth, thick]
+
+\fill [pattern = north east lines] (0.75+1,0) rectangle (1+1,1);
+\draw (1+1,1)--(1+1,0);
+\node at (0.5+1, 0.5){乙};
+\draw (2,0.5)--(9.25,0.5);
+\node at (1.25+1, 0.75){$G$};
+
+\fill (6, .5) circle[radius=1.5pt];
+\fill (7, .5) circle[radius=1.5pt];
+\node at (6, 0.75){$E$};
+\node at (7, 0.75){$O$};
+\draw (9.2, .22) circle [radius=0.3];
+\draw (9.2, .22) circle [radius=.1];
+
+\draw (2,0.5)--(9.25,0.5);
+\draw [dashed](10,0.5)--(7,0.5);
+\node at (10.5, 0.5){$C$};
+\draw(9.2+.3,0.2)--(9.2+.3,-1.9);
+
+\foreach \x in {1,2,3,4,5}
+{
+    \fill [black!50] (9.2,-\x*.35-.2) rectangle (9.2+.6,-\x*.35+0.2-.2);
+}
+
+\node at (10.25, -1){$F$};
+
+
+\end{tikzpicture}

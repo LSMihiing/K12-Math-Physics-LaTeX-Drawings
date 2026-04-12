@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 面积与勾股定理
+% 原始文件：3.tex，行 4550-4561
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\tkzDefPoints{0/0/A, 4/0/B, 4/3/C, 0/3/D}
+\tkzDrawPolygon(A,B,C,D)
+\draw(0,1)--(4,1);  \draw(0,2)--(4,2);
+\draw(1,0)--(1,3);  \draw(2,0)--(2,3);  \draw(3,0)--(3,3);
+\fill[pattern=north east lines](0,0) rectangle (1,1);
+\tkzLabelPoints[left](A,D)
+\tkzLabelPoints[above right](C)
+\tkzLabelPoints[below right](B)
+\draw[|<->|](0,-.3)--node[fill=white]{$a$}(4,-.3);
+\draw[|<->|](4.3,0)--node[fill=white]{$b$}(4.3,3);
+\end{tikzpicture}

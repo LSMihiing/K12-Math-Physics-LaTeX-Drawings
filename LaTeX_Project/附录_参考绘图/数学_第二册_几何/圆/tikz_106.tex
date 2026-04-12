@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与正多边形
+% 原始文件：4.tex，行 4700-4713
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=.9]
+    \tkzDefPoints{0/0/A, 5/0/B, 3.2/2.4/C}
+    \tkzDrawSemiCircle[pattern=north west lines,diameter](A,C)
+\tkzDrawSemiCircle[pattern=north west lines,diameter](C,B)
+\tkzDrawSemiCircle[fill=white,diameter](A,B)
+\tkzDrawPolygon[pattern=north east lines](A,B,C)
+\tkzLabelPoints[below](A,B)
+\tkzLabelPoints[above](C)
+\node at (3,1)[fill=white]{III};
+\node at (1,2.6)[fill=white]{I};
+\node at (5,1.5)[fill=white]{II};
+
+
+    \end{tikzpicture}

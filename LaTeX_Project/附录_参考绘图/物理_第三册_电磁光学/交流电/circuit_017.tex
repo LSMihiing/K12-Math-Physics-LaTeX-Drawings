@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电容电路
+% 原始文件：3.tex，行 631-646
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,1.2)--(0,0)--(2,0)to [C, *-*](2,3)--(0,3)--(0,3-1.2);
+
+\node at (-.6,1.75){前级};
+\node at (-.6,1.25){输出};
+\node at (3.4,1.75){后级};
+\node at (3.4,1.25){输入};
+\draw (2,0)--(4,0)--(4,1.2);
+\draw (2,3)to (4,3)--(4,3-1.2);
+
+\draw [fill=white](0,1.2) circle (1.5pt);  \draw [fill=white](0,1.8) circle (1.5pt);
+\draw [fill=white](4,1.2) circle (1.5pt);  \draw [fill=white](4,1.8) circle (1.5pt);
+
+
+
+\end{circuitikz}

@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何
+% 原始文件：1.tex，行 12-34
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.7]
+\begin{scope}
+	\draw (1.5,0) ellipse [x radius=1.5, y radius=.5];
+	\shade (0,0) rectangle (3,4);
+	\shade (1.5,4)[draw] ellipse [x radius=1.5, y radius=.5];
+	\draw (0,0)--(0,4);
+	\draw (3,0)--(3,4);
+		\node at (1.5,-1.5){圆柱};
+
+\end{scope}
+\begin{scope}[xshift=5.5cm]	
+	\shade (1.5,0)[draw] ellipse [x radius=1.5, y radius=.5];
+		\fill[gray!50] (0,0)-- (3,0)--(1.5,4)--(0,0);
+		\draw (0,0)--(1.5,4)-- (3,0);
+	
+
+	\node at (1.5,-1.5){圆锥};
+\end{scope}
+\begin{scope}[xshift=12cm]
+		\shade [draw, ball color =gray!20] (0,2) circle(2);
+	\node at (0,-1.5){球};
+\end{scope}
+\end{tikzpicture}	

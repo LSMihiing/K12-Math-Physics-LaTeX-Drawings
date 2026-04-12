@@ -1,0 +1,24 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1770-1787
+% 类型：circuit
+% ---
+	\begin{circuitikz}
+		\draw (0,0) to [american inductors, L] (0,2);
+			\draw (0,0) to [american inductors, L] (-2,-1)node[left]{$C$};	
+			\draw (0,0) to [american inductors, L] (2,-1)node[right]{$B$};	
+		\draw[european] (5,0) to [R=1] (5,2);
+\draw [european](5,0) to [R=3] (-2+5,-1);	
+\draw[european] (5,0) to [R=2] (2+5,-1);				
+\draw(0,2)node[left]{$A$}--(5,2)	;
+	\draw (2,-1)--(2,-1.5)--(2+5,-1.5)--(2+5,-1);		
+	\draw (-2,-1)--(-2,-2)--(-2+5,-2)--(-2+5,-1);
+	
+	\node at (0,.1) [right]{$O$};
+	\node at (5,.1) [right]{$O'$};
+	
+	\node at (-1,-1.7){发电机};
+	\node at (5,-1.2){负载};
+			
+	\end{circuitikz}%%\caption{三相三线制}

@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 电感和电容对交流电相位的影响
+% 原始文件：3.tex，行 699-717
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, xscale=.6]
+        \draw [->](-2,0)--(11,0)node[right]{$\omega t$};
+        \draw [->](0,-1.5)--(0,1.5)node[right]{$i,u$};
+        \draw [ultra thick] plot[domain=0:3*3.1416, samples=1000, variable=\x] (\x, {sin(\x r)}) node [above]{$u$};
+        \draw [very thick] plot[domain=0:3*3.1416, samples=1000, variable=\x] (\x, {.8*sin(\x+3.1416/2 r)}) node [below]{$i$};
+        \draw [very thick, dashed] plot[domain=-3.1416/2:0, samples=100, variable=\x] (\x, {.8*sin(\x+3.1416/2 r)});
+        %\draw [ultra thick, dashed] plot[domain=-1:0, samples=100, variable=\x] (\x, {sin(\x+1 r)});
+        \node at (-.25,-.25){$O$};
+        
+        \foreach \x in {1,5}
+        {
+            \draw[dashed] (\x*3.1416/2,0)--(\x*3.1416/2,1);
+            \draw[dashed] (\x*3.1416/2+3.1416/2,0)--(\x*3.1416/2+3.1416/2,-.8);
+        }
+        
+        \draw[dashed] (4*3.1416/2,0)--(4*3.1416/2,.8);
+            \draw[dashed] (5*3.1416/2,0)--(5*3.1416/2,1);
+            \draw[dashed] (3*3.1416/2,0)--(3*3.1416/2,-1);
+        \end{tikzpicture}

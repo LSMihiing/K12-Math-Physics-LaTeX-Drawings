@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：二次函数 / 和二次函数有关的课题
+% 原始文件：5.tex，行 1283-1292
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\draw (0,0) rectangle (2,3) node [right]{$D$};
+\node at (0,0)[below]{$B$};
+\node at (2,0)[below]{$C$};
+\node at (0,3)[left]{$A$};
+\node at (1,3)[below]{$O$};
+\draw (0,3) arc (180:0:1);
+\draw[->] (1,3)--node[left]{$x$} +(60:1) ;
+\draw [<->](0,.5)--node[fill=white]{$2x$}(2,.5);
+\end{tikzpicture}

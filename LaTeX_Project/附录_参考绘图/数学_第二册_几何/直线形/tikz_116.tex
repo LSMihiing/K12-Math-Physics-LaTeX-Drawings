@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 4188-4206
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/A,5/0/B, 4.5/2.8/C}
+
+\foreach \x/\xtext in {1/D,2/E,3/F,4/G,5/H}
+{
+    \tkzDefPointWith[linear, K=\x/6](A,C)  \tkzGetPoint{\xtext}
+}
+\foreach \x/\xtext in {1/D_1,2/E_1,3/F_1,4/G_1}
+{
+    \tkzDefPointWith[linear, K=\x/5](A,B)  \tkzGetPoint{\xtext}
+}
+\foreach \x in {D,E,F,G}
+{
+    \tkzDrawSegments(\x,\x_1)
+}
+\tkzDrawSegments(B,H A,B A,C)
+\tkzLabelPoints[below](A,D_1,E_1,F_1,G_1,B)
+\tkzLabelPoints[above](D,E,F,G,H,C)
+    \end{tikzpicture}

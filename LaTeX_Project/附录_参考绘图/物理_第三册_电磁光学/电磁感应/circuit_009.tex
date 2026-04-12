@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁感应 / 法拉第电磁感应定律
+% 原始文件：2.tex，行 376-388
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\foreach \x in {.5,2,3.5}
+{ 
+   \draw[->] (\x, 4)--(\x, 0);
+}
+\node at (2.4, 0){$B$};
+\draw[->] (1.5, 3)--(2.5,3) node[right]{$v_1$};
+\draw[->] (1.5,3)--(1.5, 1)node[below]{$v_2$};
+\draw[->] (1.5,3)--(2.5,1)node[right]{$v$};
+\draw [fill=white] (1.5, 3) circle (1.5pt);
+\node at  (1.6,2.5){$\theta$};
+
+\end{circuitikz}

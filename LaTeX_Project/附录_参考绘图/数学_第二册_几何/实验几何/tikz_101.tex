@@ -1,0 +1,41 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 3587-3621
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\draw(0,2)--node[above]{$a$}(4,2);
+\tkzDefPoints{0/0/A, 2/0/B, 3/0/C, 5/0/D}
+\tkzDefPoint(45:2){B'}
+\tkzDrawSegments(A,B A,B')
+\tkzMarkAngles[mark=none, size=.3](B,A,B')
+\tkzLabelAngle[pos=.5](B,A,B'){$\alpha$}
+\tkzDefPoint(5,1.5){D'}
+\tkzDrawSegments(C,D C,D')
+\tkzMarkAngles[mark=none, size=.3](D,C,D')
+\tkzLabelAngle[pos=.5](D,C,D'){$\beta$}
+\end{scope}
+\begin{scope}[xshift=7cm]
+\tkzDefPoints{0/0/B, 4/0/C}
+\tkzDefPoint(45:2.42){A}
+\tkzDrawLines[add=0 and .25](B,A C,A)
+\tkzDrawSegments(B,C)
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[above](A)
+\tkzLabelSegment[below](B,C){$a$}
+\tkzLabelAngle[pos=.6](C,B,A){$\alpha$}
+\tkzLabelAngle[pos=.8](A,C,B){$\beta$}
+\node at (1,2.5){$Y$};
+\node at (2.3,2.5){$X$};
+\tkzDefPoint(45:1.5){B'}
+\tkzDefPoints{1.5/0/B'', 2.5/0/C''}
+\tkzDrawArc[color=black, delta=15](B,B'')(B')
+\tkzCompass[color=black](B'',B')
+\tkzDefPoints{2.5/0/C', 2.8/.9/C''}
+\tkzDrawArc[color=black, delta=15](C,C'')(C')
+\tkzCompass[color=black](C',C'')
+
+\end{scope}
+\end{tikzpicture}

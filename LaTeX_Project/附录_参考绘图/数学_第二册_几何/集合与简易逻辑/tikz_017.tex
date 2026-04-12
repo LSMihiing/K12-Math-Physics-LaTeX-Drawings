@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 简易逻辑
+% 原始文件：2.tex，行 646-660
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex]
+		\node (A)[draw, rectangle]at (-3,2) {原命题：若$\alpha$，则$\beta$}; 
+		\node (B)[draw, rectangle]at (3,2) {逆命题：若$\beta$，则$\alpha$}; 
+		\node (C)[draw, rectangle]at (-3,-2){否命题：若$\bar\alpha$，则$\bar\beta$}; 
+		\node (D)[draw, rectangle]at (3,-2) {逆否命题：若$\bar\beta$，则$\bar\alpha$}; 
+		\node (E)[draw, rectangle, rounded corners=3mm]at (0,0) {互为逆否}; 
+		\draw[<->, ultra thick](A)--node[above]{互逆}(B);
+		\draw[<->, ultra thick](C)--node[below]{互逆}(D);
+		\draw[<->, ultra thick](A)--node[left]{互否}(C);
+		\draw[<->, ultra thick](B)--node[right]{互否}(D);
+		\foreach \x in {A,B,C,D}
+		{
+			\draw[->, ultra thick](E)--(\x);
+		}
+	\end{tikzpicture}

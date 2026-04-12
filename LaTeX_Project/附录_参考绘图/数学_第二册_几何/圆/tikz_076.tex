@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 3253-3272
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+  \tkzDefPoints{0/0/O, 1.5/0/O', 1.2/0/a, .5/0/b}
+  \tkzDrawCircles[thick](O,a O',b)
+  \tkzDrawPoints(O,O')
+  \tkzLabelPoints[right](O,O')
+  \tkzInterCC(O,a)(O',b) \tkzGetPoints{A}{B}
+  \tkzLabelPoints[above right](A)
+  \tkzLabelPoints[below](B)
+  \tkzDefPointWith[linear, K=2.4](B,A)\tkzGetPoint{P}
+  \tkzDefTangent[from = P](O,a)\tkzGetPoints{C}{t1}
+  \tkzDefTangent[from = P](O',b)\tkzGetPoints{t2}{C'}
+  \tkzLabelPoints[right](C')
+  \tkzLabelPoints[left](C)
+  \tkzLabelPoints[above](P)
+  
+  \tkzDrawLines[add=0 and .4, thick](P,C P,C')
+  \tkzDrawSegments[thick](P,B)
+  
+  
+    \end{tikzpicture}

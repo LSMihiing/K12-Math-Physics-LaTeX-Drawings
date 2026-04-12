@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：多项式的四则运算 / 一元多项式的除法
+% 原始文件：4.tex，行 1737-1759
+% 类型：tikz
+% ---
+    \begin{tikzpicture}
+ \node at (0,.5) [right]{$5-7+10-2-3$};   
+ \node at (0,0) [right]{$5+\;0\;-5$}; 
+ \node at (0,-.5) [right]{\quad $-7+15-2$}; 
+ \node at (0,-1) [right]{\quad $-7+\;0\;+7$}; 
+ \node at (0,-1.5) [right]{\quad \qquad $15-9-3$}; 
+ \node at (0,-2) [right]{\quad\qquad $15+\;0\;-15$}; 
+\node at (0,-2.5)[right]{\quad\qquad\qquad $-9+12$};
+
+\foreach \x in {-.25,-1.25,-2.25}
+{
+    \draw (-1, \x)--(4,\x);
+    \node at (-.5, \x+.25){$-)$};
+}
+\node at (-1,.5){被除式：};
+\node at (7,.5){除式};\node at (7,0){商式};
+\node at (4.5,-2.5){余式};
+\draw (4,.75)--(4,-.25);
+\draw (4,.25)--(6,.25);
+\node at (4,.5)[right]{$1+\;0\;-1$};
+\node at (4,0) [right]{$5-7+15$};
+
+\end{tikzpicture}

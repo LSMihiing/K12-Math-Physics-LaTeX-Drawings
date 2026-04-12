@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：气体的性质 / 理想气体的内能变化
+% 原始文件：3.tex，行 670-693
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=stealth, scale=.7 ]
+
+
+\draw[very thick] (-2, -1.5)--(2, -1.5);
+\draw[very thick] (-2, 1.5)--(2, 1.5);
+\draw[very thick] (2,.2)--(5,.2); \draw[very thick] (2,-.2)--(5,-.2);
+\draw[very thick] (5, 2.5)--(10, 2.5); \draw[very thick] (5, -2.5)--(10, -2.5);
+\draw[very thick] (-2, 1.5)--(-2, -1.5);
+\draw[very thick] (2, 1.5)--(2, .2);
+\draw[very thick] (2, -.2)--(2, -1.5);
+\draw[very thick] (5, 2.5)--(5, .2);
+\draw[very thick] (5, -.2)--(5, -2.5);
+\draw[dashed](-3,-2.5) rectangle (3,2.5);
+
+\fill [pattern=north east lines, draw](8,-2.5) rectangle(8.5,2.5);
+\node at (0,2){127$^\circ$C}; \node at (9,2){$D$}; 
+\node at (0,0){$B$};  \node at (7,0){$A$};
+
+\draw [->](10,0)node [below]{$p_0$}--(8.5,0);
+
+\draw(3.5,-.5)--(3.5,.5);
+\draw(3.2,.5)--(3.7,.5)node[right]{$K$};
+
+\end{tikzpicture}

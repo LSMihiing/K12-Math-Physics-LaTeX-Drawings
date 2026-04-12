@@ -1,0 +1,41 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 2018-2052
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\tkzDefPoints{0/0/O, 1/0/a, 3/0/O', 3-1.2/0/b}
+\tkzDrawCircles[thick](O,a O',b)
+\tkzDrawPoints(O,O')
+\tkzDefPoint(93.82:1){M}
+\tkzDefPoint(-93.82:1){M'}
+\tkzDefPointsBy[translation= from O to O'](M,M'){N,N'}
+\tkzDefTangent[at=M](O) \tkzGetPoint{a}
+\tkzDefTangent[at=M'](O) \tkzGetPoint{b}
+\tkzInterLL(O',N)(M,a) \tkzGetPoint{P}
+\tkzInterLL(O',N')(M',b) \tkzGetPoint{P'}
+\tkzDrawLines[add=.5 and .5, thick](M,P M',P')
+\tkzDefPoints{1.36/0/T}
+\tkzDefPoint(42.67:1){R}
+\tkzDefPoint(-42.67:1){R'}
+\tkzDrawLines[add=2.5 and 1, thick](T,R T,R')
+\node at (1.5,-1.7){(1)};
+\end{scope}
+\begin{scope}[xshift=7cm]
+    \tkzDefPoints{0/0/O, 1/0/a, 1.5/0/O', 1.5-1.2/0/b}
+\tkzDrawPoints(O,O')
+\tkzDrawCircles[thick](O,a O',b) 
+\tkzDefPoint(97.66:1){M}
+\tkzDefPoint(-97.66:1){M'}
+\tkzDefPointsBy[translation= from O to O'](M,M'){N,N'}
+\tkzDefTangent[at=M](O) \tkzGetPoint{a}
+\tkzDefTangent[at=M'](O) \tkzGetPoint{b}
+\tkzInterLL(O',N)(M,a) \tkzGetPoint{P}
+\tkzInterLL(O',N')(M',b) \tkzGetPoint{P'}
+\tkzDrawLines[add=1 and 1, thick](M,P M',P')
+\node at (.75,-1.7){(2)};
+
+\end{scope}
+\end{tikzpicture}

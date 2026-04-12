@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 串联电路
+% 原始文件：7.tex，行 390-400
+% 类型：circuit
+% ---
+\begin{circuitikz}[european,>=latex]
+    \draw (0,0)--(2,0) to [R=$R_3$] (2,2) to [R=$R_2$] (2,4) to [R=$R_1$] (2,6)--(0,6);
+    \draw (2,0)--(4,0)node[right]{$b$};
+    \draw [<-](2.2,3)--(4,3)node[right]{$a$};
+    \draw [fill=white](4,3) circle (2pt);
+    \draw [fill=white](4,0) circle (2pt);      
+    \draw [fill=white](0,0) circle (2pt);
+    \draw [fill=white](0,6) circle (2pt);   
+    \draw[<->](0,.1) to node [fill=white]{$U$} (0,6-.1);
+    \node at (2.4,2.7){$P$}; 
+        \end{circuitikz}

@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 1178-1187
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[scale=.8]
+  \tkzDefPoints{2/0/S, 0/0/O, 5/0/O', 6/2/A'}
+  \tkzDefPointsBy[translation= from O' to A'](O){A''}
+  \tkzInterLL(O,A'')(A',S)\tkzGetPoint{A}
+  \tkzDrawSegments[thick](O,A O',A' A,A')
+  \tkzDrawLines[add=.5 and .7, thick](O,O')
+  \tkzDrawCircles(O,A O',A')
+  \tkzLabelPoints[below](O',A)
+  \tkzLabelPoints[above](O,A',S)
+  \end{tikzpicture}

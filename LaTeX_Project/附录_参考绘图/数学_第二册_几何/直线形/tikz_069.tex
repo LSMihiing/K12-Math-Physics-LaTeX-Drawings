@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 2216-2235
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+    \tkzDefPoints{0/0/A, 3/0/B, 1.6/3/C}
+    \tkzDrawPolygon(A,B,C)
+\tkzMarkAngles[mark=none, size=.4](B,A,C C,B,A A,C,B)
+\node at (1.5,-.5){锐角三角形};
+\end{scope}
+\begin{scope}[xshift=4cm]
+        \tkzDefPoints{0/0/A, 2/0/B, 2/3/C}
+    \tkzDrawPolygon(A,B,C)
+    \node at (1,-.5){直角三角形};
+    \tkzMarkRightAngles(C,B,A)
+\end{scope}
+\begin{scope}[xshift=7cm]
+    \tkzDefPoints{0/0/A, 2/0/B, 3.6/2.8/C}
+    \tkzDrawPolygon(A,B,C)
+    \tkzMarkAngles[mark=none, size=.3](C,B,A)
+    \node at (1.8,-.5){钝角三角形};
+\end{scope}
+\end{tikzpicture}

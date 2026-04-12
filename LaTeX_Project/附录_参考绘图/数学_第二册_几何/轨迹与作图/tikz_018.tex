@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 作图
+% 原始文件：5.tex，行 1021-1034
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=.8]
+        \draw (0,0) circle (2.5);
+        \tkzDefPoint(0,0){O}
+        \tkzDefPoint(7*36:2.5){A}
+        \tkzDrawPoint(A)
+        \tkzAutoLabelPoints[center=O](A)
+        \tkzDefPoint(8*36:2.5){B}
+        \tkzDrawPoint(B)
+        \tkzAutoLabelPoints[center=O](B)
+        \draw(O)--(A)--(B);
+\tkzDefPoint(-108:1.545){C'}  
+\tkzLabelPoints[left](O, C') \tkzDrawPoints(O, C')
+\draw(C')--(B)--(O);
+    \end{tikzpicture}

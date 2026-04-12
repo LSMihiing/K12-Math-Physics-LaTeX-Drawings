@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：轨迹与作图 / 作图
+% 原始文件：5.tex，行 552-571
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.7]
+\begin{scope}
+    \draw(0,0)--node[above]{$h$}(1.4,0);
+    \draw(0,.5)--node[above]{$m$}(1.6,.5);
+    \draw(0,1)--node[above]{$a$}(2,1);
+\end{scope}
+\begin{scope}[xshift=3cm]
+    
+
+\draw(0,0)node[left]{$B$}--node[below]{$a$}(2,0)node[right]{$C$};
+\draw(-.5,1.4)--(1.8,1.4);
+\tkzDefPoints{1/0/M, 0.23/1.4/A}
+\tkzCompass(M,A)
+\draw(M)--node[right]{$m$}(A)--(2,0);
+\draw(0,0)--(A)--node[right]{$h$}(0.23,0)node[below]{$D$};
+\tkzLabelPoints[above](M,A)
+\node (D) at (0.23,0){};
+\tkzMarkRightAngle[size=.1](C,D,A)
+\end{scope}
+\end{tikzpicture}

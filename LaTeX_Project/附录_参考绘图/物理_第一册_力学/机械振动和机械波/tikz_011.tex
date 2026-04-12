@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：机械振动和机械波 / 机械振动
+% 原始文件：9.tex，行 520-538
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=stealth, xscale=.7, domain=0:3*pi, samples=200]
+\draw [->](0,0)node [left]{$0$}--(11,0) node [below]{$t$（秒）};
+\draw [->](0,-1.2)--(0,1.5) node [right]{$x$（厘米）};
+
+
+        \draw [very thick]  plot (\x,{cos(\x r)});
+
+ \draw [dashed](0, 1) -- (2*pi, 1);  
+ \draw [dashed](0,-1) -- (3*pi, -1);     
+
+\foreach \x in{1,2,...,5}
+{
+    \draw(\x*pi/2, 0)node [below]{\x}--(\x*pi/2, 0.2);
+}
+
+\node at (-.5,1){$+10$};\node at (-.5,-1){$-10$};
+
+
+    \end{tikzpicture}

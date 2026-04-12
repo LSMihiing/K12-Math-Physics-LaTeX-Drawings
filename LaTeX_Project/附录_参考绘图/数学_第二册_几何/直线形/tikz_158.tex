@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6119-6130
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoints{0/0/B, 4/0/C, 1.5/3/A}
+\tkzDefPointBy[projection= onto A--C](B)\tkzGetPoint{D}
+\tkzDefPointBy[projection= onto A--B](C)\tkzGetPoint{E}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegments(B,D C,E)
+\tkzMarkRightAngles[size=.15](A,E,C A,D,B)
+\tkzLabelPoints[left](E,B)
+\tkzLabelPoints[right](C,D)
+\tkzLabelPoints[above](A)
+
+\end{tikzpicture}

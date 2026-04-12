@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 简易逻辑
+% 原始文件：2.tex，行 1281-1296
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1.2]
+	\tkzDefPoints{0/0/A, 4/0/B, 0/-1/C, 4/-1/D}
+	\tkzDrawSegments (A,B C,D)
+	\tkzLabelPoints[left](A,C)
+	\tkzLabelPoints[right](B,D)
+	\tkzDefPoints{2/0/P, 1.5/-1/Q}
+	\tkzDrawLines[add =1 and 1](P,Q)
+	\tkzLabelPoints[below](Q)\tkzLabelPoints[above](P)
+	\tkzMarkAngles[mark=none, size=.4](A,P,Q D,Q,P)
+	\tkzLabelAngles[pos=.6](A,P,Q){1} 
+	\tkzLabelAngles[pos=.6](D,Q,P){2}
+	\tkzMarkAngle[mark=none, size=.5](Q,P,B)
+	\tkzLabelAngles[pos=.6](Q,P,B){3}
+	\node at (.8,-2){$F$};
+	\node at (2.8,1){$E$};
+    \end{tikzpicture}

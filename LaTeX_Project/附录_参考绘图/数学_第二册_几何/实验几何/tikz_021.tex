@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 点、直线和平面
+% 原始文件：1.tex，行 844-863
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+	\begin{scope}
+		\draw (0,0)--(5,0);
+		\tkzDefPoints{1/0/P_1,2/0/P_2,3/0/P_3, 4/0/P_4}
+		\tkzDrawPoints(P_1,P_2,P_3,P_4)
+		\tkzLabelPoints[above](P_1,P_2,P_3,P_4)	
+	\end{scope}
+	\begin{scope}[yshift=-2cm]
+		\tkzDefPoints{1/0/P_2,2/0/P_3,3/0/P_4, 2/-1/P_1}
+		\tkzDrawLines[add=.8 and .8](P_2,P_4 P_3,P_1 P_2,P_1 P_1,P_4)
+		\tkzDrawPoints(P_1,P_2,P_3,P_4)
+		\tkzLabelPoints[above right](P_1,P_2,P_3,P_4)	
+	\end{scope}
+	\begin{scope}[yshift=-2cm, xshift=6cm]
+		\tkzDefPoints{.5/0/P_1,3.5/0/P_3,2/1.5/P_4, 2/-1.5/P_2}
+		\tkzDrawLines[add=.5 and .5](P_2,P_4 P_3,P_1 P_2,P_1 P_1,P_4 P_2,P_3 P_3,P_4)
+		\tkzDrawPoints(P_1,P_2,P_3,P_4)
+		\tkzLabelPoints[above right](P_1,P_2,P_3,P_4)
+	\end{scope}
+\end{tikzpicture}

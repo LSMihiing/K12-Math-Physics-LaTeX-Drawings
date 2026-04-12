@@ -1,0 +1,29 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 1635-1657
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\tkzDefPoints{0/0/A, 3/0/B, 0/3/C}
+\tkzDrawPolygon(A,B,C)
+\tkzLabelAngle[pos=.4](B,A,C){$90^{\circ}$}
+\tkzLabelAngle[pos=.7](C,B,A){$45^{\circ}$}
+\tkzLabelAngle[pos=.7](A,C,B){$45^{\circ}$}
+\tkzDefTriangleCenter[centroid](A,B,C)
+\tkzGetPoint{G}
+\draw(G) circle(.2);
+
+\end{scope}
+\begin{scope}[xshift=3cm]
+\tkzDefPoints{0/3/A, 2.5*1.732/3/B, 2.5*1.732/0.5/C}
+\tkzDrawPolygon(A,B,C)
+\tkzLabelAngle[pos=.4](A,B,C){$90^{\circ}$}
+\tkzLabelAngle[pos=.6](B,C,A){$60^{\circ}$}
+\tkzLabelAngle[pos=.75](C,A,B){$30^{\circ}$}
+\tkzDefTriangleCenter[centroid](A,B,C)
+\tkzGetPoint{G}
+\draw(G) circle(.2);
+\end{scope}
+\end{tikzpicture}

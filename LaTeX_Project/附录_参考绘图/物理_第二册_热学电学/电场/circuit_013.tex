@@ -1,0 +1,12 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 电容器~~电容
+% 原始文件：6.tex，行 1512-1517
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european, scale=.8]
+        \draw (0,0)--(0,3);
+        \draw (0,3)to [capacitor=$C$](6,3);
+        \draw (6,0)--(6,3);    
+        \draw (0,0) to [battery2] (3,0) to [cute open switch=$K$] (5,0)--(6,0)   ;
+    \end{circuitikz}

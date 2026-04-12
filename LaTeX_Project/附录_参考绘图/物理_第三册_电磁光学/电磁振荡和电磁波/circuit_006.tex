@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁振荡和电磁波 / 电磁波的发送（一）~~开放电路
+% 原始文件：4.tex，行 295-304
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,3)-- (2,3) to [american inductor] (2,0)-- (0,0)  ;
+\draw (2.5, -.5) node [ground]{地线} to(2.5,0) to [american inductor] (2.5,3)to (2.5,3.5)node[bareantenna]{天线} ;
+\draw (-.2, .5) rectangle (.2,2.5);
+\draw (0,0)--(0,.5);
+\draw (0,2.5)--(0,3);
+\node [rotate=90]at (-.5,1.5){振荡器};
+\node at (1.75,1.5){$L_2$};
+\node at (2.75,1.5){$L_1$};
+\end{circuitikz}

@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 简易逻辑
+% 原始文件：2.tex，行 1063-1075
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+	\tkzDefPoints{0/0/A, 4/0/B, 0/-1/C, 4/-1/D}
+	\tkzDrawLines (A,B C,D)
+	\tkzLabelPoints[above left](A,C)\tkzLabelPoints[above right](B,D)
+	\tkzDefPoints{2/0/P, 1.5/-1/Q}
+	\tkzDrawLines[add =1 and 1](P,Q)
+	\tkzLabelPoints[below](P,Q)
+	\tkzMarkAngles[mark=none, size=.4](A,P,Q D,Q,P)
+	\tkzLabelAngles[pos=.6](A,P,Q){1} 
+	\tkzLabelAngles[pos=.6](D,Q,P){2}
+	\node at (.8,-2){$F$};
+	\node at (2.8,1){$E$};
+\end{tikzpicture}

@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：磁场 / 磁通量
+% 原始文件：1.tex，行 282-295
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex]
+	\foreach \x in{1,2,...,6}
+		\foreach \y in {1,2,3}
+		{
+		   \node at (\x,\y) {$\times$};
+		}
+	\draw [thick](2.5,1.5) rectangle (4.5,2.5);
+\draw [dashed](3.5,0.2)node[below] {$O'$}--(3.5,3.8)node[above] {$O$};
+	\node at (2.3, 2.7) {$a$};	\node at (2.3, 1.3) {$c$};
+	\node at (4.7, 2.7) {$b$};	\node at (4.7, 1.3) {$d$};
+
+\draw[->] (3.5+.25, 3.5) arc [start angle=10, end angle=360, x radius=.25,y radius=.125];
+
+	\end{tikzpicture}

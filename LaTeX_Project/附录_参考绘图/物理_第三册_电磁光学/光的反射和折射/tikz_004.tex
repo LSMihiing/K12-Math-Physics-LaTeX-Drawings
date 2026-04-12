@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 光的反射~~平面镜
+% 原始文件：5.tex，行 242-253
+% 类型：tikz
+% ---
+        \begin{tikzpicture}[>=stealth, xscale=.6]
+    
+    \foreach \x in {1,2,3,4,5}
+    {
+        \draw[->, very thick] (\x,0)--(\x+3,3);
+        \draw[very thick] (\x,0)--(\x-3,3);
+        \draw[<-, very thick] (\x-2,2)--(\x-3,3);
+    }
+    
+    \fill [pattern=north east lines] (-1,-.25) rectangle (7,0);
+        \draw (-1,0)--(7,0);
+        \end{tikzpicture}

@@ -1,0 +1,33 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 相似和相似比
+% 原始文件：1.tex，行 3383-3409
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/C, 3/0/D, 5/0/E, 6/2.3/F}
+\tkzDefPointsBy[translation= from E to F](D){A}
+\tkzDrawPolygon(C,E,F,A)
+\tkzLabelPoints[below](C,D,E)
+
+
+\tkzLabelPoints[above](A,F)
+\tkzDrawSegments(A,D D,F)
+\tkzDefPointWith[linear, K=.7](C,A)\tkzGetPoint{B}
+\tkzDefPointWith[linear, K=.7](D,F)\tkzGetPoint{G}
+\tkzDrawSegments(B,D A,G)
+\tkzMarkAngles[mark=none, size=.6](D,C,B F,D,A D,F,E)
+\tkzMarkAngles[mark=none, size=.4](C,A,D A,G,D A,F,D A,D,B)
+\tkzLabelAngle[pos=1](D,C,B){$30^{\circ}$}
+\tkzLabelAngle[pos=.8](A,D,B){$30^{\circ}$}
+\tkzLabelAngle[pos=.8](F,D,A){$30^{\circ}$}
+\tkzLabelAngle[pos=.8](D,F,E){$30^{\circ}$}
+
+\tkzLabelAngle[pos=.8](C,A,D){$40^{\circ}$}
+\tkzLabelAngle[pos=.8](A,G,D){$70^{\circ}$}
+\tkzLabelAngle[pos=.8](A,F,D){$40^{\circ}$}
+
+\tkzLabelPoints[above](B)
+\tkzLabelPoints[below](G)
+
+    \end{tikzpicture}

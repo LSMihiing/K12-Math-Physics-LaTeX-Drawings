@@ -1,0 +1,51 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：一次方程式 / 解应用问题
+% 原始文件：2.tex，行 2756-2800
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex,scale=.7]
+\begin{scope}
+\draw[pattern=north east lines] (2,1.5) circle (2.5);
+\draw[fill=white] (0,0) rectangle (4,3);
+\draw[<->](0,0)--node[above]{$2R$}(4,3);
+\node at (2,0)[above]{$a$};
+\node at (0,1.5)[right]{$b$};
+
+\end{scope}    
+\begin{scope}[xshift=6cm]
+    \draw[pattern=north east lines] (0,0) rectangle (5,3);
+    \draw[fill=white]  (.5,0) arc (180:0:2);
+    \draw [->] (2.5,0)--node[above]{$R$}+(40:2);
+    \node at (2.5,3)[above]{$a$};
+    \node at (5,1.5)[right]{$b$};
+\end{scope} 
+\begin{scope}[yshift=-6cm]
+    \draw[pattern=north east lines]  (0,0) arc (180:0:2.6); 
+    \draw[fill=white](2.6,1.3) circle(1.3);
+    \draw (0,0)--(5.2,0);
+    \draw[|<->|] (0,-.2)--node[below]{$D$}(5.2,-.2);
+\end{scope} 
+\begin{scope}[xshift=6cm, yshift=-6cm]
+
+\fill  [pattern=north east lines] (0,0) rectangle (6,4);
+\fill [white](0,0) rectangle (1,1);
+\fill [white](0,3) rectangle (1,4);
+\fill [white](5,0) rectangle (6,1);
+\fill [white](5,3) rectangle (6,4);
+
+\foreach \x in {0,4}
+{
+    \draw (1,\x)--(5,\x);
+    \draw (\x*1.5, 1)--(\x*1.5, 3);
+}
+
+\draw (0,1)--(1,1)--node[left]{$x$}(1,0);
+\draw (0,3)--(1,3)--node[left]{$x$}(1,4);
+\draw (5,0)--(5,1)--(6,1);
+\draw (5,4)--(5,3)--node[above]{$x$}(6,3);
+\node at (3,4)[above]{$4x$};
+\node at (6,2)[right]{$2x$};
+
+\end{scope}     
+\end{tikzpicture}

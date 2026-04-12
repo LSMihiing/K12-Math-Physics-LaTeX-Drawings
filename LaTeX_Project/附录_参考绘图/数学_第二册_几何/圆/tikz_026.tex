@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 986-1001
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.7]
+\tkzDefPoints{0/0/C, 3.5/0/B, 2/0/a, 2.15/-2.1/A, 2.15/-1.09/b}
+\tkzDrawCircles[thick](C,a B,a A,b)
+\tkzLabelPoints[left](C)
+\tkzLabelPoints[right](B)
+\tkzLabelPoints[below](A)
+\tkzDrawPolygon(A,B,C)
+\tkzLabelSegment[above](C,a){$z$}
+\tkzLabelSegment[above](B,a){$y$}
+\tkzInterCC(C,a)(A,b)  \tkzGetPoints{T1}{T2}
+\tkzInterCC(B,a)(A,b)  \tkzGetPoints{T3}{T4}
+\tkzLabelSegment[left](C,T1){$z$}
+\tkzLabelSegment[left](T1,A){$x$}
+\tkzLabelSegment[right](A,T3){$x$}
+\tkzLabelSegment[right](T3,B){$y$}
+\end{tikzpicture}

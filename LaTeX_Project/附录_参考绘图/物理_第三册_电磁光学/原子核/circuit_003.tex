@@ -1,0 +1,24 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：原子核 / 放射性同位素及其应用
+% 原始文件：9.tex，行 464-481
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,3)[pattern=north east lines] circle (10pt);
+\fill [white] (-.15,2.5) rectangle (.15, 3);
+\draw (-.15,2.7)--(-.15, 3)--(.15,3)--(.15,2.7);
+\draw [fill=black](0,2.85) circle (2pt);
+\node at (1.5,3){$\gamma$射线源};
+\node at (2.5,.125){钢板};
+\draw [->, thick](0,2.85)--(0,.8);
+\draw [pattern=north east lines] (-2, -.25) rectangle (2,0.5);
+
+\draw [pattern=north east lines] (-2, -1.5) rectangle (-.25,-1);
+\draw [pattern=north east lines] (.25, -1.5) rectangle (2,-1);
+\draw [fill=white] (0,.125) ellipse [x radius=.2, y radius=.1];
+\node at (0,-2.1){计数器};
+\draw (-.7, -1.8) rectangle (.7, -1.6);
+\draw (-.7,-1.7)--(.7,-1.7)--(2.5, -1.7)to [rmeter](2.5, -3) to [battery] (.7,-3)--(.7, -1.7);
+\draw [->](2.3, -2.6)--(2.7, -2.2);
+\end{circuitikz}

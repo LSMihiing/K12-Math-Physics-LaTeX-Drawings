@@ -1,0 +1,22 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 特殊四边形
+% 原始文件：3.tex，行 3275-3290
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/A, 3/0/B, 4/2/C}
+\tkzDefPointsBy[translation = from B to C](A){D}
+\tkzDefLine[bisector,normed](B,A,D) \tkzGetPoint{F}
+\tkzDefLine[bisector,normed](C,B,A)  \tkzGetPoint{G}
+\tkzInterLL(A,F)(B,G) \tkzGetPoint{O}
+\tkzInterLL(A,D)(B,O) \tkzGetPoint{E}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawSegments(D,E B,E A,O)
+\tkzLabelPoints[left](A,D,E)
+\tkzLabelPoints[right](B,C,O)
+\tkzMarkAngles[size=.4, mark=none](C,B,E)
+\tkzMarkAngles[size=.3, mark=none](E,B,A)
+\tkzLabelAngle[pos=.6](C,B,E){2}
+\tkzLabelAngle[pos=.6](E,B,A){1}
+    \end{tikzpicture}

@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 集合
+% 原始文件：2.tex，行 51-64
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[scale=.7]
+		\begin{scope}
+			\draw (0,0) circle (2);
+			\draw[ultra thick] (0,0)node[below]{$O$}--node[left]{$r$}(45:2);		
+			\node at (0,-3){(1)圆};	
+		\end{scope}
+		\begin{scope}[xshift=6cm]
+			\draw[pattern=north west lines] (0,0) circle (2);
+			\draw[ultra thick] (0,0)node[below, fill=white]{$O$}--(45:2);	
+			\node at (60:1.5) [left, rotate=45, fill=white]{$r$};
+			
+			\node at (0,-3){(2)圆面};
+		\end{scope}
+	\end{tikzpicture}	

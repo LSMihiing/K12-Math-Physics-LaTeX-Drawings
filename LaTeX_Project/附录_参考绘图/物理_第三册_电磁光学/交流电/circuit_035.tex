@@ -1,0 +1,12 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1528-1533
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european]
+\draw (0,0)--(3,0) to [R=$R$] (3,3) ;
+\draw (1.5,3) to [battery2](0,3) to [rmeter, t=$\sim$](0,0);
+\ctikzset{diodes/scale=0.6}\draw (1.5,3) to [full diode](3,3) ;
+\node at (1,1.5){信号};
+\end{circuitikz}

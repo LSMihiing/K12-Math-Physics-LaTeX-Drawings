@@ -1,0 +1,33 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 面积与勾股定理
+% 原始文件：3.tex，行 4983-5009
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/B, 3/0/C, 3/3/D}
+\tkzDefPointsBy[translation = from C to D](B){A}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDefPointWith[linear, K=.4](A,B)\tkzGetPoint{E}
+\tkzDefPointWith[linear, K=.4](B,C)\tkzGetPoint{F}
+\tkzDefPointWith[linear, K=.4](C,D)\tkzGetPoint{G}
+\tkzDefPointWith[linear, K=.4](D,A)\tkzGetPoint{H}
+\tkzDrawPolygon(E,F,G,H)
+\tkzLabelPoints[left](A,B,E)
+\tkzLabelPoints[right](C,D,G)\tkzLabelPoints[above](H)
+\tkzLabelPoints[below](F)
+\tkzMarkAngles[mark=none, size=.4](H,E,A B,E,F)
+\tkzMarkAngles[mark=none, size=.5](F,E,H)
+\tkzLabelAngle[pos=.6](H,E,A){$\alpha$}
+\tkzLabelAngle[pos=.6](B,E,F){$\beta$}
+\tkzLabelAngle[pos=.8](F,E,H){$\gamma$}
+\node at (.6,0)[below]{$a$};
+\node at (2.4,0)[below]{$b$};
+\node at (3,.6)[right]{$a$};
+\node at (3,2.4)[right]{$b$};
+\node at (2.4,3)[above]{$a$};
+\node at (.9,3)[above]{$b$};
+\node at (0,2.4)[left]{$a$};
+\node at (0,.9)[left]{$b$};
+
+    \end{tikzpicture}

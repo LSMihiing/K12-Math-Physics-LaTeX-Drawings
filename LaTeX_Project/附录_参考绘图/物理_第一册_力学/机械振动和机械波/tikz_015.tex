@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：机械振动和机械波 / 机械波
+% 原始文件：9.tex，行 779-792
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, xscale=.5]
+\draw [->](0,-1.5)--(0,1.8)node[right]{$y$};
+\draw [->](0,0)node[left]{$O$}--(18,0)node[right]{$x$};
+\draw [thick] plot[domain=0:16.8, samples=1000, variable=\x] (\x, {sin(\x r)}) ;
+\draw [dashed, thick] plot[domain=0:16.8, samples=1000, variable=\x] (\x, {sin(\x-1 r)}) ;
+\node at (16,1)[right]{时刻$t+\Delta t$的波形};
+\node at (17,-1)[right]{时刻$t$的波形};
+\draw (4.5*3.1416, 0)--(4.5*3.1416, 1.5);
+\draw (4.5*3.1416+1, 0)--(4.5*3.1416+1, 1.5);
+\draw [<->](4.5*3.1416, 1.4)--node [above]{$\Delta x=v\Delta t$}(4.5*3.1416+1, 1.4);
+
+\draw [->](9,1.4)--node[above]{$v$}(11,1.4);
+
+\end{tikzpicture}

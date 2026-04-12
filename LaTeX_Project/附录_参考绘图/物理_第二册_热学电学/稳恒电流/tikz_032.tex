@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 电池组
+% 原始文件：7.tex，行 1119-1128
+% 类型：tikz
+% ---
+        \begin{tikzpicture}[>=stealth, thick]
+    \draw(-1.5,-2)to[battery2] (1.5-1.5,0-2)--(2-1.5,0-2)to[battery2] (3-1.5,0-2);
+            \draw(0-1.5,0-2)--(0-1.5,2-2)to [lamp] (3-1.5,2-2)--(3-1.5,0-2);
+
+\foreach \x in {30,60,...,360}
+{
+    \draw (\x:.5)--(\x:.75);
+}
+
+        \end{tikzpicture}\qquad

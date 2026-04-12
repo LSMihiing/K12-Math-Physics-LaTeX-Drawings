@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6923-6934
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoints{0/0/A', 5/0/B', 3.5/2.6/C', 1.5/2.5/D', 2.5/1.2/O}
+\foreach \x in {A,B,C,D}
+{
+    \tkzDefMidPoint(O,\x') \tkzGetPoint{\x}
+    \tkzDrawSegments(O,\x')
+}
+\tkzDrawPolygon(A,B,C,D)
+\tkzDrawPolygon(A',B',C',D')
+\tkzLabelPoints[below](A,B,A',B',O)
+\tkzLabelPoints[above](C,D,C',D')
+\end{tikzpicture}

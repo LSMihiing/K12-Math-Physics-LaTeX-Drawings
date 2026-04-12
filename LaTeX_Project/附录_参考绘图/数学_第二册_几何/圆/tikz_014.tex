@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 443-456
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+    \tkzDefPoints{0/0/B, 4/0/C, 1.8/2.5/A}
+\tkzDrawPolygon(A,B,C)
+\tkzDefTriangleCenter[ortho](A,B,C)  \tkzGetPoint{H}
+\tkzInterLL(A,C)(B,H)\tkzGetPoint{E}
+\tkzInterLL(B,C)(A,H)\tkzGetPoint{D}
+\tkzInterLL(A,B)(C,H)\tkzGetPoint{F}
+\tkzDrawSegments(A,D B,E C,F)
+\tkzLabelPoints[below](B,C,D)
+\tkzLabelPoints[left](F)
+\tkzLabelPoints[right](E)
+\tkzLabelPoints[above](A)
+\tkzLabelPoints[below right](H)
+\end{tikzpicture}

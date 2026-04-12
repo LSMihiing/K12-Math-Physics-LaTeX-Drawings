@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：二次函数 / 多项式函数的增减性
+% 原始文件：5.tex，行 2474-2485
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-.5,0)--(3,0)node[right]{$x$};
+    \draw[->] (0,-3)--(0,4)node[right]{$y$}  ;
+\node at (-.25,-.25){$O$};
+\foreach \x in {1,2}
+{
+    \draw (\x,0)node[below]{$\x$}--(\x,.1);
+}
+
+\draw[domain=-.2:2.9, samples=100, very thick] plot(\x, {(\x-1)*(\x-1)*(\x-2)});
+
+\end{tikzpicture}

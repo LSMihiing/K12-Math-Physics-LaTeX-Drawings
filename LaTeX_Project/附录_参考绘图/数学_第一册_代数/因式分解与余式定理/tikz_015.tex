@@ -1,0 +1,35 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：因式分解与余式定理 / 辗转相除法
+% 原始文件：5.tex，行 2357-2385
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.6]
+\foreach \y/\ytext in {0/0,1/2,2/2,3/6,4/8, 5/22, 6/30, 7/1517, 8/1547}
+{
+    \node at (-1, \y)[left]{$\ytext$};
+}    
+\foreach \y/\ytext in {0/\boxed{1},1/2,2/3,3/8,4/11, 5/30, 6/41, 7/3094, 8/3135}
+{
+    \node at (1, \y)[left]{$\ytext$};
+}   
+\foreach \x in {-2.6,-.7,1.2}
+{
+    \draw (\x,-.5)--(\x,8.5);
+}
+
+\foreach \y in {.5, 2.5, 4.5, 6.5}
+{
+    \draw (-2.5,\y)--(-.9,\y);
+    \draw (-.5,\y)--(1.1,\y);
+}
+\node at (-3, 8) {37};
+\node at (-3, 6) {2};
+\node at (-3, 4) {2};
+\node at (-3, 2) {2};
+\node at (1.5, 8) {2};
+\node at (1.5, 6) {1};
+\node at (1.5, 4) {1};
+\node at (1.5, 2) {1};
+
+\end{tikzpicture}

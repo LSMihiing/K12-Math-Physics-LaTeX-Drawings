@@ -1,0 +1,47 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：曲线运动 / 向心力
+% 原始文件：4.tex，行 637-677
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+	\begin{scope}
+		\tkzDefPoints{0/0/O, 0/3/a, -3/0/b, -1.93/-.31/F}
+		\tkzDefPoint(130:3){c}
+		\tkzDefPoint(130:1){F_n}
+		\tkzDrawArc[very thick](O,a)(b)
+		\tkzDefTangent[at=c](O)
+		\tkzGetPoint{h}
+		\tkzDrawLines[add=1.5 and 0](h,c)
+		\tkzDefPointBy[projection = onto c--h](F) \tkzGetPoint{F_1}
+		\tkzDefPointWith[linear, K=2.5](c,h)\tkzGetPoint{v}
+		\tkzDrawSegments[->](c,F_n c,F c,F_1 c,v)
+		\tkzDrawSegments[dashed](F,F_1 F,F_n)
+		\tkzLabelPoints[above left](F_1)
+		\tkzLabelPoints[below](F)
+		\tkzLabelPoints[right](F_n)
+		\tkzLabelPoints[above left](v)
+		\tkzMarkAngles[mark=none, size=.6](F_1,c,F)
+		\tkzLabelAngle[pos=.8](F_1,c,F){$\theta$}
+		\node at (-1.5,-1){甲};
+	\end{scope}
+	\begin{scope}[xshift=5cm]
+		\tkzDefPoints{0/0/O, 0/3/a, -3/0/b, -1.93/-.31/F}
+		\tkzDefPoint(130:3){c}
+		\tkzDefPoint(130:1){F_n}
+		\tkzDrawArc[very thick](O,a)(b)
+		\tkzDefTangent[at=c](O)
+		\tkzGetPoint{h}
+		\tkzDrawLines[add=0 and 2](h,c)
+		\tkzDefPointBy[projection = onto c--h](F) \tkzGetPoint{F_1}
+		\tkzDefPointWith[linear, K=3](h,c)\tkzGetPoint{v}
+		\tkzDrawSegments[->](c,F_n c,F c,F_1 c,v)
+		\tkzDrawSegments[dashed](F,F_1 F,F_n)
+		\tkzLabelPoints[above left](F_1)
+		\tkzLabelPoints[below](F)
+		\tkzLabelPoints[right](F_n,v)
+		\tkzMarkAngles[mark=none, size=.6](F,c,v)
+		\tkzLabelAngle[pos=.8](F,c,v){$\theta$}
+		\node at (-1.5,-1){乙};
+	\end{scope}
+\end{tikzpicture}

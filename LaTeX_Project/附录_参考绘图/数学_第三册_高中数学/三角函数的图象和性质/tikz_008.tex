@@ -1,0 +1,33 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：三角函数的图象和性质 / 余弦函数的图象和性质
+% 原始文件：7.tex，行 596-622
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, xscale=.6]
+\draw[->](-10,0)--(11,0)node[right]{$x$}; 
+\draw [->](0,-1.5)--(0,2)node[right]{$y$};
+    
+\draw[domain=-3*pi :3*pi,  samples=2000, very thick] plot(\x, {cos(\x r)});
+\foreach \x in {-3,-2.5,...,3}
+{
+    \draw (\x*pi,0)--(\x*pi,.1);
+}
+
+\foreach \x in {1,-1}
+{
+    \draw (0,\x)node[left]{$\x$}--(.2,\x);
+}
+
+
+\node at (-.2,-.2){$O$};
+\node at (-2.5*pi,0)[above]{$-\frac{5\pi}{2}$};
+\node at (-.5*pi,0)[above]{$-\frac{\pi}{2}$};
+\node at (2.5*pi,0)[above]{$\frac{5\pi}{2}$};
+\node at (-1.5*pi,0)[below]{$-\frac{3\pi}{2}$};
+\node at (.5*pi,0)[below]{$\frac{\pi}{2}$};
+\node at (1.5*pi,0)[below]{$\frac{3\pi}{2}$};
+
+\node at (3,1.5)[right]{$y=\cos x,\quad x\in \mathbb{R}$};
+
+\end{tikzpicture}

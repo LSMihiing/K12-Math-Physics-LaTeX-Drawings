@@ -1,0 +1,32 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 1769-1794
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+	\tkzDefPoints{0/0/O, -.5/2/A, .5/2/B}
+	\tkzDrawSegments(A,O B,O)
+	\tkzMarkAngles[mark=none, size=.7](B,O,A)
+	\tkzLabelAngle[pos=1.2](B,O,A){1}
+\end{scope}	
+\begin{scope}[xshift=3cm]
+	\tkzDefPoints{0/2/O, 0/0/A, -2/2/B}
+	\tkzDrawSegments(A,O B,O)
+	\tkzMarkAngles[mark=none, size=.4](B,O,A)
+	\tkzLabelAngle[pos=.6](B,O,A){2}
+\end{scope}	
+\begin{scope}[xshift=4cm]
+	\tkzDefPoints{0/1/O, 2/1.75/A, 2/.25/B}
+	\tkzDrawSegments(A,O B,O)
+	\tkzMarkAngles[mark=none, size=.4](B,O,A)
+	\tkzLabelAngle[pos=.6](B,O,A){3}
+\end{scope}	
+\begin{scope}[xshift=8.5cm]
+	\tkzDefPoints{0/1.5/O, 1.75/.5/A, -1.75/.5/B}
+	\tkzDrawSegments(A,O B,O)
+	\tkzMarkAngles[mark=none, size=.3](B,O,A)
+	\tkzLabelAngle[pos=.5](B,O,A){4}
+\end{scope}	
+\end{tikzpicture}

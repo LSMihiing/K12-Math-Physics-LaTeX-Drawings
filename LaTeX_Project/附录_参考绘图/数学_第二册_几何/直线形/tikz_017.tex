@@ -1,0 +1,41 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 461-495
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.8]
+\begin{scope}
+\tkzDefPoints{0/0/B, 3.6/0/F, 5.5/0/C, 4.5/3/A}
+\tkzDrawPolygon(A,B,C)
+\draw(A)--(F);
+\tkzMarkAngles[mark=none, size=.5](B,A,F) 
+\tkzMarkAngles[mark=none, size=.6](F,A,C)
+\tkzLabelAngle[pos=.7](B,A,F) {1}
+\tkzLabelAngle[pos=.75](F,A,C) {2}
+
+\tkzLabelPoints[below](C, F, B)
+\tkzLabelPoint(A){$A$}
+\node at (2.7,-1){(1)};
+\end{scope}
+\begin{scope}[xshift=7cm]
+    \tkzDefPoints{0/0/B, 2/0/E, 4/0/C, 4.5/3/A}
+    \tkzDrawPolygon(A,B,C)
+    \tkzLabelPoints[below](C, E, B)
+    \tkzLabelPoint(A){$A$}
+    \draw(E)--(A);
+    \node at (2.2,-1){(2)};
+\end{scope}    
+\begin{scope}[yshift=-5cm]
+\draw (0,0)node[below]{$B$}--(5.5,0)node[below]{$C$}--(4.5,3)node[above]{$A$}--(0,0);
+\tkzDefPoints{4.5/3/A1, 4.5/0/D1, 5.5/0/C1}
+\tkzMarkRightAngle(A1,D1,C1)
+\draw(4.5,3)--(4.5,0)node[below]{$D$};
+\draw(11,3)--(11,0)node[below]{$D$};
+\draw[dashed](9,0)--(12,0);
+\draw (7,0)node[below]{$B$}--(9.5,0)node[below]{$C$}--(11,3)node[above]{$A$}--(7,0);
+\tkzDefPoints{11/3/A2, 11/0/D2, 9.5/0/C2}
+\tkzMarkRightAngle(A2,D2,C2)
+\node at (6,-1){(3)};
+\end{scope}
+\end{tikzpicture}

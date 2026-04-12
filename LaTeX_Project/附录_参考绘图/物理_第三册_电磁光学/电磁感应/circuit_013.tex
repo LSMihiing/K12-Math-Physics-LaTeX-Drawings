@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：电磁感应 / 涡流
+% 原始文件：2.tex，行 773-783
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european, scale=.7]
+\foreach \x in {-3,-2,...,3}
+   \foreach \y in {-1,0,1}
+{
+   \node at (\x,\y){$\times$};
+}
+
+\draw (-4,-1.5)--(4,-1.5) to [R=$R_2$] (4,1.5)--(-4,1.5) to [R=$R_1$] (-4,-1.5);
+\draw [ultra thick] (.5,-1.8)node[right]{$B$}--(.5,1.8)node[right]{$A$};
+
+\end{circuitikz}

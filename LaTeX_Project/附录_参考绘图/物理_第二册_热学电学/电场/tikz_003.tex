@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：电场 / 电势能
+% 原始文件：6.tex，行 614-623
+% 类型：tikz
+% ---
+			\begin{tikzpicture}[>=stealth, thick]
+	\foreach \x in {0,45,90,...,315}
+	{
+		\draw [->](0:0)--(\x: 1.5);
+		\draw (\x:1.5)--(\x: 2);
+	}
+	\draw (0,0) [fill=white] circle (.4);
+	\draw (1.2,0) [fill=black] circle (1.5pt)node[below]{$B$};\draw (.7,0) [fill=black] circle (1.5pt)node[below]{$A$};
+\node at (0,0){$+Q$};
+		\end{tikzpicture}

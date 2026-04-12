@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电感电路
+% 原始文件：3.tex，行 483-493
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(3,0);
+        \draw (3,3) to [cute choke] (3,0);
+        \draw (0,3)--(1,3) to [rmeter, t=A] (3,3);
+        \node at (2.7,1.5){$L$};
+        \draw (1,0) to [rmeter, t=V, *-*] (1,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+    \end{circuitikz}

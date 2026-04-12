@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第三册（高中数学）
+% 章节：二次函数 / 和二次函数有关的课题
+% 原始文件：5.tex，行 1128-1139
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex]
+ \draw[->] (-3,0)--(3,0)node[right]{$x$};
+\draw[->] (0,-3)--(0,2)node[right]{$y$};
+\draw[dashed] (-.5,-3)--(-.5,2);
+\draw [domain=-3:2, samples=100, thick]plot(\x, {-0.5*(\x*\x+\x-2)});
+\foreach \x in {-2,1}
+{
+    \node at (\x, 0)[below]{$\x$};
+}
+\node at (-.5,0)[below]{$x_0$};
+\node at (.25,-.25){$O$};       
+    \end{tikzpicture}

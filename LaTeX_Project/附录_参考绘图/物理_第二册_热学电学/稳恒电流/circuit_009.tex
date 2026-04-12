@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 并联电路
+% 原始文件：7.tex，行 456-465
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european,>=latex]
+\draw(0,2)to [R] (6,2);  \draw [->](0,2)--(2,2)node [above]{$I$};
+\draw(0,0)to [R] (6,0);  \draw [->](0,0)--(.5,0)node [above]{$I$};
+\draw [->](1,0)--(1.75,0)node [above]{$I_1$};
+\draw [->](1,-1)--(1.75,-1)node [above]{$I_2$};
+\draw (1,0)--(1,-1) to [R=$R$] (5,-1)--(5,0);
+\draw [fill=black](1,0) circle (2pt);
+\draw [fill=black](5,0) circle (2pt);
+
+    \end{circuitikz}

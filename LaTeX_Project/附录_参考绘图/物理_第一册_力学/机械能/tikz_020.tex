@@ -1,0 +1,32 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第一册（力学）
+% 章节：机械能 / 机械能守恒定律
+% 原始文件：7.tex，行 702-727
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+    \fill [pattern = north east lines] (-.5,0) rectangle (.5,0.2);
+\draw (-.5,0)--(.5,0);
+    \draw (0,0)--(0,-4);
+    \draw (0,-.5) arc (-90:-45:.5)node[below]{$\theta$};
+    \draw [dashed] (0,0)--(-45:4)--(-135:4)--(0,0);
+    \draw[dashed] (0,-4) arc (-90:-45:4);
+    \draw[dashed] (0,-4) arc (-90:-135:4);
+
+    \draw[dashed] (0,-1) --(-2.2,-4/1.414);
+\draw[dashed] (0,-2) --(-1.5,-4/1.414);
+\draw[dashed] (-2.2,-4/1.414) to [bend right=25] (0,-4);
+\draw[dashed] (-1.6,-4/1.414) to [bend right=30] (0,-4);
+
+\draw[fill=black] (0,-1) circle (1.5pt)node[right]{1};
+\draw[fill=black] (0,-2) circle (1.5pt)node[right]{2};
+
+\draw [fill=white] (-45:4) circle (3pt)node[below]{$B$};
+\draw [fill=white] (-135:4) circle (3pt)node[above]{$C$};
+\draw [fill=white] (0,-4) circle (3pt)node[below]{$O$};
+\draw [fill=white] (-2.2,-4/1.414) circle (3pt)node[above]{$C_1$};
+\draw [fill=white] (-1.6,-4/1.414) circle (3pt)node[above]{$C_2$};
+
+\draw [|<->|](.18,.18) to node [fill=white]{$\ell$} (2*1.414+.18, -2*1.414+.18) ;
+
+\end{tikzpicture}

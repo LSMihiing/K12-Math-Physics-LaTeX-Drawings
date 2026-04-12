@@ -1,0 +1,40 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 2848-2881
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\tkzDefPoints{0/0/B, 5/0/C, 3.5/3.5/A, 2.5/1.5/D}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegments(B,D C,D)
+\tkzMarkAngles[mark=none, size=.4](A,C,D B,A,C B,D,C)
+\tkzMarkAngles[mark=none, size=1.2](D,B,A)
+\tkzLabelAngle[pos=1.6](D,B,A){$23^{\circ}$}
+\tkzLabelAngle[pos=.6](A,C,D){$39^{\circ}$}
+\tkzLabelAngle[pos=.6](B,A,C){$70^{\circ}$}
+\tkzLabelAngle[pos=.6](B,D,C){$x$}
+\tkzLabelPoints[below](B,C)
+\tkzLabelPoints[above](A)
+
+\end{scope}
+\begin{scope}[xshift=6cm, yshift=1cm]
+    \tkzDefPoints{0/0/B, 4/-1/C, 0/1/A, 3/2.5/E, 4.5/1/D}
+    \tkzDrawPolygon(A,B,C,D,E)
+    \tkzLabelPoints[below](B,C)
+    \tkzLabelPoints[above](E)
+    \tkzLabelPoints[right](D)
+    \tkzLabelPoints[left](A)
+    \tkzMarkAngles[mark=none, size=.3](C,B,A B,A,E A,E,D E,D,C)
+\tkzMarkRightAngle(D,C,B)
+\tkzLabelAngle[pos=.6](C,B,A){$105^{\circ}$}
+\tkzLabelAngle[pos=.6](A,E,D){$120^{\circ}$}
+\tkzLabelAngle[pos=.6](B,A,E){$x$}
+\tkzLabelAngle[pos=.6](E,D,C){$107^{\circ}$}
+\tkzDefPointWith[linear, K=1.8](E,D) \tkzGetPoint{F}
+\tkzDrawSegments[dashed](D,F)
+\tkzMarkAngles[mark=none, size=.45](C,D,F)
+\tkzLabelAngle[pos=.6](C,D,F){$y$}
+\end{scope}
+\end{tikzpicture}

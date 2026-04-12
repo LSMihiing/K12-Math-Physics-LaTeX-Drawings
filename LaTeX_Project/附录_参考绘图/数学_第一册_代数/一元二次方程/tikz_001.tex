@@ -1,0 +1,36 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：一元二次方程 / 平方与平方根
+% 原始文件：3.tex，行 57-86
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.7]
+\draw(0,0) rectangle (6,6);
+\draw(0,2)--(6,2);    
+\draw(2,0)--(2,6);
+\fill [pattern=north west lines] (2,0) rectangle (6,2);
+\fill [pattern=north east lines] (0,2) rectangle (2,6);
+\node at (1,4)[fill=white]{$ab$};
+\node at (4,1)[fill=white]{$ab$};
+\node at (1,1)[fill=white]{$b^2$};
+\node at (4,4)[fill=white]{$a^2$};
+
+\foreach \x/\xtext in {0/C,2/F,6/B}
+{
+    \node at (\x, 0) [below]{$\xtext$};
+}
+\foreach \x/\xtext in {0/D,2/H,6/A}
+{
+    \node at (\x, 6) [above]{$\xtext$};
+}
+\node at (0,2)[left]{$G$};
+\node at (6,2)[right]{$E$};
+
+\foreach \x/\xtext in {1/b,4/a}
+{
+    \node at (\x, 6) [above]{$\xtext$};
+    \node at (6,\x) [right]{$\xtext$};
+}
+
+\node at (2.4,2.4){$M$};
+\end{tikzpicture}

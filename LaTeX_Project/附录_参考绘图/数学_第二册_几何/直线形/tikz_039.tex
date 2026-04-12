@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 1360-1369
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+    \tkzDefPoint(-60:2){C}
+    \tkzDefPoint(180-60:1){A}
+    \tkzDefPoint(-140:2.8){B}
+    \tkzDefPoint(-.25,-.5){P}
+    \tkzDrawPolygon(A,C,B)
+    \draw(B)--(P)--(C);
+\tkzAutoLabelPoints[center=P](A,B,C)
+\node at (P)[above]{$P$};
+    \end{tikzpicture}

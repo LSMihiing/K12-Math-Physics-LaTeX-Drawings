@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：集合与简易逻辑 / 简易逻辑
+% 原始文件：2.tex，行 1530-1549
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoint(0:3){A}
+\tkzDefPoint(60:3){C}
+\tkzDefPoint(30:3){B}
+\tkzDefPoint(20:3){A1}
+\tkzDefPoint(50:3){A2}
+\tkzDefPoint(0,0){O}
+\tkzDrawSegments(O,A O,B O,C O,A1 O,A2)
+\tkzLabelPoints[right](A,B,C)
+\node at (-.2,-.2){$O$};
+
+\draw(1,0) arc (0:20:1);
+\draw(20:1.5) arc (20:30:1.5);
+\draw(30:1) arc (30:50:1);
+\draw(50:1.5) arc (50:60:1.5);
+\node at (10:1.2){1};
+\node at (25:1.8){2};
+\node at (40:1.2){3};
+\node at (55:1.8){4};
+    \end{tikzpicture}

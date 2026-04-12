@@ -1,0 +1,41 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 面积与勾股定理
+% 原始文件：3.tex，行 4906-4940
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=.6]
+\tkzDefPoints{0/0/B, 3/0/C, 0/4/A}
+\tkzLabelPoints[below left](B)
+\tkzLabelPoints[below right](C)
+\tkzLabelPoints[above](A)
+
+\tkzInit[xmin=0,xmax=3,ymin=-3, ymax=0]
+\tkzGrid
+\tkzDefSquare(B,A)  \tkzGetPoints{A'}{B'}
+\tkzDrawPolygon[thick](A,B,B',A')
+\tkzInit[xmin=-4,xmax=0,ymin=0, ymax=4]
+\tkzGrid
+\tkzDefSquare(C,B)  \tkzGetPoints{B''}{C'}
+\tkzDrawPolygon[thick](C,B,B'',C')
+\tkzDefSquare(A,C)  \tkzGetPoints{A''}{C''}
+\tkzDrawPolygon[thick](A,C,A'',C'')
+\foreach \x in {1,2,3,4}
+{
+    \tkzDefPointWith[linear, K=\x/5](A,C) \tkzGetPoint{A\x}
+    \tkzDefPointWith[linear, K=\x/5](C'',A'') \tkzGetPoint{C\x}
+    \tkzDefPointWith[linear, K=\x/5](C,A'') \tkzGetPoint{B\x}
+    \tkzDefPointWith[linear, K=\x/5](A,C'') \tkzGetPoint{D\x}
+}
+
+\foreach \x in {1,2,3,4}
+{
+    \tkzDrawSegments[gray](A\x,C\x)
+    \tkzDrawSegments[gray](B\x,D\x)
+}
+
+\node at (1.5,0)[above]{3};
+\node at (0,2)[right]{4};
+\node at (1.5,2)[left]{5};
+
+    \end{tikzpicture}

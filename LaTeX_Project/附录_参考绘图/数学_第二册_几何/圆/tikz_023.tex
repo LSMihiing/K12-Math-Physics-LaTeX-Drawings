@@ -1,0 +1,25 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 800-818
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\tkzDefPoints{0/0/O, 2/0/E}
+\tkzDefPoint(70:2){A}
+\tkzDefPoint(-70:2){D}
+\tkzDefPoint(-20:2){B}
+\tkzDefPoint(20:2){C}
+\tkzDefMidPoint(A,B)\tkzGetPoint{M}
+\tkzDefMidPoint(C,D)\tkzGetPoint{N}
+\tkzInterLL(O,E)(A,B)\tkzGetPoint{F}
+\tkzLabelPoints[left](O)
+\tkzAutoLabelPoints[center=O](A,B,C,D,E)
+\tkzDrawSegments[thick](O,M O,N A,B C,D O,E)
+\tkzDrawCircle[very thick](O,A)
+\tkzLabelPoints[above](F)
+\tkzLabelPoints[above](M)
+\tkzLabelPoints[below](N)
+
+
+\end{tikzpicture}

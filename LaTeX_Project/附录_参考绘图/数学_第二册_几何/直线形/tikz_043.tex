@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 三角形
+% 原始文件：3.tex，行 1434-1445
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-1.5/0/B, 1.5/0/C, -.75/0/D, .75/0/E, 0/3/A}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegments(A,E A,D)
+\tkzLabelPoints[left](B)
+\tkzLabelPoints[right](C)
+\tkzLabelPoints[above](A)
+\tkzLabelPoints[below](D,E)
+\tkzMarkAngles[mark=none, size=.3](C,D,A A,E,B)
+\tkzLabelAngle[pos=.5](C,D,A){1}
+\tkzLabelAngle[pos=.5](A,E,B){2}
+    \end{tikzpicture}

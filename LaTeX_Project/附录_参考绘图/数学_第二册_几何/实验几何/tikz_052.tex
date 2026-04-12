@@ -1,0 +1,40 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 方向、角度与平行
+% 原始文件：1.tex，行 1819-1852
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+\tkzDefPoints{0/0/O}
+\tkzDefPoint(-15:3){A}
+\tkzDefPoint(10:3){B}
+\tkzMarkAngles[size=.5, mark=none](A,O,B)
+\tkzLabelAngle[pos=.8](A,O,B){1}
+\tkzDrawSegments(A,O B,O)
+\end{scope}
+\begin{scope}[xshift=7cm]
+	\tkzDefPoints{0/0/O}
+\tkzDefPoint(15:2.5){A}
+\tkzDefPoint(160:2.5){B}
+\tkzMarkAngles[size=.3, mark=none](A,O,B)
+\tkzDrawSegments(A,O B,O)
+\tkzLabelAngle[pos=.5](A,O,B){2}
+\end{scope}
+\begin{scope}[xshift=2cm, yshift=-1.5cm]
+	\tkzDefPoints{0/0/O}
+\tkzDefPoint(-140:2.5){A}
+\tkzDefPoint(-50:2.5){B}
+\tkzMarkAngles[size=.3, mark=none](A,O,B)
+\tkzLabelAngle[pos=.5](A,O,B){3}
+\tkzDrawSegments(A,O B,O)
+\end{scope}
+\begin{scope}[xshift=7cm, yshift=-3.5cm]
+	\tkzDefPoints{0/0/O}
+\tkzDefPoint(85:2.5){A}
+\tkzDefPoint(120:2.5){B}
+\tkzMarkAngles[size=.4, mark=none](A,O,B)
+\tkzLabelAngle[pos=.6](A,O,B){4}
+\tkzDrawSegments(A,O B,O)
+\end{scope}
+\end{tikzpicture}

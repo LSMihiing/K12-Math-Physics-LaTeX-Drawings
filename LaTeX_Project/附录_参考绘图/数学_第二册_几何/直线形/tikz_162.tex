@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 相似形
+% 原始文件：3.tex，行 6284-6304
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=.8]
+\begin{scope}
+\draw[thick](0,0)--node[above]{$c$}(2,0);
+\draw[thick](0,1)--node[above]{$b$}(1.5,1);
+\draw[thick](0,2)--node[above]{$a$}(1.75,2);
+\end{scope}
+\begin{scope}[xshift=2.5cm]
+\tkzDefPoints{0/0/A, 5/0/C, 4.5/3/B}
+\tkzDefPointWith[linear, K=.35](A,B) \tkzGetPoint{D}
+\tkzDefPointWith[linear, K=.6](A,B) \tkzGetPoint{E}
+\tkzDefPointWith[linear, K=.5](A,C) \tkzGetPoint{F}
+\tkzDefPointsBy[translation= from D to E](F){G'}
+\tkzInterLL(E,G')(A,C) \tkzGetPoint{G}
+\tkzDrawSegments(A,B A,C D,F E,G)
+\tkzLabelPoints[below](A,F,G,C)
+\tkzLabelPoints[above](D,E,B)
+\tkzLabelSegment[above](A,D){$a$}
+\tkzLabelSegment[above](E,D){$b$}
+\tkzLabelSegment[below](A,F){$c$}
+\end{scope}
+    \end{tikzpicture}

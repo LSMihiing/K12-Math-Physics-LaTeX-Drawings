@@ -1,0 +1,17 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第二册（热学·电学）
+% 章节：稳恒电流 / 电动势~~闭合电路的欧姆定律
+% 原始文件：7.tex，行 935-945
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+\draw(0,0) to [battery2] (5,0) to [rmeter, t=A, -*](5,2) -- (5,3);
+\node at (2.5,-.5)[below]{$\mathcal{E}\;  r$};
+\draw (5,2) to  [R=$R_2$] (1.5,2);
+\draw (5,3) to  [R=$R_1$] (1.5,3);
+\draw [fill=white](1.5,2) circle (2pt) node [above]{2};
+\draw [fill=white](1.5,3) circle (2pt)node [above]{1};
+\draw [very thick](.9,2.5)--(1.5,2.9);
+\draw (0,0)--(0,2.5)--(.9,2.5)node [below]{$K$};
+\draw [fill=white](.9,2.5) circle (2pt);
+    \end{circuitikz}

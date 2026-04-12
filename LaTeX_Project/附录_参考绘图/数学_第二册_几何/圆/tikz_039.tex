@@ -1,0 +1,27 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 1689-1709
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[>=latex, scale=.7]
+\tkzDefPoints{0/0/I}
+  \tkzDefPoint(15:1.5){E}
+  \tkzDefPoint(135:1.5){F}
+  \tkzDefPoint(-90:1.5){D}
+  \tkzLabelPoints[above](I)
+  \tkzDefTangent[at=E](I) \tkzGetPoint{a'}
+  \tkzDefTangent[at=F](I) \tkzGetPoint{b'}
+  \tkzDefTangent[at=D](I) \tkzGetPoint{c'}
+  \tkzInterLL(E,a')(F,b')\tkzGetPoint{A}
+  \tkzInterLL(D,c')(F,b')\tkzGetPoint{B}
+  \tkzInterLL(D,c')(E,a')\tkzGetPoint{C}
+  \tkzLabelPoints[below](B,D,C)
+  \tkzLabelPoints[above](A)
+  \tkzLabelPoints[left](F)
+  \tkzLabelPoints[right](E)
+  \tkzDrawPolygon[thick](A,B,C)
+  \tkzDrawSegments[dashed](B,I C,I A,I)
+  \tkzDrawSegments[thick](I,F I,D I,E)
+  \tkzDrawCircle[thick](I,E)
+    \end{tikzpicture}

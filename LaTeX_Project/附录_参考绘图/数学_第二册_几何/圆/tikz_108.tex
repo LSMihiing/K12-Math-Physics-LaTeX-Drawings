@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与正多边形
+% 原始文件：4.tex，行 4763-4774
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{-2.5/0.5/A_1, 2.5/0.5/B_1, -1.5/2.25/D_1, 1.5/2.25/C_1}
+\tkzDrawPolygon[pattern=bricks](A_1,B_1,C_1,D_1)
+\fill[white] (-1.75,0) arc (180:0:1.75);
+\tkzDefPoints{0/1.75/C, 0/.5/D, 0/0/O}
+\tkzInterLC(A_1,B_1)(O,C) \tkzGetPoints{A}{B}
+\tkzDrawSegments[dashed](A,B C,D)
+\tkzLabelPoints[below](A,B,D)
+\tkzLabelPoints[below right](C)
+\draw(C) arc (90:90-73.4:1.75);
+\draw(C) arc (90:90+73.4:1.75);
+    \end{tikzpicture}

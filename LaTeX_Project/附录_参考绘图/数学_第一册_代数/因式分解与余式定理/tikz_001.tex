@@ -1,0 +1,19 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第一册（代数）
+% 章节：因式分解与余式定理 / 因式分解
+% 原始文件：5.tex，行 469-481
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+\node (A) at (0,0) {$u$};
+\node (B) at (2,0) {$r$};
+\node (C) at (0,-2) {$v$};
+\node (D) at (2,-2) {$s$};    
+\draw[->,thick] (A)--(D);
+\draw[->,very thick] (B)--(C);
+\draw [->] (A)--node[left]{$u\cdot v=a$}(C);
+\draw [->] (B)--node[right]{$r\cdot s=c$}(D);
+\draw (-.5,-2.25)--(2.5,-2.25);
+\node at (1,-2.75){$\Downarrow$};
+\node at (1,-3.25){$vr+us=b$};
+\end{tikzpicture}    

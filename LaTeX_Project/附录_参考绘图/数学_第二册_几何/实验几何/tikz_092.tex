@@ -1,0 +1,44 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 相似和相似比
+% 原始文件：1.tex，行 3131-3168
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=.5]
+	\begin{scope}
+\tkzDefPoints{0/0/A,3/0/B, 2/2/C}
+\tkzDrawPolygon(A,B,C)
+\tkzLabelPoints[below](A,B)
+\tkzLabelPoints[above](C)
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\tkzDefPoints{0/0/A',9/0/B', 6/6/C'}
+\tkzDrawPolygon(A',B',C')
+\tkzLabelPoints[below](A',B')
+\tkzLabelPoints[above](C')
+\tkzDefPointWith[linear, K=.333](A',B') \tkzGetPoint{M_1}
+\tkzDefPointWith[linear, K=.667](A',B') \tkzGetPoint{M_2}
+
+\tkzDefPointWith[linear, K=.333](A',C') \tkzGetPoint{M_1'}
+\tkzDefPointWith[linear, K=.667](A',C') \tkzGetPoint{M_2'}
+
+\tkzDefPointWith[linear, K=.333](C',B') \tkzGetPoint{M_1''}
+\tkzDefPointWith[linear, K=.667](C',B') \tkzGetPoint{M_2''}
+\tkzDrawSegments(M_2'',M_1' M_1'',M_2' M_1,M_1' M_2,M_2' M_1'',M_1 M_2'',M_2)
+\tkzInterLL(M_1'',M_1)(M_2,M_2') \tkzGetPoint{O}
+\tkzLabelPoints[below](M_1,M_2,O)
+\tkzLabelPoints[left](M_1',M_2')
+\tkzLabelPoints[right](M_1'',M_2'')
+\end{scope}
+\begin{scope}[xshift=15cm]
+\tkzDefPoints{0/0/A'',3/0/B, 2/2/C}
+\tkzDefPointWith[linear, K=2](A'',B) \tkzGetPoint{B''}
+\tkzDefPointWith[linear, K=2](A'',C) \tkzGetPoint{C''}
+\tkzDrawPolygon(A'',B'',C'')
+\tkzDefMidPoint(C'',B'') \tkzGetPoint{D}
+\tkzDrawPolygon(D,B,C)
+\tkzLabelPoints[above](C'')
+\tkzLabelPoints[below](A'', B'')
+
+\end{scope}
+\end{tikzpicture}

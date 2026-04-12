@@ -1,0 +1,20 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆的基本性质
+% 原始文件：4.tex，行 571-584
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoints{0/0/O, 0/3.5/C, 0/-1/D, 0/2/E}
+\tkzDefPoint(30:2){B}
+\tkzDefPoint(150:2){A}
+\tkzDrawLines[add=.1 and .1](C,D)
+\tkzLabelPoints[right](C,D)
+\tkzLabelPoints[below](A,B)
+\tkzLabelPoints[below right](E)
+\tkzDrawArc[thick, color=black](O,B)(A)
+\tkzDrawSegments[thick](A,B)
+\tkzCompasss(A,C B,C A,D B,D)
+
+
+    \end{tikzpicture}

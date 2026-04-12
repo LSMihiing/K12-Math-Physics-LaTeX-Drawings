@@ -1,0 +1,18 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：光的反射和折射 / 球面镜
+% 原始文件：5.tex，行 586-597
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex]
+        \fill [pattern=north east lines] (-2,-1)--(-2.2,-1) to [bend left=30] (-2.2,1) --(-2,1) to [bend left=-30]
+        (-2,-1);
+\draw [thick](-2,1) to [bend left=-30] (-2,-1);
+ 
+\fill [pattern=north east lines] (2,-1)--(2.2,-1) to [bend left=-30] (2.2,1) --(2,1) to [bend left=30](2,-1);
+\draw [thick](2,1) to [bend left=30] (2,-1);
+\draw [dashed] (-2.3,0)--(2.3,0);
+\node at (-2.1,0)[below]{$P_1$};\node at (2.1,0)[below]{$P_2$};
+\node at (-2.2,1)[above]{$M_1$};\node at (2.2,1)[above]{$M_2$};
+\draw (-.5,.7)--node[above]{$a$}(2.15,.7);
+        \end{tikzpicture}

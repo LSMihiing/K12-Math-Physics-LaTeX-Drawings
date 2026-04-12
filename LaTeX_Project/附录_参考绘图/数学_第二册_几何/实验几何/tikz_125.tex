@@ -1,0 +1,14 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：实验几何 / 基本作图
+% 原始文件：1.tex，行 4438-4445
+% 类型：tikz
+% ---
+	\begin{tikzpicture}[>=latex, scale=1.3]
+\tkzDefPoints{0/0/B, 4/0/C, 1/1.732/A, 1/0/D}
+\tkzDrawPolygon(A,B,C)
+\tkzDrawSegments(A,D)
+\tkzMarkRightAngles[size=.15](A,D,C B,A,C)
+\tkzLabelPoints[below](B,C,D)
+\tkzLabelPoints[above](A)
+	\end{tikzpicture}

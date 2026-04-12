@@ -1,0 +1,26 @@
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 感应电动机
+% 原始文件：3.tex，行 1975-1994
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european, scale=.8]
+\draw (0,0)--(3,0)--(5,0)--(7,0);
+\draw (0,4)to [R=$R$](3,4)--(5,4)--(7,4);
+\ctikzset{diodes/scale=0.6}\draw (3,4) to [full diode ] (3,2) to [battery] (3,0);
+\ctikzset{diodes/scale=0.6}\draw (5,0) to  [battery] (5,2) to [full diode ](5,4);
+
+\node at (2.3,3){$D_1$};\node at (5.7,3){$D_2$};
+
+\draw [fill=white] (0,0) circle (2.5pt);
+\draw [fill=white] (0,4) circle (2.5pt);
+\draw [fill=white] (7,0) circle (2.5pt);
+\draw [fill=white] (7,4) circle (2.5pt);
+\draw [fill=black] (3,0) circle (2.5pt);
+\draw [fill=black] (3,4) circle (2.5pt);
+\draw [fill=black] (5,0) circle (2.5pt);
+\draw [fill=black] (5,4) circle (2.5pt);
+
+\draw[<->](0,.1) to node [fill=white]{$u_1$} (0,3.9);
+\draw[<->](7,.1) to node [fill=white]{$u_2$} (7,3.9);
+\end{circuitikz}

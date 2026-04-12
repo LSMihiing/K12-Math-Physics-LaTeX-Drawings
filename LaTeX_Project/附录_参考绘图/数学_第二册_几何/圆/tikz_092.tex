@@ -1,0 +1,30 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与正多边形
+% 原始文件：4.tex，行 3953-3976
+% 类型：tikz
+% ---
+\begin{tikzpicture}[scale=1.5]
+\tkzDefPoints{0/0/O}
+\tkzDefPoint(22.5:1.5){A}
+\tkzDefPoint(67.5:1.5){B}
+\tkzDefPoint(112.5:1.5){C}
+\tkzDefPoint(157.5:1.5){D}
+\tkzDefPoint(-157.5:1.5){A'_n}
+\tkzDefPoint(-112.5:1.5){A'_1}
+\tkzDefPoint(-67.5:1.5){A'_2}
+\tkzDefPoint(-22.5:1.5){A'_3}
+\tkzDefMidPoint(A,B) \tkzGetPoint{A'}
+\tkzDefMidPoint(C,B) \tkzGetPoint{B'}
+\tkzDefMidPoint(C,D) \tkzGetPoint{C'}
+\tkzDefMidPoint(D,A'_n) \tkzGetPoint{A_n}
+\tkzDefMidPoint(A'_n,A'_1) \tkzGetPoint{A_1}
+\tkzDefMidPoint(A'_1,A'_2) \tkzGetPoint{A_2}
+\tkzDefMidPoint(A'_2,A'_3) \tkzGetPoint{A_3}
+\tkzDefMidPoint(A,A'_3) \tkzGetPoint{H'}
+\tkzDrawPolygon[very thick](A,B,C,D,A'_n,A'_1,A'_2,A'_3)
+\tkzDrawPolygon[thick](A',B',C',A_n,A_1,A_2,A_3,H')
+\tkzDrawCircles(O,A')
+\tkzAutoLabelPoints[center=O](A_n,A_1,A_2,A_3,A'_n,A'_1,A'_2,A'_3)
+
+\end{tikzpicture}

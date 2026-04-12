@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 与圆有关的角
+% 原始文件：4.tex，行 2953-2967
+% 类型：tikz
+% ---
+    \begin{tikzpicture}[>=latex, scale=1]
+  \tkzDefPoints{-1/0/A, 1/0/B, 0/.75/O, 0/-.75/O'}
+  \tkzDrawArc[thick, color=black](O,B)(A)
+  \tkzDrawArc[thick, color=black](O',A)(B)
+  \tkzDefPoints{-.3/1.95/m, -.7/-1.75/m'}
+  \tkzDrawPolygon[thick](A,B,m)
+  \tkzDrawPolygon[thick](A,B,m')
+  \tkzLabelPoints[above](m)
+  \tkzLabelPoints[below](m')
+  \tkzLabelPoints[left](A)
+  \tkzLabelPoints[right](B)
+  \tkzMarkAngles[size=.4, mark=none](A,m,B B,m',A)
+  \tkzLabelAngle[pos=.6](A,m,B){$\alpha$}
+  \tkzLabelAngle[pos=.6](B,m',A){$\alpha$}
+  \end{tikzpicture}

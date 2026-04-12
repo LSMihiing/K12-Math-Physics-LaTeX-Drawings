@@ -1,0 +1,16 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：圆 / 圆与直线的位置关系
+% 原始文件：4.tex，行 2214-2223
+% 类型：tikz
+% ---
+  \begin{tikzpicture}[scale=.8]
+  \tkzDefPoints{-2/0/O, 1/0/O', -.3/0/A}
+  \tkzDrawCircles[thick](O,A O',A)
+  \tkzLabelPoints[below](O,O')
+  \tkzLabelPoints[above left](A)
+  \tkzDrawPoints(O,O')
+  \tkzDrawLines[add=1 and 1](O,O')
+  \draw(-.3,2)--(-.3,-2)node[right]{$B$};
+  
+  \end{tikzpicture}

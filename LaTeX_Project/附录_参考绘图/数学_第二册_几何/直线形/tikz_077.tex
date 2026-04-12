@@ -1,0 +1,36 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 2497-2526
+% 类型：tikz
+% ---
+\begin{tikzpicture}[>=latex, scale=1]
+\tkzDefPoint(20:1.5){B}
+\tkzDefPoint(20+60:1.5){C}
+\tkzDefPoint(20+120:1.5){D}
+\tkzDefPoint(20+180:1.5){E}
+\tkzDefPoint(20+240:1.5){F}
+\tkzDefPoint(-40:1.5){A}
+\tkzDrawPolygon(A,B,C,D,E,F)
+\tkzDefPointWith[linear, K=1.75](A,B)  \tkzGetPoint{B1}
+\tkzDefPointWith[linear, K=1.75](B,C)\tkzGetPoint{C1}
+\tkzDefPointWith[linear, K=1.75](C,D)\tkzGetPoint{D1}
+\tkzDefPointWith[linear, K=1.75](D,E)\tkzGetPoint{E1}
+\tkzDefPointWith[linear, K=1.75](E,F)\tkzGetPoint{F1}
+\tkzDefPointWith[linear, K=1.75](F,A)\tkzGetPoint{A1}
+
+\tkzDrawSegments(A,A1 B,B1 C,C1 D,D1 E,E1 F,F1)
+\tkzMarkAngles[mark=none, size=.4](B1,B,C1 C1,C,D1 D1,D,E1 E1,E,F1 F1,F,A A1,A,B1)
+\tkzMarkAngles[mark=none, size=.25](F,E,D E,D,C D,C,B C,B,A B,A,F A,F,E)
+
+\tkzLabelAngle[pos=.5](F,E,D){$\alpha_1$}
+\tkzLabelAngle[pos=.5](A,F,E){$\alpha_2$}
+\tkzLabelAngle[pos=.5](B,A,F){$\alpha_3$}
+\tkzLabelAngle[pos=.5](C,B,A){$\alpha_4$}
+\tkzLabelAngle[pos=.5](E,D,C){$\alpha_n$}
+\tkzLabelAngle[pos=.7](E1,E,F1){$\alpha_1'$}
+\tkzLabelAngle[pos=.7](F1,F,A){$\alpha_2'$}
+\tkzLabelAngle[pos=.7](A1,A,B1){$\alpha_3'$}
+\tkzLabelAngle[pos=.7](B1,B,C1){$\alpha_4'$}
+\tkzLabelAngle[pos=.7](D1,D,E1){$\alpha_n'$}
+    \end{tikzpicture}

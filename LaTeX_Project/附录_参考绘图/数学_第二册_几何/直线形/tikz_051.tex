@@ -1,0 +1,21 @@
+% !TEX root = ../../../main.tex
+% 来源：中学数学实验教材·第二册（几何）
+% 章节：直线形 / 平行线与内角和定理
+% 原始文件：3.tex，行 1709-1723
+% 类型：tikz
+% ---
+\begin{tikzpicture}
+\begin{scope}
+    \foreach \x/\xtext in {0/c,1/b,2/a}
+    {
+        \draw(0,\x)--node[above]{$\xtext$}(3,\x);
+    }
+\end{scope}
+\begin{scope}[xshift=5cm]
+    \foreach \x/\xtext in {0/c,1/b,2/a}
+    {
+        \draw(0,\x)--node[above]{$\xtext$}(3,\x);
+    }
+\draw[dashed](3,1)--(4.5,1.5)node[right]{$P$}--(3,2);
+\end{scope}
+\end{tikzpicture}
