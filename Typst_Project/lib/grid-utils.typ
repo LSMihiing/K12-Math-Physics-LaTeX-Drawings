@@ -39,7 +39,7 @@
 ) = {
   import cetz.draw: *
   let (px, py) = pos
-  let d = 0.3
+  let d = 0.5
   let (dx, dy) = if dir == "n" { (0, d) }
     else if dir == "s" { (0, -d) }
     else if dir == "e" { (d, 0) }
