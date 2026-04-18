@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="K12 教辅绘图前端引擎 — 使用 HTML5 Canvas 绘制数学、物理试题答案图">
+  <title>李世明 · K12 教辅绘图绘制</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- KaTeX 数学公式渲染 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- ======== Header ======== -->
+    <header class="app-header">
+      <div class="app-logo">
+        <div class="logo-icon">K</div>
+        <h1>K12 教辅绘图引擎 <span>Canvas Edition</span></h1>
+      </div>
+      <div class="header-actions">
+        <span class="status-badge web">● Web 渲染</span>
+      </div>
+    </header>
+
+    <!-- ======== Sidebar ======== -->
+    <aside class="sidebar">
+      <nav class="sidebar-section">
+        <div class="sidebar-section-title">几何作图</div>
+        <ul class="problem-list">
+          <li class="problem-item active" data-id="q3">
+            <span class="item-badge">3</span>
+            <span>三角形平移与旋转</span>
+          </li>
+          <!-- 后续几何题目在此追加 -->
+        </ul>
+      </nav>
+
+      <nav class="sidebar-section">
+        <div class="sidebar-section-title">统计图表</div>
+        <ul class="problem-list">
+          <li class="problem-item" style="opacity:0.4;cursor:default;">
+            <span class="item-badge">—</span>
+            <span>更多题目即将添加…</span>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="sidebar-section">
+        <div class="sidebar-section-title">物理</div>
+        <ul class="problem-list">
+          <li class="problem-item" data-id="q5">
+            <span class="item-badge">5</span>
+            <span>光纤传输光信号</span>
+          </li>
+          <!-- 后续物理题目在此追加 -->
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ======== Main Content ======== -->
+    <main class="main-content" id="main-content">
+
+      <!-- Problem Header -->
+      <div class="problem-header" id="problem-header">
+        <div class="problem-category">
+          <span id="category-icon">📐</span> <span id="category-label">几何作图</span>
+        </div>
+        <h2 class="problem-title" id="problem-title">第3题 · 三角形平移与旋转</h2>
+        <div class="problem-description" id="problem-desc">
+          <!-- 动态填充 -->
+        </div>
+      </div>
+
+      <!-- View Toggle -->
+      <div class="view-toggle">
+        <button class="toggle-btn active" data-view="answer" id="btn-answer">答案图</button>
+        <button class="toggle-btn" data-view="problem" id="btn-problem">题目原图</button>
+      </div>
+
+      <!-- Canvas -->
+      <div class="canvas-section">
+        <div class="canvas-toolbar">
+          <div class="canvas-toolbar-title">
+            <span class="dot"></span>
+            <span id="canvas-label">答案图</span>
+          </div>
+        </div>
+        <div class="canvas-wrapper">
+          <canvas id="main-canvas" width="780" height="700"></canvas>
+        </div>
+        <div class="canvas-caption" id="canvas-caption"></div>
+      </div>
+
+      <!-- Solution Panel -->
+      <div class="solution-panel">
+        <div class="solution-header">
+          <span class="icon">💡</span>
+          <span>解答过程</span>
+        </div>
+        <div class="solution-body" id="solution-body">
+          <!-- 动态填充 -->
+        </div>
+      </div>
+
+      <!-- Drawing Principles (Collapsible) -->
+      <div class="principles-panel" style="margin-top:24px;">
+        <div class="principles-header" id="principles-toggle">
+          <h3>
+            <span>📏</span>
+            <span>绘图原理与步骤</span>
+          </h3>
+          <span class="chevron" id="principles-chevron">▼</span>
+        </div>
+        <div class="principles-body" id="principles-body">
+          <!-- 动态填充 -->
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ======== App Script ======== -->
+  <script type="module">
+    // ---------- 题目模块导入 ----------
+    import * as q3Module from './figures/几何作图/q3-triangle-transform.js';
+    import * as q5Module from './figures/物理/q5-fiber-optics.js';
+
+    // ---------- 题目注册表 ----------
+    const problems = {
+      q3: q3Module,
+      q5: q5Module,
+    };
+
+    // ---------- 绘图原理面板内容 ----------
+    const principlesData = {
+      q3: `
+        <div class="principle-group">
+          <h4>网格与坐标</h4>
+          <ul>
+            <li>网格 $16$ 列 $\\times$ $14$ 行，每格 $1$ 个单位，Canvas 像素步长自适应。</li>
+            <li>原三角形 $\\triangle ABC$：$A(1,5)$、$B(5,5)$、$C(6,10)$。</li>
+            <li>旋转中心 $O(8,3)$。</li>
+          </ul>
+        </div>
+        <div class="principle-group">
+          <h4>平移变换</h4>
+          <ul>
+            <li>每个顶点 $(x, y) \\rightarrow (x+2,\\; y+1)$。</li>
+            <li>结果：$A'(3,6)$、$B'(7,6)$、$C'(8,11)$。</li>
+            <li>蓝色三角形，半透明填充 <code>#DBEAFE</code>。</li>
+          </ul>
+        </div>
+        <div class="principle-group">
+          <h4>旋转变换</h4>
+          <ul>
+            <li>绕 $O(8,3)$ 顺时针 $90°$：$(x,y) \\rightarrow (8+(y-3),\\; 3-(x-8))$。</li>
+            <li>结果：$A''(11,8)$、$B''(11,4)$、$C''(16,3)$。</li>
+            <li>红色三角形，半透明填充 <code>#FEE2E2</code>。</li>
+            <li>$O$ 用红色实心圆标记。</li>
+          </ul>
+        </div>
+        <div class="principle-group">
+          <h4>辅助元素</h4>
+          <ul>
+            <li>灰色虚线箭头连接平移前后的对应顶点（$A \\to A'$、$B \\to B'$、$C \\to C'$）。</li>
+            <li>顶点用 $3\\text{px}$ 实心圆标记，标签偏移 $14\\text{px}$。</li>
+          </ul>
+        </div>`,
+      q5: `
+        <div class="principle-group">
+          <h4>全反射条件</h4>
+          <ul>
+            <li>光从光密介质（折射率 $n_1$）射向光疏介质（折射率 $n_2$），$n_1 > n_2$。</li>
+            <li>入射角 $\\theta_i$ 大于临界角 $\\theta_c = \\arcsin(n_2 / n_1)$ 时，发生全反射。</li>
+            <li>全反射时没有折射光线，光线100%反射回光密介质。</li>
+          </ul>
+        </div>
+        <div class="principle-group">
+          <h4>光纤结构</h4>
+          <ul>
+            <li>纤芯：高折射率玻璃（$n_1$），光在其中传播。</li>
+            <li>包层：低折射率材料（$n_2$），包裹纤芯。</li>
+            <li>光在纤芯-包层界面发生全反射，保证光能量不泄漏。</li>
+          </ul>
+        </div>
+        <div class="principle-group">
+          <h4>光路绘制</h4>
+          <ul>
+            <li>两条平行线表示光纤纤芯的上下界面。</li>
+            <li>光线以较大入射角从左端射入，在上下界面之间锯齿形反射。</li>
+            <li>每个反射点画法线（虚线），标注入射角 $\\theta_i$ = 反射角 $\\theta_r$。</li>
+            <li>光线用橙色实线箭头表示，法线用灰色虚线。</li>
+          </ul>
+        </div>`,
+    };
+
+    // ---------- DOM 元素引用 ----------
+    const canvas = document.getElementById('main-canvas');
+    const btnAnswer = document.getElementById('btn-answer');
+    const btnProblem = document.getElementById('btn-problem');
+    const canvasLabel = document.getElementById('canvas-label');
+    const canvasCaption = document.getElementById('canvas-caption');
+    const categoryIcon = document.getElementById('category-icon');
+    const categoryLabel = document.getElementById('category-label');
+    const problemTitle = document.getElementById('problem-title');
+    const problemDesc = document.getElementById('problem-desc');
+    const solutionBody = document.getElementById('solution-body');
+    const principlesBody = document.getElementById('principles-body');
+
+    // ---------- HiDPI 支持 ----------
+    function setupHiDPI(canvas, width, height) {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      return { width, height };
+    }
+
+    const { width: cw, height: ch } = setupHiDPI(canvas, 780, 500);
+
+    const drawableCanvas = {
+      getContext: (type) => canvas.getContext(type),
+      get width() { return cw; },
+      get height() { return ch; },
+    };
+
+    // ---------- 状态 ----------
+    let currentProblemId = 'q3';
+    let currentView = 'answer';
+
+    // ---------- 加载题目 ----------
+    function loadProblem(problemId) {
+      const mod = problems[problemId];
+      if (!mod) return;
+
+      currentProblemId = problemId;
+      currentView = 'answer';
+
+      // 更新侧边栏激活状态
+      document.querySelectorAll('.problem-item[data-id]').forEach(el => {
+        el.classList.toggle('active', el.dataset.id === problemId);
+      });
+
+      // 更新按钮状态
+      btnAnswer.classList.add('active');
+      btnProblem.classList.remove('active');
+
+      // 更新头部
+      const iconMap = { '几何作图': '📐', '统计图表': '📊', '物理': '🔬' };
+      categoryIcon.textContent = mod.meta.categoryIcon || iconMap[mod.meta.category] || '📐';
+      categoryLabel.textContent = mod.meta.category;
+      problemTitle.textContent = mod.meta.title;
+
+      // 更新题目描述
+      problemDesc.innerHTML = mod.meta.description;
+      if (mod.meta.subQuestions) {
+        mod.meta.subQuestions.forEach(sq => {
+          const span = document.createElement('span');
+          span.className = 'sub-question';
+          span.innerHTML = sq;
+          problemDesc.appendChild(span);
+        });
+      }
+
+      // 更新解答步骤
+      solutionBody.innerHTML = '';
+      if (mod.solutionSteps) {
+        mod.solutionSteps.forEach(step => {
+          const div = document.createElement('div');
+          div.className = 'solution-step';
+          let html = `<h4>${step.title}</h4>`;
+          html += `<p>${step.content}</p>`;
+          if (step.formula) {
+            html += `<div class="formula">${step.formula}</div>`;
+          }
+          html += '<ul>';
+          step.details.forEach(d => { html += `<li>${d}</li>`; });
+          html += '</ul>';
+          html += `<div class="summary">${step.summary}</div>`;
+          div.innerHTML = html;
+          solutionBody.appendChild(div);
+        });
+      }
+
+      // 更新绘图原理
+      principlesBody.innerHTML = principlesData[problemId] || '';
+
+      // 渲染 Canvas
+      render();
+
+      // 重新渲染 KaTeX
+      renderAllMath();
+
+      // 滚动到顶部
+      document.getElementById('main-content').scrollTop = 0;
+    }
+
+    // ---------- 渲染 Canvas ----------
+    function render() {
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const mod = problems[currentProblemId];
+      if (!mod) return;
+
+      if (currentView === 'answer') {
+        mod.drawAnswer(drawableCanvas);
+        canvasLabel.textContent = '答案图';
+        canvasCaption.textContent = `${mod.meta.title} — 答案`;
+      } else {
+        mod.drawProblem(drawableCanvas);
+        canvasLabel.textContent = '题目原图';
+        canvasCaption.textContent = `${mod.meta.title} — 题目`;
+      }
+    }
+
+    // ---------- 视图切换 ----------
+    btnAnswer.addEventListener('click', () => {
+      currentView = 'answer';
+      btnAnswer.classList.add('active');
+      btnProblem.classList.remove('active');
+      render();
+    });
+
+    btnProblem.addEventListener('click', () => {
+      currentView = 'problem';
+      btnProblem.classList.add('active');
+      btnAnswer.classList.remove('active');
+      render();
+    });
+
+    // ---------- 侧边栏题目切换 ----------
+    document.querySelectorAll('.problem-item[data-id]').forEach(el => {
+      el.addEventListener('click', () => {
+        loadProblem(el.dataset.id);
+      });
+    });
+
+    // ---------- 折叠面板 ----------
+    const principlesToggle = document.getElementById('principles-toggle');
+    const principlesChevron = document.getElementById('principles-chevron');
+    principlesToggle.addEventListener('click', () => {
+      principlesBody.classList.toggle('expanded');
+      principlesChevron.classList.toggle('expanded');
+    });
+
+    // ---------- KaTeX 自动渲染 ----------
+    function renderAllMath() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+          throwOnError: false,
+        });
+      } else {
+        setTimeout(renderAllMath, 100);
+      }
+    }
+
+    // ---------- 初始加载 ----------
+    loadProblem('q3');
+  </script>
+
+</body>
+
+</html>

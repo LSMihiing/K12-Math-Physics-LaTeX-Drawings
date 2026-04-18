@@ -1,8 +1,10 @@
-# K12 教辅绘图项目（LaTeX TikZ + Typst CeTZ 双引擎）
+# K12 教辅绘图项目（LaTeX TikZ + Typst CeTZ + Web Canvas 三引擎）
 
 ## 项目概述
 
 本项目使用 LaTeX TikZ 绘制 K12 教辅（数学、物理）题目的配图与答案，涵盖小学三年级至初中八年级。所有绘图按 **绘图类型** 进行功能性分类，便于检索与维护，定位类似一本 *K12 数理习题答案绘制手册*。另外，本项目在附录中全量整合了来自 jamesfang8499 的外部教材库，引入了高达 **1155 个** 高质量参阅资料绘图，形成了丰沛的 LaTeX 绘图大全体系。
+
+本项目现已形成 **三轨并行** 的绘图技术体系：**LaTeX TikZ**（传统排版）、**Typst CeTZ**（现代排版）、**Web Canvas**（前端交互）。
 
 **统计：** 基础教辅部分包含 47 个子文件，共 **315 个 tikzpicture** 环境、**81 个 tabular** 表格；附录参考绘图库新增 **1155 个** 独立图形素材文件。
 
@@ -48,10 +50,23 @@
 ├── Temp_Work/                    # 临时 LaTeX 工作区
 │   └── temp_answer.tex           # 独立可编译的草稿/测试文件
 │
-└── Typst_Project/                # Typst 现代绘图项目（新增双轨并行）
-    ├── main.typ                  # Typst 编译主入口
-    ├── lib/                      # 公共样式库
-    └── figures/                  # Typst 教辅绘图目录（数学、物理等）
+├── Typst_Project/                # Typst 现代绘图项目（双轨并行）
+│   ├── main.typ                  # Typst 编译主入口
+│   ├── lib/                      # 公共样式库
+│   └── figures/                  # Typst 教辅绘图目录（数学、物理等）
+│
+└── Web_Project/                  # 前端 Canvas 绘图引擎（三轨并行）
+    ├── index.html                # 首页：题目列表 + Canvas 渲染 + 解答面板
+    ├── css/
+    │   └── styles.css            # 全局样式（深色主题、glassmorphism）
+    ├── lib/                      # 公共绘图库（对标 Typst lib/）
+    │   ├── grid-utils.js         # 方格纸绘制
+    │   ├── transform.js          # 几何变换（平移、旋转）
+    │   ├── label.js              # 点标签与文字
+    │   └── draw-helpers.js       # 三角形、虚线箭头等通用图元
+    └── figures/                  # 题目绘图模块（按分类组织）
+        └── 几何作图/
+            └── q3-triangle-transform.js  # 第3题 三角形平移旋转
 ```
 
 ---
@@ -162,6 +177,58 @@
 - **`main.typ`**：集合所有章节作图解答的主文件，整体排版导出为 `main.pdf`。
 - **`figures/`**：目录下按学科核心分类（如：物理、几何作图、统计图表等），单题单文件组织，利于分别维护并由主入口统一索引。
 - 采用 Typst 提供了更为现代化的开发流程，无论是几何作图还是受力分析都能更方便快速地实现局部和组件化复用。
+
+---
+
+## 前端绘图引擎（Web_Project/）
+
+作为第三条技术路线，本项目新增了基于 **HTML5 Canvas** 的前端绘图引擎，使用纯原生 JavaScript（ES Modules）实现，无框架依赖，即开即用。
+
+### 技术特点
+
+- **零依赖**：纯 HTML + CSS + JavaScript，无需 npm install，浏览器直接运行。
+- **模块化架构**：公共绘图库（`lib/`）与题目文件（`figures/`）分离，1:1 对标 Typst 项目结构。
+- **高保真复刻**：坐标、颜色、透明度、标签方向完全对标 Typst 版本。
+- **HiDPI 支持**：自动适配高分辨率屏幕（Retina 等），确保绘图清晰锐利。
+- **深色主题 UI**：glassmorphism 风格、渐变背景、微动画，提供现代化交互体验。
+
+### 公共绘图库（`lib/`）
+
+| 文件 | 对标 Typst | 功能 |
+|------|-----------|------|
+| `grid-utils.js` | `grid-utils.typ` | 方格纸绘制（可配置行列、步长、线色） |
+| `transform.js` | — | 几何变换：平移、顺时针旋转 90°、任意角度旋转 |
+| `label.js` | `dot-label` 函数 | 8 方向点标签绘制（圆点 + 文字偏移） |
+| `draw-helpers.js` | — | 通用图元：三角形填充描边、虚线箭头 |
+
+### 已实现题目
+
+| 题号 | 文件 | 内容 |
+|------|------|------|
+| 第3题 | `figures/几何作图/q3-triangle-transform.js` | 三角形平移与旋转（方格纸） |
+
+### 启动方式
+
+使用 VSCode Live Server 或任意静态服务器：
+
+```bash
+# 方式一：VSCode Live Server（推荐）
+# 右键 Web_Project/index.html → Open with Live Server
+
+# 方式二：Node.js http-server
+npx http-server Web_Project -p 8090
+
+# 方式三：Python
+python -m http.server 8090 -d Web_Project
+```
+
+> 必须通过 HTTP 服务器访问（ES Modules 不支持 `file://` 协议）。
+
+### 添加新题目
+
+1. 在 `figures/` 对应分类目录下新建 JS 文件（如 `q4-xxx.js`）
+2. 导出 `meta`（题目元数据）、`solutionSteps`（解答步骤）、`drawProblem` / `drawAnswer`（绘图函数）
+3. 在 `index.html` 的侧边栏和 script 中注册该题目
 
 ---
 

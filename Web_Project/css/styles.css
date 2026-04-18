@@ -1,0 +1,642 @@
+/* ============================================================
+   styles.css — K12 教辅绘图前端 · 全局样式
+   ============================================================ */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* --- CSS Custom Properties (Design Tokens) --- */
+:root {
+  /* 颜色系统 */
+  --bg-primary:       #0f1117;
+  --bg-secondary:     #161822;
+  --bg-card:          #1c1e2e;
+  --bg-card-hover:    #242640;
+  --bg-canvas:        #ffffff;
+
+  --text-primary:     #e8eaed;
+  --text-secondary:   #9aa0b4;
+  --text-muted:       #636982;
+
+  --accent-blue:      #4F8EF7;
+  --accent-blue-dim:  rgba(79, 142, 247, 0.12);
+  --accent-red:       #EF5350;
+  --accent-red-dim:   rgba(239, 83, 80, 0.12);
+  --accent-green:     #66BB6A;
+  --accent-purple:    #AB47BC;
+  --accent-orange:    #FFA726;
+
+  --border-color:     rgba(255, 255, 255, 0.06);
+  --border-active:    rgba(79, 142, 247, 0.4);
+
+  --glass-bg:         rgba(28, 30, 46, 0.7);
+  --glass-border:     rgba(255, 255, 255, 0.08);
+  --shadow-lg:        0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-card:      0 4px 24px rgba(0, 0, 0, 0.2);
+
+  --radius-sm:        6px;
+  --radius-md:        12px;
+  --radius-lg:        16px;
+  --radius-xl:        24px;
+
+  --transition-fast:  0.15s ease;
+  --transition-base:  0.25s ease;
+  --transition-slow:  0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Animated Background --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(79, 142, 247, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(171, 71, 188, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- Layout --- */
+.app-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  gap: 0;
+}
+
+/* --- Header --- */
+.app-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-logo .logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+}
+
+.app-logo h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.app-logo h1 span {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  padding: 20px 0;
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+  position: sticky;
+  top: 65px;
+}
+
+.sidebar-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+}
+
+.sidebar-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 0 12px;
+  margin-bottom: 8px;
+}
+
+.problem-list {
+  list-style: none;
+}
+
+.problem-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.problem-item:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.problem-item.active {
+  background: var(--accent-blue-dim);
+  color: var(--accent-blue);
+  font-weight: 500;
+}
+
+.problem-item .item-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.problem-item.active .item-badge {
+  background: var(--accent-blue);
+  color: white;
+}
+
+/* --- Main Content --- */
+.main-content {
+  padding: 32px;
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+}
+
+/* --- Problem Header --- */
+.problem-header {
+  margin-bottom: 24px;
+}
+
+.problem-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-blue);
+  background: var(--accent-blue-dim);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+
+.problem-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.problem-description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 700px;
+}
+
+.problem-description .sub-question {
+  display: block;
+  margin-top: 6px;
+  padding-left: 1.5em;
+  color: var(--text-secondary);
+}
+
+/* --- View Toggle --- */
+.view-toggle {
+  display: inline-flex;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+}
+
+.toggle-btn {
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+.toggle-btn.active {
+  background: var(--accent-blue);
+  color: white;
+  box-shadow: 0 2px 8px rgba(79, 142, 247, 0.3);
+}
+
+/* --- Canvas Container --- */
+.canvas-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-base);
+}
+
+.canvas-section:hover {
+  border-color: var(--border-active);
+}
+
+.canvas-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.canvas-toolbar-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.canvas-toolbar-title .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.canvas-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-canvas);
+  min-height: 400px;
+}
+
+.canvas-wrapper canvas {
+  display: block;
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.canvas-caption {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+/* --- Solution Panel --- */
+.solution-panel {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.solution-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+.solution-header .icon {
+  font-size: 18px;
+}
+
+.solution-body {
+  padding: 20px;
+}
+
+.solution-step {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  margin-bottom: 12px;
+  border-left: 3px solid var(--accent-blue);
+  transition: transform var(--transition-fast);
+}
+
+.solution-step:hover {
+  transform: translateX(4px);
+}
+
+.solution-step:last-child {
+  margin-bottom: 0;
+  border-left-color: var(--accent-red);
+}
+
+.solution-step h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.solution-step p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.solution-step .formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent-purple);
+  background: rgba(171, 71, 188, 0.08);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin: 6px 0;
+}
+
+.solution-step ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.solution-step ul li {
+  font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  padding: 4px 0 4px 16px;
+  position: relative;
+}
+
+.solution-step ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-orange);
+}
+
+.solution-step .summary {
+  font-size: 12.5px;
+  color: var(--accent-green);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* --- Drawing Principles Panel --- */
+.principles-panel {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.principles-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.principles-header:hover {
+  background: var(--bg-card-hover);
+}
+
+.principles-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.principles-header .chevron {
+  color: var(--text-muted);
+  transition: transform var(--transition-base);
+  font-size: 12px;
+}
+
+.principles-header .chevron.expanded {
+  transform: rotate(180deg);
+}
+
+.principles-body {
+  padding: 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow), padding var(--transition-slow);
+}
+
+.principles-body.expanded {
+  max-height: 800px;
+  padding: 20px;
+}
+
+.principles-body .principle-group {
+  margin-bottom: 16px;
+}
+
+.principles-body .principle-group:last-child {
+  margin-bottom: 0;
+}
+
+.principles-body .principle-group h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.principles-body .principle-group li {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding-left: 14px;
+  position: relative;
+  list-style: none;
+}
+
+.principles-body .principle-group li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-blue);
+}
+
+/* --- Status Badge --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.status-badge.web {
+  background: rgba(102, 187, 106, 0.1);
+  color: var(--accent-green);
+}
+
+/* --- Scroll Bar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- KaTeX Integration --- */
+.katex {
+  font-size: 1.05em;
+}
+
+/* 深色主题下 KaTeX 文字颜色继承 */
+.solution-step .katex,
+.principles-body .katex,
+.problem-description .katex {
+  color: inherit;
+}
+
+/* 公式块使用 KaTeX 渲染后的样式 */
+.solution-step .formula {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--accent-purple);
+  background: rgba(171, 71, 188, 0.08);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin: 6px 0;
+}
+
+.solution-step .formula .katex {
+  color: var(--accent-purple);
+  font-size: 1.1em;
+}
+
+/* 解答步骤列表：KaTeX 渲染箭头后移除伪元素箭头 */
+.solution-step ul li {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 5px 0 5px 8px;
+  position: relative;
+}
+
+.solution-step ul li::before {
+  content: '';
+}
+
+.solution-step ul li .katex {
+  font-size: 1.05em;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+}

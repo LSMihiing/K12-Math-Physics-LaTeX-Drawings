@@ -107,6 +107,18 @@
     stroke: symbol-stroke,
     mark: (end: "stealth", fill: black, scale: 0.5),
   )
+  line(
+    (arrow-x + 0.01, rh-y-top + 0.83),
+    (-arrow-x + 3.5, rh-y-top + 0.84),
+    stroke: symbol-stroke,
+    //mark: (end: "stealth", fill: black, scale: 0.5),
+  )
+  line(
+    (-arrow-x + 3.5, 0),
+    (-arrow-x + 3.5, 1.05),
+    stroke: symbol-stroke,
+    //mark: (end: "stealth", fill: black, scale: 0.5),
+  )
   // 标签 R
   content(((rh-x1 + rh-x2) / 2, rh-y-bot - 0.5))[#text(size: 10pt)[$R$]]
 })
