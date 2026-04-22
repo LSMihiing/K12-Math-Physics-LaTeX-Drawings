@@ -48,3 +48,6 @@
 #include "figures/统计图表/_chapter.typ"
 #include "figures/线段图/_chapter.typ"
 #include "figures/物理/_chapter.typ"
+
+// 附录 — 物理第三册电磁（LaTeX→Typst 重构）
+#include "figures/附录_物理第三册_电磁/_appendix.typ"

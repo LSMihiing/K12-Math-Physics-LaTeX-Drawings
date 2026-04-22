@@ -20,7 +20,7 @@
 ├── .gitignore
 │
 ├── Typst_Project/                # ★ Typst 主力绘图项目
-│   ├── main.typ                  # 主入口（封面 + 目录 + #include 各章节）
+│   ├── main.typ                  # 主入口（封面 + 目录 + #include 各章节 + 附录）
 │   ├── lib/                      # 公共库
 │   │   ├── styles.typ            # 全局样式（字体、页面、题目/解答格式）
 │   │   ├── grid-utils.typ        # 方格纸 & 坐标系工具函数
@@ -30,7 +30,7 @@
 │   │   ├── 统计图表/   (6 个)     # 折线、柱状、饼图、直方图
 │   │   ├── 线段图/     (3 个)     # 数轴、不等式
 │   │   ├── 物理/       (20 个)    # 受力、压力、电磁、电路
-│   │   └── 数据表格/   (预留)     # 填表题
+│   │   └── 附录_物理第三册_电磁/ # LaTeX→Typst 重构（51 tikz + 22 circuit）
 │   ├── output/                   # PDF 输出（git 忽略）
 │   └── typst绘图AI提示词.md      # AI 绘图交互提示词
 │
@@ -40,14 +40,13 @@
 │   ├── 数学/                     # 42 个子文件（5 个分类目录）
 │   ├── 物理/                     # 5 个子文件（2 个分类目录）
 │   ├── 附录_参考绘图/            # 1155 个外部教材绘图素材
-│   └── 参考资料/                 # 参考书籍与 PDF
+│   ├── 参考资料/                 # 参考书籍与 PDF
+│   └── Temp_Work/                # LaTeX 临时工作区
 │
 ├── Scripts_Env/                  # Python 脚本与工具
-│   ├── inventory_tikz.py         # 绘图/表格统计脚本
-│   ├── restructure.py            # 自动化重构脚本
+│   ├── inventory_tikz.py         # 绘图/表格统计
+│   ├── restructure.py            # 自动化重构
 │   └── ...                       # 其他工具脚本
-│
-├── Temp_Work/                    # 临时 LaTeX 工作区
 │
 └── Web_Project/                  # 前端 Canvas 绘图引擎
     ├── index.html
@@ -231,6 +230,8 @@ Python 环境使用 `uv` 管理。
 | `extract_tikz.py` | 从 tex 中抽取 TikZ 环境生成独立文件 |
 | `fix_tikz_errors.py` | 批量修正语法错误 |
 | `generate_index_table.py` | 生成 1155 个外部绘图的索引表 |
+| `extract_principles.py` | 提取绘图原理文本 |
+| `add_tex_root.py` | 添加 TeX 根文件标记 |
 
 ---
 
