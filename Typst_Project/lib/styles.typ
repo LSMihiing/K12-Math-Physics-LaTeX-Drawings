@@ -1,24 +1,6 @@
 // ============================================================
-// styles.typ — 全局样式设定
+// styles.typ — 公共工具函数（题目/解答/图片容器）
 // ============================================================
-
-// --- 页面设置 ---
-#let page-setup() = {
-  set page(
-    paper: "a4",
-    margin: (top: 2.5cm, bottom: 2.5cm, left: 2cm, right: 2cm),
-  )
-  // --- 字体设置 ---
-  // 西文 → 中文 fallback 链
-  set text(
-    font: ("Times New Roman", "SimSun"),
-    size: 11pt,
-    lang: "zh",
-    region: "cn",
-  )
-  // 段落行距
-  set par(leading: 0.8em, first-line-indent: 2em)
-}
 
 // --- 题目标题 ---
 #let problem-title(number, content) = {
