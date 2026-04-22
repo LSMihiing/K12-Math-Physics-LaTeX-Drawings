@@ -1,0 +1,698 @@
+﻿===== circuit_009.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电阻电路
+% 原始文件：3.tex，行 377-386
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(3,0);
+        \draw (3,0) to [R=$R$] (3,3);
+        \draw (0,3)--(1,3) to [rmeter, t=A] (3,3);
+        \draw (1,0) to [rmeter, t=V, *-*] (1,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+    \end{circuitikz}\qquad\qquad 
+
+===== circuit_011.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电阻电路
+% 原始文件：3.tex，行 412-425
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(5,0);
+        \draw (5,0) to [R=$R$] (5,3);
+        \draw (5,3)--(4,3) to [rmeter, t=A] (1,3);
+        \draw (3.5,0) to [rmeter, t=V, *-*] (3.5,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \draw (.2,3) [fill=black]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+        \draw(1,3) to  (1,0); \draw(1,3)--(1,3.7)--(.2,3.7)--(.2,3);
+        \draw (2,3) to [rmeter, t=W, fill=white] (0,3);
+
+    \end{circuitikz}
+
+===== circuit_012.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电感电路
+% 原始文件：3.tex，行 447-470
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,1)--(0,.5)--(5,.5)--(5,2) ;
+\draw  (3.5,2) to [lamp] (2,2)--(2,1)--(1,1);
+\draw [american](3.5,2) to [cute choke, l=$L$] (5,2);
+
+\draw (0,.2)--(0,-1); \draw (1,.2)--(1,-1);
+\draw (0,1.8)--(0,3) node[above]{$-$}; \draw (1,1.8)--(1,3)node[above]{$+$};
+
+\node at (-.5,1){$K$};
+\draw [ultra thick](0,1)--(-.4,1.8);
+\draw [ultra thick](1,1)--(1-.4,1.8);
+\draw (-.2, 1.5)-- (-.2+1, 1.5);
+\draw [very thick] (-.25, 1.5)-- (-.25+1, 1.5);
+\draw [very thick] (-.3, 1.6)-- (-.3+1, 1.6);
+
+\foreach \x in {0,1}
+\foreach \y in {.2,-1,1,1.8,3}
+{
+\draw [fill=white](\x,\y) circle (1.5pt);
+}
+\node at (.5, -1){$\sim$};
+
+
+\end{circuitikz}
+
+===== circuit_013.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电感电路
+% 原始文件：3.tex，行 483-493
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(3,0);
+        \draw (3,3) to [cute choke] (3,0);
+        \draw (0,3)--(1,3) to [rmeter, t=A] (3,3);
+        \node at (2.7,1.5){$L$};
+        \draw (1,0) to [rmeter, t=V, *-*] (1,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+    \end{circuitikz}
+
+===== circuit_014.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电容电路
+% 原始文件：3.tex，行 537-557
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,1)--(0,.5)--(5,.5)--(5,2) to [C=$C$] (3.5,2) to [lamp] (2,2)--(2,1)--(1,1);
+
+
+\draw (0,.2)--(0,-1); \draw (1,.2)--(1,-1);
+\draw (0,1.8)--(0,3) node[above]{$-$}; \draw (1,1.8)--(1,3)node[above]{$+$};
+
+\draw [ultra thick](0,1)--(-.4,1.8);
+\draw [ultra thick](1,1)--(1-.4,1.8);
+\draw (-.2, 1.5)-- (-.2+1, 1.5);
+\draw [very thick] (-.25, 1.5)-- (-.25+1, 1.5);
+\draw [very thick] (-.3, 1.6)-- (-.3+1, 1.6);
+
+\foreach \x in {0,1}
+\foreach \y in {.2,-1,1,1.8,3}
+{
+\draw [fill=white](\x,\y) circle (1.5pt);
+}
+\node at (.5, -1){$\sim$};
+
+\end{circuitikz}
+
+===== circuit_015.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电容电路
+% 原始文件：3.tex，行 575-584
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(3,0);
+        \draw (3,3) to [C] (3,0);
+        \draw (0,3)--(1,3) to [rmeter, t=A] (3,3);
+        \draw (1,0) to [rmeter, t=V, *-*] (1,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+    \end{circuitikz}
+
+===== circuit_016.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电容电路
+% 原始文件：3.tex，行 612-626
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european]
+\draw (0,1.2)--(0,0)--(2,0)to [R, *-*](2,3)--(0,3)--(0,3-1.2);
+\node at (0,1.4){$-$};
+\node at (0,1.6){$\sim$}; \node at (4,1.5){$\sim$};
+\node at (-.6,1.75){前级};
+\node at (-.6,1.25){输出};
+\node at (3.4,1.75){后级};
+\node at (3.4,1.25){输入};
+\draw (2,0)--(4,0)--(4,1.2);
+\draw (2,3)to [C](4,3)--(4,3-1.2);
+
+\draw [fill=white](0,1.2) circle (1.5pt);  \draw [fill=white](0,1.8) circle (1.5pt);
+\draw [fill=white](4,1.2) circle (1.5pt);  \draw [fill=white](4,1.8) circle (1.5pt);
+
+\end{circuitikz}
+
+===== circuit_017.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 纯电容电路
+% 原始文件：3.tex，行 631-646
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,1.2)--(0,0)--(2,0)to [C, *-*](2,3)--(0,3)--(0,3-1.2);
+
+\node at (-.6,1.75){前级};
+\node at (-.6,1.25){输出};
+\node at (3.4,1.75){后级};
+\node at (3.4,1.25){输入};
+\draw (2,0)--(4,0)--(4,1.2);
+\draw (2,3)to (4,3)--(4,3-1.2);
+
+\draw [fill=white](0,1.2) circle (1.5pt);  \draw [fill=white](0,1.8) circle (1.5pt);
+\draw [fill=white](4,1.2) circle (1.5pt);  \draw [fill=white](4,1.8) circle (1.5pt);
+
+
+
+\end{circuitikz}
+
+===== circuit_020.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的功率
+% 原始文件：3.tex，行 726-740
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(5,0);
+        \draw (5,3) to [american inductors, L=$L$] (5,1.5) to [R=$R$] (5,0);
+
+        \draw (5,3)--(4,3) to [rmeter, t=A] (1,3);
+        \draw (3.5,0) to [rmeter, t=V, *-*] (3.5,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \draw (.2,3) [fill=black]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+        \draw(1,3) to  (1,0); \draw(1,3)--(1,3.7)--(.2,3.7)--(.2,3);
+        \draw (2,3) to [rmeter, t=W, fill=white] (0,3);
+
+    \end{circuitikz}
+
+===== circuit_021.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的功率
+% 原始文件：3.tex，行 774-788
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european]
+        \draw (0,0)--(6,0);
+        \draw (6,3) to [american inductors, L=$L$] (6,1.5) to [R=$R$] (6,0);
+\draw (5,0) to [C=$C$] (5,3);
+        \draw (6,3)--(4,3) to [rmeter, t=A] (1,3);
+        \draw (3.5,0) to [rmeter, t=V, *-*] (3.5,3);
+        \draw (0,0)--(0,1.3); \draw (0,1.7)--(0,3);
+        \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \draw (.2,3) [fill=black]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+        \draw(1,3) to  (1,0); \draw(1,3)--(1,3.7)--(.2,3.7)--(.2,3);
+        \draw (2,3) to [rmeter, t=W, fill=white] (0,3);
+
+    \end{circuitikz}
+
+===== circuit_022.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 变压器
+% 原始文件：3.tex，行 906-920
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+    \ctikzset{inductors/scale=0.75, inductors/width=2.5, inductors/coils=8} \draw (0,0)--(2,0) to [american inductor] (2,2.8)--(0,2.8);
+\draw (2,0)--(4,0);
+\draw (4,1.4)--(2,1.4);
+\draw [<->](0,.1)--node[fill=white]{$U_1$}(0,2.8-.1);
+\draw [<->](4,.1)--node[fill=white]{$U_2$}(4,1.4-.1);
+\draw [ultra thick](1.7,.1)--node[left]{$n_1$} (1.7,2.7-.1);
+\draw (0,0) [fill=white] circle (1.5pt);
+\draw (0,2.8) [fill=white] circle (1.5pt);
+\draw (4,0) [fill=white] circle (1.5pt);
+\draw (4,1.4) [fill=white] circle (1.5pt);
+\node at (2.3, .7){$n_2$};
+
+
+\end{circuitikz}
+
+===== circuit_023.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 变压器
+% 原始文件：3.tex，行 925-939
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,0)--(2,0)--(4,0);
+\ctikzset{inductors/scale=0.75, inductors/width=2.5, inductors/coils=8}  \draw (4,3)--(2,3) to [american inductor] (2,0);
+
+\draw [<->](0,.1)--node[fill=white]{$U_1$}(0,1.5-.1);
+\draw [<->](4,.1)--node[fill=white]{$U_2$}(4,3-.1);
+\draw [ultra thick](2.3,.1)--node[right]{$n_2$} (2.3,2.9-.1);
+\node at (1.7, .7){$n_1$};
+\draw (0,1.5)--(2,1.5);
+\draw (0,0) [fill=white] circle (1.5pt);
+\draw (0,1.5) [fill=white] circle (1.5pt);
+\draw (4,0) [fill=white] circle (1.5pt);
+\draw (4,3) [fill=white] circle (1.5pt);
+
+\end{circuitikz}
+
+===== circuit_024.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的整流
+% 原始文件：3.tex，行 1180-1199
+% 类型：circuit
+% ---
+    \begin{circuitikz}[>=latex,european]
+
+
+\draw (0,1.3)--(0,0)--(.7,0);
+\draw (.7,3) to [american inductor] (.7,0);
+\draw (.7,3)--(0,3)--(0,1.7) ;
+\draw (1.5,0)--(5,0) to [R=$R$] (5,3) --(1.5,3) node[above]{$a$};
+\draw (1.50,0)node[below]{$b$} to  [american inductor] (1.5,3);
+
+\ctikzset{diodes/scale=0.6}\draw (1.5,3) to[full diode](5,3);
+ \draw (0,1.3) [fill=white]circle (1.5pt);
+        \draw (0,1.7) [fill=white]circle (1.5pt);
+        \node at (0,1.5){$\sim$};
+\draw [ultra thick](1.1,1)--(1.1,2);   \node at (3.125,3.5){$D$};
+\node at (1.1,2.5){$B$};
+\draw [<->](2.25,0)--node [fill=white]{$u$} (2.25,3);
+\draw [<->](4,0)--node [fill=white]{$u_R$} (4,3);
+%\draw [ultra thick] (3.75,3.25)--(3.75,2.75);
+\node at (5.25, .8){$-$}; \node at (5.25, 2.2){$+$};
+\end{circuitikz}
+
+===== circuit_027.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 交流电的整流
+% 原始文件：3.tex，行 1337-1356
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, scale=1.3]
+
+        \draw (-3,.25)--(-3,1)--(-2+.25,1) to [american inductor] (-2+.25,-1)--(-3,-1)--(-3,-.25);
+        \draw (1,-1)--(1,-1.5)--(-1.25,-1.5) to [american inductor] (-1.25,1.5)--(1,1.5)--(1,1);
+        \draw [ultra thick] (-3/2, -.4)--(-3/2, .4);
+      \ctikzset{diodes/scale=0.6}  \draw (0,0) to [full diode] (1,1) to [full diode] (2,0);
+     \ctikzset{diodes/scale=0.6}  \draw (0,0) to [full diode] (1,-1) to [full diode] (2,0) ;
+        \draw (2,0)--(3,0) to [european, R=$R$] (3,-2) --(0,-2)--(0,0);
+        
+        \draw [fill=white] (-3,.25) circle (1pt);
+        \draw [fill=white] (-3,-.25) circle (1pt);
+        \draw [fill=black] (0,0) circle (1pt);
+        \draw [fill=black] (2,0) circle (1pt);\draw [fill=black] (1,-1) circle (1pt);
+        \draw [fill=black] (1,1) circle (1pt);
+        \node at (-3,0){\Huge $\sim $};
+        \node at (1.5,1){$D_1$};        \node at (1.5,-1){$D_2$};
+        \node at (.5,-1){$D_3$};        \node at (.5,1){$D_4$};
+        \node at (3.25,-.5){$+$};        \node at (3.25,-1.5){$-$};
+        \node at (-1.1,.5){$a$};        \node at (-1.1,-.5){$b$};
+        \end{circuitikz}
+
+===== circuit_029.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1403-1412
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, scale=1]
+    \draw (-3,.25)--(-3,1)--(-2,1) to [american inductor] (-2,-1)--(-3,-1)--(-3,-.25);
+    \draw (2,1.2) to [european, R=$R$] (2,-1.2)--(-1.25,-1.2) to [american inductor] (-1.25,1.2)--(2,1.2);
+    \node at (-3,0){$\sim $}; \node at (0,1.65){$D$};
+    \draw [ultra thick] (-1.6, -.5)--(-1.6, .5);
+    \ctikzset{diodes/scale=0.6}      \draw (-.5,1.2) to [full diode] (.5,1.2);
+    \draw (.8,1.2) to [eC=$C$, *-*] (.8,-1.2);
+    \draw [fill=white] (-3,.25) circle (1.5pt);
+    \draw [fill=white] (-3,-.25) circle (1.5pt);
+\end{circuitikz}
+
+===== circuit_031.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1435-1447
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, scale=1.2]
+    \draw (-3,.25)--(-3,1)--(-2,1) to [american inductor] (-2,-1)--(-3,-1)--(-3,-.25);
+    \ctikzset{diodes/scale=0.6} \draw (-1.25,-1.2) to [american inductor] (-1.25,1.2) to [full diode] (0,1.2)--(0,-1.2);
+   \ctikzset{diodes/scale=0.6} \draw (-1.25,-1.2) to [full diode]  (0,-1.2);
+    \node at (-3,0){$\sim $}; 
+    \draw [ultra thick] (-1.6, -.5)--(-1.6, .5);
+    \draw [fill=white] (-3,.25) circle (1.5pt);
+    \draw [fill=white] (-3,-.25) circle (1.5pt);
+\draw (0,1.2) to [american inductor] (1.5,1.2) to [european, R=$R$] (1.5,-.2)--(-1.3,-.2);
+\node at (-1.25/2,1.4)[above]{$D_1$};\node at (-1.25/2,-1.4)[below]{$D_2$};
+\draw [very thick] (.5-.2,1.5)--node [above]{$L$}(1+.2,1.5);
+\draw (0,1.2) [fill=black] circle (1.5pt);
+\end{circuitikz}
+
+===== circuit_033.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1469-1491
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, scale=1.3]
+
+\draw (-3,.25)--(-3,1)--(-2+.25,1) to [american inductor] (-2+.25,-1)--(-3,-1)--(-3,-.25);
+\draw (1,-1)--(1,-1.5)--(-1.25,-1.5) to [american inductor] (-1.25,1.5)--(1,1.5)--(1,1);
+\draw [ultra thick] (-3/2, -.4)--(-3/2, .4);
+\ctikzset{diodes/scale=0.6} \draw (0,0) to [full diode] (1,1) to [full diode] (2,0);
+\ctikzset{diodes/scale=0.6} \draw (0,0) to [full diode] (1,-1) to [full diode] (2,0) ;
+\draw (2,0)to [american inductor](5,0)--(5.5,0) to [european, R=$R$] (5.5,-2) --(0,-2)--(0,0);
+\draw [ultra thick] (3+.1, .25) to node [above]{$L$} (4-.1, .25);
+
+
+\draw  (2.5,0) to [eC=$C_1$, *-*] (2.5,-2);
+\draw (4.2,0) to [eC=$C_2$, *-*] (4.2,-2);
+
+\draw [fill=white] (-3,.25) circle (1pt);
+\draw [fill=white] (-3,-.25) circle (1pt);
+\draw [fill=black] (0,0) circle (1pt);
+\draw [fill=black] (2,0) circle (1pt);\draw [fill=black] (1,-1) circle (1pt);
+\draw [fill=black] (1,1) circle (1pt);
+\node at (-3,0){\Huge $\sim $};
+
+
+\end{circuitikz}
+
+===== circuit_034.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1503-1523
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european, scale=.9]
+\draw(0,0)--(2,0)--(5,0) to [R=$R$] (5,5)--(0,5);
+\ctikzset{diodes/scale=0.6} \draw (2,0) to [full diode, *-](2,2) to [full diode, -*](2,5) ;
+\ctikzset{diodes/scale=0.6} \draw (0,0)--(0,2) to [full diode](0,3.5) to [full diode](0,5) ;
+\node at (3-.25,1){$D_3$};
+\node at (3-.25,3.5){$D_2$};
+\node at (-.75,5.5/2){$D_4$};
+\node at (-.75,8.5/2){$D_1$};
+\draw [fill=black]  (0,3.5)circle(1.5pt);
+\draw [fill=black]  (2,2)circle (1.5pt);
+\draw  (-1.5,3.5)--(0,3.5);
+\draw  (-1.5,2)--(2,2);
+\draw [american](-1.5,2) to [L] (-1.5,3.5);
+
+\draw [american](-4,3)--(-4,4.5)--(-2.25,4.5) to [L] (-2.25,1)--(-4,1)--(-4,2.5);
+\draw [fill=white]  (-4,2.5)circle(1.5pt);
+\draw [fill=white]  (-4,3)circle(1.5pt);
+\node at (-4,5.5/2){$\sim$};
+\draw [ultra thick](-2+.15,2)node[below]{$b$}--(-2+.15,3.5)node[above]{$a$};
+
+\end{circuitikz}
+
+===== circuit_035.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 滤波
+% 原始文件：3.tex，行 1528-1533
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european]
+\draw (0,0)--(3,0) to [R=$R$] (3,3) ;
+\draw (1.5,3) to [battery2](0,3) to [rmeter, t=$\sim$](0,0);
+\ctikzset{diodes/scale=0.6}\draw (1.5,3) to [full diode](3,3) ;
+\node at (1,1.5){信号};
+\end{circuitikz}
+
+===== circuit_037.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相交流电
+% 原始文件：3.tex，行 1582-1587
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+\draw (0,0)--(6,0) to [european, R=$1$] (6,2)--node[above]{$I_A$}(0,2)node[left]{$A$} to [american inductor] (0,0)node[left]{$X$};
+\draw (-3+1,-2)node[left]{$C$} to [american inductor](0,-.25)node[left]{$Z$}--(6,-.25)--(6,-.5) to  [european, R=$3$] (3, -2)--(3,-3)--node[below]{$I_C$}(-3+1,-3)--(-3+1,-2);
+\draw (.25,-.4)--(4.5*1.5-.5,-.4) to [european, R=2] (6.5*1.5-1, -2)--(6.5*1.5-1, -2.2)--node[below]{$I_B$}(1.5*1.5,-2.2)node[below]{$B$}to [american inductor] (.25,-.4)node[below]{$Y$};
+\node at (-1+.5,-2-.5){发电机};\node at (6,-1.5){负载};
+\end{circuitikz}
+
+===== circuit_039.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相交流电
+% 原始文件：3.tex，行 1630-1647
+% 类型：circuit
+% ---
+\begin{circuitikz}
+	\draw (0,0) to [american inductors, L] (0,2);
+	\draw (0,0) to [american inductors, L] (-2,-1)node[left]{$C$};	
+	\draw (0,0) to [american inductors, L] (2,-1)node[right]{$B$};	
+	\draw[european] (5,0) to [R=1] (5,2);
+	\draw [european](5,0) to [R=3] (-2+5,-1);	
+	\draw[european] (5,0) to [R=2] (2+5,-1);				
+	\draw(0,2)node[left]{$A$}--node [above]{端线}(5,2)	;
+	\draw (2,-1)--(2,-1.5)--(2+5,-1.5)--(2+5,-1);		
+	\draw (-2,-1)--(-2,-2)--(-2+5,-2)--(-2+5,-1);
+	\draw (0,0)--node [above]{中性线}(5,0);
+	\node at (0,.1) [left]{$O$};
+	\node at (5,.1) [right]{$O'$};
+	
+	\node at (0,-1){发电机};
+	\node at (5,-1.2){负载};
+	\draw [fill=black](0,0) circle(1.5pt);	\draw [fill=black](5,0) circle(1.5pt);
+\end{circuitikz}%%\caption{三相四线制}
+
+===== circuit_040.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相交流电
+% 原始文件：3.tex，行 1651-1670
+% 类型：circuit
+% ---
+    \begin{circuitikz}[>=latex,scale=1]
+        \foreach \x in {1,2,3}
+        {
+            \draw [thick](-1.25,\x/2)--(-2,\x/2+.2);
+            \draw (7,\x/2)--(1.5,\x/2) to [european, R] (0,\x/2) to [short, -o] (-1.25,\x/2);
+            \draw  (-2,\x/2) to [short, o-o](-3,\x/2);
+\draw [ultra thick](-3.25/2, 3/2+.1)--(-3.25/2, 1/2+.1);
+        }
+        \draw (7,0) to [short, -o](-3,0);
+\node at (-3.5, 0){$O$}; \node at (-3.5, 0.5){$C$}; \node at (-3.5, 1){$B$}; \node at (-3.5, 1.5){$A$}; 
+        \draw (.5, 0)to [short,*-](.5,-3); \draw (2.5, 0)to [short,*-](2.5,-3);\draw (4.5, 0)to [short,*-](4.5,-3);
+        \draw (2, 1.5)to [short,*-](2,-3); \draw (4, 1)to [short,*-](4,-3);\draw (6, 0.5)to [short,*-](6,-3);
+
+        \foreach \x in {-1,-2,-3}
+        {
+            \draw (.5,\x)to [lamp, *-*](2,\x);
+            \draw (4.5,\x)to [lamp, *-*](6,\x);
+            \draw (2.5,\x)to [lamp, *-*](4,\x);
+        }
+    \end{circuitikz}
+
+===== circuit_041.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1681-1697
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex]
+	\draw (0,0) to [american inductors, L] (0,2);
+	\draw (0,0) to [american inductors, L] (-1.5,-1)node[left]{$C$};	
+	\draw (0,0) to [american inductors, L] (1.5,-1)node[below]{$B$};	
+	
+	\node at (0,.1) [left]{$O$};
+	
+	\draw (0,2)node[left]{$A$}--(5,2);\draw (0,0)--(5,0);
+	\draw (1.5,-1)--(5,-1);\draw (-1.5,-1)--(-1.5,-1.5)--(5,-1.5);
+	\draw[<->] (3,0)--node [fill=white]{$U_{\text{相}}$}(3,2);
+		\draw[<->] (4,-1)--node [fill=white]{$U_{\text{线}}$}(4,2);
+	\draw [fill=black](0,0) circle(1.5pt);
+	\foreach \x in {0,2,-1,-1.5}
+	{
+		\draw[fill=white] (5,\x) circle({1.5pt});
+	}
+\end{circuitikz}%%\caption{电源的星形连接}
+
+===== circuit_042.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1709-1733
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european,scale=.6,>=latex]
+    
+\draw (0,0) to [R=$2$, *-*] (2,-3) ;
+\draw (0,0) to [R=$3$, *-*] (-2, -3);
+\draw (0,0) to [R=$1$] (0,4);
+\draw (0,4)--(-4-2,4);
+\draw (-2,-3)--(-4-2,-3);
+\draw (-4-2,-4)--(2,-4)--(2,-3);
+\draw (0,0)--(-4-2,0);
+\draw (0,4)--(-4-2,4);
+\foreach \x in {0,-4,-3,4}
+{
+    \draw [fill=white] (-4-2,\x) circle (3pt);
+}
+
+\node at (-4.8-2,0){$O$};
+\node at (-4.8-2,-4){$B$};
+\node at (-4.8-2,-3){$C$};
+\node at (-4.8-2,4){$A$};
+\node at (.5,0){$O'$};
+\draw [<->] (-3-2,0)--node[fill=white]{$U_{\text{相}}$}(-3-2,4);
+\draw [->](-5,4)--(-4,4) node [above]{$I_{\text{线}}$};
+\draw [->](0,4)--(0,3) node [right]{$I_{\text{相}}$};
+
+    \end{circuitikz}
+
+===== circuit_044.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1770-1787
+% 类型：circuit
+% ---
+	\begin{circuitikz}
+		\draw (0,0) to [american inductors, L] (0,2);
+			\draw (0,0) to [american inductors, L] (-2,-1)node[left]{$C$};	
+			\draw (0,0) to [american inductors, L] (2,-1)node[right]{$B$};	
+		\draw[european] (5,0) to [R=1] (5,2);
+\draw [european](5,0) to [R=3] (-2+5,-1);	
+\draw[european] (5,0) to [R=2] (2+5,-1);				
+\draw(0,2)node[left]{$A$}--(5,2)	;
+	\draw (2,-1)--(2,-1.5)--(2+5,-1.5)--(2+5,-1);		
+	\draw (-2,-1)--(-2,-2)--(-2+5,-2)--(-2+5,-1);
+	
+	\node at (0,.1) [right]{$O$};
+	\node at (5,.1) [right]{$O'$};
+	
+	\node at (-1,-1.7){发电机};
+	\node at (5,-1.2){负载};
+			
+	\end{circuitikz}%%\caption{三相三线制}
+
+===== circuit_045.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1802-1822
+% 类型：circuit
+% ---
+    \begin{circuitikz}[european,scale=.8,>=latex]
+    
+\draw (0,0) to [R=$2$, *-*] (5,0) to [R=$1$, *-*] (2.5, 4) to [R=$3$] (0,0);
+\draw (5,0)--(5,-2)--(-4,-2);
+\draw (0,0)--(-4,0);
+\draw (2.5,4)--(-4,4);
+\foreach \x in {0,-2,4}
+{
+    \draw [fill=white] (-4,\x) circle (3pt);
+}
+
+\node at (-4.3,0){$C$};
+
+\node at (-4.3,-2){$B$};
+\node at (-4.3,4){$A$};
+\draw [<->] (-3.5,0)--node[fill=white]{$U_{\text{线}}$}(-3.5,4);
+\draw [->](-2,4)--(-1,4) node [above]{$I_{\text{线}}$};
+\draw [->](2.5, 4)--(2,4-.8)node [left]{$I_{\text{相}}$};
+\draw [->](2.5, 4)--(3,4-.8)node [right]{$I_{\text{相}}$};
+
+    \end{circuitikz}
+
+===== circuit_046.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 三相电路的连接
+% 原始文件：3.tex，行 1835-1849
+% 类型：circuit
+% ---
+\begin{circuitikz}
+	\draw (0,0) to [american inductors, L] (-1.5, -2);
+	\draw (0,0) to [american inductors, L] (1.5, -2);	
+		\draw (1.5, -2) to [american inductors, L] (-1.5, -2);
+	\draw (0,0)-- (4,0)node [right]{$A$};
+	\draw (1.5, -2)-- (4,-2)node [right]{$B$};	
+	\draw (-1.5, -2)--(-1.5, -3)-- (4,-3)node [right]{$C$};	
+	\foreach \x in {-2,-3,0}
+	{
+		\draw[fill=white] (4,\x) circle({1.5pt});
+	}
+	\draw [fill=black](0,0) circle(1.5pt);
+	\draw [fill=black](1.5, -2) circle(1.5pt);
+	\draw [fill=black](-1.5, -2) circle(1.5pt);
+\end{circuitikz}
+
+===== circuit_048.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 感应电动机
+% 原始文件：3.tex，行 1975-1994
+% 类型：circuit
+% ---
+\begin{circuitikz}[>=latex, european, scale=.8]
+\draw (0,0)--(3,0)--(5,0)--(7,0);
+\draw (0,4)to [R=$R$](3,4)--(5,4)--(7,4);
+\ctikzset{diodes/scale=0.6}\draw (3,4) to [full diode ] (3,2) to [battery] (3,0);
+\ctikzset{diodes/scale=0.6}\draw (5,0) to  [battery] (5,2) to [full diode ](5,4);
+
+\node at (2.3,3){$D_1$};\node at (5.7,3){$D_2$};
+
+\draw [fill=white] (0,0) circle (2.5pt);
+\draw [fill=white] (0,4) circle (2.5pt);
+\draw [fill=white] (7,0) circle (2.5pt);
+\draw [fill=white] (7,4) circle (2.5pt);
+\draw [fill=black] (3,0) circle (2.5pt);
+\draw [fill=black] (3,4) circle (2.5pt);
+\draw [fill=black] (5,0) circle (2.5pt);
+\draw [fill=black] (5,4) circle (2.5pt);
+
+\draw[<->](0,.1) to node [fill=white]{$u_1$} (0,3.9);
+\draw[<->](7,.1) to node [fill=white]{$u_2$} (7,3.9);
+\end{circuitikz}
+
+===== circuit_049.tex =====
+% !TEX root = ../../../main.tex
+% 来源：高中物理甲种本·第三册（电磁·光学·近代物理）
+% 章节：交流电 / 感应电动机
+% 原始文件：3.tex，行 2003-2014
+% 类型：circuit
+% ---
+	\begin{circuitikz}
+	\draw (0,0) to [american inductors, L] (0,2);
+	\draw (0,0) to [american inductors, L] (-2,-1)node[left]{$B$};	
+	\draw (0,0) to [american inductors, L] (2,-1)node[right]{$C$};	
+	\draw[european] (5,2) to [R] (3,-1);
+	\draw [european](5,2) to [R] (7,-1);	
+	\draw[european] (3,-1) to [R] (7,-1);				
+	\draw(0,2)node[left]{$A$}--(5,2)	;
+	\draw (2,-1)--(2,-1.5)--(2+5,-1.5)--(2+5,-1);		
+	\draw (-2,-1)--(-2,-2)--(-2+5,-2)--(-2+5,-1);
+	
+\end{circuitikz}%%%%\caption{}
+
