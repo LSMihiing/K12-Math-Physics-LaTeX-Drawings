@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../Documents/工作/凤凰数联/培训/公式输入latex语法入门"
 		}
 	],
 	"settings": {}
