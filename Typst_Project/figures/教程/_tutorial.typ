@@ -4,14 +4,25 @@
 // 本教程帮助读者从零掌握 Typst 基本语法和 CeTZ 绘图库，
 // 并能独立创作 K12 教辅配图。
 
-// 全局样式：内联代码自动加背景色
+// 全局样式：内联代码自动加背景色 + Typst 语法高亮
 #show raw.where(block: false): it => {
-  box(
-    fill: luma(240),
-    inset: (x: 3pt, y: 2pt),
-    radius: 2pt,
-    it,
-  )
+  if it.lang == none {
+    // 无语言标记的内联代码 → 加 typst 高亮 + 背景
+    box(
+      fill: luma(240),
+      inset: (x: 3pt, y: 2pt),
+      radius: 2pt,
+      raw(it.text, lang: "typst"),
+    )
+  } else {
+    // 已有语言标记（含递归产生的 typst）→ 仅加背景
+    box(
+      fill: luma(240),
+      inset: (x: 3pt, y: 2pt),
+      radius: 2pt,
+      it,
+    )
+  }
 }
 
 = Typst 绘图教程
