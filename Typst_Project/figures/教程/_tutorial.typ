@@ -4,6 +4,17 @@
 // 本教程帮助读者从零掌握 Typst 基本语法和 CeTZ 绘图库，
 // 并能独立创作 K12 教辅配图。
 
+// 全局样式：内联代码自动加背景色
+#show raw.where(block: false): it => {
+  box(
+    fill: luma(240),
+    inset: (x: 3pt, y: 2pt),
+    outset: (y: 2pt),
+    radius: 2pt,
+    it,
+  )
+}
+
 = Typst 绘图教程
 
 == Typst 基础语法

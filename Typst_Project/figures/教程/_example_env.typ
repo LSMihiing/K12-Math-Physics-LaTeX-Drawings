@@ -7,6 +7,17 @@
 
 #import "@preview/cetz:0.4.2"
 
+// --- 内联代码片段（用于表格等场景，带语法高亮+背景）---
+#let code(src) = {
+  box(
+    fill: luma(240),
+    inset: (x: 3pt, y: 2pt),
+    outset: (y: 2pt),
+    radius: 2pt,
+    raw(src, lang: "typst"),
+  )
+}
+
 // --- 并排示例（左代码 / 右渲染）---
 // code-block: 传入 raw 块（用反引号包裹的代码）
 #let example(code-block) = {
