@@ -181,6 +181,7 @@
 #set page(numbering: "1")
 #counter(page).update(1)
 
+#include "figures/教程/_tutorial.typ"
 #include "figures/几何作图/_chapter.typ"
 #include "figures/统计图表/_chapter.typ"
 #include "figures/线段图/_chapter.typ"

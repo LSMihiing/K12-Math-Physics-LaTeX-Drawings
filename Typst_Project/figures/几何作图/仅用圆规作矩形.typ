@@ -21,7 +21,9 @@
 
 #let render() = {
   set par(first-line-indent: 0em)
-  text(size: 11pt)[如图，$A$ 是直线 $l$ 外一点。求作点 $B$、$C$、$D$，其中有两点在直线 $l$ 上，且使得点 $A$、$B$、$C$、$D$ 是一个矩形的四个顶点。（要求：仅用圆规作图，保留作图痕迹）]
+  text(
+    size: 11pt,
+  )[如图，$A$ 是直线 $l$ 外一点。求作点 $B$、$C$、$D$，其中有两点在直线 $l$ 上，且使得点 $A$、$B$、$C$、$D$ 是一个矩形的四个顶点。（要求：仅用圆规作图，保留作图痕迹）]
   v(1.5em)
 
   align(center)[
@@ -59,9 +61,8 @@
       // 画大弧覆盖 A、B、C、D 四点
       let angle-OA = calc.atan2(A.at(0) - O-pt.at(0), A.at(1))
       let angle-OD = calc.atan2(D.at(0) - O-pt.at(0), D.at(1))
-      // 画接近完整的圆（从 5° 到 355°）
-      arc(O-pt, start: 5deg, stop: 355deg, radius: r,
-          stroke: arc-stroke, anchor: "origin")
+      // 画一个完整的圆
+      arc(O-pt, start: 0deg, stop: 365deg, radius: r, stroke: arc-stroke, anchor: "origin")
 
       // 标记 O 点（辅助点，蓝色）
       circle(O-pt, radius: 1.2pt, fill: aux-color, stroke: none)
@@ -69,8 +70,7 @@
 
       // 弧②：以 C 为圆心、|AB| 为半径画弧，交圆于 D
       let angle-CD = calc.atan2(D.at(0) - C.at(0), D.at(1) - C.at(1))
-      arc(C, start: angle-CD - 18deg, stop: angle-CD + 18deg,
-          radius: AB-len, stroke: arc-stroke, anchor: "origin")
+      arc(C, start: angle-CD - 18deg, stop: angle-CD + 18deg, radius: AB-len, stroke: arc-stroke, anchor: "origin")
 
       // === 答案 ===
       circle(B, radius: 1.5pt, fill: ans-color, stroke: none)
