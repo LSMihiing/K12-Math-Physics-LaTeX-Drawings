@@ -28,13 +28,16 @@ Typst_Project/
 ├── main.typ                          ← 主入口，通过 #include 各章节聚合文件
 ├── lib/styles.typ, grid-utils.typ, geo-utils.typ
 └── figures/
+    ├── 教程/                         ← ⛔ 只读！教程文件，禁止在此创建绘图
     ├── 几何作图/_chapter.typ  + 各绘图文件
     ├── 统计图表/_chapter.typ  + ...
     ├── 线段图/_chapter.typ    + ...
     └── 物理/_chapter.typ      + ...
 ```
 
-**新增绘图时，只需编辑 `_chapter.typ`，不要修改 `main.typ`。**
+**⚠️ 新增绘图文件只能放在 `几何作图/`、`统计图表/`、`线段图/`、`物理/` 这四个分类目录中。**
+**`教程/` 目录仅供教学参考，禁止在其中创建新绘图。**
+新增绘图时，只需编辑对应分类目录下的 `_chapter.typ`，不要修改 `main.typ`。
 文件命名：`{中文描述}.typ`（如 `尺规取等长线段.typ`、`受力_斜面物体.typ`）
 
 ---

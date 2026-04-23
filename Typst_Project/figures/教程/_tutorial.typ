@@ -9,7 +9,6 @@
   box(
     fill: luma(240),
     inset: (x: 3pt, y: 2pt),
-    outset: (y: 2pt),
     radius: 2pt,
     it,
   )

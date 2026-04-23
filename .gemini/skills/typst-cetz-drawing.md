@@ -67,6 +67,7 @@ Typst_Project/
 │   ├── grid-utils.typ                    ← draw-grid(), dot-label()
 │   └── geo-utils.typ                     ← draw-triangle(), mark-center(), draw-arrow()
 └── figures/
+    ├── 教程/                             ← ⛔ 只读！教程文件，禁止在此创建绘图
     ├── 几何作图/
     │   ├── _chapter.typ                  ← 章节聚合（import + render + 分类标题）
     │   ├── 尺规取等长线段.typ
@@ -82,6 +83,8 @@ Typst_Project/
         ├── _chapter.typ
         └── ...
 ```
+
+> **⚠️ 新增绘图文件只能放在 `几何作图/`、`统计图表/`、`线段图/`、`物理/` 四个分类目录中。`教程/` 目录仅供教学参考，禁止在其中创建新绘图。**
 
 ## 文件命名规范
 
