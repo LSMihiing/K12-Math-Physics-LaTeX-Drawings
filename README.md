@@ -9,6 +9,8 @@
 - **LaTeX TikZ**（存量） — 315 个 tikzpicture + 1155 参考图的存量体系
 - **Web Canvas**（交互） — 前端交互式绘图引擎
 
+> **新成员？** 请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解环境搭建、分支规范和绘图流程。
+
 ---
 
 ## 目录结构
