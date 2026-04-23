@@ -35,7 +35,10 @@
   b
   v(-measure(b + b).height)
 }
-#show figure: it => { it; fakepar }
+#show figure: it => {
+  it
+  fakepar
+}
 
 // ========== 深蓝色（目录链接）==========
 #let dark-blue = rgb("#3333cc")
@@ -119,7 +122,10 @@
   set text(weight: "bold", size: 12pt, fill: dark-blue)
   link(it.element.location(), context {
     let p = it.prefix()
-    if p != none and measure(p).width > 0pt { p; h(0.5em) }
+    if p != none and measure(p).width > 0pt {
+      p
+      h(0.5em)
+    }
     it.body()
     h(1fr)
     it.page()
@@ -132,7 +138,10 @@
   set text(weight: "bold", fill: dark-blue)
   link(it.element.location(), context {
     let p = it.prefix()
-    if p != none and measure(p).width > 0pt { p; h(0.5em) }
+    if p != none and measure(p).width > 0pt {
+      p
+      h(0.5em)
+    }
     it.body()
     h(1fr)
     it.page()
@@ -144,7 +153,10 @@
   set text(fill: dark-blue)
   pad(left: 1.5em, link(it.element.location(), {
     let p = it.prefix()
-    if p != none { p; h(0.5em) }
+    if p != none {
+      p
+      h(0.5em)
+    }
     it.body()
     box(width: 1fr, repeat(gap: 4.5pt)[.])
     it.page()

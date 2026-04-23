@@ -121,6 +121,7 @@
       )[
         #set par(first-line-indent: 0em)
         #set text(size: 9pt)
+        #set heading(outlined: false, bookmarked: false, numbering: none)
         #show heading: it => {
           let sz = if it.level == 1 { 14pt } else if it.level == 2 { 12pt } else { 10pt }
           block(above: 0.4em, below: 0.3em, text(size: sz, weight: "bold")[#it.body])
