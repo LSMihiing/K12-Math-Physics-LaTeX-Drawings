@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // 尺规作图（保留作图痕迹）
 // ============================================================
 //
@@ -40,7 +40,7 @@
 // 线段/直线的主色
 #let main-stroke = 0.8pt + black
 // 作图痕迹（弧线）的样式
-#let arc-stroke = (paint: rgb("#2563EB"), thickness: 0.6pt, dash: "dashed")
+#let arc-stroke = (paint: rgb("#2563EB"), thickness: 0.6pt, dash: (2pt, 1.2pt))
 // 答案线（垂直平分线/垂线）的样式
 #let answer-stroke = 1pt + rgb("#DC2626")
 // 端点圆点
@@ -310,7 +310,7 @@
   // ——— CB 延长线（虚线）———
   let ext-len = 2 // 延长 1.8 个单位
   let ext-end = (B.at(0) - bc-ux * ext-len, B.at(1) - bc-uy * ext-len)
-  line(B, ext-end, stroke: (paint: luma(140), thickness: 0.5pt, dash: "dashed"))
+  line(B, ext-end, stroke: (paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt)))
 
   // ——— 作图痕迹 ① 以 A 为圆心画弧交直线 BC 于 C'、D' ———
   let r1 = ah-dist + 0.9 // r1 > A 到 BC 的距离
@@ -352,7 +352,7 @@
   draw-right-angle(H, (bc-ux, bc-uy), (n-ax, n-ay), s: 0.3)
 
   // ——— 辅助虚线：从 H 到 E ———
-  line(H, E-pt, stroke: (paint: luma(160), thickness: 0.4pt, dash: "dashed"))
+  line(H, E-pt, stroke: (paint: luma(160), thickness: 0.4pt, dash: (2pt, 1.2pt)))
 
   // --- 标签 ---
   dot-label(A, $A$, dir: "sw", text-size: 9pt)

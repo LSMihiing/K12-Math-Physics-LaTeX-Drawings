@@ -98,6 +98,17 @@
 | `very thick` | 1.2pt | `stroke: 1.2pt + black` |
 | `ultra thick` | 1.6pt | `stroke: 1.6pt + black` |
 
+### 虚线样式
+
+**⚠️ 禁止使用 `dash: "dashed"` 关键字**（默认间距过大，效果粗糙）。
+统一使用细密数组模式：
+
+| 用途 | stroke 定义 |
+|------|------------|
+| 尺规弧线 | `(paint: rgb("#2563EB"), thickness: 0.6pt, dash: (2pt, 1.2pt))` |
+| 辅助线 | `(paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt))` |
+| 网格虚线 | `(paint: 颜色, thickness: 0.6pt, dash: (2pt, 1.2pt))` |
+
 ### 箭头映射
 | TikZ | CeTZ |
 |------|------|

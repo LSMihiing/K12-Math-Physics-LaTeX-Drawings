@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // 三角形变换（方格纸）
 // 绘图 + 解答合并
 // ============================================================
@@ -96,9 +96,9 @@
   content((O-sym.at(0) + 0.3, O-sym.at(1) + 0.3))[#text(size: 9pt, fill: red, weight: "bold")[$O$]]
 
   // --- 对应点虚线连接 ---
-  line(A2, A3, stroke: (paint: luma(140), thickness: 0.5pt, dash: "dashed"))
-  line(B2, B3, stroke: (paint: luma(140), thickness: 0.5pt, dash: "dashed"))
-  line(C2, C3, stroke: (paint: luma(140), thickness: 0.5pt, dash: "dashed"))
+  line(A2, A3, stroke: (paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt)))
+  line(B2, B3, stroke: (paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt)))
+  line(C2, C3, stroke: (paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt)))
 
   // 顶点小圆点
   for pt in (A2, B2, C2, A3, B3, C3) {

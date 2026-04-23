@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // 用小长方形拼接大长方形
 // ============================================================
 
@@ -14,7 +14,7 @@
   // 原题网格颜色（浅青色）
   let grid-color = rgb("#4FC3F7")
   let grid-stroke = 0.6pt + grid-color
-  let grid-stroke-dashed = (paint: grid-color, thickness: 0.6pt, dash: "dashed")
+  let grid-stroke-dashed = (paint: grid-color, thickness: 0.6pt, dash: (2pt, 1.2pt))
   
   // 拼图方块颜色（深蓝色）
   let block-stroke = 1.5pt + rgb("#005DB9")

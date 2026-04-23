@@ -52,7 +52,9 @@ Typst_Project/
 
 ## 题型关键技巧
 
-- **尺规作图**：用 `arc(圆心, anchor: "origin", start:, stop:, radius:, stroke: 虚线)` 画弧。用 `calc.atan2(dx, dy)` 计算角度。短切痕 = 小角度范围实线弧。
+- **尺规作图**：用 `arc(圆心, anchor: "origin", start:, stop:, radius:, stroke: 虚线)` 画弧。用 `calc.atan2(dx, dy)` 计算角度。短切痕 = 小角度范围实线弧。**虚线必须使用细密样式** `dash: (2pt, 1.2pt)`，禁止使用 `"dashed"` 关键字（间距过大）。标准 stroke 定义：
+  - 圆弧：`(paint: rgb("#2563EB"), thickness: 0.6pt, dash: (2pt, 1.2pt))`
+  - 辅助线：`(paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt))`
 - **网格变换**：用 `draw-grid()` 画方格纸。旋转公式 `(cx+(y-cy), cy-(x-cx))`。平移/对称用虚线箭头连接前后对应点。
 - **分数涂色**：`arc(mode: "PIE")` 画扇形填充。`group()` 隔离子图 + `grid(columns:N)` 并排。
 - **统计图**：方格网必须绘制。折线图用实线/虚线 + 实心/空心圆区分系列。柱状图补全部分用深色高亮。饼图 `arc(mode:"PIE")` 按角度分扇形。

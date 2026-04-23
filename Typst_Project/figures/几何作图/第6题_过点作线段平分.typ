@@ -23,9 +23,9 @@
 #import "@preview/cetz:0.4.2"
 
 // 线型规范
-#let arc-stroke = (paint: rgb("#2563EB"), thickness: 0.6pt, dash: "dashed") // 圆规弧（蓝色虚线）
+#let arc-stroke = (paint: rgb("#2563EB"), thickness: 0.6pt, dash: (2pt, 1.2pt)) // 圆规弧（蓝色虚线）
 #let answer-stroke = 1pt + rgb("#DC2626")  // 答案/成品线（红色实线）
-#let aux-stroke = (paint: luma(140), thickness: 0.5pt, dash: "dashed") // 辅助直线（灰色虚线）
+#let aux-stroke = (paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt)) // 辅助直线（灰色虚线）
 #let ans-color = rgb("#DC2626") // 答案点/标签颜色
 #let aux-color = rgb("#2563EB") // 辅助点/标签颜色
 

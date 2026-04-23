@@ -10,9 +10,9 @@
 
 #import "@preview/cetz:0.4.2"
 
-#let arc-stroke = (paint: rgb("#2563EB"), thickness: 0.6pt, dash: "dashed")
+#let arc-stroke = (paint: rgb("#2563EB"), thickness: 0.6pt, dash: (2pt, 1.2pt))
 #let answer-stroke = 1pt + rgb("#DC2626")
-#let aux-stroke = (paint: luma(140), thickness: 0.5pt, dash: "dashed")
+#let aux-stroke = (paint: luma(140), thickness: 0.5pt, dash: (2pt, 1.2pt))
 #let ans-color = rgb("#DC2626")
 #let aux-color = rgb("#2563EB")
 

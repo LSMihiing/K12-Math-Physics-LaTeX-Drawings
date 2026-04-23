@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // 格点三角形中心对称与面积
 // 绘图 + 解答合并
 // ============================================================
@@ -21,7 +21,7 @@
       // 1. 绘制 12 x 8 网格
       let w = 12
       let h = 8
-      grid((0, 0), (w, h), stroke: (paint: luma(180), dash: "dashed", thickness: 0.5pt))
+      grid((0, 0), (w, h), stroke: (paint: luma(180), dash: (2pt, 1.2pt), thickness: 0.5pt))
       
       // 2. 坐标定义 (以左下角为(0,0))
       let pt-A  = (7, 7)
@@ -48,8 +48,8 @@
       line(pt-C, pt-C1, stroke: (paint: gray, dash: "dotted"))
       
       // 绘制用于计算面积的辅助线段 B-C1 和 C-B1
-      line(pt-B, pt-C1, stroke: (paint: rgb("E63946"), dash: "dashed", thickness: 1pt))
-      line(pt-C, pt-B1, stroke: (paint: rgb("E63946"), dash: "dashed", thickness: 1pt))
+      line(pt-B, pt-C1, stroke: (paint: rgb("E63946"), dash: (2pt, 1.2pt), thickness: 1pt))
+      line(pt-C, pt-B1, stroke: (paint: rgb("E63946"), dash: (2pt, 1.2pt), thickness: 1pt))
       
       // 绘制原始三角形
       line(pt-A, pt-B, pt-C, close: true, stroke: 1pt + black)

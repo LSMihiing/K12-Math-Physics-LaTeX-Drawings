@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // 三角形平移与旋转（方格纸）
 // 绘图 + 解答合并
 // ============================================================
@@ -128,9 +128,9 @@
   dot-label(ptO, $O$, dir: "s", text-size: 8pt)
 
   // --- 平移辅助箭头（虚线，A→A′方向） ---
-  line(ptA, ptA1, stroke: (paint: luma(120), thickness: 0.5pt, dash: "dashed"), mark: (end: "stealth", fill: luma(120)))
-  line(ptB, ptB1, stroke: (paint: luma(120), thickness: 0.5pt, dash: "dashed"), mark: (end: "stealth", fill: luma(120)))
-  line(ptC, ptC1, stroke: (paint: luma(120), thickness: 0.5pt, dash: "dashed"), mark: (end: "stealth", fill: luma(120)))
+  line(ptA, ptA1, stroke: (paint: luma(120), thickness: 0.5pt, dash: (2pt, 1.2pt)), mark: (end: "stealth", fill: luma(120)))
+  line(ptB, ptB1, stroke: (paint: luma(120), thickness: 0.5pt, dash: (2pt, 1.2pt)), mark: (end: "stealth", fill: luma(120)))
+  line(ptC, ptC1, stroke: (paint: luma(120), thickness: 0.5pt, dash: (2pt, 1.2pt)), mark: (end: "stealth", fill: luma(120)))
 })
 
 
