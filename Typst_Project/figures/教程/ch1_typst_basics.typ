@@ -54,7 +54,7 @@ Typst 有三种书写模式，可以随时切换：
 - 代码模式中，用 `[...]` 回到标记模式
 - 任何地方用 `$...$` 进入数学模式
 
-// --- 参考：https://typst.app/docs/reference/scripting ---
+#import "_example_env.typ": markup-example
 
 === 基本文本与排版
 
@@ -62,63 +62,39 @@ Typst 有三种书写模式，可以随时切换：
 
 用 `=` 的数量表示标题层级（类似 Markdown 的 `#`）：
 
-#block(
-  width: 100%,
-  inset: (x: 1em, y: 0.6em),
-  fill: luma(245),
-  radius: 2pt,
-)[
-  #set par(first-line-indent: 0em)
-  #set text(size: 9pt)
-  #raw("= 第一级标题（部分）\n== 第二级标题（章）\n=== 第三级标题（节）", lang: "typst", block: true)
-  本项目中，`=` 用于"部分"（如几何作图），`==` 用于"章"，`===` 用于"节"。
+#markup-example(```
+= 第一级标题
+== 第二级标题
+=== 第三级标题
+```)
 
-  参见本书 `main.typ` 第 44–101 行的标题编号和样式定义。
-]
+本项目中，`=` 用于"部分"（如几何作图），`==` 用于"章"，`===` 用于"节"。
+参见本书 `main.typ` 第 44–101 行的标题编号和样式定义。
 
 ==== 段落与间距
 
-#block(
-  width: 100%,
-  inset: (x: 1em, y: 0.6em),
-  fill: luma(245),
-  radius: 2pt,
-)[
-  #set par(first-line-indent: 0em)
-  #set text(size: 9pt)
-  ```typst
-  // 设置首行缩进
-  #set par(first-line-indent: 2em, justify: true)
+#markup-example(```
+首段文字。
 
-  // 插入垂直间距
-  #v(1em)
+空行分段。#v(1em)
+插入垂直间距后的段落。
 
-  // 插入水平间距
-  #h(2em)
+水平留白：前#h(3em)后
+```)
 
-  // 换页
-  #pagebreak()
-  ```
-  // 参考：https://typst.app/docs/reference/layout/v
-]
+// 参考：https://typst.app/docs/reference/layout/v
 
 ==== 文字样式
 
-#block(
-  width: 100%,
-  inset: (x: 1em, y: 0.6em),
-  fill: luma(245),
-  radius: 2pt,
-)[
-  #set par(first-line-indent: 0em)
-  #set text(size: 9pt)
-  ```typst
-  *加粗文字*                           // 标记模式快捷方式
-  _斜体文字_
-  #text(fill: red, size: 14pt)[红色大字]  // 代码模式精确控制
-  #text(weight: "bold")[程序化加粗]
-  ```
-]
+#markup-example(```
+*加粗文字*
+
+_斜体文字_
+
+#text(fill: red, size: 14pt)[红色大字]
+
+#text(weight: "bold")[程序化加粗]
+```)
 
 === 函数与变量
 

@@ -87,3 +87,46 @@
     ]
   ]
 }
+
+// --- 标记模式示例（左代码 / 右渲染）---
+// 用于 Typst 基础语法演示（文字样式、列表等），不需要 CeTZ
+// 内部重置 heading show 规则，避免 main.typ 的样式泄入
+#let markup-example(code-block) = {
+  let code = code-block.text
+  block(
+    width: 100%,
+    inset: 0pt,
+    above: 0.8em,
+    below: 0.8em,
+    grid(
+      columns: (1fr, 1fr),
+      gutter: 10pt,
+      // 左：代码
+      block(
+        width: 100%,
+        fill: luma(245),
+        inset: 10pt,
+        radius: 3pt,
+      )[
+        #set par(first-line-indent: 0em)
+        #set text(size: 8pt)
+        #raw(code, lang: "typst", block: true)
+      ],
+      // 右：渲染结果（重置标题样式）
+      block(
+        width: 100%,
+        stroke: 0.5pt + luma(200),
+        inset: 10pt,
+        radius: 3pt,
+      )[
+        #set par(first-line-indent: 0em)
+        #set text(size: 9pt)
+        #show heading: it => {
+          let sz = if it.level == 1 { 14pt } else if it.level == 2 { 12pt } else { 10pt }
+          block(above: 0.4em, below: 0.3em, text(size: sz, weight: "bold")[#it.body])
+        }
+        #eval(code, mode: "markup")
+      ],
+    ),
+  )
+}
