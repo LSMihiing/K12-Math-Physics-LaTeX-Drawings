@@ -131,58 +131,84 @@
 
 === 实战三：统计图表
 
-==== 柱状图
+==== 频数分布直方图
 
-参见 @案例_果树品种成活率_饼图柱状图 。
+以 @案例_成绩频数分布直方图 为例，其核心绘图代码如下：
 
-#full-example(```
-#cetz.canvas(length: 0.5cm, {
-  import cetz.draw: *
-  let data = (8, 12, 6, 15, 10)
-  let labels = ("一", "二", "三", "四", "五")
-  let bw = 1.2
-  let gap = 0.6
-  for j in range(0, 16, step: 5) {
-    line((0, j), (10.5, j), stroke: 0.3pt + luma(210))
-    content((-0.8, j), text(size: 8pt)[#str(j)])
-  }
-  line((0, 0), (0, 16), stroke: 0.6pt)
-  line((0, 0), (10.5, 0), stroke: 0.6pt)
-  for i in range(5) {
-    let x = 0.5 + i * (bw + gap)
-    rect((x, 0), (x + bw, data.at(i)),
-         fill: rgb("#42A5F5"), stroke: 0.5pt + white)
-    content((x + bw / 2, data.at(i) + 0.8),
-            text(size: 8pt)[#str(data.at(i))])
-    content((x + bw / 2, -1.2),
-            text(size: 8pt)[#labels.at(i)月])
-  }
-})
-```)
+#block(
+  width: 100%,
+  inset: (x: 1em, y: 0.6em),
+  fill: luma(245),
+  radius: 2pt,
+)[
+  #set par(first-line-indent: 0em)
+  #set text(size: 9pt)
+  *关键技巧*：
+  + *坐标轴断裂号*：X 轴 0→50 区间用折线模拟"心电图"断裂号，表示刻度不连续
+  + *参考虚线*：`for` 循环绘制水平虚线作为背景网格
+  + *柱体区分*：补全部分用蓝色边框+浅色填充高亮，已知部分用灰色
 
-==== 折线图
+  ```typst
+  // 数据：(起始分数, 频数, 填充色, 边框色)
+  let data = (
+    (50, 2, luma(220), black),
+    (60, 6, luma(220), black),
+    (70, 10, blue.lighten(80%), blue),  // 补全部分
+    (80, 14, luma(220), black),
+    (90, 8, luma(220), black),
+  )
+  for (i, entry) in data.enumerate() {
+    let (score, count, fill_clr, stroke_clr) = entry
+    let x_start = bar-start-x + i * sx
+    rect((x_start, 0), (x_start + sx, count * sy),
+         fill: fill_clr, stroke: 1pt + stroke_clr)
+  }
+  ```
+]
 
-参见 @案例_北京南京气温_复式折线统计图 。
+==== 扇形统计图
 
-#full-example(```
-#cetz.canvas(length: 0.5cm, {
-  import cetz.draw: *
-  let data = ((1, 3), (2, 5), (3, 4), (4, 8), (5, 6), (6, 9))
-  for j in range(0, 11, step: 2) {
-    line((0, j), (7.5, j), stroke: 0.3pt + luma(210))
-    content((-0.8, j), text(size: 8pt)[#str(j)])
+以 @案例_课外活动扇形统计图 为例，其核心绘图代码如下：
+
+#block(
+  width: 100%,
+  inset: (x: 1em, y: 0.6em),
+  fill: luma(245),
+  radius: 2pt,
+)[
+  #set par(first-line-indent: 0em)
+  #set text(size: 9pt)
+  *关键技巧*：
+  + *十二等分圆*：`for i in range(12)` + 30° 步长放置等分点
+  + *极坐标扇形*：用角度累加 + `line` 从圆心到圆周画分割线
+  + *文字标注*：在扇形角度中线的 0.6R 处居中放置标注
+
+  ```typst
+  let r = 2.5
+  // 十二等份圆周点
+  for i in range(12) {
+    let a = i * 30deg
+    circle((r * calc.cos(a), r * calc.sin(a)), radius: 1pt, fill: black)
   }
-  line((0, 0), (0, 11), stroke: 0.6pt)
-  line((0, 0), (7.5, 0), stroke: 0.6pt)
-  for i in range(data.len() - 1) {
-    line(data.at(i), data.at(i + 1), stroke: 1pt + rgb("#1976D2"))
+  // 各活动的份数（每份=30°=4人）
+  let angles = (
+    (name: "打篮球", count: 4, label: "33.3%"),
+    (name: "打排球", count: 3, label: "25%"),
+    ...
+  )
+  let current-angle = 90deg  // 从正上方开始
+  for item in angles {
+    let angle-span = item.count * 30deg
+    line((0,0), (r * calc.cos(current-angle), r * calc.sin(current-angle)),
+         stroke: 0.8pt + rgb(31, 120, 180))
+    // 标注放在扇形中线的 0.6R 处
+    let mid-angle = current-angle - angle-span / 2
+    content((r * 0.6 * calc.cos(mid-angle), r * 0.6 * calc.sin(mid-angle)),
+      text(size: 9pt)[...])
+    current-angle = current-angle - angle-span
   }
-  for pt in data {
-    circle(pt, radius: 0.15, fill: rgb("#1976D2"), stroke: 0.8pt + white)
-    content((pt.at(0), pt.at(1) + 0.8), text(size: 8pt)[#str(pt.at(1))])
-  }
-})
-```)
+  ```
+]
 
 === 实战四：受力分析
 
