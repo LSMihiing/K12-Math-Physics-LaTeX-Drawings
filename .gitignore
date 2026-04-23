@@ -259,13 +259,22 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
-# macOS
+# macOS / Windows
 .DS_Store
+Thumbs.db
+desktop.ini
 
-# Zip files
+# Archives
 *.zip
 
+# Python
 .venv/
 error.log
 error.txt
+
+# LaTeX temp
 temp_answer.*
+
+# Typst
+Typst_Project/output/
+.typst/
