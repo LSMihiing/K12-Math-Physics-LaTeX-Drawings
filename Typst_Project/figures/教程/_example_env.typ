@@ -41,7 +41,8 @@
       )[
         #set par(first-line-indent: 0em)
         #set text(size: 8pt)
-        #raw(code, lang: "typst", block: true)
+        #show raw: set text(font: ("Consolas", "SimSun"))
+        #code-block
       ],
       // 右：渲染结果
       block(
@@ -113,7 +114,8 @@
       )[
         #set par(first-line-indent: 0em)
         #set text(size: 8pt)
-        #raw(code, lang: "typst", block: true)
+        #show raw: set text(font: ("Consolas", "SimSun"))
+        #code-block
       ],
       // 右：渲染结果（重置标题样式）
       block(

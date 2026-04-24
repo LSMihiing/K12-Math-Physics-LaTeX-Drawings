@@ -5,10 +5,11 @@
 // 实时预览：typst watch main.typ output/main.pdf
 
 #import "lib/styles.typ": *
-// 中文伪粗体/伪斜体支持（SimSun 无粗体/斜体字形）
-#import "@preview/cuti:0.4.0": show-cn-fakebold, show-cn-fakeitalic
-#show: show-cn-fakebold
-#show: show-cn-fakeitalic
+
+// 中文加粗与斜体规范（SimSun 无对应字形，采用标准字体映射替代伪粗体）
+// 避免使用 cuti 伪粗体，因为它会破坏 AST 导致 Tinymist 预览跳转失效
+#show strong: set text(font: ("Times New Roman", "SimHei"))
+#show emph: set text(font: ("Times New Roman", "KaiTi"))
 
 // ============================================================
 // 全局样式
