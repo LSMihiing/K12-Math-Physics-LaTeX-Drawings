@@ -14,7 +14,8 @@
     inset: (x: 3pt, y: 2pt),
     radius: 2pt,
     baseline: 2pt,
-  )[#set text(font: ("Consolas", "SimSun")); #raw(src, lang: "typst")]
+    text(font: ("Consolas", "SimSun"), raw(src, lang: "typst")),
+  )
 }
 
 // --- 并排示例（左代码 / 右渲染）---
