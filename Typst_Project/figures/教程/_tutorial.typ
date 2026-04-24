@@ -12,6 +12,7 @@
       fill: luma(240),
       inset: (x: 3pt, y: 2pt),
       radius: 2pt,
+      baseline: 2pt,
       raw(it.text, lang: "typst"),
     )
   } else {
@@ -20,6 +21,7 @@
       fill: luma(240),
       inset: (x: 3pt, y: 2pt),
       radius: 2pt,
+      baseline: 2pt,
       it,
     )
   }
