@@ -6,8 +6,9 @@
 
 #import "lib/styles.typ": *
 // 中文伪粗体/伪斜体支持（SimSun 无粗体/斜体字形）
-#import "@preview/cuti:0.4.0": show-cn-fakebold
+#import "@preview/cuti:0.4.0": show-cn-fakebold, show-cn-fakeitalic
 #show: show-cn-fakebold
+#show: show-cn-fakeitalic
 
 // ============================================================
 // 全局样式

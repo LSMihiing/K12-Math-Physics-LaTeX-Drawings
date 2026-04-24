@@ -5,8 +5,8 @@
 // 并能独立创作 K12 教辅配图。
 
 // 全局样式：内联代码自动加背景色 + Typst 语法高亮
-// 注意：必须用 text(font:...) 包裹 raw，因为 show raw 的
-//       set text(font) 在被本规则替换为 box() 后会丢失字体级联。
+// 注意：必须在 box 内部使用 show raw: set text，否则被创建的 raw
+//       不会继承外部 show 规则，而是回退到默认的 DejaVu 导致衬线问题
 #let _code-font = ("Consolas", "SimSun")
 #show raw.where(block: false): it => {
   if it.lang == none {
@@ -16,8 +16,10 @@
       inset: (x: 3pt, y: 2pt),
       radius: 2pt,
       baseline: 2pt,
-      text(font: _code-font, raw(it.text, lang: "typst")),
-    )
+    )[
+      #show raw: set text(font: _code-font)
+      #raw(it.text, lang: "typst")
+    ]
   } else {
     // 已有语言标记（含递归产生的 typst）→ 仅加背景
     box(
@@ -25,8 +27,10 @@
       inset: (x: 3pt, y: 2pt),
       radius: 2pt,
       baseline: 2pt,
-      text(font: _code-font, it),
-    )
+    )[
+      #show raw: set text(font: _code-font)
+      #it
+    ]
   }
 }
 
