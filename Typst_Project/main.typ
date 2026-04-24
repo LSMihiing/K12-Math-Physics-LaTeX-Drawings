@@ -6,8 +6,11 @@
 
 #import "lib/styles.typ": *
 
-// 中文加粗与斜体规范（SimSun 无对应字形，采用标准字体映射替代伪粗体）
-// 避免使用 cuti 伪粗体，因为它会破坏 AST 导致 Tinymist 预览跳转失效
+// 【中文加粗与斜体规范（核心排版策略）】
+// 1. 中文宋体 (SimSun) 本身不含粗体/斜体字形。
+// 2. 避免使用 cuti 等第三方包来生成“伪粗体/伪斜体”。此类包通过拦截强文本（show strong: it => text(...it.body)）
+//    重构整个 AST 树，这将导致编辑器（Tinymist）丢失源码行列映射信息，使得双向点击跳转失效。
+// 3. 完美解法：采用原生 Typst 字体回退映射，将加粗直接映射为黑体，斜体映射为楷体，实现优雅且不破坏 AST 的中文化排版。
 #show strong: set text(font: ("Times New Roman", "SimHei"))
 #show emph: set text(font: ("Times New Roman", "KaiTi"))
 

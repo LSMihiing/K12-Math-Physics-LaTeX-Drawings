@@ -41,6 +41,9 @@
       )[
         #set par(first-line-indent: 0em)
         #set text(size: 8pt)
+        // 关键防坑：务必使用 `#code-block` 原节点输出，切勿重新解构并使用 `#raw(code)` 组装。
+        // 原节点输出能完整保留 AST，确保 Tinymist 预览中的双向跳转可以精确定位到使用该环境的源文件位置。
+        // 同时局部应用 show raw 来修补字体级联失效导致的衬线体回退问题。
         #show raw: set text(font: ("Consolas", "SimSun"))
         #code-block
       ],
@@ -114,6 +117,7 @@
       )[
         #set par(first-line-indent: 0em)
         #set text(size: 8pt)
+        // 同理：使用 #code-block 原节点而非重新打包，确保 Tinymist 跳转功能存活
         #show raw: set text(font: ("Consolas", "SimSun"))
         #code-block
       ],
