@@ -179,11 +179,11 @@
 // 封面（无页码）
 // ============================================================
 #align(center + horizon)[
-  #text(size: 26pt, weight: "bold")[教辅解答绘图集]
+  #text(size: 26pt, weight: "bold")[教辅解答绘图集（Typst CeTZ 版）]
   #v(1.5em)
-  #text(size: 16pt)[Typst + CeTZ 版]
+  #text(size: 16pt)[#datetime.today().display("[year] 年 [month padding:none] 月 [day padding:none] 日")]
   #v(1em)
-  #text(size: 14pt)[K12 数学 / 物理]
+  #text(size: 14pt)[学科编辑组]
 ]
 
 // ============================================================
