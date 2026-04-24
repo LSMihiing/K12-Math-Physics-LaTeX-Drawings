@@ -13,8 +13,8 @@
     fill: luma(240),
     inset: (x: 3pt, y: 2pt),
     radius: 2pt,
-    raw(src, lang: "typst"),
-  )
+    baseline: 2pt,
+  )[#set text(font: ("Consolas", "SimSun")); #raw(src, lang: "typst")]
 }
 
 // --- 并排示例（左代码 / 右渲染）---
